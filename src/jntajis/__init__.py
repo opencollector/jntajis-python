@@ -26,7 +26,7 @@ class MJShrinkScheme(enum.IntEnum):
     MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE = 3
 
 
-class MJShrinkSchemeCombo(enum.IntEnum):
+class MJShrinkSchemeCombo(enum.IntFlag):
     JIS_INCORPORATION_UCS_UNIFICATION_RULE = 1
     INFERENCE_BY_READING_AND_GLYPH = 2
     MOJ_NOTICE_582 = 4
