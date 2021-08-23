@@ -1,3 +1,4 @@
+# cython: language_level=3
 from libc.stdio cimport snprintf
 from libc.stdlib cimport malloc, calloc, free
 from libc.string cimport memcpy
@@ -41,6 +42,10 @@ cdef extern from "_jntajis.h":
         uint32_t start, end
         const MJShrinkMappingUnicodeSet* sm
     const URangeToMJShrinkMappingUnicodeSets[] urange_to_mj_shrink_usets_mappings
+    ctypedef enum PyUnicode_Kind:
+        PyUnicode_1BYTE_KIND
+        PyUnicode_2BYTE_KIND
+        PyUnicode_4BYTE_KIND
 
 
 cdef extern from "Python.h":
@@ -445,7 +450,7 @@ cdef object JNTAJISDecoder_decode(
     cdef char[256] reason
 
     _PyUnicodeWriter_Init(&writer)
-    writer.min_length = in_sz / 2
+    writer.min_length = in_sz // 2
     writer.overallocate = 1
 
     try:
@@ -746,11 +751,21 @@ ctypedef struct MJShrinkCandidates:
 cdef void MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):
     cdef size_t i
     cdef _PyUnicodeWriter w
-    cdef void* p
+    cdef uint32_t c
+    cdef int uk = -1
 
     while True:
         _PyUnicodeWriter_Init(&w)
-        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>0x10ffff):
+        for i in range(0, cands.l):
+            c = cands.a[i][cands.is_[i]]
+            if c > 0xffff:
+                uk = Py_MAX(uk, PyUnicode_4BYTE_KIND)
+            elif c > 0xff:
+                uk = Py_MAX(uk, PyUnicode_2BYTE_KIND)
+            else:
+                uk = Py_MAX(uk, PyUnicode_1BYTE_KIND)
+
+        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>uk):
             raise MemoryError()
 
         for i in range(0, cands.l):
