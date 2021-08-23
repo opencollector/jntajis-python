@@ -10,11 +10,11 @@ JNTA converter functions and classes
 
     .. py:attribute:: SISO
 
-        Instructs it to encode the given string into JIS X 0213 with escape sequences SI (``\x0e``) and SO (``\x0f``) for the extended plane selection.
+        Instructs it to encode the given string into JIS X 0213 with the ISO 2022 escape sequences SI (``\x0e``) and SO (``\x0f``) for the extended plane selection.
 
     .. py:attribute:: MEN1
 
-        Instructs it to encode the given string into JIS X 0208 level 1 characters.  Non-level-1 characters will result in conversion failure.
+        Instructs it to encode the given string into JIS X 0213 characters designated in the primary plane, which would theoretically contains JIS X 0208 level 1 and 2 characters.  Characters belonging to the extended plane will result in conversion failure.
 
     .. py:attribute:: JISX0208
 
