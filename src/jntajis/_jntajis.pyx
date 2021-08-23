@@ -766,6 +766,7 @@ cdef void MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l
                 uk = Py_MAX(uk, PyUnicode_1BYTE_KIND)
 
         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>uk):
+            _PyUnicodeWriter_Dealloc(&w)
             raise MemoryError()
 
         for i in range(0, cands.l):
