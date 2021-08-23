@@ -411,7 +411,7 @@ cdef void JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode e
 cdef class IncrementalEncoder:
     cdef JNTAJISIncrementalEncoder _impl
 
-    def encoder(self, in_, final):
+    def encode(self, in_, final):
         return JNTAJISIncrementalEncoder_encode(&self._impl, in_, final)
 
     def reset(self):
@@ -431,7 +431,7 @@ cdef class IncrementalEncoder:
         JNTAJISIncrementalEncoder_init(&self._impl, encoding, conv_mode)
 
 
-def encode(in_, encoding, conv_mode):
+def jnta_encode(in_, encoding, conv_mode):
     cdef JNTAJISIncrementalEncoder e
     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)
     try:
@@ -576,7 +576,7 @@ cdef void JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
     d.upper = 0
 
 
-def decode(unicode encoding, bytes in_):
+def jnta_decode(unicode encoding, bytes in_):
     cdef JNTAJISDecoder d
     JNTAJISDecoder_init(&d, encoding)
     try:

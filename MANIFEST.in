@@ -1,5 +1,8 @@
+include README.md LICENSE
 include src/jntajis/_jntajis.c
 include src/jntajis/_jntajis.h
+recursive-include docs *
+recursive-exclude docs/build *
 recursive-include src *.pyi
 recursive-include src *.pyx
 recursive-include src *.px[di]
