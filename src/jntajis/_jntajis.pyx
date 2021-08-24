@@ -877,7 +877,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                             break
                     else:
                         c[l] = uu
-                        kl += 1
+                        l += 1
             if combo & 4 != 0:
                 for j in range(0, 2):
                     uu = sm._2[j]
