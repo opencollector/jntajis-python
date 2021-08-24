@@ -656,12 +656,13 @@ def build_uni_shrink_mappings(
     sm_dict = {sm.src_mj: sm for sm in shrink_mappings}
     m_dict = typing.DefaultDict[int, typing.List[MJShrinkMapping]](list)
     for m in mappings:
-        if m.u == -1:
-            continue
+        u = m.iu
+        if u == -1:
+            u = m.u
         sm = sm_dict.get(m.mj)
         if sm is None:
             continue
-        m_dict[m.u].append(sm)
+        m_dict[u].append(sm)
 
     retval: typing.List[typing.Tuple[int, MJShrinkMappingUnicodeSet]] = []
     max_lens: typing.List[int] = [0, 0, 0, 0]

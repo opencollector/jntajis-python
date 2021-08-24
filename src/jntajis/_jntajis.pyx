@@ -763,7 +763,6 @@ cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t
         if (
             sm._0[0] == <uint32_t>-1 and
             sm._0[1] == <uint32_t>-1 and
-            sm._0[2] == <uint32_t>-1 and
             sm._1[0] == <uint32_t>-1 and
             sm._2[0] == <uint32_t>-1 and
             sm._2[1] == <uint32_t>-1 and
@@ -858,7 +857,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
         l = 1
         if lookup_mj_shrink_table(&sm, u):
             if combo & 1 != 0:
-                for j in range(0, 3):
+                for j in range(0, 2):
                     uu = sm._0[j]
                     if uu == <uint32_t>-1:
                         break
