@@ -130,8 +130,8 @@ cdef bint lookup_rev_table(uint16_t* pj, uint32_t u) nogil:
         if jis == <uint16_t>-1:
             break
         pj[0] = jis
-        return 1
-    return 0
+        return True
+    return False
 
 
 cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
@@ -140,22 +140,22 @@ cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil
     cdef unsigned int ten = c % 94
     cdef char* p
     if men != 0:
-        return 0
+        return False
 
     p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
     if not p:
         ctx.err = JNTAJISError_MemoryError
-        return 0
+        return False
     p[0] = 0x21 +  ku
     p[1] = 0x21 + ten
     p += 2
     ctx.p = p
-    return 1
+    return True
 
 
 cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
-        return 0
+        return False
     cdef JISCharacterClass class_ = tx_mappings[c].class_
     cdef char* p
     if (
@@ -166,19 +166,19 @@ cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) no
         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
         if not p:
             ctx.err = JNTAJISError_MemoryError
-            return 0
-        p[0] = c // 94 % 94
-        p[1] = c % 94
+            return False
+        p[0] = 0x21 + c // 94 % 94
+        p[1] = 0x21 + c % 94
         p += 2
         ctx.p = p
-        return 1
+        return True
     else:
-        return 0
+        return False
 
 
 cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
-        return 0
+        return False
     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[c]
     cdef JISCharacterClass class_ = m.class_
     cdef char* p
@@ -190,30 +190,30 @@ cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint1
         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
         if not p:
             ctx.err = JNTAJISError_MemoryError
-            return 0
-        p[0] = c // 94 % 94
-        p[1] = c % 94
+            return False
+        p[0] = 0x21 + c // 94 % 94
+        p[1] = 0x21 + c % 94
         p += 2
         ctx.p = p
-        return 1
+        return True
     else:
         if m.tx_len > 0:
             p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2 * m.tx_len)
             if not p:
                 ctx.err = JNTAJISError_MemoryError
-                return 0
+                return False
             for i in range(m.tx_len):
                 c = m.tx_jis[i]
-                p[0] = c // 94 % 94
-                p[1] = c % 94
+                p[0] = 0x21 + c // 94 % 94
+                p[1] = 0x21 + c % 94
                 p += 2
             ctx.p = p
-            return 1
+            return True
         else:
-            return 0
+            return False
 
 
-cdef void JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):
+cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):
     if ctx.err == JNTAJISError_MemoryError:
         raise MemoryError()
     elif ctx.err == JNTAJISError_AssertionError:
@@ -233,7 +233,7 @@ cdef object JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(
     )
 
 
-cdef void JNTAJISIncrementalEncoderContext_put_replacement(JNTAJISIncrementalEncoderContext* ctx):
+cdef object JNTAJISIncrementalEncoderContext_put_replacement(JNTAJISIncrementalEncoderContext* ctx):
     cdef uint16_t jis = ctx.e.replacement
 
     if jis == <uint16_t>-1:
@@ -256,7 +256,7 @@ cdef bint JNTAJISIncrementalEncoderContext_put_shift(
         ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 1)
         if not ctx.p:
             ctx.err = JNTAJISError_MemoryError
-            return 0
+            return False
         if next_shift_state == 0:
             ctx.p[0] = 0x0e
             ctx.p += 1
@@ -265,8 +265,8 @@ cdef bint JNTAJISIncrementalEncoderContext_put_shift(
             ctx.p += 1
         else:
             ctx.err = JNTAJISError_AssertionError
-            return 0
-    return 1
+            return False
+    return True
 
 
 cdef bint jis_put_siso(
@@ -274,18 +274,18 @@ cdef bint jis_put_siso(
     uint16_t jis
 ) nogil:
     if not JNTAJISIncrementalEncoderContext_put_shift(ctx, jis // (94 * 94)):
-        return 0
+        return False
     ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
     if not ctx.p:
         ctx.err = JNTAJISError_MemoryError
-        return 0
+        return False
     ctx.p[0] = 0x21 + jis // 94 % 94
     ctx.p[1] = 0x21 + jis % 94
     ctx.p += 2
-    return 1
+    return True
 
 
-cdef void JNTAJISIncrementalEncoderContext_flush_lookahead(
+cdef object JNTAJISIncrementalEncoderContext_flush_lookahead(
     JNTAJISIncrementalEncoderContext* ctx
 ):
     cdef jis_put_func put = ctx.e.put_jis
@@ -308,7 +308,7 @@ cdef void JNTAJISIncrementalEncoderContext_flush_lookahead(
     JNTAJISIncrementalEncoder_reset(ctx.e)
 
 
-cdef void JNTAJISIncrementalEncoderContext_encode(
+cdef object JNTAJISIncrementalEncoderContext_encode(
     JNTAJISIncrementalEncoderContext* ctx
 ):
     cdef jis_put_func put = ctx.e.put_jis
@@ -338,12 +338,12 @@ cdef void JNTAJISIncrementalEncoderContext_encode(
                 JNTAJISIncrementalEncoderContext_flush_lookahead(ctx)
 
 
-cdef JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e):
+cdef void JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e) nogil:
     e.state = 0
     e.lal = 0
 
 
-cdef JNTAJISIncrementalEncoder_encode(
+cdef object JNTAJISIncrementalEncoder_encode(
     JNTAJISIncrementalEncoder* e,
     unicode u,
     bint flush,
@@ -396,7 +396,9 @@ cdef void JNTAJISIncrementalEncoder_fini(JNTAJISIncrementalEncoder* e):
     Py_DECREF(<object>e.encoding)
 
 
-cdef void JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
+cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
+    if len(encoding) == 0:
+        raise ValueError("encoding cannot be empty")
     Py_INCREF(encoding)
     e.encoding = <PyObject*>encoding
     e.replacement = <uint16_t>-1
@@ -431,11 +433,11 @@ cdef class IncrementalEncoder:
         JNTAJISIncrementalEncoder_init(&self._impl, encoding, conv_mode)
 
 
-def jnta_encode(in_, encoding, conv_mode):
+def jnta_encode(unicode encoding, unicode in_, int conv_mode):
     cdef JNTAJISIncrementalEncoder e
     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)
     try:
-        return JNTAJISIncrementalEncoder_encode(&e, in_, 1)
+        return JNTAJISIncrementalEncoder_encode(&e, in_, True)
     finally:
         JNTAJISIncrementalEncoder_fini(&e)
 
@@ -568,7 +570,9 @@ cdef void JNTAJISDecoder_fini(JNTAJISDecoder *d):
     Py_DECREF(<object>d.encoding)
 
 
-cdef void JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
+cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
+    if len(encoding) == 0:
+        raise ValueError("encoding cannot be empty")
     Py_INCREF(encoding)
     d.encoding = <PyObject*>encoding
     d.siso = 0
@@ -610,7 +614,7 @@ ctypedef struct JNTAJISShrinkingTransliteratorContext:
     bint finished
 
 
-cdef void JNTAJISShrinkingTransliteratorContext_put_replacement(
+cdef object JNTAJISShrinkingTransliteratorContext_put_replacement(
     JNTAJISShrinkingTransliteratorContext* t,
     Py_UCS4 u,
 ):
@@ -624,7 +628,7 @@ cdef void JNTAJISShrinkingTransliteratorContext_put_replacement(
         _PyUnicodeWriter_WriteStr(&t.writer, <object>t.replacement)
 
 
-cdef bint JNTAJISIncrementalEncoderContext_put(
+cdef object JNTAJISIncrementalEncoderContext_put(
     JNTAJISShrinkingTransliteratorContext* t,
     uint16_t jis
 ):
@@ -632,7 +636,7 @@ cdef bint JNTAJISIncrementalEncoderContext_put(
     cdef size_t i
 
     if m.class_ == JISCharacterClass_RESERVED:
-        return 0
+        return False
     else:
         if (
             (
@@ -656,10 +660,10 @@ cdef bint JNTAJISIncrementalEncoderContext_put(
                     raise MemoryError()
                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[1])
-        return 1
+        return True
 
 
-cdef void JNTAJISShrinkingTransliteratorContext_do(
+cdef object JNTAJISShrinkingTransliteratorContext_do(
     JNTAJISShrinkingTransliteratorContext* t,
 ):
     cdef Py_UCS4 u
@@ -683,9 +687,11 @@ cdef void JNTAJISShrinkingTransliteratorContext_do(
                         JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
                         continue
                     else:
-                        JNTAJISIncrementalEncoderContext_put(t, jis)
+                        if not JNTAJISIncrementalEncoderContext_put(t, jis):
+                            JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
                 t.lal = 0
 
+    return True
 
 cdef unicode JNTAJISShrinkingTransliteratorContext_get_result(
     JNTAJISShrinkingTransliteratorContext* t,
@@ -767,8 +773,8 @@ cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t
         ):
             break
         psm[0] = sm
-        return 1
-    return 0
+        return True
+    return False
 
 
 ctypedef struct MJShrinkCandidates:
