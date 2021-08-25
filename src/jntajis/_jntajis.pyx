@@ -411,6 +411,12 @@ cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode
 
 
 cdef class IncrementalEncoder:
+    """
+    An IncrementalEncoder implementation.
+
+    For the description of each method, please see the Python's
+    codec documentation: https://docs.python.org/3/library/codecs.html#codecs.IncrementalEncoder
+    """
     cdef JNTAJISIncrementalEncoder _impl
 
     def encode(self, in_, final):
@@ -434,6 +440,10 @@ cdef class IncrementalEncoder:
 
 
 def jnta_encode(unicode encoding, unicode in_, int conv_mode):
+    """
+    Encode a given Unicode string into JIS X 0208:1997 / JIS X 0213:2012.
+    """
+
     cdef JNTAJISIncrementalEncoder e
     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)
     try:
@@ -581,6 +591,10 @@ cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
 
 
 def jnta_decode(unicode encoding, bytes in_):
+    """
+    Decode a given JIS character sequence into a Unicode string.
+    """
+
     cdef JNTAJISDecoder d
     JNTAJISDecoder_init(&d, encoding)
     try:
@@ -732,6 +746,10 @@ cdef JNTAJISShrinkingTransliteratorContext_init(
 
 
 def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):
+    """
+    Transliterate a Unicode string according to the NTA shrink mappings.
+    """
+
     cdef JNTAJISShrinkingTransliteratorContext ctx
 
     JNTAJISShrinkingTransliteratorContext_init(&ctx, in_, replacement, passthrough)
