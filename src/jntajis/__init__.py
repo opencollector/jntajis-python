@@ -1,3 +1,34 @@
+"""
+A fast character conversion and transliteration library based on
+the scheme defined for Japan National Tax Agency (国税庁) 's
+corporate number (法人番号) system.
+
+This library makes use of the data from the following entities:
+
+* JIS shrink conversion map (国税庁: JIS縮退マップ)
+
+    Published by: National Tax Agency
+    Author: unknown
+    Source: https://www.houjin-bangou.nta.go.jp/download/
+    Copyright / license: public domain? (needs to be clarified.)
+
+* MJ character table (文字情報技術促進協議会: MJ文字一覧表)
+
+    Published by: Character Information Technology Promotion
+                  Council (CITPC)
+    Author: Information-technology Promotion Agency (IPA)
+    Source: https://moji.or.jp/mojikiban/mjlist/
+    Copyright / license: CC BY-SA 2.1 JP
+
+* MJ shrink conversion map (文字情報技術促進協議会: MJ縮退マップ)
+    Published by: Character Information Technology Promotion
+                  Council (CITPC)
+    Author: Information-technology Promotion Agency (IPA)
+    Source: https://moji.or.jp/mojikiban/map/
+    Copyright / license: CC BY-SA 2.1 JP
+
+"""
+
 import enum
 
 try:

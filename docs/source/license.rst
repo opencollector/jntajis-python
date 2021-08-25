@@ -1,21 +1,9 @@
-# jntajis-python
+License
+=======
 
-## What's this
+The source code except ``src/jntajis/_jntajis.h`` is published under the BSD 3-clause license.
 
-![](https://www.houjin-bangou.nta.go.jp/download/images/moji-code.jpg)
-
-```python
-import jntajis
-
-print(jntajis.jnta_shrink_translit("麴町"))  # outputs "麹町"
-print(jntajis.mj_shrink_candidates("髙島屋"))  # outputs ["高島屋", "髙島屋"]
-```
-
-## License
-
-The source code except `src/jntajis/_jntajis.h` is published under the BSD 3-clause license.
-
-`src/jntajis/_jntajis.h` contains the data from the following entities:
+``src/jntajis/_jntajis.h`` contains the data from the following entities:
 
 * JIS shrink conversion map (国税庁: JIS縮退マップ)
 

@@ -9,8 +9,17 @@ Welcome to jntajis-python's documentation!
 
    /api
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: License
+
+   /license
+
 What is JNTAJIS?
 ================
+
+.. image:: https://www.houjin-bangou.nta.go.jp/download/images/moji-code.jpg
 
 --------
 Synopsis
@@ -29,3 +38,9 @@ Reference
 ---------
 
 * :doc:`API reference </api>`
+
+-------
+License
+-------
+
+* :doc:`License </license>`
