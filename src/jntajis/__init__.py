@@ -23,7 +23,7 @@ class ConversionMode(enum.IntEnum):
     MEN1 = 1
     """
     Instructs the encoder to encode the given string into JIS X 0213 characters
-    designated in the primary plane, which would theoretically contains JIS X
+    designated in the primary plane, which would theoretically contain JIS X
     0208 level 1 and 2 characters.  Characters belonging to the extended plane
     will result in conversion failure.
     """

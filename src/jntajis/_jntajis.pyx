@@ -1,4 +1,4 @@
-# cython: language_level=3
+# cython: language_level=3, cdivision=True, boundscheck=False, wraparound=False, embedsignature=True
 from libc.stdio cimport snprintf
 from libc.stdlib cimport malloc, calloc, free
 from libc.string cimport memcpy
@@ -316,7 +316,7 @@ cdef object JNTAJISIncrementalEncoderContext_encode(
     cdef uint16_t jis
     cdef JNTAJISIncrementalEncoder* e = ctx.e
 
-    for ctx.pos in range(0, ctx.ul):
+    for ctx.pos in range(ctx.ul):
         u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)
         jis = sm_uni_to_jis_mapping(&e.state, u)
         if e.state == -1:
@@ -648,7 +648,7 @@ cdef object JNTAJISIncrementalEncoderContext_put(
 ):
     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[jis]
     cdef size_t i
-    cdef Py_UCS4 u = -1
+    cdef Py_UCS4 u = 0
 
     if m.class_ == JISCharacterClass_RESERVED:
         return False
@@ -763,6 +763,23 @@ def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passth
         JNTAJISShrinkingTransliteratorContext_fini(&ctx)
 
 
+cdef bint MJShrinkMappingUnicodeSet_valid(const MJShrinkMappingUnicodeSet *sm) nogil:
+    cdef size_t i
+    for i in range(sizeof(sm._0) // sizeof(sm._0[0])):
+        if sm._0[i] != <uint32_t>-1:
+            return 1
+    for i in range(sizeof(sm._1) // sizeof(sm._1[0])):
+        if sm._1[i] != <uint32_t>-1:
+            return 1
+    for i in range(sizeof(sm._2) // sizeof(sm._2[0])):
+        if sm._2[i] != <uint32_t>-1:
+            return 1
+    for i in range(sizeof(sm._3) // sizeof(sm._3[0])):
+        if sm._3[i] != <uint32_t>-1:
+            return 1
+    return 0
+
+
 cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:
     cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])
     cdef size_t s = 0, e = l
@@ -781,16 +798,7 @@ cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t
         if u > mm.end:
             break
         sm = &mm.sm[u - mm.start]
-        if (
-            sm._0[0] == <uint32_t>-1 and
-            sm._0[1] == <uint32_t>-1 and
-            sm._1[0] == <uint32_t>-1 and
-            sm._2[0] == <uint32_t>-1 and
-            sm._2[1] == <uint32_t>-1 and
-            sm._3[0] == <uint32_t>-1 and
-            sm._3[1] == <uint32_t>-1 and
-            sm._3[2] == <uint32_t>-1
-        ):
+        if not MJShrinkMappingUnicodeSet_valid(sm):
             break
         psm[0] = sm
         return True
@@ -807,25 +815,26 @@ ctypedef struct MJShrinkCandidates:
 cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):
     cdef size_t i
     cdef _PyUnicodeWriter w
-    cdef uint32_t c, u
+    cdef uint32_t c
+    cdef Py_UCS4 u
 
     while True:
         _PyUnicodeWriter_Init(&w)
-        u = -1
-        for i in range(0, cands.l):
+        u = 0
+        for i in range(cands.l):
             c = cands.a[i][cands.is_[i]]
             u = Py_MAX(u, c)
 
-        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>u):
+        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):
             _PyUnicodeWriter_Dealloc(&w)
             raise MemoryError()
 
-        for i in range(0, cands.l):
+        for i in range(cands.l):
             _PyUnicodeWriter_WriteChar(&w, cands.a[i][cands.is_[i]])
 
         l.append(_PyUnicodeWriter_Finish(&w))
 
-        for i in range(0, cands.l):
+        for i in range(cands.l):
             cands.is_[i] += 1
             if cands.is_[i] < cands.al[i]:
                 break
@@ -844,7 +853,8 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
     cdef int uk = PyUnicode_KIND(in_)
     cdef int ul = PyUnicode_GET_LENGTH(in_)
     cdef void* ud = PyUnicode_DATA(in_)
-    cdef int i, j, k, l
+    cdef int i, k, l
+    cdef size_t j
     cdef Py_UCS4 u
     cdef uint32_t uu
     cdef const MJShrinkMappingUnicodeSet* sm
@@ -866,14 +876,14 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
         free(a)
         raise MemoryError()
 
-    for i in range(0, ul):
+    for i in range(ul):
         is_[i] = 0
         u = PyUnicode_READ(uk, ud, i)
         c[0] = u
         l = 1
         if lookup_mj_shrink_table(&sm, u):
             if combo & 1 != 0:
-                for j in range(0, 2):
+                for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
                     uu = sm._0[j]
                     if uu == <uint32_t>-1:
                         break
@@ -884,7 +894,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                         c[l] = uu
                         l += 1
             if combo & 2 != 0:
-                for j in range(0, 1):
+                for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
                     uu = sm._1[j]
                     if uu == <uint32_t>-1:
                         break
@@ -895,7 +905,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                         c[l] = uu
                         l += 1
             if combo & 4 != 0:
-                for j in range(0, 2):
+                for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
                     uu = sm._2[j]
                     if uu == <uint32_t>-1:
                         break
@@ -906,7 +916,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                         c[l] = uu
                         l += 1
             if combo & 8 != 0:
-                for j in range(0, 3):
+                for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
                     uu = sm._3[j]
                     if uu == <uint32_t>-1:
                         break
