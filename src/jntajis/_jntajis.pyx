@@ -42,10 +42,6 @@ cdef extern from "_jntajis.h":
         uint32_t start, end
         const MJShrinkMappingUnicodeSet* sm
     const URangeToMJShrinkMappingUnicodeSets[] urange_to_mj_shrink_usets_mappings
-    ctypedef enum PyUnicode_Kind:
-        PyUnicode_1BYTE_KIND
-        PyUnicode_2BYTE_KIND
-        PyUnicode_4BYTE_KIND
 
 
 cdef extern from "Python.h":
@@ -55,6 +51,10 @@ cdef extern from "Python.h":
         Py_ssize_t min_length
         int overallocate
     ctypedef int Py_UCS4
+    cdef enum PyUnicode_Kind:
+        PyUnicode_1BYTE_KIND
+        PyUnicode_2BYTE_KIND
+        PyUnicode_4BYTE_KIND
     void _PyUnicodeWriter_Init(_PyUnicodeWriter*) nogil
     void _PyUnicodeWriter_Dealloc(_PyUnicodeWriter*) nogil
     void _PyUnicodeWriter_WriteChar(_PyUnicodeWriter*, Py_UCS4) nogil
@@ -63,7 +63,7 @@ cdef extern from "Python.h":
     int _PyUnicodeWriter_Prepare(_PyUnicodeWriter*, Py_ssize_t, Py_ssize_t) nogil
     int  _PyUnicodeWriter_PrepareKind(_PyUnicodeWriter*, int) nogil
 
-    int PyUnicode_KIND(object)
+    PyUnicode_Kind PyUnicode_KIND(object)
     void* PyUnicode_DATA(object) 
     Py_ssize_t PyUnicode_GET_LENGTH(object)
     Py_UCS4 PyUnicode_READ(int, void*, Py_ssize_t)
@@ -101,7 +101,7 @@ ctypedef struct JNTAJISIncrementalEncoderContext:
     JNTAJISIncrementalEncoder* e
     _PyBytesWriter writer
     PyObject* u  # borrow
-    int ukind
+    PyUnicode_Kind uk
     void* ud
     Py_ssize_t ul
     Py_ssize_t pos
@@ -317,7 +317,7 @@ cdef object JNTAJISIncrementalEncoderContext_encode(
     cdef JNTAJISIncrementalEncoder* e = ctx.e
 
     for ctx.pos in range(0, ctx.ul):
-        u = PyUnicode_READ(ctx.ukind, ctx.ud, ctx.pos)
+        u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)
         jis = sm_uni_to_jis_mapping(&e.state, u)
         if e.state == -1:
             if not put(ctx, jis):
@@ -351,7 +351,7 @@ cdef object JNTAJISIncrementalEncoder_encode(
     cdef JNTAJISIncrementalEncoderContext ctx
     ctx.e = e
     ctx.u = <PyObject*>u  # borrow
-    ctx.ukind = PyUnicode_KIND(u)
+    ctx.uk = PyUnicode_KIND(u)
     ctx.ud = PyUnicode_DATA(u)
     ctx.ul = PyUnicode_GET_LENGTH(u)
     ctx.pos = 0
@@ -618,7 +618,7 @@ ctypedef struct JNTAJISShrinkingTransliteratorContext:
     PyObject *replacement
     bint passthrough
     PyObject *in_
-    int ukind
+    int uk
     void* ud
     Py_ssize_t ul
     Py_ssize_t pos
@@ -648,6 +648,7 @@ cdef object JNTAJISIncrementalEncoderContext_put(
 ):
     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[jis]
     cdef size_t i
+    cdef Py_UCS4 u = -1
 
     if m.class_ == JISCharacterClass_RESERVED:
         return False
@@ -660,7 +661,9 @@ cdef object JNTAJISIncrementalEncoderContext_put(
             )
             and m.tx_len > 0
         ):
-            if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, 0x10ffff):
+            for i in range(m.tx_len):
+                u = Py_MAX(u, m.tx_us[i])
+            if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, u):
                 raise MemoryError()
             for i in range(m.tx_len):
                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.tx_us[i])
@@ -686,7 +689,7 @@ cdef object JNTAJISShrinkingTransliteratorContext_do(
     cdef const ShrinkingTransliterationMapping* m
 
     for t.pos in range(t.ul):
-        u = PyUnicode_READ(t.ukind, t.ud, t.pos)
+        u = PyUnicode_READ(t.uk, t.ud, t.pos)
         jis = sm_uni_to_jis_mapping(&t.state, u)
         if t.state == -1:
             if not JNTAJISIncrementalEncoderContext_put(t, jis):
@@ -733,7 +736,7 @@ cdef JNTAJISShrinkingTransliteratorContext_init(
     t.in_ = <PyObject*>in_
     Py_INCREF(replacement)
     t.replacement = <PyObject*>replacement
-    t.ukind = PyUnicode_KIND(in_)
+    t.uk = PyUnicode_KIND(in_)
     t.ud = PyUnicode_DATA(in_)
     t.ul = PyUnicode_GET_LENGTH(in_)
     _PyUnicodeWriter_Init(&t.writer)
@@ -801,24 +804,19 @@ ctypedef struct MJShrinkCandidates:
     size_t* is_
 
 
-cdef void MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):
+cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):
     cdef size_t i
     cdef _PyUnicodeWriter w
-    cdef uint32_t c
-    cdef int uk = -1
+    cdef uint32_t c, u
 
     while True:
         _PyUnicodeWriter_Init(&w)
+        u = -1
         for i in range(0, cands.l):
             c = cands.a[i][cands.is_[i]]
-            if c > 0xffff:
-                uk = Py_MAX(uk, PyUnicode_4BYTE_KIND)
-            elif c > 0xff:
-                uk = Py_MAX(uk, PyUnicode_2BYTE_KIND)
-            else:
-                uk = Py_MAX(uk, PyUnicode_1BYTE_KIND)
+            u = Py_MAX(u, c)
 
-        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>uk):
+        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, <Py_UCS4>u):
             _PyUnicodeWriter_Dealloc(&w)
             raise MemoryError()
 
@@ -843,7 +841,7 @@ cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
 
 
 cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
-    cdef int ukind = PyUnicode_KIND(in_)
+    cdef int uk = PyUnicode_KIND(in_)
     cdef int ul = PyUnicode_GET_LENGTH(in_)
     cdef void* ud = PyUnicode_DATA(in_)
     cdef int i, j, k, l
@@ -870,7 +868,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
 
     for i in range(0, ul):
         is_[i] = 0
-        u = PyUnicode_READ(ukind, ud, i)
+        u = PyUnicode_READ(uk, ud, i)
         c[0] = u
         l = 1
         if lookup_mj_shrink_table(&sm, u):
