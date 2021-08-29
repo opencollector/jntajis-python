@@ -42,11 +42,11 @@ The source code except ``src/jntajis/_jntajis.h`` is published under the BSD 3-c
 
   Publisher: National Tax Agency
 
-  Author: unknown
+  Author: National Tax Agency
 
   Source: https://www.houjin-bangou.nta.go.jp/download/
 
-  License: public domain? (needs to be clarified.)
+  License: CC BY 4.0
 
 * MJ character table (文字情報技術促進協議会: MJ文字一覧表)
 
