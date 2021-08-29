@@ -5,7 +5,7 @@ The source code except ``src/jntajis/_jntajis.h`` is published under the BSD 3-c
 
 ``src/jntajis/_jntajis.h`` contains the data from the following entities:
 
-* JIS shrink conversion map (国税庁: JIS縮退マップ)
+* JIS shrink conversion mappings (国税庁: JIS縮退マップ)
 
   Publisher: National Tax Agency
 
@@ -25,7 +25,7 @@ The source code except ``src/jntajis/_jntajis.h`` is published under the BSD 3-c
 
   License: CC BY-SA 2.1 JP
 
-* MJ shrink conversion map (文字情報技術促進協議会: MJ縮退マップ)
+* MJ shrink conversion mappings (文字情報技術促進協議会: MJ縮退マップ)
 
   Publisher: Character Information Technology Promotion Council (CITPC)
 

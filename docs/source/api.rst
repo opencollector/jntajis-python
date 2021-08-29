@@ -68,7 +68,7 @@ Transliteration based on the MJ character table and MJ shrink conversion map
 
 The MJ character table (*MJ文字一覧表*) defines a vast set of Kanji (*漢字*) characters used in information processing of Japanese texts initially developed by Information-technology Promotion Agency.
 
-The MJ shrink conversion map (*MJ縮退マップ*) was also developed alongside for the sake of interoperability between MJ-aware systems and systems based on Unicode, which is used to transliterate complex, less-frequently-used character variants to commonly-used, more-used ones.
+The MJ shrink conversion map (*MJ縮退マップ*) was also developed alongside for the sake of interoperability between MJ-aware systems and systems based on Unicode, which is used to transliterate complex, less-frequently-used character variants to commonly-used, more-used ones. It defines four different transliteration scheme, and you can specify any combinations of those by the flags defined in :py:class:`MJShrinkSchemeCombo`.
 
 .. py:class:: MJShrinkSchemeCombo
 
