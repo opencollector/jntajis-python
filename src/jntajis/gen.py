@@ -93,7 +93,7 @@ static const ShrinkingTransliterationMapping tx_mappings[2 * 94 * 94] = {
         JISCharacterClass_{{ m.class_.name }},
         {{ m.tx_jis|length }},
         {{"{"}}{% for e in m.tx_jis %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
-        {{"{"}}{% for e in m.tx_us %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
+        {{"{"}}{% for e in m.tx_us %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}}
     },
     {%- endfor %}
 };
