@@ -31,7 +31,7 @@ The table below shows some examples of transliteration by the MJ character table
 
 The conversion schematics is shown below:
 
-![](docs/source/_static/images/mj-jnta.svg)
+![](https://github.com/opencollector/jntajis-python/raw/main/docs/source/_static/images/mj-jnta.svg)
 
 * JNTA transliteration
 
@@ -52,7 +52,7 @@ The conversion schematics is shown below:
 
 Relationship between Unicode, MJ character mappings, JIS X 0213, and JIS X 0208 can be depicted as follows:
 
-![](docs/source/_static/images/relationships-character-mappings.svg)
+![](https://github.com/opencollector/jntajis-python/raw/main/docs/source/_static/images/relationships-character-mappings.svg)
 
 ## License
 
