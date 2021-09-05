@@ -1,5 +1,7 @@
 # jntajis-python
 
+Documentation: https://jntajis-python.readthedocs.io/
+
 ## What's JNTAJIS-python?
 
 JNTAJIS-python is a transliteration library, specifically designed for dealing with three different character sets; JIS X 0208, JIS X 0213, and Unicode.
