@@ -1,6 +1,5 @@
 import click
 import enum
-import itertools
 import json
 import re
 import typing
@@ -86,22 +85,22 @@ typedef struct URangeToJISMapping {
 
 static const ShrinkingTransliterationMapping tx_mappings[2 * 94 * 94] = {
     {%- for m in tx_mappings %}
-    {
+    {{ "{" }}
         {{m.jis}},
-        {{"{"}}{% for e in m.us|iter_pad(2, "(uint32_t)-1") %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
-        {{"{"}}{% for e in m.sus|iter_pad(2, "(uint32_t)-1") %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
+        {{"{"}}{% for e in m.us|iter_pad(2, "-1") %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
+        {{"{"}}{% for e in m.sus|iter_pad(2, "-1") %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
         JISCharacterClass_{{ m.class_.name }},
         {{ m.tx_jis|length }},
         {{"{"}}{% for e in m.tx_jis %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
         {{"{"}}{% for e in m.tx_us %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}}
-    },
+    }{% if not loop.last %},{% endif %}
     {%- endfor %}
 };
 
 {% for m in uni_range_to_jis_mappings %}
 static const uint16_t jis_urange_{{ "%06x"|format(m.start) }}_{{ "%06x"|format(m.end) }}[{{ m.jis|length }}] = {
     {%- for e in m.jis %}
-    {{e}}{% if not loop.last %},{% endif %}
+    {{ e }}{% if not loop.last %},{% endif %}
     {%- endfor %}
 };
 {%- endfor %}
@@ -161,35 +160,66 @@ typedef enum MJShrinkScheme {
 {%- endfor %}
 } MJShrinkScheme;
 
+typedef struct UIVSPair {
+    uint32_t u:22;
+    unsigned int v:1;
+    unsigned int sv:1;
+    uint8_t s;
+} UIVSPair;
+
+typedef struct MJMapping {
+    uint32_t mj:24;
+    UIVSPair v[{{ max_variants + 1 }}];
+} MJMapping;
+
+typedef struct MJMappingSet {
+    size_t l:8;
+    MJMapping ms[{{ max_mss }}];
+} MJMappingSet;
+
+typedef struct URangeToMJMappings {
+    uint32_t start:24, end:24;
+    const MJMappingSet* mss;
+} URangeToMJMappings;
+
 typedef struct MJShrinkMappingUnicodeSet {
 {%- for x in MJShrinkScheme %}
-    uint32_t _{{ x|int }}[{{ max_lens[x] }}];
+    uint32_t _{{ x|int }}[{{ digested_shrink_mappings.max_lens[x] }}];
 {%- endfor %}
 } MJShrinkMappingUnicodeSet;
 
-typedef struct URangeToMJShrinkMappingUnicodeSets {
-    uint32_t start:24, end:24;
-    const MJShrinkMappingUnicodeSet *sm;
-} URangeToMJShrinkMappingUnicodeSets;
+{% for cm in chunked_mj_mappings %}
+static const MJMappingSet chunked_mj_mappings_{{ "%06x"|format(cm.start) }}_{{ "%06x"|format(cm.end) }}[{{ cm.mss|length }}] = {
+    {%- for ms in cm.mss %}
+    {{ "{" -}}
+        {{- ms|length -}}, {{ "{" -}}
+            {%- for m in ms -%}
+            {{ "{" }}{{ m.mj }}, {{"{"}}
+                {%- for v in m.v -%}
+                    {{- "{" }}{{ v.u }}, 1, {{ "1" if v.s >= 0 else "0" }}, {{ v.s if v.s >= 0 else 0 }}{{ "}" }}{% if not loop.last %},{% endif %}
+                {%- endfor -%}{{ ", {0, 0, 0, 0}}}" }}{% if not loop.last %},{% endif %}
+            {%- endfor -%}
+        {{- "}" -}}
+    {{- "}" -}}{% if not loop.last %},{% endif -%}
+    {%- endfor %}
+};
+{% endfor %}
+static const URangeToMJMappings urange_to_mj_mappings[{{ chunked_mj_mappings|length }}] = {
+{%- for cm in chunked_mj_mappings %}
+    {{ "{" }}{{ cm.start }}, {{ cm.end }}, chunked_mj_mappings_{{ "%06x"|format(cm.start) }}_{{ "%06x"|format(cm.end) }}}{% if not loop.last %},{% endif %}
+{%- endfor %}
+};
 
-{% for m in chunked_uni_shrink_mapings %}
-static const MJShrinkMappingUnicodeSet chunked_uni_shrink_mappings_{{ "%06x"|format(m.start) }}_{{ "%06x"|format(m.end) }}[{{ m.sms|length }}] = {
-    {%- for sm in m.sms %}
-    {
-        {%- for us in sm %}
-        {{ "{" }}{% for u in us|iter_pad(max_lens[loop.index0], "-1") %}{{u}}{% if not loop.last %},{% endif %}{%- endfor %}}{% if not loop.last %},{% endif %}
+static const MJShrinkMappingUnicodeSet mj_shrink_mappings[{{ digested_shrink_mappings.mje + 1 }}] = {
+    {%- for sms in digested_shrink_mappings.smss %}
+    {{ "{" }}
+        {%- for us in sms %}
+        {{ "{" }}{% for u in us|iter_pad(digested_shrink_mappings.max_lens[loop.index0], "-1") %}{{u}}{% if not loop.last %},{% endif %}{%- endfor %}}{% if not loop.last %},{% endif %}
         {%- endfor %}
     }{% if not loop.last %},{% endif %}
     {%- endfor %}
 };
-{% endfor %}
-static const URangeToMJShrinkMappingUnicodeSets urange_to_mj_shrink_usets_mappings[{{ chunked_uni_shrink_mapings|length }}] = {
-{%- for m in chunked_uni_shrink_mapings %}
-    {{ "{" }}{{ m.start }}, {{ m.end }}, chunked_uni_shrink_mappings_{{ "%06x"|format(m.start) }}_{{ "%06x"|format(m.end) }}}{% if not loop.last %},{% endif %}
-{%- endfor %}
-};
 """
-
 
 men_ku_ten_regexp = re.compile(r"(\d+)-(\d+)-(\d+)$")
 
@@ -235,6 +265,10 @@ def parse_uni_repr(v: str) -> int:
 
 def parse_uni_seq_repr(v: str) -> typing.Tuple[int, ...]:
     return tuple(parse_uni_repr(c) for c in v.split())
+
+
+def parse_underscore_delimited_uni_hex_repr(v: str) -> typing.Tuple[int, ...]:
+    return tuple(int(c, 16) for c in v.split("_"))
 
 
 def take_until_empty(
@@ -455,10 +489,14 @@ MJ_FIELDS = [
 ]
 
 
+class UIVSPair(typing.NamedTuple):
+    u: int
+    s: int
+
+
 class MJMapping(typing.NamedTuple):
     mj: int
-    u: int
-    iu: int
+    v: typing.Tuple[UIVSPair, ...]
 
 
 mj_repr_regexp = re.compile(r"MJ([0-9]+)$")
@@ -474,7 +512,17 @@ def parse_mj_repr(v: str) -> int:
         raise ValueError(f"invalid MJ repr: {v}")
 
 
-def read_mj_excel_file(f: str) -> typing.Sequence[MJMapping]:
+def resolve_ivs_no(n: int) -> int:
+    # VS1 to VS16
+    if n >= 0xFE00 and n < 0xFE10:
+        return n - 0xFE00
+    # VS17 to VS256
+    if n >= 0xE0100 and n < 0xE01F0:
+        return n - 0xE00F0
+    raise ValueError(f"U+{n:06x} is not an IVS")
+
+
+def read_mj_excel_file(f: str) -> typing.Tuple[typing.Sequence[MJMapping], int]:
     mappings: typing.List[MJMapping] = []
 
     wb = read_xlsx(f)
@@ -492,17 +540,47 @@ def read_mj_excel_file(f: str) -> typing.Sequence[MJMapping]:
             "a column of the first row does not match to the expected values"
         )
 
+    max_variants = 0
+
     for row in ri:
+        if not row[2]:
+            continue
         mj = parse_mj_repr(none_as_empty(row[2]))
         if not row[3]:
             continue
+        uivps: typing.Set[UIVSPair] = set()
         u = parse_uni_repr(none_as_empty(row[3]))
-        iu: int = -1
+        uivps.add(UIVSPair(u, -1))
         if row[4]:
             iu = parse_uni_repr(none_as_empty(row[4]))
-        mappings.append(MJMapping(mj=mj, u=u, iu=iu))
+            uivps.add(UIVSPair(iu, -1))
+        if row[5]:
+            useqs = none_as_empty(row[5]).split(";")
+            for r in useqs:
+                us = parse_underscore_delimited_uni_hex_repr(r)
+                assert len(us) == 2
+                ivn = resolve_ivs_no(us[1])
+                uivps.add(
+                    UIVSPair(us[0], ivn),
+                )
+        if row[6]:
+            useqs = none_as_empty(row[6]).split(";")
+            for r in useqs:
+                us = parse_underscore_delimited_uni_hex_repr(r)
+                assert len(us) == 2
+                ivn = resolve_ivs_no(us[1])
+                uivps.add(
+                    UIVSPair(us[0], ivn),
+                )
+        max_variants = max(max_variants, len(uivps))
+        mappings.append(
+            MJMapping(
+                mj=mj,
+                v=tuple(sorted(uivps, key=lambda uivp: (uivp.u, uivp.s))),
+            ),
+        )
 
-    return mappings
+    return (mappings, max_variants)
 
 
 MJShrinkMappingUnicodeSet = typing.Tuple[
@@ -646,78 +724,84 @@ def build_reverse_mappings(
     return rm, rpm
 
 
-def build_uni_shrink_mappings(
-    mappings: typing.Sequence[MJMapping],
-    shrink_mappings: typing.Sequence[MJShrinkMapping],
-) -> typing.Tuple[
-    typing.Sequence[typing.Tuple[int, MJShrinkMappingUnicodeSet]],
-    typing.Tuple[int, int, int, int],
-]:
-    sm_dict = {sm.src_mj: sm for sm in shrink_mappings}
-    m_dict = typing.DefaultDict[int, typing.List[MJShrinkMapping]](list)
-    for m in mappings:
-        u = m.iu
-        if u == -1:
-            u = m.u
-        sm = sm_dict.get(m.mj)
-        if sm is None:
-            continue
-        m_dict[u].append(sm)
+class ShrinkMappings(typing.NamedTuple):
+    smss: typing.Sequence[MJShrinkMappingUnicodeSet]
+    mje: int
+    max_lens: typing.Tuple[int, int, int, int]
 
-    retval: typing.List[typing.Tuple[int, MJShrinkMappingUnicodeSet]] = []
+
+def build_digested_shrink_mappings(
+    shrink_mappings: typing.Sequence[MJShrinkMapping],
+) -> ShrinkMappings:
+    smss: typing.List[MJShrinkMappingUnicodeSet] = []
     max_lens: typing.List[int] = [0, 0, 0, 0]
 
-    for u in sorted(m_dict.keys()):
-        sms = typing.cast(
-            MJShrinkMappingUnicodeSet,
-            tuple(
-                tuple(
-                    set(
-                        itertools.chain.from_iterable(sm.us[k] for sm in m_dict[u]),
-                    ),
-                )
-                for k in MJShrinkScheme
-            ),
-        )
-        for i, us in enumerate(sms):
-            max_lens[i] = max(max_lens[i], len(us))
-        retval.append((u, sms))
+    s = 0
+    for sm in sorted(shrink_mappings, key=lambda sm: sm.src_mj):
+        for i in range(s, sm.src_mj):
+            smss.append(((), (), (), ()))
+        else:
+            for i, us in enumerate(sm.us):
+                max_lens[i] = max(max_lens[i], len(us))
+            smss.append(sm.us)
+        s = sm.src_mj + 1
 
-    return (retval, typing.cast(typing.Tuple[int, int, int, int], tuple(max_lens)))
+    return ShrinkMappings(
+        smss=smss,
+        mje=s,
+        max_lens=typing.cast(typing.Tuple[int, int, int, int], tuple(max_lens)),
+    )
 
 
-class URangeToMJShrinkMappingUnicodeSets(typing.NamedTuple):
+class URangeToMJMappings(typing.NamedTuple):
     start: int
     end: int
-    sms: typing.Sequence[MJShrinkMappingUnicodeSet]
+    mss: typing.Sequence[typing.Sequence[MJMapping]]
 
 
-def build_chunked_uni_shrink_mappings(
-    mappings: typing.Sequence[typing.Tuple[int, MJShrinkMappingUnicodeSet]],
+def build_chunked_mj_mappings(
+    mappings: typing.Sequence[MJMapping],
     gap_thr: int = 64,
-) -> typing.Sequence[URangeToMJShrinkMappingUnicodeSets]:
-    retval: typing.List[URangeToMJShrinkMappingUnicodeSets] = []
+) -> typing.Tuple[typing.Sequence[URangeToMJMappings], int]:
+    uni_to_mj_mappings = typing.DefaultDict[int, typing.List[MJMapping]](list)
+
+    max_mss = 0
+    for m in mappings:
+        for uivp in m.v:
+            li = uni_to_mj_mappings[uivp.u]
+            li.append(m)
+            max_mss = max(max_mss, len(li))
+
+    retval: typing.List[URangeToMJMappings] = []
     s = -1
     e = -1
-    chunk: typing.List[MJShrinkMappingUnicodeSet] = []
-    for u, sm in mappings:
+    chunk: typing.List[typing.List[MJMapping]] = []
+    for u, ms in sorted(uni_to_mj_mappings.items(), key=lambda pair: pair[0]):
         if u - e >= gap_thr:
             if chunk:
                 retval.append(
-                    URangeToMJShrinkMappingUnicodeSets(
+                    URangeToMJMappings(
                         start=s,
                         end=e,
-                        sms=chunk,
+                        mss=chunk,
                     ),
                 )
                 chunk = []
             s = u
         else:
             for uu in range(e, u - 1):
-                chunk.append(((), (), (), ()))
-        chunk.append(sm)
+                chunk.append([])
+        chunk.append(ms)
         e = u
-    return retval
+    if chunk:
+        retval.append(
+            URangeToMJMappings(
+                start=s,
+                end=e,
+                mss=chunk,
+            ),
+        )
+    return (retval, max_mss)
 
 
 def do_jnta(
@@ -731,18 +815,16 @@ def do_jnta(
     mappings = read_jnta_excel_file(src_jnta)
 
     print(f"reading {src_mj}...")
-    mj_mappings = read_mj_excel_file(src_mj)
+    mj_mappings, max_variants = read_mj_excel_file(src_mj)
 
     print(f"reading {src_mj_shrink}...")
     mj_shrink_mappings = read_mj_shrink_file(src_mj_shrink)
 
-    print("building Unicode codepoint based shrink mappings from MJ Shrink mappings...")
-    uni_shrink_mapings, max_lens = build_uni_shrink_mappings(
-        mj_mappings, mj_shrink_mappings
-    )
+    print("building digested shrink mappings from MJ Shrink mappings...")
+    digested_shrink_mappings = build_digested_shrink_mappings(mj_shrink_mappings)
 
-    print("chunking shrink mappings...")
-    chunked_uni_shrink_mapings = build_chunked_uni_shrink_mappings(uni_shrink_mapings)
+    print("chunking MJ mappings...")
+    chunked_mj_mappings, max_mss = build_chunked_mj_mappings(mj_mappings)
 
     print("building reverse mappings...")
     rm, rpm = build_reverse_mappings(mappings, gap_thr)
@@ -753,8 +835,10 @@ def do_jnta(
         uni_range_to_jis_mappings=rm,
         uni_pairs_to_jis_mappings=rpm,
         MJShrinkScheme=MJShrinkScheme,
-        chunked_uni_shrink_mapings=chunked_uni_shrink_mapings,
-        max_lens=max_lens,
+        max_variants=max_variants,
+        digested_shrink_mappings=digested_shrink_mappings,
+        chunked_mj_mappings=chunked_mj_mappings,
+        max_mss=max_mss,
     )
     with open(dest, "w") as f:
         for c in gen:

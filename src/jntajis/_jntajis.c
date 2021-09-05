@@ -845,7 +845,7 @@ typedef struct __pyx_t_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext 
 struct __pyx_t_7jntajis_8_jntajis_MJShrinkCandidates;
 typedef struct __pyx_t_7jntajis_8_jntajis_MJShrinkCandidates __pyx_t_7jntajis_8_jntajis_MJShrinkCandidates;
 
-/* "jntajis/_jntajis.pyx":94
+/* "jntajis/_jntajis.pyx":107
  * 
  * 
  * ctypedef enum JNTAJISError:             # <<<<<<<<<<<<<<
@@ -859,7 +859,7 @@ enum __pyx_t_7jntajis_8_jntajis_JNTAJISError {
 };
 typedef enum __pyx_t_7jntajis_8_jntajis_JNTAJISError __pyx_t_7jntajis_8_jntajis_JNTAJISError;
 
-/* "jntajis/_jntajis.pyx":375
+/* "jntajis/_jntajis.pyx":388
  * 
  * 
  * ctypedef enum ConversionMode:             # <<<<<<<<<<<<<<
@@ -874,7 +874,7 @@ enum __pyx_t_7jntajis_8_jntajis_ConversionMode {
 };
 typedef enum __pyx_t_7jntajis_8_jntajis_ConversionMode __pyx_t_7jntajis_8_jntajis_ConversionMode;
 
-/* "jntajis/_jntajis.pyx":81
+/* "jntajis/_jntajis.pyx":94
  * 
  * 
  * ctypedef bint (*jis_put_func)(JNTAJISIncrementalEncoderContext*, uint16_t)             # <<<<<<<<<<<<<<
@@ -883,7 +883,7 @@ typedef enum __pyx_t_7jntajis_8_jntajis_ConversionMode __pyx_t_7jntajis_8_jntaji
  */
 typedef int (*__pyx_t_7jntajis_8_jntajis_jis_put_func)(__pyx_t_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext *, uint16_t);
 
-/* "jntajis/_jntajis.pyx":84
+/* "jntajis/_jntajis.pyx":97
  * 
  * 
  * ctypedef struct JNTAJISIncrementalEncoder:             # <<<<<<<<<<<<<<
@@ -900,7 +900,7 @@ struct __pyx_t_7jntajis_8_jntajis_JNTAJISIncrementalEncoder {
   int state;
 };
 
-/* "jntajis/_jntajis.pyx":100
+/* "jntajis/_jntajis.pyx":113
  * 
  * 
  * ctypedef struct JNTAJISIncrementalEncoderContext:             # <<<<<<<<<<<<<<
@@ -919,7 +919,7 @@ struct __pyx_t_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext {
   __pyx_t_7jntajis_8_jntajis_JNTAJISError err;
 };
 
-/* "jntajis/_jntajis.pyx":455
+/* "jntajis/_jntajis.pyx":468
  * 
  * 
  * ctypedef struct JNTAJISDecoder:             # <<<<<<<<<<<<<<
@@ -933,7 +933,7 @@ struct __pyx_t_7jntajis_8_jntajis_JNTAJISDecoder {
   int upper;
 };
 
-/* "jntajis/_jntajis.pyx":616
+/* "jntajis/_jntajis.pyx":629
  * 
  * 
  * ctypedef struct JNTAJISShrinkingTransliteratorContext:             # <<<<<<<<<<<<<<
@@ -955,21 +955,21 @@ struct __pyx_t_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext {
   int finished;
 };
 
-/* "jntajis/_jntajis.pyx":808
+/* "jntajis/_jntajis.pyx":821
  * 
  * 
  * ctypedef struct MJShrinkCandidates:             # <<<<<<<<<<<<<<
  *     size_t l
- *     uint32_t[10]* a
+ *     UIVSPair[20]* a
  */
 struct __pyx_t_7jntajis_8_jntajis_MJShrinkCandidates {
   size_t l;
-  uint32_t (*a)[10];
+  UIVSPair (*a)[20];
   size_t *al;
   size_t *is_;
 };
 
-/* "jntajis/_jntajis.pyx":413
+/* "jntajis/_jntajis.pyx":426
  * 
  * 
  * cdef class IncrementalEncoder:             # <<<<<<<<<<<<<<
@@ -1419,6 +1419,9 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ptrdiff_t(ptrdiff_t value);
+
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
 
@@ -1488,9 +1491,11 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
 static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fini(__pyx_t_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext *); /*proto*/
 static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_init(__pyx_t_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext *, PyObject *, PyObject *, int); /*proto*/
 static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMappingUnicodeSet const *); /*proto*/
-static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnicodeSet const **, uint32_t); /*proto*/
+static int __pyx_f_7jntajis_8_jntajis_lookup_mj_mapping_table(MJMappingSet const **, uint32_t); /*proto*/
+static Py_UCS4 __pyx_f_7jntajis_8_jntajis_to_ivs(int); /*proto*/
 static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *, PyObject *); /*proto*/
 static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *); /*proto*/
+static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4); /*proto*/
 static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *, PyObject *, int); /*proto*/
 #define __Pyx_MODULE_NAME "jntajis._jntajis"
 extern int __pyx_module_is_main_jntajis___jntajis;
@@ -1504,6 +1509,7 @@ static PyObject *__pyx_builtin_UnicodeEncodeError;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_UnicodeDecodeError;
+static PyObject *__pyx_builtin_print;
 static const char __pyx_k_d[] = "d";
 static const char __pyx_k_e[] = "e";
 static const char __pyx_k__4[] = "\357\277\276";
@@ -1517,6 +1523,7 @@ static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_cands[] = "cands";
 static const char __pyx_k_combo[] = "combo";
 static const char __pyx_k_final[] = "final";
+static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_module[] = "__module__";
@@ -1588,6 +1595,7 @@ static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_passthrough;
 static PyObject *__pyx_n_s_prepare;
+static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_reduce;
@@ -1629,7 +1637,7 @@ static PyObject *__pyx_codeobj__10;
 static PyObject *__pyx_codeobj__12;
 /* Late includes */
 
-/* "jntajis/_jntajis.pyx":112
+/* "jntajis/_jntajis.pyx":125
  * 
  * 
  * cdef bint lookup_rev_table(uint16_t* pj, uint32_t u) nogil:             # <<<<<<<<<<<<<<
@@ -1648,7 +1656,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":113
+  /* "jntajis/_jntajis.pyx":126
  * 
  * cdef bint lookup_rev_table(uint16_t* pj, uint32_t u) nogil:
  *     cdef size_t l = sizeof(urange_to_jis_mappings) // sizeof(urange_to_jis_mappings[0])             # <<<<<<<<<<<<<<
@@ -1657,7 +1665,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
   __pyx_v_l = ((sizeof(urange_to_jis_mappings)) / (sizeof((urange_to_jis_mappings[0]))));
 
-  /* "jntajis/_jntajis.pyx":114
+  /* "jntajis/_jntajis.pyx":127
  * cdef bint lookup_rev_table(uint16_t* pj, uint32_t u) nogil:
  *     cdef size_t l = sizeof(urange_to_jis_mappings) // sizeof(urange_to_jis_mappings[0])
  *     cdef size_t s = 0, e = l             # <<<<<<<<<<<<<<
@@ -1667,7 +1675,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
   __pyx_v_s = 0;
   __pyx_v_e = __pyx_v_l;
 
-  /* "jntajis/_jntajis.pyx":118
+  /* "jntajis/_jntajis.pyx":131
  *     cdef const URangeToJISMapping* mm
  *     cdef uint16_t jis
  *     while s < e and e <= l:             # <<<<<<<<<<<<<<
@@ -1686,7 +1694,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "jntajis/_jntajis.pyx":119
+    /* "jntajis/_jntajis.pyx":132
  *     cdef uint16_t jis
  *     while s < e and e <= l:
  *         m = (s + e) // 2             # <<<<<<<<<<<<<<
@@ -1695,7 +1703,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     __pyx_v_m = ((__pyx_v_s + __pyx_v_e) / 2);
 
-    /* "jntajis/_jntajis.pyx":120
+    /* "jntajis/_jntajis.pyx":133
  *     while s < e and e <= l:
  *         m = (s + e) // 2
  *         mm = &urange_to_jis_mappings[m]             # <<<<<<<<<<<<<<
@@ -1704,7 +1712,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     __pyx_v_mm = (&(urange_to_jis_mappings[__pyx_v_m]));
 
-    /* "jntajis/_jntajis.pyx":121
+    /* "jntajis/_jntajis.pyx":134
  *         m = (s + e) // 2
  *         mm = &urange_to_jis_mappings[m]
  *         if u < mm.start:             # <<<<<<<<<<<<<<
@@ -1714,7 +1722,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
     __pyx_t_1 = ((__pyx_v_u < __pyx_v_mm->start) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":122
+      /* "jntajis/_jntajis.pyx":135
  *         mm = &urange_to_jis_mappings[m]
  *         if u < mm.start:
  *             e = m             # <<<<<<<<<<<<<<
@@ -1723,7 +1731,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       __pyx_v_e = __pyx_v_m;
 
-      /* "jntajis/_jntajis.pyx":123
+      /* "jntajis/_jntajis.pyx":136
  *         if u < mm.start:
  *             e = m
  *             continue             # <<<<<<<<<<<<<<
@@ -1732,7 +1740,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       goto __pyx_L3_continue;
 
-      /* "jntajis/_jntajis.pyx":121
+      /* "jntajis/_jntajis.pyx":134
  *         m = (s + e) // 2
  *         mm = &urange_to_jis_mappings[m]
  *         if u < mm.start:             # <<<<<<<<<<<<<<
@@ -1741,7 +1749,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     }
 
-    /* "jntajis/_jntajis.pyx":124
+    /* "jntajis/_jntajis.pyx":137
  *             e = m
  *             continue
  *         elif u > mm.end:             # <<<<<<<<<<<<<<
@@ -1751,7 +1759,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
     __pyx_t_1 = ((__pyx_v_u > __pyx_v_mm->end) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":125
+      /* "jntajis/_jntajis.pyx":138
  *             continue
  *         elif u > mm.end:
  *             s = m + 1             # <<<<<<<<<<<<<<
@@ -1760,7 +1768,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       __pyx_v_s = (__pyx_v_m + 1);
 
-      /* "jntajis/_jntajis.pyx":126
+      /* "jntajis/_jntajis.pyx":139
  *         elif u > mm.end:
  *             s = m + 1
  *             continue             # <<<<<<<<<<<<<<
@@ -1769,7 +1777,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       goto __pyx_L3_continue;
 
-      /* "jntajis/_jntajis.pyx":124
+      /* "jntajis/_jntajis.pyx":137
  *             e = m
  *             continue
  *         elif u > mm.end:             # <<<<<<<<<<<<<<
@@ -1778,7 +1786,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     }
 
-    /* "jntajis/_jntajis.pyx":127
+    /* "jntajis/_jntajis.pyx":140
  *             s = m + 1
  *             continue
  *         if u > mm.end:             # <<<<<<<<<<<<<<
@@ -1788,7 +1796,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
     __pyx_t_1 = ((__pyx_v_u > __pyx_v_mm->end) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":128
+      /* "jntajis/_jntajis.pyx":141
  *             continue
  *         if u > mm.end:
  *             break             # <<<<<<<<<<<<<<
@@ -1797,7 +1805,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       goto __pyx_L4_break;
 
-      /* "jntajis/_jntajis.pyx":127
+      /* "jntajis/_jntajis.pyx":140
  *             s = m + 1
  *             continue
  *         if u > mm.end:             # <<<<<<<<<<<<<<
@@ -1806,7 +1814,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     }
 
-    /* "jntajis/_jntajis.pyx":129
+    /* "jntajis/_jntajis.pyx":142
  *         if u > mm.end:
  *             break
  *         jis = mm.jis[u - mm.start]             # <<<<<<<<<<<<<<
@@ -1815,7 +1823,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     __pyx_v_jis = (__pyx_v_mm->jis[(__pyx_v_u - __pyx_v_mm->start)]);
 
-    /* "jntajis/_jntajis.pyx":130
+    /* "jntajis/_jntajis.pyx":143
  *             break
  *         jis = mm.jis[u - mm.start]
  *         if jis == <uint16_t>-1:             # <<<<<<<<<<<<<<
@@ -1825,7 +1833,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
     __pyx_t_1 = ((__pyx_v_jis == ((uint16_t)-1L)) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":131
+      /* "jntajis/_jntajis.pyx":144
  *         jis = mm.jis[u - mm.start]
  *         if jis == <uint16_t>-1:
  *             break             # <<<<<<<<<<<<<<
@@ -1834,7 +1842,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
       goto __pyx_L4_break;
 
-      /* "jntajis/_jntajis.pyx":130
+      /* "jntajis/_jntajis.pyx":143
  *             break
  *         jis = mm.jis[u - mm.start]
  *         if jis == <uint16_t>-1:             # <<<<<<<<<<<<<<
@@ -1843,7 +1851,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     }
 
-    /* "jntajis/_jntajis.pyx":132
+    /* "jntajis/_jntajis.pyx":145
  *         if jis == <uint16_t>-1:
  *             break
  *         pj[0] = jis             # <<<<<<<<<<<<<<
@@ -1852,7 +1860,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
  */
     (__pyx_v_pj[0]) = __pyx_v_jis;
 
-    /* "jntajis/_jntajis.pyx":133
+    /* "jntajis/_jntajis.pyx":146
  *             break
  *         pj[0] = jis
  *         return True             # <<<<<<<<<<<<<<
@@ -1865,7 +1873,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
   }
   __pyx_L4_break:;
 
-  /* "jntajis/_jntajis.pyx":134
+  /* "jntajis/_jntajis.pyx":147
  *         pj[0] = jis
  *         return True
  *     return False             # <<<<<<<<<<<<<<
@@ -1875,7 +1883,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":112
+  /* "jntajis/_jntajis.pyx":125
  * 
  * 
  * cdef bint lookup_rev_table(uint16_t* pj, uint32_t u) nogil:             # <<<<<<<<<<<<<<
@@ -1888,7 +1896,7 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_rev_table(uint16_t *__pyx_v_pj, uin
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":137
+/* "jntajis/_jntajis.pyx":150
  * 
  * 
  * cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -1904,7 +1912,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
   int __pyx_r;
   int __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":138
+  /* "jntajis/_jntajis.pyx":151
  * 
  * cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     cdef unsigned int men = c // (94 * 94)             # <<<<<<<<<<<<<<
@@ -1913,7 +1921,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_men = (__pyx_v_c / 0x2284);
 
-  /* "jntajis/_jntajis.pyx":139
+  /* "jntajis/_jntajis.pyx":152
  * cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     cdef unsigned int men = c // (94 * 94)
  *     cdef unsigned int ku = c // 94 % 94             # <<<<<<<<<<<<<<
@@ -1922,7 +1930,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_ku = ((__pyx_v_c / 94) % 94);
 
-  /* "jntajis/_jntajis.pyx":140
+  /* "jntajis/_jntajis.pyx":153
  *     cdef unsigned int men = c // (94 * 94)
  *     cdef unsigned int ku = c // 94 % 94
  *     cdef unsigned int ten = c % 94             # <<<<<<<<<<<<<<
@@ -1931,7 +1939,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_ten = (__pyx_v_c % 94);
 
-  /* "jntajis/_jntajis.pyx":142
+  /* "jntajis/_jntajis.pyx":155
  *     cdef unsigned int ten = c % 94
  *     cdef char* p
  *     if men != 0:             # <<<<<<<<<<<<<<
@@ -1941,7 +1949,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
   __pyx_t_1 = ((__pyx_v_men != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":143
+    /* "jntajis/_jntajis.pyx":156
  *     cdef char* p
  *     if men != 0:
  *         return False             # <<<<<<<<<<<<<<
@@ -1951,7 +1959,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":142
+    /* "jntajis/_jntajis.pyx":155
  *     cdef unsigned int ten = c % 94
  *     cdef char* p
  *     if men != 0:             # <<<<<<<<<<<<<<
@@ -1960,7 +1968,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   }
 
-  /* "jntajis/_jntajis.pyx":145
+  /* "jntajis/_jntajis.pyx":158
  *         return False
  * 
  *     p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)             # <<<<<<<<<<<<<<
@@ -1969,7 +1977,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, 2));
 
-  /* "jntajis/_jntajis.pyx":146
+  /* "jntajis/_jntajis.pyx":159
  * 
  *     p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not p:             # <<<<<<<<<<<<<<
@@ -1979,7 +1987,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
   __pyx_t_1 = ((!(__pyx_v_p != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":147
+    /* "jntajis/_jntajis.pyx":160
  *     p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not p:
  *         ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -1988,7 +1996,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
     __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-    /* "jntajis/_jntajis.pyx":148
+    /* "jntajis/_jntajis.pyx":161
  *     if not p:
  *         ctx.err = JNTAJISError_MemoryError
  *         return False             # <<<<<<<<<<<<<<
@@ -1998,7 +2006,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":146
+    /* "jntajis/_jntajis.pyx":159
  * 
  *     p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not p:             # <<<<<<<<<<<<<<
@@ -2007,7 +2015,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   }
 
-  /* "jntajis/_jntajis.pyx":149
+  /* "jntajis/_jntajis.pyx":162
  *         ctx.err = JNTAJISError_MemoryError
  *         return False
  *     p[0] = 0x21 +  ku             # <<<<<<<<<<<<<<
@@ -2016,7 +2024,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   (__pyx_v_p[0]) = (0x21 + __pyx_v_ku);
 
-  /* "jntajis/_jntajis.pyx":150
+  /* "jntajis/_jntajis.pyx":163
  *         return False
  *     p[0] = 0x21 +  ku
  *     p[1] = 0x21 + ten             # <<<<<<<<<<<<<<
@@ -2025,7 +2033,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   (__pyx_v_p[1]) = (0x21 + __pyx_v_ten);
 
-  /* "jntajis/_jntajis.pyx":151
+  /* "jntajis/_jntajis.pyx":164
  *     p[0] = 0x21 +  ku
  *     p[1] = 0x21 + ten
  *     p += 2             # <<<<<<<<<<<<<<
@@ -2034,7 +2042,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_p = (__pyx_v_p + 2);
 
-  /* "jntajis/_jntajis.pyx":152
+  /* "jntajis/_jntajis.pyx":165
  *     p[1] = 0x21 + ten
  *     p += 2
  *     ctx.p = p             # <<<<<<<<<<<<<<
@@ -2043,7 +2051,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
  */
   __pyx_v_ctx->p = __pyx_v_p;
 
-  /* "jntajis/_jntajis.pyx":153
+  /* "jntajis/_jntajis.pyx":166
  *     p += 2
  *     ctx.p = p
  *     return True             # <<<<<<<<<<<<<<
@@ -2053,7 +2061,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":137
+  /* "jntajis/_jntajis.pyx":150
  * 
  * 
  * cdef bint jis_put_men_1(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -2066,7 +2074,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_t_7jntajis_8_jntajis_J
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":156
+/* "jntajis/_jntajis.pyx":169
  * 
  * 
  * cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -2081,7 +2089,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
   int __pyx_t_1;
   JISCharacterClass __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":157
+  /* "jntajis/_jntajis.pyx":170
  * 
  * cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):             # <<<<<<<<<<<<<<
@@ -2091,7 +2099,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
   __pyx_t_1 = ((__pyx_v_c >= ((sizeof(tx_mappings)) / (sizeof((tx_mappings[0]))))) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":158
+    /* "jntajis/_jntajis.pyx":171
  * cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
  *         return False             # <<<<<<<<<<<<<<
@@ -2101,7 +2109,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":157
+    /* "jntajis/_jntajis.pyx":170
  * 
  * cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):             # <<<<<<<<<<<<<<
@@ -2110,7 +2118,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
   }
 
-  /* "jntajis/_jntajis.pyx":159
+  /* "jntajis/_jntajis.pyx":172
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
  *         return False
  *     cdef JISCharacterClass class_ = tx_mappings[c].class_             # <<<<<<<<<<<<<<
@@ -2120,7 +2128,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
   __pyx_t_2 = (tx_mappings[__pyx_v_c]).class_;
   __pyx_v_class_ = __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":161
+  /* "jntajis/_jntajis.pyx":174
  *     cdef JISCharacterClass class_ = tx_mappings[c].class_
  *     cdef char* p
  *     if (             # <<<<<<<<<<<<<<
@@ -2130,7 +2138,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
   switch (__pyx_v_class_) {
     case JISCharacterClass_KANJI_LEVEL_1:
 
-    /* "jntajis/_jntajis.pyx":162
+    /* "jntajis/_jntajis.pyx":175
  *     cdef char* p
  *     if (
  *         class_ == JISCharacterClass_KANJI_LEVEL_1 or             # <<<<<<<<<<<<<<
@@ -2139,7 +2147,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     case JISCharacterClass_KANJI_LEVEL_2:
 
-    /* "jntajis/_jntajis.pyx":163
+    /* "jntajis/_jntajis.pyx":176
  *     if (
  *         class_ == JISCharacterClass_KANJI_LEVEL_1 or
  *         class_ == JISCharacterClass_KANJI_LEVEL_2 or             # <<<<<<<<<<<<<<
@@ -2148,7 +2156,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     case JISCharacterClass_JISX0208_NON_KANJI:
 
-    /* "jntajis/_jntajis.pyx":166
+    /* "jntajis/_jntajis.pyx":179
  *         class_ == JISCharacterClass_JISX0208_NON_KANJI
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)             # <<<<<<<<<<<<<<
@@ -2157,7 +2165,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     __pyx_v_p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, 2));
 
-    /* "jntajis/_jntajis.pyx":167
+    /* "jntajis/_jntajis.pyx":180
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:             # <<<<<<<<<<<<<<
@@ -2167,7 +2175,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
     __pyx_t_1 = ((!(__pyx_v_p != 0)) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":168
+      /* "jntajis/_jntajis.pyx":181
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:
  *             ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -2176,7 +2184,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
       __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-      /* "jntajis/_jntajis.pyx":169
+      /* "jntajis/_jntajis.pyx":182
  *         if not p:
  *             ctx.err = JNTAJISError_MemoryError
  *             return False             # <<<<<<<<<<<<<<
@@ -2186,7 +2194,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":167
+      /* "jntajis/_jntajis.pyx":180
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:             # <<<<<<<<<<<<<<
@@ -2195,7 +2203,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     }
 
-    /* "jntajis/_jntajis.pyx":170
+    /* "jntajis/_jntajis.pyx":183
  *             ctx.err = JNTAJISError_MemoryError
  *             return False
  *         p[0] = 0x21 + c // 94 % 94             # <<<<<<<<<<<<<<
@@ -2204,7 +2212,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     (__pyx_v_p[0]) = (0x21 + ((__pyx_v_c / 94) % 94));
 
-    /* "jntajis/_jntajis.pyx":171
+    /* "jntajis/_jntajis.pyx":184
  *             return False
  *         p[0] = 0x21 + c // 94 % 94
  *         p[1] = 0x21 + c % 94             # <<<<<<<<<<<<<<
@@ -2213,7 +2221,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     (__pyx_v_p[1]) = (0x21 + (__pyx_v_c % 94));
 
-    /* "jntajis/_jntajis.pyx":172
+    /* "jntajis/_jntajis.pyx":185
  *         p[0] = 0x21 + c // 94 % 94
  *         p[1] = 0x21 + c % 94
  *         p += 2             # <<<<<<<<<<<<<<
@@ -2222,7 +2230,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     __pyx_v_p = (__pyx_v_p + 2);
 
-    /* "jntajis/_jntajis.pyx":173
+    /* "jntajis/_jntajis.pyx":186
  *         p[1] = 0x21 + c % 94
  *         p += 2
  *         ctx.p = p             # <<<<<<<<<<<<<<
@@ -2231,7 +2239,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
  */
     __pyx_v_ctx->p = __pyx_v_p;
 
-    /* "jntajis/_jntajis.pyx":174
+    /* "jntajis/_jntajis.pyx":187
  *         p += 2
  *         ctx.p = p
  *         return True             # <<<<<<<<<<<<<<
@@ -2241,7 +2249,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":161
+    /* "jntajis/_jntajis.pyx":174
  *     cdef JISCharacterClass class_ = tx_mappings[c].class_
  *     cdef char* p
  *     if (             # <<<<<<<<<<<<<<
@@ -2251,7 +2259,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
     break;
     default:
 
-    /* "jntajis/_jntajis.pyx":176
+    /* "jntajis/_jntajis.pyx":189
  *         return True
  *     else:
  *         return False             # <<<<<<<<<<<<<<
@@ -2263,7 +2271,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
     break;
   }
 
-  /* "jntajis/_jntajis.pyx":156
+  /* "jntajis/_jntajis.pyx":169
  * 
  * 
  * cdef bint jis_put_jisx0208(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -2276,7 +2284,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208(__pyx_t_7jntajis_8_jntaji
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":179
+/* "jntajis/_jntajis.pyx":192
  * 
  * 
  * cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -2296,7 +2304,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
   size_t __pyx_t_4;
   size_t __pyx_t_5;
 
-  /* "jntajis/_jntajis.pyx":180
+  /* "jntajis/_jntajis.pyx":193
  * 
  * cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):             # <<<<<<<<<<<<<<
@@ -2306,7 +2314,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
   __pyx_t_1 = ((__pyx_v_c >= ((sizeof(tx_mappings)) / (sizeof((tx_mappings[0]))))) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":181
+    /* "jntajis/_jntajis.pyx":194
  * cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
  *         return False             # <<<<<<<<<<<<<<
@@ -2316,7 +2324,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":180
+    /* "jntajis/_jntajis.pyx":193
  * 
  * cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):             # <<<<<<<<<<<<<<
@@ -2325,7 +2333,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
   }
 
-  /* "jntajis/_jntajis.pyx":182
+  /* "jntajis/_jntajis.pyx":195
  *     if c >= sizeof(tx_mappings) // sizeof(tx_mappings[0]):
  *         return False
  *     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[c]             # <<<<<<<<<<<<<<
@@ -2334,7 +2342,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
   __pyx_v_m = (&(tx_mappings[__pyx_v_c]));
 
-  /* "jntajis/_jntajis.pyx":183
+  /* "jntajis/_jntajis.pyx":196
  *         return False
  *     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[c]
  *     cdef JISCharacterClass class_ = m.class_             # <<<<<<<<<<<<<<
@@ -2344,7 +2352,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
   __pyx_t_2 = __pyx_v_m->class_;
   __pyx_v_class_ = __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":185
+  /* "jntajis/_jntajis.pyx":198
  *     cdef JISCharacterClass class_ = m.class_
  *     cdef char* p
  *     if (             # <<<<<<<<<<<<<<
@@ -2354,7 +2362,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
   switch (__pyx_v_class_) {
     case JISCharacterClass_KANJI_LEVEL_1:
 
-    /* "jntajis/_jntajis.pyx":186
+    /* "jntajis/_jntajis.pyx":199
  *     cdef char* p
  *     if (
  *         class_ == JISCharacterClass_KANJI_LEVEL_1 or             # <<<<<<<<<<<<<<
@@ -2363,7 +2371,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     case JISCharacterClass_KANJI_LEVEL_2:
 
-    /* "jntajis/_jntajis.pyx":187
+    /* "jntajis/_jntajis.pyx":200
  *     if (
  *         class_ == JISCharacterClass_KANJI_LEVEL_1 or
  *         class_ == JISCharacterClass_KANJI_LEVEL_2 or             # <<<<<<<<<<<<<<
@@ -2372,7 +2380,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     case JISCharacterClass_JISX0208_NON_KANJI:
 
-    /* "jntajis/_jntajis.pyx":190
+    /* "jntajis/_jntajis.pyx":203
  *         class_ == JISCharacterClass_JISX0208_NON_KANJI
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)             # <<<<<<<<<<<<<<
@@ -2381,7 +2389,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     __pyx_v_p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, 2));
 
-    /* "jntajis/_jntajis.pyx":191
+    /* "jntajis/_jntajis.pyx":204
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:             # <<<<<<<<<<<<<<
@@ -2391,7 +2399,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     __pyx_t_1 = ((!(__pyx_v_p != 0)) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":192
+      /* "jntajis/_jntajis.pyx":205
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:
  *             ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -2400,7 +2408,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
       __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-      /* "jntajis/_jntajis.pyx":193
+      /* "jntajis/_jntajis.pyx":206
  *         if not p:
  *             ctx.err = JNTAJISError_MemoryError
  *             return False             # <<<<<<<<<<<<<<
@@ -2410,7 +2418,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":191
+      /* "jntajis/_jntajis.pyx":204
  *     ):
  *         p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *         if not p:             # <<<<<<<<<<<<<<
@@ -2419,7 +2427,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     }
 
-    /* "jntajis/_jntajis.pyx":194
+    /* "jntajis/_jntajis.pyx":207
  *             ctx.err = JNTAJISError_MemoryError
  *             return False
  *         p[0] = 0x21 + c // 94 % 94             # <<<<<<<<<<<<<<
@@ -2428,7 +2436,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     (__pyx_v_p[0]) = (0x21 + ((__pyx_v_c / 94) % 94));
 
-    /* "jntajis/_jntajis.pyx":195
+    /* "jntajis/_jntajis.pyx":208
  *             return False
  *         p[0] = 0x21 + c // 94 % 94
  *         p[1] = 0x21 + c % 94             # <<<<<<<<<<<<<<
@@ -2437,7 +2445,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     (__pyx_v_p[1]) = (0x21 + (__pyx_v_c % 94));
 
-    /* "jntajis/_jntajis.pyx":196
+    /* "jntajis/_jntajis.pyx":209
  *         p[0] = 0x21 + c // 94 % 94
  *         p[1] = 0x21 + c % 94
  *         p += 2             # <<<<<<<<<<<<<<
@@ -2446,7 +2454,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     __pyx_v_p = (__pyx_v_p + 2);
 
-    /* "jntajis/_jntajis.pyx":197
+    /* "jntajis/_jntajis.pyx":210
  *         p[1] = 0x21 + c % 94
  *         p += 2
  *         ctx.p = p             # <<<<<<<<<<<<<<
@@ -2455,7 +2463,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     __pyx_v_ctx->p = __pyx_v_p;
 
-    /* "jntajis/_jntajis.pyx":198
+    /* "jntajis/_jntajis.pyx":211
  *         p += 2
  *         ctx.p = p
  *         return True             # <<<<<<<<<<<<<<
@@ -2465,7 +2473,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":185
+    /* "jntajis/_jntajis.pyx":198
  *     cdef JISCharacterClass class_ = m.class_
  *     cdef char* p
  *     if (             # <<<<<<<<<<<<<<
@@ -2475,7 +2483,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     break;
     default:
 
-    /* "jntajis/_jntajis.pyx":200
+    /* "jntajis/_jntajis.pyx":213
  *         return True
  *     else:
  *         if m.tx_len > 0:             # <<<<<<<<<<<<<<
@@ -2485,7 +2493,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     __pyx_t_1 = ((__pyx_v_m->tx_len > 0) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":201
+      /* "jntajis/_jntajis.pyx":214
  *     else:
  *         if m.tx_len > 0:
  *             p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2 * m.tx_len)             # <<<<<<<<<<<<<<
@@ -2494,7 +2502,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
       __pyx_v_p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, (2 * __pyx_v_m->tx_len)));
 
-      /* "jntajis/_jntajis.pyx":202
+      /* "jntajis/_jntajis.pyx":215
  *         if m.tx_len > 0:
  *             p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2 * m.tx_len)
  *             if not p:             # <<<<<<<<<<<<<<
@@ -2504,7 +2512,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
       __pyx_t_1 = ((!(__pyx_v_p != 0)) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":203
+        /* "jntajis/_jntajis.pyx":216
  *             p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2 * m.tx_len)
  *             if not p:
  *                 ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -2513,7 +2521,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
         __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-        /* "jntajis/_jntajis.pyx":204
+        /* "jntajis/_jntajis.pyx":217
  *             if not p:
  *                 ctx.err = JNTAJISError_MemoryError
  *                 return False             # <<<<<<<<<<<<<<
@@ -2523,7 +2531,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
         __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "jntajis/_jntajis.pyx":202
+        /* "jntajis/_jntajis.pyx":215
  *         if m.tx_len > 0:
  *             p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2 * m.tx_len)
  *             if not p:             # <<<<<<<<<<<<<<
@@ -2532,7 +2540,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
       }
 
-      /* "jntajis/_jntajis.pyx":205
+      /* "jntajis/_jntajis.pyx":218
  *                 ctx.err = JNTAJISError_MemoryError
  *                 return False
  *             for i in range(m.tx_len):             # <<<<<<<<<<<<<<
@@ -2544,7 +2552,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
       for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
         __pyx_v_i = __pyx_t_5;
 
-        /* "jntajis/_jntajis.pyx":206
+        /* "jntajis/_jntajis.pyx":219
  *                 return False
  *             for i in range(m.tx_len):
  *                 c = m.tx_jis[i]             # <<<<<<<<<<<<<<
@@ -2553,7 +2561,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
         __pyx_v_c = (__pyx_v_m->tx_jis[__pyx_v_i]);
 
-        /* "jntajis/_jntajis.pyx":207
+        /* "jntajis/_jntajis.pyx":220
  *             for i in range(m.tx_len):
  *                 c = m.tx_jis[i]
  *                 p[0] = 0x21 + c // 94 % 94             # <<<<<<<<<<<<<<
@@ -2562,7 +2570,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
         (__pyx_v_p[0]) = (0x21 + ((__pyx_v_c / 94) % 94));
 
-        /* "jntajis/_jntajis.pyx":208
+        /* "jntajis/_jntajis.pyx":221
  *                 c = m.tx_jis[i]
  *                 p[0] = 0x21 + c // 94 % 94
  *                 p[1] = 0x21 + c % 94             # <<<<<<<<<<<<<<
@@ -2571,7 +2579,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
         (__pyx_v_p[1]) = (0x21 + (__pyx_v_c % 94));
 
-        /* "jntajis/_jntajis.pyx":209
+        /* "jntajis/_jntajis.pyx":222
  *                 p[0] = 0x21 + c // 94 % 94
  *                 p[1] = 0x21 + c % 94
  *                 p += 2             # <<<<<<<<<<<<<<
@@ -2581,7 +2589,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
         __pyx_v_p = (__pyx_v_p + 2);
       }
 
-      /* "jntajis/_jntajis.pyx":210
+      /* "jntajis/_jntajis.pyx":223
  *                 p[1] = 0x21 + c % 94
  *                 p += 2
  *             ctx.p = p             # <<<<<<<<<<<<<<
@@ -2590,7 +2598,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
       __pyx_v_ctx->p = __pyx_v_p;
 
-      /* "jntajis/_jntajis.pyx":211
+      /* "jntajis/_jntajis.pyx":224
  *                 p += 2
  *             ctx.p = p
  *             return True             # <<<<<<<<<<<<<<
@@ -2600,7 +2608,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":200
+      /* "jntajis/_jntajis.pyx":213
  *         return True
  *     else:
  *         if m.tx_len > 0:             # <<<<<<<<<<<<<<
@@ -2609,7 +2617,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
  */
     }
 
-    /* "jntajis/_jntajis.pyx":213
+    /* "jntajis/_jntajis.pyx":226
  *             return True
  *         else:
  *             return False             # <<<<<<<<<<<<<<
@@ -2623,7 +2631,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
     break;
   }
 
-  /* "jntajis/_jntajis.pyx":179
+  /* "jntajis/_jntajis.pyx":192
  * 
  * 
  * cdef bint jis_put_jisx0208_translit(JNTAJISIncrementalEncoderContext* ctx, uint16_t c) nogil:             # <<<<<<<<<<<<<<
@@ -2636,7 +2644,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit(__pyx_t_7jntajis
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":216
+/* "jntajis/_jntajis.pyx":229
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):             # <<<<<<<<<<<<<<
@@ -2653,7 +2661,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_rai
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_raise", 0);
 
-  /* "jntajis/_jntajis.pyx":217
+  /* "jntajis/_jntajis.pyx":230
  * 
  * cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):
  *     if ctx.err == JNTAJISError_MemoryError:             # <<<<<<<<<<<<<<
@@ -2663,16 +2671,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_rai
   switch (__pyx_v_ctx->err) {
     case __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError:
 
-    /* "jntajis/_jntajis.pyx":218
+    /* "jntajis/_jntajis.pyx":231
  * cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):
  *     if ctx.err == JNTAJISError_MemoryError:
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     elif ctx.err == JNTAJISError_AssertionError:
  *         raise AssertionError()
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 218, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 231, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":217
+    /* "jntajis/_jntajis.pyx":230
  * 
  * cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):
  *     if ctx.err == JNTAJISError_MemoryError:             # <<<<<<<<<<<<<<
@@ -2682,20 +2690,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_rai
     break;
     case __pyx_e_7jntajis_8_jntajis_JNTAJISError_AssertionError:
 
-    /* "jntajis/_jntajis.pyx":220
+    /* "jntajis/_jntajis.pyx":233
  *         raise MemoryError()
  *     elif ctx.err == JNTAJISError_AssertionError:
  *         raise AssertionError()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_builtin_AssertionError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_builtin_AssertionError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 220, __pyx_L1_error)
+    __PYX_ERR(0, 233, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":219
+    /* "jntajis/_jntajis.pyx":232
  *     if ctx.err == JNTAJISError_MemoryError:
  *         raise MemoryError()
  *     elif ctx.err == JNTAJISError_AssertionError:             # <<<<<<<<<<<<<<
@@ -2706,7 +2714,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_rai
     default: break;
   }
 
-  /* "jntajis/_jntajis.pyx":216
+  /* "jntajis/_jntajis.pyx":229
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_raise(JNTAJISIncrementalEncoderContext* ctx):             # <<<<<<<<<<<<<<
@@ -2727,7 +2735,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_rai
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":223
+/* "jntajis/_jntajis.pyx":236
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(             # <<<<<<<<<<<<<<
@@ -2747,7 +2755,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_cre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_createUnicodeEncodeError", 0);
 
-  /* "jntajis/_jntajis.pyx":227
+  /* "jntajis/_jntajis.pyx":240
  *     char *reason
  * ):
  *     return UnicodeEncodeError(             # <<<<<<<<<<<<<<
@@ -2756,51 +2764,51 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_cre
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "jntajis/_jntajis.pyx":230
+  /* "jntajis/_jntajis.pyx":243
  *         <object>ctx.e.encoding,
  *         <object>ctx.u,
  *         ctx.pos,             # <<<<<<<<<<<<<<
  *         ctx.pos + 1,
  *         (<bytes>reason).decode("ascii"),
  */
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_ctx->pos); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_ctx->pos); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "jntajis/_jntajis.pyx":231
+  /* "jntajis/_jntajis.pyx":244
  *         <object>ctx.u,
  *         ctx.pos,
  *         ctx.pos + 1,             # <<<<<<<<<<<<<<
  *         (<bytes>reason).decode("ascii"),
  *     )
  */
-  __pyx_t_2 = PyInt_FromSsize_t((__pyx_v_ctx->pos + 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t((__pyx_v_ctx->pos + 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "jntajis/_jntajis.pyx":232
+  /* "jntajis/_jntajis.pyx":245
  *         ctx.pos,
  *         ctx.pos + 1,
  *         (<bytes>reason).decode("ascii"),             # <<<<<<<<<<<<<<
  *     )
  * 
  */
-  __pyx_t_3 = __Pyx_PyBytes_FromString(__pyx_v_reason); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_FromString(__pyx_v_reason); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (unlikely(__pyx_t_3 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-    __PYX_ERR(0, 232, __pyx_L1_error)
+    __PYX_ERR(0, 245, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_decode_bytes(((PyObject*)__pyx_t_3), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_decode_bytes(((PyObject*)__pyx_t_3), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "jntajis/_jntajis.pyx":227
+  /* "jntajis/_jntajis.pyx":240
  *     char *reason
  * ):
  *     return UnicodeEncodeError(             # <<<<<<<<<<<<<<
  *         <object>ctx.e.encoding,
  *         <object>ctx.u,
  */
-  __pyx_t_3 = PyTuple_New(5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)__pyx_v_ctx->e->encoding));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_ctx->e->encoding));
@@ -2817,14 +2825,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_cre
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_UnicodeEncodeError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_UnicodeEncodeError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":223
+  /* "jntajis/_jntajis.pyx":236
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(             # <<<<<<<<<<<<<<
@@ -2846,7 +2854,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_cre
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":236
+/* "jntajis/_jntajis.pyx":249
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_put_replacement(JNTAJISIncrementalEncoderContext* ctx):             # <<<<<<<<<<<<<<
@@ -2866,7 +2874,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_put_replacement", 0);
 
-  /* "jntajis/_jntajis.pyx":237
+  /* "jntajis/_jntajis.pyx":250
  * 
  * cdef object JNTAJISIncrementalEncoderContext_put_replacement(JNTAJISIncrementalEncoderContext* ctx):
  *     cdef uint16_t jis = ctx.e.replacement             # <<<<<<<<<<<<<<
@@ -2876,7 +2884,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   __pyx_t_1 = __pyx_v_ctx->e->replacement;
   __pyx_v_jis = __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":239
+  /* "jntajis/_jntajis.pyx":252
  *     cdef uint16_t jis = ctx.e.replacement
  * 
  *     if jis == <uint16_t>-1:             # <<<<<<<<<<<<<<
@@ -2886,20 +2894,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   __pyx_t_2 = ((__pyx_v_jis == ((uint16_t)-1L)) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "jntajis/_jntajis.pyx":240
+    /* "jntajis/_jntajis.pyx":253
  * 
  *     if jis == <uint16_t>-1:
  *         raise JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(             # <<<<<<<<<<<<<<
  *             ctx, "not convertible to JISX0208",
  *         )
  */
-    __pyx_t_3 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"not convertible to JISX0208")); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"not convertible to JISX0208")); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 240, __pyx_L1_error)
+    __PYX_ERR(0, 253, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":239
+    /* "jntajis/_jntajis.pyx":252
  *     cdef uint16_t jis = ctx.e.replacement
  * 
  *     if jis == <uint16_t>-1:             # <<<<<<<<<<<<<<
@@ -2908,7 +2916,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
   }
 
-  /* "jntajis/_jntajis.pyx":244
+  /* "jntajis/_jntajis.pyx":257
  *         )
  *     else:
  *         if not jis_put_men_1(ctx, jis):             # <<<<<<<<<<<<<<
@@ -2919,20 +2927,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     __pyx_t_2 = ((!(__pyx_f_7jntajis_8_jntajis_jis_put_men_1(__pyx_v_ctx, __pyx_v_jis) != 0)) != 0);
     if (unlikely(__pyx_t_2)) {
 
-      /* "jntajis/_jntajis.pyx":245
+      /* "jntajis/_jntajis.pyx":258
  *     else:
  *         if not jis_put_men_1(ctx, jis):
  *             raise JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(             # <<<<<<<<<<<<<<
  *                 ctx, "replacement character is neither convertible to JISX0208",
  *             )
  */
-      __pyx_t_3 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"replacement character is neither convertible to JISX0208")); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"replacement character is neither convertible to JISX0208")); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __PYX_ERR(0, 245, __pyx_L1_error)
+      __PYX_ERR(0, 258, __pyx_L1_error)
 
-      /* "jntajis/_jntajis.pyx":244
+      /* "jntajis/_jntajis.pyx":257
  *         )
  *     else:
  *         if not jis_put_men_1(ctx, jis):             # <<<<<<<<<<<<<<
@@ -2942,7 +2950,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     }
   }
 
-  /* "jntajis/_jntajis.pyx":236
+  /* "jntajis/_jntajis.pyx":249
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_put_replacement(JNTAJISIncrementalEncoderContext* ctx):             # <<<<<<<<<<<<<<
@@ -2963,7 +2971,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":250
+/* "jntajis/_jntajis.pyx":263
  * 
  * 
  * cdef bint JNTAJISIncrementalEncoderContext_put_shift(             # <<<<<<<<<<<<<<
@@ -2975,7 +2983,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
   int __pyx_r;
   int __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":254
+  /* "jntajis/_jntajis.pyx":267
  *     int next_shift_state
  * ) nogil:
  *     if next_shift_state != ctx.e.shift_state:             # <<<<<<<<<<<<<<
@@ -2985,7 +2993,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
   __pyx_t_1 = ((__pyx_v_next_shift_state != __pyx_v_ctx->e->shift_state) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":255
+    /* "jntajis/_jntajis.pyx":268
  * ) nogil:
  *     if next_shift_state != ctx.e.shift_state:
  *         ctx.e.shift_state = next_shift_state             # <<<<<<<<<<<<<<
@@ -2994,7 +3002,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
     __pyx_v_ctx->e->shift_state = __pyx_v_next_shift_state;
 
-    /* "jntajis/_jntajis.pyx":256
+    /* "jntajis/_jntajis.pyx":269
  *     if next_shift_state != ctx.e.shift_state:
  *         ctx.e.shift_state = next_shift_state
  *         ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 1)             # <<<<<<<<<<<<<<
@@ -3003,7 +3011,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
     __pyx_v_ctx->p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, 1));
 
-    /* "jntajis/_jntajis.pyx":257
+    /* "jntajis/_jntajis.pyx":270
  *         ctx.e.shift_state = next_shift_state
  *         ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 1)
  *         if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3013,7 +3021,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
     __pyx_t_1 = ((!(__pyx_v_ctx->p != 0)) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":258
+      /* "jntajis/_jntajis.pyx":271
  *         ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 1)
  *         if not ctx.p:
  *             ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -3022,7 +3030,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-      /* "jntajis/_jntajis.pyx":259
+      /* "jntajis/_jntajis.pyx":272
  *         if not ctx.p:
  *             ctx.err = JNTAJISError_MemoryError
  *             return False             # <<<<<<<<<<<<<<
@@ -3032,7 +3040,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":257
+      /* "jntajis/_jntajis.pyx":270
  *         ctx.e.shift_state = next_shift_state
  *         ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 1)
  *         if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3041,7 +3049,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
     }
 
-    /* "jntajis/_jntajis.pyx":260
+    /* "jntajis/_jntajis.pyx":273
  *             ctx.err = JNTAJISError_MemoryError
  *             return False
  *         if next_shift_state == 0:             # <<<<<<<<<<<<<<
@@ -3051,7 +3059,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
     switch (__pyx_v_next_shift_state) {
       case 0:
 
-      /* "jntajis/_jntajis.pyx":261
+      /* "jntajis/_jntajis.pyx":274
  *             return False
  *         if next_shift_state == 0:
  *             ctx.p[0] = 0x0e             # <<<<<<<<<<<<<<
@@ -3060,7 +3068,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       (__pyx_v_ctx->p[0]) = 0x0e;
 
-      /* "jntajis/_jntajis.pyx":262
+      /* "jntajis/_jntajis.pyx":275
  *         if next_shift_state == 0:
  *             ctx.p[0] = 0x0e
  *             ctx.p += 1             # <<<<<<<<<<<<<<
@@ -3069,7 +3077,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       __pyx_v_ctx->p = (__pyx_v_ctx->p + 1);
 
-      /* "jntajis/_jntajis.pyx":260
+      /* "jntajis/_jntajis.pyx":273
  *             ctx.err = JNTAJISError_MemoryError
  *             return False
  *         if next_shift_state == 0:             # <<<<<<<<<<<<<<
@@ -3079,7 +3087,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
       break;
       case 1:
 
-      /* "jntajis/_jntajis.pyx":264
+      /* "jntajis/_jntajis.pyx":277
  *             ctx.p += 1
  *         elif next_shift_state == 1:
  *             ctx.p[0] = 0x0f             # <<<<<<<<<<<<<<
@@ -3088,7 +3096,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       (__pyx_v_ctx->p[0]) = 0x0f;
 
-      /* "jntajis/_jntajis.pyx":265
+      /* "jntajis/_jntajis.pyx":278
  *         elif next_shift_state == 1:
  *             ctx.p[0] = 0x0f
  *             ctx.p += 1             # <<<<<<<<<<<<<<
@@ -3097,7 +3105,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       __pyx_v_ctx->p = (__pyx_v_ctx->p + 1);
 
-      /* "jntajis/_jntajis.pyx":263
+      /* "jntajis/_jntajis.pyx":276
  *             ctx.p[0] = 0x0e
  *             ctx.p += 1
  *         elif next_shift_state == 1:             # <<<<<<<<<<<<<<
@@ -3107,7 +3115,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
       break;
       default:
 
-      /* "jntajis/_jntajis.pyx":267
+      /* "jntajis/_jntajis.pyx":280
  *             ctx.p += 1
  *         else:
  *             ctx.err = JNTAJISError_AssertionError             # <<<<<<<<<<<<<<
@@ -3116,7 +3124,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
       __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_AssertionError;
 
-      /* "jntajis/_jntajis.pyx":268
+      /* "jntajis/_jntajis.pyx":281
  *         else:
  *             ctx.err = JNTAJISError_AssertionError
  *             return False             # <<<<<<<<<<<<<<
@@ -3128,7 +3136,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
       break;
     }
 
-    /* "jntajis/_jntajis.pyx":254
+    /* "jntajis/_jntajis.pyx":267
  *     int next_shift_state
  * ) nogil:
  *     if next_shift_state != ctx.e.shift_state:             # <<<<<<<<<<<<<<
@@ -3137,7 +3145,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
  */
   }
 
-  /* "jntajis/_jntajis.pyx":269
+  /* "jntajis/_jntajis.pyx":282
  *             ctx.err = JNTAJISError_AssertionError
  *             return False
  *     return True             # <<<<<<<<<<<<<<
@@ -3147,7 +3155,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":250
+  /* "jntajis/_jntajis.pyx":263
  * 
  * 
  * cdef bint JNTAJISIncrementalEncoderContext_put_shift(             # <<<<<<<<<<<<<<
@@ -3160,7 +3168,7 @@ static int __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":272
+/* "jntajis/_jntajis.pyx":285
  * 
  * 
  * cdef bint jis_put_siso(             # <<<<<<<<<<<<<<
@@ -3172,7 +3180,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
   int __pyx_r;
   int __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":276
+  /* "jntajis/_jntajis.pyx":289
  *     uint16_t jis
  * ) nogil:
  *     if not JNTAJISIncrementalEncoderContext_put_shift(ctx, jis // (94 * 94)):             # <<<<<<<<<<<<<<
@@ -3182,7 +3190,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
   __pyx_t_1 = ((!(__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift(__pyx_v_ctx, (__pyx_v_jis / 0x2284)) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":277
+    /* "jntajis/_jntajis.pyx":290
  * ) nogil:
  *     if not JNTAJISIncrementalEncoderContext_put_shift(ctx, jis // (94 * 94)):
  *         return False             # <<<<<<<<<<<<<<
@@ -3192,7 +3200,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":276
+    /* "jntajis/_jntajis.pyx":289
  *     uint16_t jis
  * ) nogil:
  *     if not JNTAJISIncrementalEncoderContext_put_shift(ctx, jis // (94 * 94)):             # <<<<<<<<<<<<<<
@@ -3201,7 +3209,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   }
 
-  /* "jntajis/_jntajis.pyx":278
+  /* "jntajis/_jntajis.pyx":291
  *     if not JNTAJISIncrementalEncoderContext_put_shift(ctx, jis // (94 * 94)):
  *         return False
  *     ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)             # <<<<<<<<<<<<<<
@@ -3210,7 +3218,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   __pyx_v_ctx->p = ((char *)_PyBytesWriter_Prepare((&__pyx_v_ctx->writer), __pyx_v_ctx->p, 2));
 
-  /* "jntajis/_jntajis.pyx":279
+  /* "jntajis/_jntajis.pyx":292
  *         return False
  *     ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3220,7 +3228,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
   __pyx_t_1 = ((!(__pyx_v_ctx->p != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":280
+    /* "jntajis/_jntajis.pyx":293
  *     ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not ctx.p:
  *         ctx.err = JNTAJISError_MemoryError             # <<<<<<<<<<<<<<
@@ -3229,7 +3237,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
     __pyx_v_ctx->err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_MemoryError;
 
-    /* "jntajis/_jntajis.pyx":281
+    /* "jntajis/_jntajis.pyx":294
  *     if not ctx.p:
  *         ctx.err = JNTAJISError_MemoryError
  *         return False             # <<<<<<<<<<<<<<
@@ -3239,7 +3247,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":279
+    /* "jntajis/_jntajis.pyx":292
  *         return False
  *     ctx.p = <char *>_PyBytesWriter_Prepare(&ctx.writer, ctx.p, 2)
  *     if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3248,7 +3256,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   }
 
-  /* "jntajis/_jntajis.pyx":282
+  /* "jntajis/_jntajis.pyx":295
  *         ctx.err = JNTAJISError_MemoryError
  *         return False
  *     ctx.p[0] = 0x21 + jis // 94 % 94             # <<<<<<<<<<<<<<
@@ -3257,7 +3265,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   (__pyx_v_ctx->p[0]) = (0x21 + ((__pyx_v_jis / 94) % 94));
 
-  /* "jntajis/_jntajis.pyx":283
+  /* "jntajis/_jntajis.pyx":296
  *         return False
  *     ctx.p[0] = 0x21 + jis // 94 % 94
  *     ctx.p[1] = 0x21 + jis % 94             # <<<<<<<<<<<<<<
@@ -3266,7 +3274,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   (__pyx_v_ctx->p[1]) = (0x21 + (__pyx_v_jis % 94));
 
-  /* "jntajis/_jntajis.pyx":284
+  /* "jntajis/_jntajis.pyx":297
  *     ctx.p[0] = 0x21 + jis // 94 % 94
  *     ctx.p[1] = 0x21 + jis % 94
  *     ctx.p += 2             # <<<<<<<<<<<<<<
@@ -3275,7 +3283,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
  */
   __pyx_v_ctx->p = (__pyx_v_ctx->p + 2);
 
-  /* "jntajis/_jntajis.pyx":285
+  /* "jntajis/_jntajis.pyx":298
  *     ctx.p[1] = 0x21 + jis % 94
  *     ctx.p += 2
  *     return True             # <<<<<<<<<<<<<<
@@ -3285,7 +3293,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":272
+  /* "jntajis/_jntajis.pyx":285
  * 
  * 
  * cdef bint jis_put_siso(             # <<<<<<<<<<<<<<
@@ -3298,7 +3306,7 @@ static int __pyx_f_7jntajis_8_jntajis_jis_put_siso(__pyx_t_7jntajis_8_jntajis_JN
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":288
+/* "jntajis/_jntajis.pyx":301
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_flush_lookahead(             # <<<<<<<<<<<<<<
@@ -3325,7 +3333,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_flush_lookahead", 0);
 
-  /* "jntajis/_jntajis.pyx":291
+  /* "jntajis/_jntajis.pyx":304
  *     JNTAJISIncrementalEncoderContext* ctx
  * ):
  *     cdef jis_put_func put = ctx.e.put_jis             # <<<<<<<<<<<<<<
@@ -3335,7 +3343,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
   __pyx_t_1 = __pyx_v_ctx->e->put_jis;
   __pyx_v_put = __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":297
+  /* "jntajis/_jntajis.pyx":310
  *     cdef bint ok
  * 
  *     for i in range(ctx.e.lal):             # <<<<<<<<<<<<<<
@@ -3347,7 +3355,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "jntajis/_jntajis.pyx":298
+    /* "jntajis/_jntajis.pyx":311
  * 
  *     for i in range(ctx.e.lal):
  *         u = ctx.e.la[i]             # <<<<<<<<<<<<<<
@@ -3356,7 +3364,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  */
     __pyx_v_u = (__pyx_v_ctx->e->la[__pyx_v_i]);
 
-    /* "jntajis/_jntajis.pyx":299
+    /* "jntajis/_jntajis.pyx":312
  *     for i in range(ctx.e.lal):
  *         u = ctx.e.la[i]
  *         ok = lookup_rev_table(&jis, u)             # <<<<<<<<<<<<<<
@@ -3365,7 +3373,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  */
     __pyx_v_ok = __pyx_f_7jntajis_8_jntajis_lookup_rev_table((&__pyx_v_jis), __pyx_v_u);
 
-    /* "jntajis/_jntajis.pyx":300
+    /* "jntajis/_jntajis.pyx":313
  *         u = ctx.e.la[i]
  *         ok = lookup_rev_table(&jis, u)
  *         if ok:             # <<<<<<<<<<<<<<
@@ -3375,7 +3383,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
     __pyx_t_5 = (__pyx_v_ok != 0);
     if (__pyx_t_5) {
 
-      /* "jntajis/_jntajis.pyx":301
+      /* "jntajis/_jntajis.pyx":314
  *         ok = lookup_rev_table(&jis, u)
  *         if ok:
  *             ok = put(ctx, jis)             # <<<<<<<<<<<<<<
@@ -3384,7 +3392,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  */
       __pyx_v_ok = __pyx_v_put(__pyx_v_ctx, __pyx_v_jis);
 
-      /* "jntajis/_jntajis.pyx":300
+      /* "jntajis/_jntajis.pyx":313
  *         u = ctx.e.la[i]
  *         ok = lookup_rev_table(&jis, u)
  *         if ok:             # <<<<<<<<<<<<<<
@@ -3393,7 +3401,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  */
     }
 
-    /* "jntajis/_jntajis.pyx":302
+    /* "jntajis/_jntajis.pyx":315
  *         if ok:
  *             ok = put(ctx, jis)
  *         if not ok:             # <<<<<<<<<<<<<<
@@ -3403,7 +3411,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
     __pyx_t_5 = ((!(__pyx_v_ok != 0)) != 0);
     if (__pyx_t_5) {
 
-      /* "jntajis/_jntajis.pyx":303
+      /* "jntajis/_jntajis.pyx":316
  *             ok = put(ctx, jis)
  *         if not ok:
  *             if ctx.err == JNTAJISError_Success:             # <<<<<<<<<<<<<<
@@ -3413,18 +3421,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
       __pyx_t_5 = ((__pyx_v_ctx->err == __pyx_e_7jntajis_8_jntajis_JNTAJISError_Success) != 0);
       if (__pyx_t_5) {
 
-        /* "jntajis/_jntajis.pyx":304
+        /* "jntajis/_jntajis.pyx":317
  *         if not ok:
  *             if ctx.err == JNTAJISError_Success:
  *                 JNTAJISIncrementalEncoderContext_put_replacement(ctx)             # <<<<<<<<<<<<<<
  *             else:
  *                 JNTAJISIncrementalEncoderContext_raise(ctx)
  */
-        __pyx_t_6 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_replacement(__pyx_v_ctx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 304, __pyx_L1_error)
+        __pyx_t_6 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_replacement(__pyx_v_ctx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 317, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "jntajis/_jntajis.pyx":303
+        /* "jntajis/_jntajis.pyx":316
  *             ok = put(ctx, jis)
  *         if not ok:
  *             if ctx.err == JNTAJISError_Success:             # <<<<<<<<<<<<<<
@@ -3434,7 +3442,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
         goto __pyx_L7;
       }
 
-      /* "jntajis/_jntajis.pyx":306
+      /* "jntajis/_jntajis.pyx":319
  *                 JNTAJISIncrementalEncoderContext_put_replacement(ctx)
  *             else:
  *                 JNTAJISIncrementalEncoderContext_raise(ctx)             # <<<<<<<<<<<<<<
@@ -3442,13 +3450,13 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  *     JNTAJISIncrementalEncoder_reset(ctx.e)
  */
       /*else*/ {
-        __pyx_t_6 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_raise(__pyx_v_ctx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 306, __pyx_L1_error)
+        __pyx_t_6 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_raise(__pyx_v_ctx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 319, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
       __pyx_L7:;
 
-      /* "jntajis/_jntajis.pyx":302
+      /* "jntajis/_jntajis.pyx":315
  *         if ok:
  *             ok = put(ctx, jis)
  *         if not ok:             # <<<<<<<<<<<<<<
@@ -3458,7 +3466,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
     }
   }
 
-  /* "jntajis/_jntajis.pyx":308
+  /* "jntajis/_jntajis.pyx":321
  *                 JNTAJISIncrementalEncoderContext_raise(ctx)
  * 
  *     JNTAJISIncrementalEncoder_reset(ctx.e)             # <<<<<<<<<<<<<<
@@ -3467,7 +3475,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
  */
   __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset(__pyx_v_ctx->e);
 
-  /* "jntajis/_jntajis.pyx":288
+  /* "jntajis/_jntajis.pyx":301
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_flush_lookahead(             # <<<<<<<<<<<<<<
@@ -3488,7 +3496,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flu
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":311
+/* "jntajis/_jntajis.pyx":324
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_encode(             # <<<<<<<<<<<<<<
@@ -3515,7 +3523,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_encode", 0);
 
-  /* "jntajis/_jntajis.pyx":314
+  /* "jntajis/_jntajis.pyx":327
  *     JNTAJISIncrementalEncoderContext* ctx
  * ):
  *     cdef jis_put_func put = ctx.e.put_jis             # <<<<<<<<<<<<<<
@@ -3525,7 +3533,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
   __pyx_t_1 = __pyx_v_ctx->e->put_jis;
   __pyx_v_put = __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":317
+  /* "jntajis/_jntajis.pyx":330
  *     cdef uint32_t u
  *     cdef uint16_t jis
  *     cdef JNTAJISIncrementalEncoder* e = ctx.e             # <<<<<<<<<<<<<<
@@ -3535,7 +3543,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
   __pyx_t_2 = __pyx_v_ctx->e;
   __pyx_v_e = __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":319
+  /* "jntajis/_jntajis.pyx":332
  *     cdef JNTAJISIncrementalEncoder* e = ctx.e
  * 
  *     for ctx.pos in range(ctx.ul):             # <<<<<<<<<<<<<<
@@ -3547,7 +3555,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ctx->pos = __pyx_t_5;
 
-    /* "jntajis/_jntajis.pyx":320
+    /* "jntajis/_jntajis.pyx":333
  * 
  *     for ctx.pos in range(ctx.ul):
  *         u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)             # <<<<<<<<<<<<<<
@@ -3556,7 +3564,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
     __pyx_v_u = PyUnicode_READ(__pyx_v_ctx->uk, __pyx_v_ctx->ud, __pyx_v_ctx->pos);
 
-    /* "jntajis/_jntajis.pyx":321
+    /* "jntajis/_jntajis.pyx":334
  *     for ctx.pos in range(ctx.ul):
  *         u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)
  *         jis = sm_uni_to_jis_mapping(&e.state, u)             # <<<<<<<<<<<<<<
@@ -3565,7 +3573,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
     __pyx_v_jis = sm_uni_to_jis_mapping((&__pyx_v_e->state), __pyx_v_u);
 
-    /* "jntajis/_jntajis.pyx":322
+    /* "jntajis/_jntajis.pyx":335
  *         u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)
  *         jis = sm_uni_to_jis_mapping(&e.state, u)
  *         if e.state == -1:             # <<<<<<<<<<<<<<
@@ -3575,7 +3583,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
     __pyx_t_6 = ((__pyx_v_e->state == -1L) != 0);
     if (__pyx_t_6) {
 
-      /* "jntajis/_jntajis.pyx":323
+      /* "jntajis/_jntajis.pyx":336
  *         jis = sm_uni_to_jis_mapping(&e.state, u)
  *         if e.state == -1:
  *             if not put(ctx, jis):             # <<<<<<<<<<<<<<
@@ -3585,7 +3593,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
       __pyx_t_6 = ((!(__pyx_v_put(__pyx_v_ctx, __pyx_v_jis) != 0)) != 0);
       if (__pyx_t_6) {
 
-        /* "jntajis/_jntajis.pyx":324
+        /* "jntajis/_jntajis.pyx":337
  *         if e.state == -1:
  *             if not put(ctx, jis):
  *                 if ctx.err == JNTAJISError_Success:             # <<<<<<<<<<<<<<
@@ -3595,18 +3603,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
         __pyx_t_6 = ((__pyx_v_ctx->err == __pyx_e_7jntajis_8_jntajis_JNTAJISError_Success) != 0);
         if (__pyx_t_6) {
 
-          /* "jntajis/_jntajis.pyx":325
+          /* "jntajis/_jntajis.pyx":338
  *             if not put(ctx, jis):
  *                 if ctx.err == JNTAJISError_Success:
  *                     JNTAJISIncrementalEncoderContext_put_replacement(ctx)             # <<<<<<<<<<<<<<
  *                 else:
  *                     JNTAJISIncrementalEncoderContext_raise(ctx)
  */
-          __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_replacement(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 325, __pyx_L1_error)
+          __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_replacement(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 338, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "jntajis/_jntajis.pyx":324
+          /* "jntajis/_jntajis.pyx":337
  *         if e.state == -1:
  *             if not put(ctx, jis):
  *                 if ctx.err == JNTAJISError_Success:             # <<<<<<<<<<<<<<
@@ -3616,7 +3624,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
           goto __pyx_L7;
         }
 
-        /* "jntajis/_jntajis.pyx":327
+        /* "jntajis/_jntajis.pyx":340
  *                     JNTAJISIncrementalEncoderContext_put_replacement(ctx)
  *                 else:
  *                     JNTAJISIncrementalEncoderContext_raise(ctx)             # <<<<<<<<<<<<<<
@@ -3624,13 +3632,13 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  *             e.state = 0
  */
         /*else*/ {
-          __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_raise(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 327, __pyx_L1_error)
+          __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_raise(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 340, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
         __pyx_L7:;
 
-        /* "jntajis/_jntajis.pyx":323
+        /* "jntajis/_jntajis.pyx":336
  *         jis = sm_uni_to_jis_mapping(&e.state, u)
  *         if e.state == -1:
  *             if not put(ctx, jis):             # <<<<<<<<<<<<<<
@@ -3639,7 +3647,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       }
 
-      /* "jntajis/_jntajis.pyx":328
+      /* "jntajis/_jntajis.pyx":341
  *                 else:
  *                     JNTAJISIncrementalEncoderContext_raise(ctx)
  *             e.lal = 0             # <<<<<<<<<<<<<<
@@ -3648,7 +3656,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       __pyx_v_e->lal = 0;
 
-      /* "jntajis/_jntajis.pyx":329
+      /* "jntajis/_jntajis.pyx":342
  *                     JNTAJISIncrementalEncoderContext_raise(ctx)
  *             e.lal = 0
  *             e.state = 0             # <<<<<<<<<<<<<<
@@ -3657,7 +3665,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       __pyx_v_e->state = 0;
 
-      /* "jntajis/_jntajis.pyx":322
+      /* "jntajis/_jntajis.pyx":335
  *         u = PyUnicode_READ(ctx.uk, ctx.ud, ctx.pos)
  *         jis = sm_uni_to_jis_mapping(&e.state, u)
  *         if e.state == -1:             # <<<<<<<<<<<<<<
@@ -3667,7 +3675,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
       goto __pyx_L5;
     }
 
-    /* "jntajis/_jntajis.pyx":331
+    /* "jntajis/_jntajis.pyx":344
  *             e.state = 0
  *         else:
  *             if e.lal >= sizeof(e.la) // sizeof(e.la[0]):             # <<<<<<<<<<<<<<
@@ -3678,20 +3686,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
       __pyx_t_6 = ((__pyx_v_e->lal >= ((sizeof(__pyx_v_e->la)) / (sizeof((__pyx_v_e->la[0]))))) != 0);
       if (unlikely(__pyx_t_6)) {
 
-        /* "jntajis/_jntajis.pyx":332
+        /* "jntajis/_jntajis.pyx":345
  *         else:
  *             if e.lal >= sizeof(e.la) // sizeof(e.la[0]):
  *                 raise JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(             # <<<<<<<<<<<<<<
  *                     ctx, "lookahead buffer overflow"
  *                 )
  */
-        __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"lookahead buffer overflow")); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 332, __pyx_L1_error)
+        __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_createUnicodeEncodeError(__pyx_v_ctx, ((char *)"lookahead buffer overflow")); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 345, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_Raise(__pyx_t_7, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __PYX_ERR(0, 332, __pyx_L1_error)
+        __PYX_ERR(0, 345, __pyx_L1_error)
 
-        /* "jntajis/_jntajis.pyx":331
+        /* "jntajis/_jntajis.pyx":344
  *             e.state = 0
  *         else:
  *             if e.lal >= sizeof(e.la) // sizeof(e.la[0]):             # <<<<<<<<<<<<<<
@@ -3700,7 +3708,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       }
 
-      /* "jntajis/_jntajis.pyx":335
+      /* "jntajis/_jntajis.pyx":348
  *                     ctx, "lookahead buffer overflow"
  *                 )
  *             e.la[e.lal] = u             # <<<<<<<<<<<<<<
@@ -3709,7 +3717,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       (__pyx_v_e->la[__pyx_v_e->lal]) = __pyx_v_u;
 
-      /* "jntajis/_jntajis.pyx":336
+      /* "jntajis/_jntajis.pyx":349
  *                 )
  *             e.la[e.lal] = u
  *             e.lal += 1             # <<<<<<<<<<<<<<
@@ -3718,7 +3726,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
  */
       __pyx_v_e->lal = (__pyx_v_e->lal + 1);
 
-      /* "jntajis/_jntajis.pyx":337
+      /* "jntajis/_jntajis.pyx":350
  *             e.la[e.lal] = u
  *             e.lal += 1
  *             if e.state == 0:             # <<<<<<<<<<<<<<
@@ -3728,18 +3736,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
       __pyx_t_6 = ((__pyx_v_e->state == 0) != 0);
       if (__pyx_t_6) {
 
-        /* "jntajis/_jntajis.pyx":338
+        /* "jntajis/_jntajis.pyx":351
  *             e.lal += 1
  *             if e.state == 0:
  *                 JNTAJISIncrementalEncoderContext_flush_lookahead(ctx)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-        __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flush_lookahead(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 338, __pyx_L1_error)
+        __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flush_lookahead(__pyx_v_ctx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 351, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "jntajis/_jntajis.pyx":337
+        /* "jntajis/_jntajis.pyx":350
  *             e.la[e.lal] = u
  *             e.lal += 1
  *             if e.state == 0:             # <<<<<<<<<<<<<<
@@ -3751,7 +3759,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
     __pyx_L5:;
   }
 
-  /* "jntajis/_jntajis.pyx":311
+  /* "jntajis/_jntajis.pyx":324
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_encode(             # <<<<<<<<<<<<<<
@@ -3772,7 +3780,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":341
+/* "jntajis/_jntajis.pyx":354
  * 
  * 
  * cdef void JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e) nogil:             # <<<<<<<<<<<<<<
@@ -3782,7 +3790,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_enc
 
 static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset(__pyx_t_7jntajis_8_jntajis_JNTAJISIncrementalEncoder *__pyx_v_e) {
 
-  /* "jntajis/_jntajis.pyx":342
+  /* "jntajis/_jntajis.pyx":355
  * 
  * cdef void JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e) nogil:
  *     e.state = 0             # <<<<<<<<<<<<<<
@@ -3791,7 +3799,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset(__pyx_t_7
  */
   __pyx_v_e->state = 0;
 
-  /* "jntajis/_jntajis.pyx":343
+  /* "jntajis/_jntajis.pyx":356
  * cdef void JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e) nogil:
  *     e.state = 0
  *     e.lal = 0             # <<<<<<<<<<<<<<
@@ -3800,7 +3808,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset(__pyx_t_7
  */
   __pyx_v_e->lal = 0;
 
-  /* "jntajis/_jntajis.pyx":341
+  /* "jntajis/_jntajis.pyx":354
  * 
  * 
  * cdef void JNTAJISIncrementalEncoder_reset(JNTAJISIncrementalEncoder* e) nogil:             # <<<<<<<<<<<<<<
@@ -3811,7 +3819,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset(__pyx_t_7
   /* function exit code */
 }
 
-/* "jntajis/_jntajis.pyx":346
+/* "jntajis/_jntajis.pyx":359
  * 
  * 
  * cdef object JNTAJISIncrementalEncoder_encode(             # <<<<<<<<<<<<<<
@@ -3835,7 +3843,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoder_encode", 0);
 
-  /* "jntajis/_jntajis.pyx":352
+  /* "jntajis/_jntajis.pyx":365
  * ):
  *     cdef JNTAJISIncrementalEncoderContext ctx
  *     ctx.e = e             # <<<<<<<<<<<<<<
@@ -3844,7 +3852,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.e = __pyx_v_e;
 
-  /* "jntajis/_jntajis.pyx":353
+  /* "jntajis/_jntajis.pyx":366
  *     cdef JNTAJISIncrementalEncoderContext ctx
  *     ctx.e = e
  *     ctx.u = <PyObject*>u  # borrow             # <<<<<<<<<<<<<<
@@ -3853,7 +3861,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.u = ((PyObject *)__pyx_v_u);
 
-  /* "jntajis/_jntajis.pyx":354
+  /* "jntajis/_jntajis.pyx":367
  *     ctx.e = e
  *     ctx.u = <PyObject*>u  # borrow
  *     ctx.uk = PyUnicode_KIND(u)             # <<<<<<<<<<<<<<
@@ -3862,7 +3870,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.uk = PyUnicode_KIND(__pyx_v_u);
 
-  /* "jntajis/_jntajis.pyx":355
+  /* "jntajis/_jntajis.pyx":368
  *     ctx.u = <PyObject*>u  # borrow
  *     ctx.uk = PyUnicode_KIND(u)
  *     ctx.ud = PyUnicode_DATA(u)             # <<<<<<<<<<<<<<
@@ -3871,7 +3879,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.ud = PyUnicode_DATA(__pyx_v_u);
 
-  /* "jntajis/_jntajis.pyx":356
+  /* "jntajis/_jntajis.pyx":369
  *     ctx.uk = PyUnicode_KIND(u)
  *     ctx.ud = PyUnicode_DATA(u)
  *     ctx.ul = PyUnicode_GET_LENGTH(u)             # <<<<<<<<<<<<<<
@@ -3880,7 +3888,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.ul = PyUnicode_GET_LENGTH(__pyx_v_u);
 
-  /* "jntajis/_jntajis.pyx":357
+  /* "jntajis/_jntajis.pyx":370
  *     ctx.ud = PyUnicode_DATA(u)
  *     ctx.ul = PyUnicode_GET_LENGTH(u)
  *     ctx.pos = 0             # <<<<<<<<<<<<<<
@@ -3889,7 +3897,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.pos = 0;
 
-  /* "jntajis/_jntajis.pyx":358
+  /* "jntajis/_jntajis.pyx":371
  *     ctx.ul = PyUnicode_GET_LENGTH(u)
  *     ctx.pos = 0
  *     ctx.err = JNTAJISError_Success             # <<<<<<<<<<<<<<
@@ -3898,7 +3906,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.err = __pyx_e_7jntajis_8_jntajis_JNTAJISError_Success;
 
-  /* "jntajis/_jntajis.pyx":359
+  /* "jntajis/_jntajis.pyx":372
  *     ctx.pos = 0
  *     ctx.err = JNTAJISError_Success
  *     _PyBytesWriter_Init(&ctx.writer)             # <<<<<<<<<<<<<<
@@ -3907,7 +3915,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   _PyBytesWriter_Init((&__pyx_v_ctx.writer));
 
-  /* "jntajis/_jntajis.pyx":360
+  /* "jntajis/_jntajis.pyx":373
  *     ctx.err = JNTAJISError_Success
  *     _PyBytesWriter_Init(&ctx.writer)
  *     ctx.p = <char *>_PyBytesWriter_Alloc(&ctx.writer, ctx.ul * 2)             # <<<<<<<<<<<<<<
@@ -3916,7 +3924,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.p = ((char *)_PyBytesWriter_Alloc((&__pyx_v_ctx.writer), (__pyx_v_ctx.ul * 2)));
 
-  /* "jntajis/_jntajis.pyx":361
+  /* "jntajis/_jntajis.pyx":374
  *     _PyBytesWriter_Init(&ctx.writer)
  *     ctx.p = <char *>_PyBytesWriter_Alloc(&ctx.writer, ctx.ul * 2)
  *     if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3926,16 +3934,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
   __pyx_t_1 = ((!(__pyx_v_ctx.p != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":362
+    /* "jntajis/_jntajis.pyx":375
  *     ctx.p = <char *>_PyBytesWriter_Alloc(&ctx.writer, ctx.ul * 2)
  *     if not ctx.p:
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     ctx.writer.overallocate = 1
  *     try:
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 362, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 375, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":361
+    /* "jntajis/_jntajis.pyx":374
  *     _PyBytesWriter_Init(&ctx.writer)
  *     ctx.p = <char *>_PyBytesWriter_Alloc(&ctx.writer, ctx.ul * 2)
  *     if not ctx.p:             # <<<<<<<<<<<<<<
@@ -3944,7 +3952,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   }
 
-  /* "jntajis/_jntajis.pyx":363
+  /* "jntajis/_jntajis.pyx":376
  *     if not ctx.p:
  *         raise MemoryError()
  *     ctx.writer.overallocate = 1             # <<<<<<<<<<<<<<
@@ -3953,7 +3961,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
   __pyx_v_ctx.writer.overallocate = 1;
 
-  /* "jntajis/_jntajis.pyx":364
+  /* "jntajis/_jntajis.pyx":377
  *         raise MemoryError()
  *     ctx.writer.overallocate = 1
  *     try:             # <<<<<<<<<<<<<<
@@ -3969,18 +3977,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
     __Pyx_XGOTREF(__pyx_t_4);
     /*try:*/ {
 
-      /* "jntajis/_jntajis.pyx":365
+      /* "jntajis/_jntajis.pyx":378
  *     ctx.writer.overallocate = 1
  *     try:
  *         JNTAJISIncrementalEncoderContext_encode(&ctx)             # <<<<<<<<<<<<<<
  *         if flush:
  *             JNTAJISIncrementalEncoderContext_flush_lookahead(&ctx)
  */
-      __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_encode((&__pyx_v_ctx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 365, __pyx_L4_error)
+      __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_encode((&__pyx_v_ctx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 378, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "jntajis/_jntajis.pyx":366
+      /* "jntajis/_jntajis.pyx":379
  *     try:
  *         JNTAJISIncrementalEncoderContext_encode(&ctx)
  *         if flush:             # <<<<<<<<<<<<<<
@@ -3990,18 +3998,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
       __pyx_t_1 = (__pyx_v_flush != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":367
+        /* "jntajis/_jntajis.pyx":380
  *         JNTAJISIncrementalEncoderContext_encode(&ctx)
  *         if flush:
  *             JNTAJISIncrementalEncoderContext_flush_lookahead(&ctx)             # <<<<<<<<<<<<<<
  *             JNTAJISIncrementalEncoderContext_put_shift(&ctx, 0)
  *         return _PyBytesWriter_Finish(&ctx.writer, ctx.p)
  */
-        __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flush_lookahead((&__pyx_v_ctx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 367, __pyx_L4_error)
+        __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_flush_lookahead((&__pyx_v_ctx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 380, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "jntajis/_jntajis.pyx":368
+        /* "jntajis/_jntajis.pyx":381
  *         if flush:
  *             JNTAJISIncrementalEncoderContext_flush_lookahead(&ctx)
  *             JNTAJISIncrementalEncoderContext_put_shift(&ctx, 0)             # <<<<<<<<<<<<<<
@@ -4010,7 +4018,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
         (void)(__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put_shift((&__pyx_v_ctx), 0));
 
-        /* "jntajis/_jntajis.pyx":366
+        /* "jntajis/_jntajis.pyx":379
  *     try:
  *         JNTAJISIncrementalEncoderContext_encode(&ctx)
  *         if flush:             # <<<<<<<<<<<<<<
@@ -4019,7 +4027,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
       }
 
-      /* "jntajis/_jntajis.pyx":369
+      /* "jntajis/_jntajis.pyx":382
  *             JNTAJISIncrementalEncoderContext_flush_lookahead(&ctx)
  *             JNTAJISIncrementalEncoderContext_put_shift(&ctx, 0)
  *         return _PyBytesWriter_Finish(&ctx.writer, ctx.p)             # <<<<<<<<<<<<<<
@@ -4027,13 +4035,13 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  *         _PyBytesWriter_Dealloc(&ctx.writer)
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = _PyBytesWriter_Finish((&__pyx_v_ctx.writer), __pyx_v_ctx.p); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 369, __pyx_L4_error)
+      __pyx_t_5 = _PyBytesWriter_Finish((&__pyx_v_ctx.writer), __pyx_v_ctx.p); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 382, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L8_try_return;
 
-      /* "jntajis/_jntajis.pyx":364
+      /* "jntajis/_jntajis.pyx":377
  *         raise MemoryError()
  *     ctx.writer.overallocate = 1
  *     try:             # <<<<<<<<<<<<<<
@@ -4044,7 +4052,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
     __pyx_L4_error:;
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "jntajis/_jntajis.pyx":370
+    /* "jntajis/_jntajis.pyx":383
  *             JNTAJISIncrementalEncoderContext_put_shift(&ctx, 0)
  *         return _PyBytesWriter_Finish(&ctx.writer, ctx.p)
  *     except:             # <<<<<<<<<<<<<<
@@ -4053,12 +4061,12 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
     /*except:*/ {
       __Pyx_AddTraceback("jntajis._jntajis.JNTAJISIncrementalEncoder_encode", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(0, 370, __pyx_L6_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(0, 383, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "jntajis/_jntajis.pyx":371
+      /* "jntajis/_jntajis.pyx":384
  *         return _PyBytesWriter_Finish(&ctx.writer, ctx.p)
  *     except:
  *         _PyBytesWriter_Dealloc(&ctx.writer)             # <<<<<<<<<<<<<<
@@ -4067,7 +4075,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
  */
       _PyBytesWriter_Dealloc((&__pyx_v_ctx.writer));
 
-      /* "jntajis/_jntajis.pyx":372
+      /* "jntajis/_jntajis.pyx":385
  *     except:
  *         _PyBytesWriter_Dealloc(&ctx.writer)
  *         raise             # <<<<<<<<<<<<<<
@@ -4079,11 +4087,11 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
       __Pyx_XGIVEREF(__pyx_t_7);
       __Pyx_ErrRestoreWithState(__pyx_t_5, __pyx_t_6, __pyx_t_7);
       __pyx_t_5 = 0; __pyx_t_6 = 0; __pyx_t_7 = 0; 
-      __PYX_ERR(0, 372, __pyx_L6_except_error)
+      __PYX_ERR(0, 385, __pyx_L6_except_error)
     }
     __pyx_L6_except_error:;
 
-    /* "jntajis/_jntajis.pyx":364
+    /* "jntajis/_jntajis.pyx":377
  *         raise MemoryError()
  *     ctx.writer.overallocate = 1
  *     try:             # <<<<<<<<<<<<<<
@@ -4103,7 +4111,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
     goto __pyx_L0;
   }
 
-  /* "jntajis/_jntajis.pyx":346
+  /* "jntajis/_jntajis.pyx":359
  * 
  * 
  * cdef object JNTAJISIncrementalEncoder_encode(             # <<<<<<<<<<<<<<
@@ -4124,7 +4132,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode(__p
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":382
+/* "jntajis/_jntajis.pyx":395
  * 
  * 
  * cdef jis_put_func jis_put_func_for_conversion_mode(int conv_mode):             # <<<<<<<<<<<<<<
@@ -4137,7 +4145,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("jis_put_func_for_conversion_mode", 0);
 
-  /* "jntajis/_jntajis.pyx":383
+  /* "jntajis/_jntajis.pyx":396
  * 
  * cdef jis_put_func jis_put_func_for_conversion_mode(int conv_mode):
  *     if conv_mode == ConversionMode_SISO:             # <<<<<<<<<<<<<<
@@ -4147,7 +4155,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
   switch (__pyx_v_conv_mode) {
     case __pyx_e_7jntajis_8_jntajis_ConversionMode_SISO:
 
-    /* "jntajis/_jntajis.pyx":384
+    /* "jntajis/_jntajis.pyx":397
  * cdef jis_put_func jis_put_func_for_conversion_mode(int conv_mode):
  *     if conv_mode == ConversionMode_SISO:
  *         return jis_put_siso             # <<<<<<<<<<<<<<
@@ -4157,7 +4165,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     __pyx_r = __pyx_f_7jntajis_8_jntajis_jis_put_siso;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":383
+    /* "jntajis/_jntajis.pyx":396
  * 
  * cdef jis_put_func jis_put_func_for_conversion_mode(int conv_mode):
  *     if conv_mode == ConversionMode_SISO:             # <<<<<<<<<<<<<<
@@ -4167,7 +4175,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     break;
     case __pyx_e_7jntajis_8_jntajis_ConversionMode_MEN1:
 
-    /* "jntajis/_jntajis.pyx":386
+    /* "jntajis/_jntajis.pyx":399
  *         return jis_put_siso
  *     elif conv_mode == ConversionMode_MEN1:
  *         return jis_put_men_1             # <<<<<<<<<<<<<<
@@ -4177,7 +4185,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     __pyx_r = __pyx_f_7jntajis_8_jntajis_jis_put_men_1;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":385
+    /* "jntajis/_jntajis.pyx":398
  *     if conv_mode == ConversionMode_SISO:
  *         return jis_put_siso
  *     elif conv_mode == ConversionMode_MEN1:             # <<<<<<<<<<<<<<
@@ -4187,7 +4195,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     break;
     case __pyx_e_7jntajis_8_jntajis_ConversionMode_JISX0208:
 
-    /* "jntajis/_jntajis.pyx":388
+    /* "jntajis/_jntajis.pyx":401
  *         return jis_put_men_1
  *     elif conv_mode == ConversionMode_JISX0208:
  *         return jis_put_jisx0208             # <<<<<<<<<<<<<<
@@ -4197,7 +4205,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     __pyx_r = __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":387
+    /* "jntajis/_jntajis.pyx":400
  *     elif conv_mode == ConversionMode_MEN1:
  *         return jis_put_men_1
  *     elif conv_mode == ConversionMode_JISX0208:             # <<<<<<<<<<<<<<
@@ -4207,7 +4215,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     break;
     case __pyx_e_7jntajis_8_jntajis_ConversionMode_JISX0208_TRANSLIT:
 
-    /* "jntajis/_jntajis.pyx":390
+    /* "jntajis/_jntajis.pyx":403
  *         return jis_put_jisx0208
  *     elif conv_mode == ConversionMode_JISX0208_TRANSLIT:
  *         return jis_put_jisx0208_translit             # <<<<<<<<<<<<<<
@@ -4217,7 +4225,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     __pyx_r = __pyx_f_7jntajis_8_jntajis_jis_put_jisx0208_translit;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":389
+    /* "jntajis/_jntajis.pyx":402
  *     elif conv_mode == ConversionMode_JISX0208:
  *         return jis_put_jisx0208
  *     elif conv_mode == ConversionMode_JISX0208_TRANSLIT:             # <<<<<<<<<<<<<<
@@ -4227,7 +4235,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     break;
     default:
 
-    /* "jntajis/_jntajis.pyx":392
+    /* "jntajis/_jntajis.pyx":405
  *         return jis_put_jisx0208_translit
  *     else:
  *         return NULL             # <<<<<<<<<<<<<<
@@ -4239,7 +4247,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
     break;
   }
 
-  /* "jntajis/_jntajis.pyx":382
+  /* "jntajis/_jntajis.pyx":395
  * 
  * 
  * cdef jis_put_func jis_put_func_for_conversion_mode(int conv_mode):             # <<<<<<<<<<<<<<
@@ -4253,7 +4261,7 @@ static __pyx_t_7jntajis_8_jntajis_jis_put_func __pyx_f_7jntajis_8_jntajis_jis_pu
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":395
+/* "jntajis/_jntajis.pyx":408
  * 
  * 
  * cdef void JNTAJISIncrementalEncoder_fini(JNTAJISIncrementalEncoder* e):             # <<<<<<<<<<<<<<
@@ -4266,7 +4274,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_fini(__pyx_t_7j
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoder_fini", 0);
 
-  /* "jntajis/_jntajis.pyx":396
+  /* "jntajis/_jntajis.pyx":409
  * 
  * cdef void JNTAJISIncrementalEncoder_fini(JNTAJISIncrementalEncoder* e):
  *     Py_DECREF(<object>e.encoding)             # <<<<<<<<<<<<<<
@@ -4278,7 +4286,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_fini(__pyx_t_7j
   Py_DECREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":395
+  /* "jntajis/_jntajis.pyx":408
  * 
  * 
  * cdef void JNTAJISIncrementalEncoder_fini(JNTAJISIncrementalEncoder* e):             # <<<<<<<<<<<<<<
@@ -4290,7 +4298,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_fini(__pyx_t_7j
   __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":399
+/* "jntajis/_jntajis.pyx":412
  * 
  * 
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):             # <<<<<<<<<<<<<<
@@ -4310,7 +4318,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoder_init", 0);
 
-  /* "jntajis/_jntajis.pyx":400
+  /* "jntajis/_jntajis.pyx":413
  * 
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
  *     if len(encoding) == 0:             # <<<<<<<<<<<<<<
@@ -4319,26 +4327,26 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   if (unlikely(__pyx_v_encoding == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 400, __pyx_L1_error)
+    __PYX_ERR(0, 413, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_encoding); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_encoding); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 413, __pyx_L1_error)
   __pyx_t_2 = ((__pyx_t_1 == 0) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "jntajis/_jntajis.pyx":401
+    /* "jntajis/_jntajis.pyx":414
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
  *     if len(encoding) == 0:
  *         raise ValueError("encoding cannot be empty")             # <<<<<<<<<<<<<<
  *     Py_INCREF(encoding)
  *     e.encoding = <PyObject*>encoding
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 401, __pyx_L1_error)
+    __PYX_ERR(0, 414, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":400
+    /* "jntajis/_jntajis.pyx":413
  * 
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
  *     if len(encoding) == 0:             # <<<<<<<<<<<<<<
@@ -4347,7 +4355,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   }
 
-  /* "jntajis/_jntajis.pyx":402
+  /* "jntajis/_jntajis.pyx":415
  *     if len(encoding) == 0:
  *         raise ValueError("encoding cannot be empty")
  *     Py_INCREF(encoding)             # <<<<<<<<<<<<<<
@@ -4356,7 +4364,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   Py_INCREF(__pyx_v_encoding);
 
-  /* "jntajis/_jntajis.pyx":403
+  /* "jntajis/_jntajis.pyx":416
  *         raise ValueError("encoding cannot be empty")
  *     Py_INCREF(encoding)
  *     e.encoding = <PyObject*>encoding             # <<<<<<<<<<<<<<
@@ -4365,7 +4373,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->encoding = ((PyObject *)__pyx_v_encoding);
 
-  /* "jntajis/_jntajis.pyx":404
+  /* "jntajis/_jntajis.pyx":417
  *     Py_INCREF(encoding)
  *     e.encoding = <PyObject*>encoding
  *     e.replacement = <uint16_t>-1             # <<<<<<<<<<<<<<
@@ -4374,7 +4382,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->replacement = ((uint16_t)-1L);
 
-  /* "jntajis/_jntajis.pyx":405
+  /* "jntajis/_jntajis.pyx":418
  *     e.encoding = <PyObject*>encoding
  *     e.replacement = <uint16_t>-1
  *     e.put_jis = jis_put_func_for_conversion_mode(<int>conv_mode)             # <<<<<<<<<<<<<<
@@ -4383,7 +4391,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->put_jis = __pyx_f_7jntajis_8_jntajis_jis_put_func_for_conversion_mode(((int)__pyx_v_conv_mode));
 
-  /* "jntajis/_jntajis.pyx":406
+  /* "jntajis/_jntajis.pyx":419
  *     e.replacement = <uint16_t>-1
  *     e.put_jis = jis_put_func_for_conversion_mode(<int>conv_mode)
  *     if not e.put_jis:             # <<<<<<<<<<<<<<
@@ -4393,26 +4401,26 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
   __pyx_t_2 = ((!(__pyx_v_e->put_jis != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "jntajis/_jntajis.pyx":407
+    /* "jntajis/_jntajis.pyx":420
  *     e.put_jis = jis_put_func_for_conversion_mode(<int>conv_mode)
  *     if not e.put_jis:
  *         raise ValueError(f"unknown conversion mode: {conv_mode}")             # <<<<<<<<<<<<<<
  *     e.lal = 0
  *     e.shift_state = 0
  */
-    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_conv_mode, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_conv_mode, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_unknown_conversion_mode, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_unknown_conversion_mode, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 407, __pyx_L1_error)
+    __PYX_ERR(0, 420, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":406
+    /* "jntajis/_jntajis.pyx":419
  *     e.replacement = <uint16_t>-1
  *     e.put_jis = jis_put_func_for_conversion_mode(<int>conv_mode)
  *     if not e.put_jis:             # <<<<<<<<<<<<<<
@@ -4421,7 +4429,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   }
 
-  /* "jntajis/_jntajis.pyx":408
+  /* "jntajis/_jntajis.pyx":421
  *     if not e.put_jis:
  *         raise ValueError(f"unknown conversion mode: {conv_mode}")
  *     e.lal = 0             # <<<<<<<<<<<<<<
@@ -4430,7 +4438,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->lal = 0;
 
-  /* "jntajis/_jntajis.pyx":409
+  /* "jntajis/_jntajis.pyx":422
  *         raise ValueError(f"unknown conversion mode: {conv_mode}")
  *     e.lal = 0
  *     e.shift_state = 0             # <<<<<<<<<<<<<<
@@ -4439,7 +4447,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->shift_state = 0;
 
-  /* "jntajis/_jntajis.pyx":410
+  /* "jntajis/_jntajis.pyx":423
  *     e.lal = 0
  *     e.shift_state = 0
  *     e.state = 0             # <<<<<<<<<<<<<<
@@ -4448,7 +4456,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
  */
   __pyx_v_e->state = 0;
 
-  /* "jntajis/_jntajis.pyx":399
+  /* "jntajis/_jntajis.pyx":412
  * 
  * 
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):             # <<<<<<<<<<<<<<
@@ -4470,7 +4478,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init(__pyx
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":422
+/* "jntajis/_jntajis.pyx":435
  *     cdef JNTAJISIncrementalEncoder _impl
  * 
  *     def encode(self, in_, final):             # <<<<<<<<<<<<<<
@@ -4513,11 +4521,11 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_18IncrementalEncoder_1encode(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_final)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("encode", 1, 2, 2, 1); __PYX_ERR(0, 422, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("encode", 1, 2, 2, 1); __PYX_ERR(0, 435, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "encode") < 0)) __PYX_ERR(0, 422, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "encode") < 0)) __PYX_ERR(0, 435, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4530,7 +4538,7 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_18IncrementalEncoder_1encode(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("encode", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 422, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("encode", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 435, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.IncrementalEncoder.encode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4553,7 +4561,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_encode(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode", 0);
 
-  /* "jntajis/_jntajis.pyx":423
+  /* "jntajis/_jntajis.pyx":436
  * 
  *     def encode(self, in_, final):
  *         return JNTAJISIncrementalEncoder_encode(&self._impl, in_, final)             # <<<<<<<<<<<<<<
@@ -4561,15 +4569,15 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_encode(struct 
  *     def reset(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_in_))||((__pyx_v_in_) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_in_)->tp_name), 0))) __PYX_ERR(0, 423, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_final); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 423, __pyx_L1_error)
-  __pyx_t_2 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode((&__pyx_v_self->_impl), ((PyObject*)__pyx_v_in_), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_in_))||((__pyx_v_in_) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_in_)->tp_name), 0))) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_final); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode((&__pyx_v_self->_impl), ((PyObject*)__pyx_v_in_), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":422
+  /* "jntajis/_jntajis.pyx":435
  *     cdef JNTAJISIncrementalEncoder _impl
  * 
  *     def encode(self, in_, final):             # <<<<<<<<<<<<<<
@@ -4588,7 +4596,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_encode(struct 
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":425
+/* "jntajis/_jntajis.pyx":438
  *         return JNTAJISIncrementalEncoder_encode(&self._impl, in_, final)
  * 
  *     def reset(self):             # <<<<<<<<<<<<<<
@@ -4615,7 +4623,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_2reset(struct 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("reset", 0);
 
-  /* "jntajis/_jntajis.pyx":426
+  /* "jntajis/_jntajis.pyx":439
  * 
  *     def reset(self):
  *         JNTAJISIncrementalEncoder_reset(&self._impl)             # <<<<<<<<<<<<<<
@@ -4624,7 +4632,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_2reset(struct 
  */
   __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_reset((&__pyx_v_self->_impl));
 
-  /* "jntajis/_jntajis.pyx":425
+  /* "jntajis/_jntajis.pyx":438
  *         return JNTAJISIncrementalEncoder_encode(&self._impl, in_, final)
  * 
  *     def reset(self):             # <<<<<<<<<<<<<<
@@ -4639,7 +4647,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_2reset(struct 
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":428
+/* "jntajis/_jntajis.pyx":441
  *         JNTAJISIncrementalEncoder_reset(&self._impl)
  * 
  *     def getstate(self):             # <<<<<<<<<<<<<<
@@ -4670,7 +4678,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_4getstate(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getstate", 0);
 
-  /* "jntajis/_jntajis.pyx":429
+  /* "jntajis/_jntajis.pyx":442
  * 
  *     def getstate(self):
  *         return self._impl.state * 2 + self._impl.shift_state             # <<<<<<<<<<<<<<
@@ -4678,13 +4686,13 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_4getstate(stru
  *     def setstate(self, state):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_self->_impl.state * 2) + __pyx_v_self->_impl.shift_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_self->_impl.state * 2) + __pyx_v_self->_impl.shift_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":428
+  /* "jntajis/_jntajis.pyx":441
  *         JNTAJISIncrementalEncoder_reset(&self._impl)
  * 
  *     def getstate(self):             # <<<<<<<<<<<<<<
@@ -4703,7 +4711,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_4getstate(stru
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":431
+/* "jntajis/_jntajis.pyx":444
  *         return self._impl.state * 2 + self._impl.shift_state
  * 
  *     def setstate(self, state):             # <<<<<<<<<<<<<<
@@ -4735,33 +4743,33 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_6setstate(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("setstate", 0);
 
-  /* "jntajis/_jntajis.pyx":432
+  /* "jntajis/_jntajis.pyx":445
  * 
  *     def setstate(self, state):
  *         self._impl.shift_state = state % 2             # <<<<<<<<<<<<<<
  *         self._impl.state = state // 2
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_v_state, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_v_state, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 445, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->_impl.shift_state = __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":433
+  /* "jntajis/_jntajis.pyx":446
  *     def setstate(self, state):
  *         self._impl.shift_state = state % 2
  *         self._impl.state = state // 2             # <<<<<<<<<<<<<<
  * 
  *     def __del__(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_v_state, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_v_state, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->_impl.state = __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":431
+  /* "jntajis/_jntajis.pyx":444
  *         return self._impl.state * 2 + self._impl.shift_state
  * 
  *     def setstate(self, state):             # <<<<<<<<<<<<<<
@@ -4782,7 +4790,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_6setstate(stru
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":435
+/* "jntajis/_jntajis.pyx":448
  *         self._impl.state = state // 2
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -4809,7 +4817,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_8__del__(struc
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__del__", 0);
 
-  /* "jntajis/_jntajis.pyx":436
+  /* "jntajis/_jntajis.pyx":449
  * 
  *     def __del__(self):
  *         JNTAJISIncrementalEncoder_fini(&self._impl)             # <<<<<<<<<<<<<<
@@ -4818,7 +4826,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_8__del__(struc
  */
   __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_fini((&__pyx_v_self->_impl));
 
-  /* "jntajis/_jntajis.pyx":435
+  /* "jntajis/_jntajis.pyx":448
  *         self._impl.state = state // 2
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -4833,7 +4841,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_8__del__(struc
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":438
+/* "jntajis/_jntajis.pyx":451
  *         JNTAJISIncrementalEncoder_fini(&self._impl)
  * 
  *     def __init__(self, unicode encoding, int conv_mode):             # <<<<<<<<<<<<<<
@@ -4875,11 +4883,11 @@ static int __pyx_pw_7jntajis_8_jntajis_18IncrementalEncoder_11__init__(PyObject 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_conv_mode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 438, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 451, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 438, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 451, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4888,17 +4896,17 @@ static int __pyx_pw_7jntajis_8_jntajis_18IncrementalEncoder_11__init__(PyObject 
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_encoding = ((PyObject*)values[0]);
-    __pyx_v_conv_mode = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_conv_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 438, __pyx_L3_error)
+    __pyx_v_conv_mode = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_conv_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 451, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 438, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 451, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.IncrementalEncoder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 438, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 451, __pyx_L1_error)
   __pyx_r = __pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_10__init__(((struct __pyx_obj_7jntajis_8_jntajis_IncrementalEncoder *)__pyx_v_self), __pyx_v_encoding, __pyx_v_conv_mode);
 
   /* function exit code */
@@ -4919,18 +4927,18 @@ static int __pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_10__init__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "jntajis/_jntajis.pyx":439
+  /* "jntajis/_jntajis.pyx":452
  * 
  *     def __init__(self, unicode encoding, int conv_mode):
  *         JNTAJISIncrementalEncoder_init(&self._impl, encoding, conv_mode)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init((&__pyx_v_self->_impl), __pyx_v_encoding, __pyx_v_conv_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init((&__pyx_v_self->_impl), __pyx_v_encoding, __pyx_v_conv_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":438
+  /* "jntajis/_jntajis.pyx":451
  *         JNTAJISIncrementalEncoder_fini(&self._impl)
  * 
  *     def __init__(self, unicode encoding, int conv_mode):             # <<<<<<<<<<<<<<
@@ -5065,7 +5073,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_14__setstate_c
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":442
+/* "jntajis/_jntajis.pyx":455
  * 
  * 
  * def jnta_encode(unicode encoding, unicode in_, int conv_mode):             # <<<<<<<<<<<<<<
@@ -5112,17 +5120,17 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_1jnta_encode(PyObject *__pyx_self, 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_in)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, 1); __PYX_ERR(0, 442, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, 1); __PYX_ERR(0, 455, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_conv_mode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, 2); __PYX_ERR(0, 442, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, 2); __PYX_ERR(0, 455, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_encode") < 0)) __PYX_ERR(0, 442, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_encode") < 0)) __PYX_ERR(0, 455, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -5133,18 +5141,18 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_1jnta_encode(PyObject *__pyx_self, 
     }
     __pyx_v_encoding = ((PyObject*)values[0]);
     __pyx_v_in_ = ((PyObject*)values[1]);
-    __pyx_v_conv_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_conv_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 442, __pyx_L3_error)
+    __pyx_v_conv_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_conv_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 455, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 442, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jnta_encode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 455, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.jnta_encode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 442, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 442, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 455, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 455, __pyx_L1_error)
   __pyx_r = __pyx_pf_7jntajis_8_jntajis_jnta_encode(__pyx_self, __pyx_v_encoding, __pyx_v_in_, __pyx_v_conv_mode);
 
   /* function exit code */
@@ -5175,18 +5183,18 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jnta_encode", 0);
 
-  /* "jntajis/_jntajis.pyx":448
+  /* "jntajis/_jntajis.pyx":461
  * 
  *     cdef JNTAJISIncrementalEncoder e
  *     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)             # <<<<<<<<<<<<<<
  *     try:
  *         return JNTAJISIncrementalEncoder_encode(&e, in_, True)
  */
-  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init((&__pyx_v_e), __pyx_v_encoding, __pyx_v_conv_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_init((&__pyx_v_e), __pyx_v_encoding, __pyx_v_conv_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":449
+  /* "jntajis/_jntajis.pyx":462
  *     cdef JNTAJISIncrementalEncoder e
  *     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)
  *     try:             # <<<<<<<<<<<<<<
@@ -5195,7 +5203,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject 
  */
   /*try:*/ {
 
-    /* "jntajis/_jntajis.pyx":450
+    /* "jntajis/_jntajis.pyx":463
  *     JNTAJISIncrementalEncoder_init(&e, encoding, conv_mode)
  *     try:
  *         return JNTAJISIncrementalEncoder_encode(&e, in_, True)             # <<<<<<<<<<<<<<
@@ -5203,14 +5211,14 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject 
  *         JNTAJISIncrementalEncoder_fini(&e)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode((&__pyx_v_e), __pyx_v_in_, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoder_encode((&__pyx_v_e), __pyx_v_in_, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L3_return;
   }
 
-  /* "jntajis/_jntajis.pyx":452
+  /* "jntajis/_jntajis.pyx":465
  *         return JNTAJISIncrementalEncoder_encode(&e, in_, True)
  *     finally:
  *         JNTAJISIncrementalEncoder_fini(&e)             # <<<<<<<<<<<<<<
@@ -5260,7 +5268,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject 
     }
   }
 
-  /* "jntajis/_jntajis.pyx":442
+  /* "jntajis/_jntajis.pyx":455
  * 
  * 
  * def jnta_encode(unicode encoding, unicode in_, int conv_mode):             # <<<<<<<<<<<<<<
@@ -5279,7 +5287,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":462
+/* "jntajis/_jntajis.pyx":475
  * 
  * 
  * cdef object JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
@@ -5300,7 +5308,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeEr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISDecoder_createUnicodeDecodeError", 0);
 
-  /* "jntajis/_jntajis.pyx":469
+  /* "jntajis/_jntajis.pyx":482
  *     char *reason
  * ):
  *     return UnicodeDecodeError(             # <<<<<<<<<<<<<<
@@ -5309,61 +5317,61 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeEr
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "jntajis/_jntajis.pyx":472
+  /* "jntajis/_jntajis.pyx":485
  *         <object>d.encoding,
  *         underlying,
  *         in_size,             # <<<<<<<<<<<<<<
  *         pos,
  *         pos + 1,
  */
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_in_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_in_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "jntajis/_jntajis.pyx":473
+  /* "jntajis/_jntajis.pyx":486
  *         underlying,
  *         in_size,
  *         pos,             # <<<<<<<<<<<<<<
  *         pos + 1,
  *         (<bytes>reason).decode("ascii"),
  */
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_pos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_pos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 486, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "jntajis/_jntajis.pyx":474
+  /* "jntajis/_jntajis.pyx":487
  *         in_size,
  *         pos,
  *         pos + 1,             # <<<<<<<<<<<<<<
  *         (<bytes>reason).decode("ascii"),
  *     )
  */
-  __pyx_t_3 = PyInt_FromSsize_t((__pyx_v_pos + 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_3 = PyInt_FromSsize_t((__pyx_v_pos + 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 487, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "jntajis/_jntajis.pyx":475
+  /* "jntajis/_jntajis.pyx":488
  *         pos,
  *         pos + 1,
  *         (<bytes>reason).decode("ascii"),             # <<<<<<<<<<<<<<
  *     )
  * 
  */
-  __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_reason); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 475, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_reason); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (unlikely(__pyx_t_4 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-    __PYX_ERR(0, 475, __pyx_L1_error)
+    __PYX_ERR(0, 488, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_decode_bytes(((PyObject*)__pyx_t_4), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 475, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_decode_bytes(((PyObject*)__pyx_t_4), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "jntajis/_jntajis.pyx":469
+  /* "jntajis/_jntajis.pyx":482
  *     char *reason
  * ):
  *     return UnicodeDecodeError(             # <<<<<<<<<<<<<<
  *         <object>d.encoding,
  *         underlying,
  */
-  __pyx_t_4 = PyTuple_New(6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 482, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(((PyObject *)__pyx_v_d->encoding));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_d->encoding));
@@ -5383,14 +5391,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeEr
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_UnicodeDecodeError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_UnicodeDecodeError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 482, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":462
+  /* "jntajis/_jntajis.pyx":475
  * 
  * 
  * cdef object JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
@@ -5413,7 +5421,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeEr
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":479
+/* "jntajis/_jntajis.pyx":492
  * 
  * 
  * cdef object JNTAJISDecoder_decode(             # <<<<<<<<<<<<<<
@@ -5448,7 +5456,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISDecoder_decode", 0);
 
-  /* "jntajis/_jntajis.pyx":485
+  /* "jntajis/_jntajis.pyx":498
  *     Py_ssize_t in_sz
  * ):
  *     cdef unsigned char* in_ = <unsigned char *>in_bytes             # <<<<<<<<<<<<<<
@@ -5457,7 +5465,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   __pyx_v_in_ = ((unsigned char *)__pyx_v_in_bytes);
 
-  /* "jntajis/_jntajis.pyx":486
+  /* "jntajis/_jntajis.pyx":499
  * ):
  *     cdef unsigned char* in_ = <unsigned char *>in_bytes
  *     cdef unsigned char* p = in_             # <<<<<<<<<<<<<<
@@ -5466,7 +5474,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   __pyx_v_p = __pyx_v_in_;
 
-  /* "jntajis/_jntajis.pyx":487
+  /* "jntajis/_jntajis.pyx":500
  *     cdef unsigned char* in_ = <unsigned char *>in_bytes
  *     cdef unsigned char* p = in_
  *     cdef unsigned char* e = in_ + in_sz             # <<<<<<<<<<<<<<
@@ -5475,7 +5483,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   __pyx_v_e = (__pyx_v_in_ + __pyx_v_in_sz);
 
-  /* "jntajis/_jntajis.pyx":494
+  /* "jntajis/_jntajis.pyx":507
  *     cdef char[256] reason
  * 
  *     _PyUnicodeWriter_Init(&writer)             # <<<<<<<<<<<<<<
@@ -5484,7 +5492,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   _PyUnicodeWriter_Init((&__pyx_v_writer));
 
-  /* "jntajis/_jntajis.pyx":495
+  /* "jntajis/_jntajis.pyx":508
  * 
  *     _PyUnicodeWriter_Init(&writer)
  *     writer.min_length = in_sz // 2             # <<<<<<<<<<<<<<
@@ -5493,7 +5501,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   __pyx_v_writer.min_length = (__pyx_v_in_sz / 2);
 
-  /* "jntajis/_jntajis.pyx":496
+  /* "jntajis/_jntajis.pyx":509
  *     _PyUnicodeWriter_Init(&writer)
  *     writer.min_length = in_sz // 2
  *     writer.overallocate = 1             # <<<<<<<<<<<<<<
@@ -5502,7 +5510,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
   __pyx_v_writer.overallocate = 1;
 
-  /* "jntajis/_jntajis.pyx":498
+  /* "jntajis/_jntajis.pyx":511
  *     writer.overallocate = 1
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -5518,7 +5526,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "jntajis/_jntajis.pyx":499
+      /* "jntajis/_jntajis.pyx":512
  * 
  *     try:
  *         while p < e:             # <<<<<<<<<<<<<<
@@ -5529,7 +5537,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
         __pyx_t_4 = ((__pyx_v_p < __pyx_v_e) != 0);
         if (!__pyx_t_4) break;
 
-        /* "jntajis/_jntajis.pyx":500
+        /* "jntajis/_jntajis.pyx":513
  *     try:
  *         while p < e:
  *             if d.upper > 0:             # <<<<<<<<<<<<<<
@@ -5539,7 +5547,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
         __pyx_t_4 = ((__pyx_v_d->upper > 0) != 0);
         if (__pyx_t_4) {
 
-          /* "jntajis/_jntajis.pyx":501
+          /* "jntajis/_jntajis.pyx":514
  *         while p < e:
  *             if d.upper > 0:
  *                 c0 = d.upper             # <<<<<<<<<<<<<<
@@ -5549,7 +5557,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_t_5 = __pyx_v_d->upper;
           __pyx_v_c0 = __pyx_t_5;
 
-          /* "jntajis/_jntajis.pyx":502
+          /* "jntajis/_jntajis.pyx":515
  *             if d.upper > 0:
  *                 c0 = d.upper
  *                 d.upper = 0             # <<<<<<<<<<<<<<
@@ -5558,7 +5566,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           __pyx_v_d->upper = 0;
 
-          /* "jntajis/_jntajis.pyx":500
+          /* "jntajis/_jntajis.pyx":513
  *     try:
  *         while p < e:
  *             if d.upper > 0:             # <<<<<<<<<<<<<<
@@ -5568,7 +5576,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           goto __pyx_L11;
         }
 
-        /* "jntajis/_jntajis.pyx":504
+        /* "jntajis/_jntajis.pyx":517
  *                 d.upper = 0
  *             else:
  *                 c0 = p[0]             # <<<<<<<<<<<<<<
@@ -5578,7 +5586,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
         /*else*/ {
           __pyx_v_c0 = (__pyx_v_p[0]);
 
-          /* "jntajis/_jntajis.pyx":505
+          /* "jntajis/_jntajis.pyx":518
  *             else:
  *                 c0 = p[0]
  *                 p += 1             # <<<<<<<<<<<<<<
@@ -5589,7 +5597,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
         }
         __pyx_L11:;
 
-        /* "jntajis/_jntajis.pyx":507
+        /* "jntajis/_jntajis.pyx":520
  *                 p += 1
  * 
  *             if c0 >= 0x21 and c0 <= 0x7e:             # <<<<<<<<<<<<<<
@@ -5607,7 +5615,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
         __pyx_L13_bool_binop_done:;
         if (__pyx_t_4) {
 
-          /* "jntajis/_jntajis.pyx":508
+          /* "jntajis/_jntajis.pyx":521
  * 
  *             if c0 >= 0x21 and c0 <= 0x7e:
  *                 if p >= e:             # <<<<<<<<<<<<<<
@@ -5617,7 +5625,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_t_4 = ((__pyx_v_p >= __pyx_v_e) != 0);
           if (__pyx_t_4) {
 
-            /* "jntajis/_jntajis.pyx":509
+            /* "jntajis/_jntajis.pyx":522
  *             if c0 >= 0x21 and c0 <= 0x7e:
  *                 if p >= e:
  *                     d.upper = c0             # <<<<<<<<<<<<<<
@@ -5626,7 +5634,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             __pyx_v_d->upper = __pyx_v_c0;
 
-            /* "jntajis/_jntajis.pyx":510
+            /* "jntajis/_jntajis.pyx":523
  *                 if p >= e:
  *                     d.upper = c0
  *                     break             # <<<<<<<<<<<<<<
@@ -5635,7 +5643,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             goto __pyx_L10_break;
 
-            /* "jntajis/_jntajis.pyx":508
+            /* "jntajis/_jntajis.pyx":521
  * 
  *             if c0 >= 0x21 and c0 <= 0x7e:
  *                 if p >= e:             # <<<<<<<<<<<<<<
@@ -5644,7 +5652,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           }
 
-          /* "jntajis/_jntajis.pyx":511
+          /* "jntajis/_jntajis.pyx":524
  *                     d.upper = c0
  *                     break
  *                 c1 = p[0]             # <<<<<<<<<<<<<<
@@ -5653,7 +5661,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           __pyx_v_c1 = (__pyx_v_p[0]);
 
-          /* "jntajis/_jntajis.pyx":512
+          /* "jntajis/_jntajis.pyx":525
  *                     break
  *                 c1 = p[0]
  *                 p += 1             # <<<<<<<<<<<<<<
@@ -5662,7 +5670,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           __pyx_v_p = (__pyx_v_p + 1);
 
-          /* "jntajis/_jntajis.pyx":513
+          /* "jntajis/_jntajis.pyx":526
  *                 c1 = p[0]
  *                 p += 1
  *                 if c1 >= 0x21 and c1 <= 0x7e:             # <<<<<<<<<<<<<<
@@ -5680,7 +5688,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_L17_bool_binop_done:;
           if (likely(__pyx_t_4)) {
 
-            /* "jntajis/_jntajis.pyx":514
+            /* "jntajis/_jntajis.pyx":527
  *                 p += 1
  *                 if c1 >= 0x21 and c1 <= 0x7e:
  *                     jis = d.shift_offset + (c0 - 0x21)  *94 + (c1 - 0x21)             # <<<<<<<<<<<<<<
@@ -5689,7 +5697,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             __pyx_v_jis = ((__pyx_v_d->shift_offset + ((__pyx_v_c0 - 0x21) * 94)) + (__pyx_v_c1 - 0x21));
 
-            /* "jntajis/_jntajis.pyx":515
+            /* "jntajis/_jntajis.pyx":528
  *                 if c1 >= 0x21 and c1 <= 0x7e:
  *                     jis = d.shift_offset + (c0 - 0x21)  *94 + (c1 - 0x21)
  *                     m = &tx_mappings[jis]             # <<<<<<<<<<<<<<
@@ -5698,7 +5706,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             __pyx_v_m = (&(tx_mappings[__pyx_v_jis]));
 
-            /* "jntajis/_jntajis.pyx":516
+            /* "jntajis/_jntajis.pyx":529
  *                     jis = d.shift_offset + (c0 - 0x21)  *94 + (c1 - 0x21)
  *                     m = &tx_mappings[jis]
  *                     if m.class_ == JISCharacterClass_RESERVED:             # <<<<<<<<<<<<<<
@@ -5708,7 +5716,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
             __pyx_t_4 = ((__pyx_v_m->class_ == JISCharacterClass_RESERVED) != 0);
             if (unlikely(__pyx_t_4)) {
 
-              /* "jntajis/_jntajis.pyx":517
+              /* "jntajis/_jntajis.pyx":530
  *                     m = &tx_mappings[jis]
  *                     if m.class_ == JISCharacterClass_RESERVED:
  *                         snprintf(             # <<<<<<<<<<<<<<
@@ -5717,20 +5725,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
               (void)(snprintf(__pyx_v_reason, (sizeof(__pyx_v_reason)), ((char const *)"JIS character %d-%d-%d does not have a corresponding unicode codepoint"), ((int)(((__pyx_v_d->shift_offset / 94) / 94) + 1)), (__pyx_v_c0 + 1), (__pyx_v_c1 + 1)));
 
-              /* "jntajis/_jntajis.pyx":524
+              /* "jntajis/_jntajis.pyx":537
  *                             c1 + 1,
  *                         )
  *                         raise JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
  *                             d,
  *                             underlying,
  */
-              __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 524, __pyx_L3_error)
+              __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 537, __pyx_L3_error)
               __Pyx_GOTREF(__pyx_t_7);
               __Pyx_Raise(__pyx_t_7, 0, 0, 0);
               __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-              __PYX_ERR(0, 524, __pyx_L3_error)
+              __PYX_ERR(0, 537, __pyx_L3_error)
 
-              /* "jntajis/_jntajis.pyx":516
+              /* "jntajis/_jntajis.pyx":529
  *                     jis = d.shift_offset + (c0 - 0x21)  *94 + (c1 - 0x21)
  *                     m = &tx_mappings[jis]
  *                     if m.class_ == JISCharacterClass_RESERVED:             # <<<<<<<<<<<<<<
@@ -5739,7 +5747,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             }
 
-            /* "jntajis/_jntajis.pyx":532
+            /* "jntajis/_jntajis.pyx":545
  *                         )
  *                     else:
  *                         if m.us[1] == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -5750,7 +5758,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
               __pyx_t_4 = (((__pyx_v_m->us[1]) == ((uint32_t)-1L)) != 0);
               if (__pyx_t_4) {
 
-                /* "jntajis/_jntajis.pyx":533
+                /* "jntajis/_jntajis.pyx":546
  *                     else:
  *                         if m.us[1] == <uint32_t>-1:
  *                             if _PyUnicodeWriter_Prepare(&writer, 1, <Py_UCS4>m.us[0]):             # <<<<<<<<<<<<<<
@@ -5760,16 +5768,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
                 __pyx_t_4 = (_PyUnicodeWriter_Prepare((&__pyx_v_writer), 1, ((Py_UCS4)(__pyx_v_m->us[0]))) != 0);
                 if (unlikely(__pyx_t_4)) {
 
-                  /* "jntajis/_jntajis.pyx":534
+                  /* "jntajis/_jntajis.pyx":547
  *                         if m.us[1] == <uint32_t>-1:
  *                             if _PyUnicodeWriter_Prepare(&writer, 1, <Py_UCS4>m.us[0]):
  *                                 raise MemoryError()             # <<<<<<<<<<<<<<
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])
  *                         else:
  */
-                  PyErr_NoMemory(); __PYX_ERR(0, 534, __pyx_L3_error)
+                  PyErr_NoMemory(); __PYX_ERR(0, 547, __pyx_L3_error)
 
-                  /* "jntajis/_jntajis.pyx":533
+                  /* "jntajis/_jntajis.pyx":546
  *                     else:
  *                         if m.us[1] == <uint32_t>-1:
  *                             if _PyUnicodeWriter_Prepare(&writer, 1, <Py_UCS4>m.us[0]):             # <<<<<<<<<<<<<<
@@ -5778,7 +5786,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
                 }
 
-                /* "jntajis/_jntajis.pyx":535
+                /* "jntajis/_jntajis.pyx":548
  *                             if _PyUnicodeWriter_Prepare(&writer, 1, <Py_UCS4>m.us[0]):
  *                                 raise MemoryError()
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])             # <<<<<<<<<<<<<<
@@ -5787,7 +5795,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
                 _PyUnicodeWriter_WriteChar((&__pyx_v_writer), ((Py_UCS4)(__pyx_v_m->us[0])));
 
-                /* "jntajis/_jntajis.pyx":532
+                /* "jntajis/_jntajis.pyx":545
  *                         )
  *                     else:
  *                         if m.us[1] == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -5797,7 +5805,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
                 goto __pyx_L20;
               }
 
-              /* "jntajis/_jntajis.pyx":537
+              /* "jntajis/_jntajis.pyx":550
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])
  *                         else:
  *                             if _PyUnicodeWriter_Prepare(&writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):             # <<<<<<<<<<<<<<
@@ -5808,16 +5816,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
                 __pyx_t_4 = (_PyUnicodeWriter_Prepare((&__pyx_v_writer), 2, ((Py_UCS4)Py_MAX((__pyx_v_m->us[0]), (__pyx_v_m->us[1])))) != 0);
                 if (unlikely(__pyx_t_4)) {
 
-                  /* "jntajis/_jntajis.pyx":538
+                  /* "jntajis/_jntajis.pyx":551
  *                         else:
  *                             if _PyUnicodeWriter_Prepare(&writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):
  *                                 raise MemoryError()             # <<<<<<<<<<<<<<
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[1])
  */
-                  PyErr_NoMemory(); __PYX_ERR(0, 538, __pyx_L3_error)
+                  PyErr_NoMemory(); __PYX_ERR(0, 551, __pyx_L3_error)
 
-                  /* "jntajis/_jntajis.pyx":537
+                  /* "jntajis/_jntajis.pyx":550
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])
  *                         else:
  *                             if _PyUnicodeWriter_Prepare(&writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):             # <<<<<<<<<<<<<<
@@ -5826,7 +5834,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
                 }
 
-                /* "jntajis/_jntajis.pyx":539
+                /* "jntajis/_jntajis.pyx":552
  *                             if _PyUnicodeWriter_Prepare(&writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):
  *                                 raise MemoryError()
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])             # <<<<<<<<<<<<<<
@@ -5835,7 +5843,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
                 _PyUnicodeWriter_WriteChar((&__pyx_v_writer), ((Py_UCS4)(__pyx_v_m->us[0])));
 
-                /* "jntajis/_jntajis.pyx":540
+                /* "jntajis/_jntajis.pyx":553
  *                                 raise MemoryError()
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[0])
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[1])             # <<<<<<<<<<<<<<
@@ -5847,7 +5855,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
               __pyx_L20:;
             }
 
-            /* "jntajis/_jntajis.pyx":513
+            /* "jntajis/_jntajis.pyx":526
  *                 c1 = p[0]
  *                 p += 1
  *                 if c1 >= 0x21 and c1 <= 0x7e:             # <<<<<<<<<<<<<<
@@ -5857,7 +5865,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
             goto __pyx_L16;
           }
 
-          /* "jntajis/_jntajis.pyx":542
+          /* "jntajis/_jntajis.pyx":555
  *                             _PyUnicodeWriter_WriteChar(&writer, <Py_UCS4>m.us[1])
  *                 else:
  *                     snprintf(             # <<<<<<<<<<<<<<
@@ -5866,7 +5874,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           /*else*/ {
 
-            /* "jntajis/_jntajis.pyx":545
+            /* "jntajis/_jntajis.pyx":558
  *                         reason, sizeof(reason),
  *                         "unexpected byte \\x%02x after \\x%02x",
  *                         c1, c0,             # <<<<<<<<<<<<<<
@@ -5875,22 +5883,22 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             (void)(snprintf(__pyx_v_reason, (sizeof(__pyx_v_reason)), ((char const *)"unexpected byte \\x%02x after \\x%02x"), __pyx_v_c1, __pyx_v_c0));
 
-            /* "jntajis/_jntajis.pyx":547
+            /* "jntajis/_jntajis.pyx":560
  *                         c1, c0,
  *                     )
  *                     raise JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
  *                         d,
  *                         underlying,
  */
-            __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 547, __pyx_L3_error)
+            __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 560, __pyx_L3_error)
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_Raise(__pyx_t_7, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __PYX_ERR(0, 547, __pyx_L3_error)
+            __PYX_ERR(0, 560, __pyx_L3_error)
           }
           __pyx_L16:;
 
-          /* "jntajis/_jntajis.pyx":507
+          /* "jntajis/_jntajis.pyx":520
  *                 p += 1
  * 
  *             if c0 >= 0x21 and c0 <= 0x7e:             # <<<<<<<<<<<<<<
@@ -5900,7 +5908,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           goto __pyx_L12;
         }
 
-        /* "jntajis/_jntajis.pyx":555
+        /* "jntajis/_jntajis.pyx":568
  *                     )
  *             else:
  *                 siso = d.siso             # <<<<<<<<<<<<<<
@@ -5911,7 +5919,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_t_5 = __pyx_v_d->siso;
           __pyx_v_siso = __pyx_t_5;
 
-          /* "jntajis/_jntajis.pyx":556
+          /* "jntajis/_jntajis.pyx":569
  *             else:
  *                 siso = d.siso
  *                 if c0 == 0x0e and siso:             # <<<<<<<<<<<<<<
@@ -5929,7 +5937,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_L24_bool_binop_done:;
           if (__pyx_t_4) {
 
-            /* "jntajis/_jntajis.pyx":557
+            /* "jntajis/_jntajis.pyx":570
  *                 siso = d.siso
  *                 if c0 == 0x0e and siso:
  *                     d.shift_offset = 0             # <<<<<<<<<<<<<<
@@ -5938,7 +5946,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             __pyx_v_d->shift_offset = 0;
 
-            /* "jntajis/_jntajis.pyx":556
+            /* "jntajis/_jntajis.pyx":569
  *             else:
  *                 siso = d.siso
  *                 if c0 == 0x0e and siso:             # <<<<<<<<<<<<<<
@@ -5948,7 +5956,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
             goto __pyx_L23;
           }
 
-          /* "jntajis/_jntajis.pyx":558
+          /* "jntajis/_jntajis.pyx":571
  *                 if c0 == 0x0e and siso:
  *                     d.shift_offset = 0
  *                 elif c0 == 0x0f and siso:             # <<<<<<<<<<<<<<
@@ -5966,7 +5974,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
           __pyx_L26_bool_binop_done:;
           if (likely(__pyx_t_4)) {
 
-            /* "jntajis/_jntajis.pyx":559
+            /* "jntajis/_jntajis.pyx":572
  *                     d.shift_offset = 0
  *                 elif c0 == 0x0f and siso:
  *                     d.shift_offset = 94 * 94             # <<<<<<<<<<<<<<
@@ -5975,7 +5983,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             __pyx_v_d->shift_offset = 0x2284;
 
-            /* "jntajis/_jntajis.pyx":558
+            /* "jntajis/_jntajis.pyx":571
  *                 if c0 == 0x0e and siso:
  *                     d.shift_offset = 0
  *                 elif c0 == 0x0f and siso:             # <<<<<<<<<<<<<<
@@ -5985,7 +5993,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
             goto __pyx_L23;
           }
 
-          /* "jntajis/_jntajis.pyx":561
+          /* "jntajis/_jntajis.pyx":574
  *                     d.shift_offset = 94 * 94
  *                 else:
  *                     snprintf(             # <<<<<<<<<<<<<<
@@ -5994,7 +6002,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
           /*else*/ {
 
-            /* "jntajis/_jntajis.pyx":564
+            /* "jntajis/_jntajis.pyx":577
  *                         reason, sizeof(reason),
  *                         "unexpected byte \\x%02x",
  *                         c0,             # <<<<<<<<<<<<<<
@@ -6003,18 +6011,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
             (void)(snprintf(__pyx_v_reason, (sizeof(__pyx_v_reason)), ((char const *)"unexpected byte \\x%02x"), __pyx_v_c0));
 
-            /* "jntajis/_jntajis.pyx":566
+            /* "jntajis/_jntajis.pyx":579
  *                         c0,
  *                     )
  *                     raise JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
  *                         d,
  *                         underlying,
  */
-            __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 566, __pyx_L3_error)
+            __pyx_t_7 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError(__pyx_v_d, __pyx_v_underlying, __pyx_v_in_sz, ((__pyx_v_p - __pyx_v_in_) - 2), __pyx_v_reason); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 579, __pyx_L3_error)
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_Raise(__pyx_t_7, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __PYX_ERR(0, 566, __pyx_L3_error)
+            __PYX_ERR(0, 579, __pyx_L3_error)
           }
           __pyx_L23:;
         }
@@ -6022,7 +6030,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
       }
       __pyx_L10_break:;
 
-      /* "jntajis/_jntajis.pyx":573
+      /* "jntajis/_jntajis.pyx":586
  *                         reason,
  *                     )
  *         return _PyUnicodeWriter_Finish(&writer)             # <<<<<<<<<<<<<<
@@ -6030,13 +6038,13 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  *         _PyUnicodeWriter_Dealloc(&writer)
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_7 = _PyUnicodeWriter_Finish((&__pyx_v_writer)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 573, __pyx_L3_error)
+      __pyx_t_7 = _PyUnicodeWriter_Finish((&__pyx_v_writer)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 586, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_r = __pyx_t_7;
       __pyx_t_7 = 0;
       goto __pyx_L7_try_return;
 
-      /* "jntajis/_jntajis.pyx":498
+      /* "jntajis/_jntajis.pyx":511
  *     writer.overallocate = 1
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -6047,7 +6055,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
     __pyx_L3_error:;
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "jntajis/_jntajis.pyx":574
+    /* "jntajis/_jntajis.pyx":587
  *                     )
  *         return _PyUnicodeWriter_Finish(&writer)
  *     except:             # <<<<<<<<<<<<<<
@@ -6056,12 +6064,12 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
     /*except:*/ {
       __Pyx_AddTraceback("jntajis._jntajis.JNTAJISDecoder_decode", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0) __PYX_ERR(0, 574, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0) __PYX_ERR(0, 587, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_9);
 
-      /* "jntajis/_jntajis.pyx":575
+      /* "jntajis/_jntajis.pyx":588
  *         return _PyUnicodeWriter_Finish(&writer)
  *     except:
  *         _PyUnicodeWriter_Dealloc(&writer)             # <<<<<<<<<<<<<<
@@ -6070,7 +6078,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
  */
       _PyUnicodeWriter_Dealloc((&__pyx_v_writer));
 
-      /* "jntajis/_jntajis.pyx":576
+      /* "jntajis/_jntajis.pyx":589
  *     except:
  *         _PyUnicodeWriter_Dealloc(&writer)
  *         raise             # <<<<<<<<<<<<<<
@@ -6082,11 +6090,11 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
       __Pyx_XGIVEREF(__pyx_t_9);
       __Pyx_ErrRestoreWithState(__pyx_t_7, __pyx_t_8, __pyx_t_9);
       __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; 
-      __PYX_ERR(0, 576, __pyx_L5_except_error)
+      __PYX_ERR(0, 589, __pyx_L5_except_error)
     }
     __pyx_L5_except_error:;
 
-    /* "jntajis/_jntajis.pyx":498
+    /* "jntajis/_jntajis.pyx":511
  *     writer.overallocate = 1
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -6106,7 +6114,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
     goto __pyx_L0;
   }
 
-  /* "jntajis/_jntajis.pyx":479
+  /* "jntajis/_jntajis.pyx":492
  * 
  * 
  * cdef object JNTAJISDecoder_decode(             # <<<<<<<<<<<<<<
@@ -6127,7 +6135,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode(__pyx_t_7jntaj
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":579
+/* "jntajis/_jntajis.pyx":592
  * 
  * 
  * cdef void JNTAJISDecoder_fini(JNTAJISDecoder *d):             # <<<<<<<<<<<<<<
@@ -6140,7 +6148,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_fini(__pyx_t_7jntajis_8_jn
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("JNTAJISDecoder_fini", 0);
 
-  /* "jntajis/_jntajis.pyx":580
+  /* "jntajis/_jntajis.pyx":593
  * 
  * cdef void JNTAJISDecoder_fini(JNTAJISDecoder *d):
  *     Py_DECREF(<object>d.encoding)             # <<<<<<<<<<<<<<
@@ -6152,7 +6160,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_fini(__pyx_t_7jntajis_8_jn
   Py_DECREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":579
+  /* "jntajis/_jntajis.pyx":592
  * 
  * 
  * cdef void JNTAJISDecoder_fini(JNTAJISDecoder *d):             # <<<<<<<<<<<<<<
@@ -6164,7 +6172,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_fini(__pyx_t_7jntajis_8_jn
   __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":583
+/* "jntajis/_jntajis.pyx":596
  * 
  * 
  * cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):             # <<<<<<<<<<<<<<
@@ -6183,7 +6191,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISDecoder_init", 0);
 
-  /* "jntajis/_jntajis.pyx":584
+  /* "jntajis/_jntajis.pyx":597
  * 
  * cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
  *     if len(encoding) == 0:             # <<<<<<<<<<<<<<
@@ -6192,26 +6200,26 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   if (unlikely(__pyx_v_encoding == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 584, __pyx_L1_error)
+    __PYX_ERR(0, 597, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_encoding); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 584, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_encoding); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 597, __pyx_L1_error)
   __pyx_t_2 = ((__pyx_t_1 == 0) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "jntajis/_jntajis.pyx":585
+    /* "jntajis/_jntajis.pyx":598
  * cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
  *     if len(encoding) == 0:
  *         raise ValueError("encoding cannot be empty")             # <<<<<<<<<<<<<<
  *     Py_INCREF(encoding)
  *     d.encoding = <PyObject*>encoding
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 598, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 585, __pyx_L1_error)
+    __PYX_ERR(0, 598, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":584
+    /* "jntajis/_jntajis.pyx":597
  * 
  * cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):
  *     if len(encoding) == 0:             # <<<<<<<<<<<<<<
@@ -6220,7 +6228,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   }
 
-  /* "jntajis/_jntajis.pyx":586
+  /* "jntajis/_jntajis.pyx":599
  *     if len(encoding) == 0:
  *         raise ValueError("encoding cannot be empty")
  *     Py_INCREF(encoding)             # <<<<<<<<<<<<<<
@@ -6229,7 +6237,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   Py_INCREF(__pyx_v_encoding);
 
-  /* "jntajis/_jntajis.pyx":587
+  /* "jntajis/_jntajis.pyx":600
  *         raise ValueError("encoding cannot be empty")
  *     Py_INCREF(encoding)
  *     d.encoding = <PyObject*>encoding             # <<<<<<<<<<<<<<
@@ -6238,7 +6246,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   __pyx_v_d->encoding = ((PyObject *)__pyx_v_encoding);
 
-  /* "jntajis/_jntajis.pyx":588
+  /* "jntajis/_jntajis.pyx":601
  *     Py_INCREF(encoding)
  *     d.encoding = <PyObject*>encoding
  *     d.siso = 0             # <<<<<<<<<<<<<<
@@ -6247,7 +6255,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   __pyx_v_d->siso = 0;
 
-  /* "jntajis/_jntajis.pyx":589
+  /* "jntajis/_jntajis.pyx":602
  *     d.encoding = <PyObject*>encoding
  *     d.siso = 0
  *     d.shift_offset = 0             # <<<<<<<<<<<<<<
@@ -6256,7 +6264,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   __pyx_v_d->shift_offset = 0;
 
-  /* "jntajis/_jntajis.pyx":590
+  /* "jntajis/_jntajis.pyx":603
  *     d.siso = 0
  *     d.shift_offset = 0
  *     d.upper = 0             # <<<<<<<<<<<<<<
@@ -6265,7 +6273,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
  */
   __pyx_v_d->upper = 0;
 
-  /* "jntajis/_jntajis.pyx":583
+  /* "jntajis/_jntajis.pyx":596
  * 
  * 
  * cdef object JNTAJISDecoder_init(JNTAJISDecoder *d, unicode encoding):             # <<<<<<<<<<<<<<
@@ -6286,7 +6294,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init(__pyx_t_7jntajis
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":593
+/* "jntajis/_jntajis.pyx":606
  * 
  * 
  * def jnta_decode(unicode encoding, bytes in_):             # <<<<<<<<<<<<<<
@@ -6330,11 +6338,11 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_3jnta_decode(PyObject *__pyx_self, 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_in)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jnta_decode", 1, 2, 2, 1); __PYX_ERR(0, 593, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jnta_decode", 1, 2, 2, 1); __PYX_ERR(0, 606, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_decode") < 0)) __PYX_ERR(0, 593, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_decode") < 0)) __PYX_ERR(0, 606, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6347,14 +6355,14 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_3jnta_decode(PyObject *__pyx_self, 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jnta_decode", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 593, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jnta_decode", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 606, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.jnta_decode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 593, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyBytes_Type), 1, "in_", 1))) __PYX_ERR(0, 593, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_encoding), (&PyUnicode_Type), 1, "encoding", 1))) __PYX_ERR(0, 606, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyBytes_Type), 1, "in_", 1))) __PYX_ERR(0, 606, __pyx_L1_error)
   __pyx_r = __pyx_pf_7jntajis_8_jntajis_2jnta_decode(__pyx_self, __pyx_v_encoding, __pyx_v_in_);
 
   /* function exit code */
@@ -6390,18 +6398,18 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jnta_decode", 0);
 
-  /* "jntajis/_jntajis.pyx":599
+  /* "jntajis/_jntajis.pyx":612
  * 
  *     cdef JNTAJISDecoder d
  *     JNTAJISDecoder_init(&d, encoding)             # <<<<<<<<<<<<<<
  *     try:
  *         retval = JNTAJISDecoder_decode(&d, in_, <char *>in_, len(in_))
  */
-  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init((&__pyx_v_d), __pyx_v_encoding); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 599, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_init((&__pyx_v_d), __pyx_v_encoding); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":600
+  /* "jntajis/_jntajis.pyx":613
  *     cdef JNTAJISDecoder d
  *     JNTAJISDecoder_init(&d, encoding)
  *     try:             # <<<<<<<<<<<<<<
@@ -6410,7 +6418,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
  */
   /*try:*/ {
 
-    /* "jntajis/_jntajis.pyx":601
+    /* "jntajis/_jntajis.pyx":614
  *     JNTAJISDecoder_init(&d, encoding)
  *     try:
  *         retval = JNTAJISDecoder_decode(&d, in_, <char *>in_, len(in_))             # <<<<<<<<<<<<<<
@@ -6419,20 +6427,20 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
  */
     if (unlikely(__pyx_v_in_ == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-      __PYX_ERR(0, 601, __pyx_L4_error)
+      __PYX_ERR(0, 614, __pyx_L4_error)
     }
-    __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_in_); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 601, __pyx_L4_error)
+    __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_in_); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 614, __pyx_L4_error)
     if (unlikely(__pyx_v_in_ == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 601, __pyx_L4_error)
+      __PYX_ERR(0, 614, __pyx_L4_error)
     }
-    __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 601, __pyx_L4_error)
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode((&__pyx_v_d), __pyx_v_in_, ((char *)__pyx_t_2), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L4_error)
+    __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 614, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_decode((&__pyx_v_d), __pyx_v_in_, ((char *)__pyx_t_2), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 614, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_retval = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "jntajis/_jntajis.pyx":602
+    /* "jntajis/_jntajis.pyx":615
  *     try:
  *         retval = JNTAJISDecoder_decode(&d, in_, <char *>in_, len(in_))
  *         if d.upper > 0:             # <<<<<<<<<<<<<<
@@ -6442,7 +6450,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
     __pyx_t_4 = ((__pyx_v_d.upper > 0) != 0);
     if (unlikely(__pyx_t_4)) {
 
-      /* "jntajis/_jntajis.pyx":604
+      /* "jntajis/_jntajis.pyx":617
  *         if d.upper > 0:
  *             raise JNTAJISDecoder_createUnicodeDecodeError(
  *                 &d, in_, len(in_), len(in_) - 1,             # <<<<<<<<<<<<<<
@@ -6451,29 +6459,29 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
  */
       if (unlikely(__pyx_v_in_ == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 604, __pyx_L4_error)
+        __PYX_ERR(0, 617, __pyx_L4_error)
       }
-      __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 604, __pyx_L4_error)
+      __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 617, __pyx_L4_error)
       if (unlikely(__pyx_v_in_ == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 604, __pyx_L4_error)
+        __PYX_ERR(0, 617, __pyx_L4_error)
       }
-      __pyx_t_5 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 604, __pyx_L4_error)
+      __pyx_t_5 = PyBytes_GET_SIZE(__pyx_v_in_); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 617, __pyx_L4_error)
 
-      /* "jntajis/_jntajis.pyx":603
+      /* "jntajis/_jntajis.pyx":616
  *         retval = JNTAJISDecoder_decode(&d, in_, <char *>in_, len(in_))
  *         if d.upper > 0:
  *             raise JNTAJISDecoder_createUnicodeDecodeError(             # <<<<<<<<<<<<<<
  *                 &d, in_, len(in_), len(in_) - 1,
  *                 "incomplete multibyte character",
  */
-      __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError((&__pyx_v_d), __pyx_v_in_, __pyx_t_3, (__pyx_t_5 - 1), ((char *)"incomplete multibyte character")); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 603, __pyx_L4_error)
+      __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISDecoder_createUnicodeDecodeError((&__pyx_v_d), __pyx_v_in_, __pyx_t_3, (__pyx_t_5 - 1), ((char *)"incomplete multibyte character")); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 616, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __PYX_ERR(0, 603, __pyx_L4_error)
+      __PYX_ERR(0, 616, __pyx_L4_error)
 
-      /* "jntajis/_jntajis.pyx":602
+      /* "jntajis/_jntajis.pyx":615
  *     try:
  *         retval = JNTAJISDecoder_decode(&d, in_, <char *>in_, len(in_))
  *         if d.upper > 0:             # <<<<<<<<<<<<<<
@@ -6482,7 +6490,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
  */
     }
 
-    /* "jntajis/_jntajis.pyx":607
+    /* "jntajis/_jntajis.pyx":620
  *                 "incomplete multibyte character",
  *             )
  *         return retval             # <<<<<<<<<<<<<<
@@ -6495,7 +6503,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
     goto __pyx_L3_return;
   }
 
-  /* "jntajis/_jntajis.pyx":609
+  /* "jntajis/_jntajis.pyx":622
  *         return retval
  *     finally:
  *         JNTAJISDecoder_fini(&d)             # <<<<<<<<<<<<<<
@@ -6545,7 +6553,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
     }
   }
 
-  /* "jntajis/_jntajis.pyx":593
+  /* "jntajis/_jntajis.pyx":606
  * 
  * 
  * def jnta_decode(unicode encoding, bytes in_):             # <<<<<<<<<<<<<<
@@ -6565,7 +6573,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":631
+/* "jntajis/_jntajis.pyx":644
  * 
  * 
  * cdef object JNTAJISShrinkingTransliteratorContext_put_replacement(             # <<<<<<<<<<<<<<
@@ -6587,7 +6595,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISShrinkingTransliteratorContext_put_replacement", 0);
 
-  /* "jntajis/_jntajis.pyx":635
+  /* "jntajis/_jntajis.pyx":648
  *     Py_UCS4 u,
  * ):
  *     if t.passthrough:             # <<<<<<<<<<<<<<
@@ -6597,7 +6605,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   __pyx_t_1 = (__pyx_v_t->passthrough != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":636
+    /* "jntajis/_jntajis.pyx":649
  * ):
  *     if t.passthrough:
  *         if _PyUnicodeWriter_Prepare(&t.writer, 1, u):             # <<<<<<<<<<<<<<
@@ -6607,16 +6615,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
     __pyx_t_1 = (_PyUnicodeWriter_Prepare((&__pyx_v_t->writer), 1, __pyx_v_u) != 0);
     if (unlikely(__pyx_t_1)) {
 
-      /* "jntajis/_jntajis.pyx":637
+      /* "jntajis/_jntajis.pyx":650
  *     if t.passthrough:
  *         if _PyUnicodeWriter_Prepare(&t.writer, 1, u):
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  *         _PyUnicodeWriter_WriteChar(&t.writer, u)
  *     else:
  */
-      PyErr_NoMemory(); __PYX_ERR(0, 637, __pyx_L1_error)
+      PyErr_NoMemory(); __PYX_ERR(0, 650, __pyx_L1_error)
 
-      /* "jntajis/_jntajis.pyx":636
+      /* "jntajis/_jntajis.pyx":649
  * ):
  *     if t.passthrough:
  *         if _PyUnicodeWriter_Prepare(&t.writer, 1, u):             # <<<<<<<<<<<<<<
@@ -6625,7 +6633,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
     }
 
-    /* "jntajis/_jntajis.pyx":638
+    /* "jntajis/_jntajis.pyx":651
  *         if _PyUnicodeWriter_Prepare(&t.writer, 1, u):
  *             raise MemoryError()
  *         _PyUnicodeWriter_WriteChar(&t.writer, u)             # <<<<<<<<<<<<<<
@@ -6634,7 +6642,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
     _PyUnicodeWriter_WriteChar((&__pyx_v_t->writer), __pyx_v_u);
 
-    /* "jntajis/_jntajis.pyx":635
+    /* "jntajis/_jntajis.pyx":648
  *     Py_UCS4 u,
  * ):
  *     if t.passthrough:             # <<<<<<<<<<<<<<
@@ -6644,7 +6652,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
     goto __pyx_L3;
   }
 
-  /* "jntajis/_jntajis.pyx":640
+  /* "jntajis/_jntajis.pyx":653
  *         _PyUnicodeWriter_WriteChar(&t.writer, u)
  *     else:
  *         if len(<object>t.replacement) == 0:             # <<<<<<<<<<<<<<
@@ -6654,23 +6662,23 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   /*else*/ {
     __pyx_t_2 = ((PyObject *)__pyx_v_t->replacement);
     __Pyx_INCREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 640, __pyx_L1_error)
+    __pyx_t_3 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 653, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_1 = ((__pyx_t_3 == 0) != 0);
     if (unlikely(__pyx_t_1)) {
 
-      /* "jntajis/_jntajis.pyx":641
+      /* "jntajis/_jntajis.pyx":654
  *     else:
  *         if len(<object>t.replacement) == 0:
  *             raise TransliterationError(f"transliteration failed at position {t.pos}")             # <<<<<<<<<<<<<<
  *         _PyUnicodeWriter_WriteStr(&t.writer, <object>t.replacement)
  * 
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_TransliterationError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 641, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_TransliterationError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_v_t->pos, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 641, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_v_t->pos, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyUnicode_Concat(__pyx_kp_u_transliteration_failed_at_positi, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 641, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyUnicode_Concat(__pyx_kp_u_transliteration_failed_at_positi, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -6686,14 +6694,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
       __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 641, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 641, __pyx_L1_error)
+      __PYX_ERR(0, 654, __pyx_L1_error)
 
-      /* "jntajis/_jntajis.pyx":640
+      /* "jntajis/_jntajis.pyx":653
  *         _PyUnicodeWriter_WriteChar(&t.writer, u)
  *     else:
  *         if len(<object>t.replacement) == 0:             # <<<<<<<<<<<<<<
@@ -6702,14 +6710,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
     }
 
-    /* "jntajis/_jntajis.pyx":642
+    /* "jntajis/_jntajis.pyx":655
  *         if len(<object>t.replacement) == 0:
  *             raise TransliterationError(f"transliteration failed at position {t.pos}")
  *         _PyUnicodeWriter_WriteStr(&t.writer, <object>t.replacement)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    if (!(likely(PyUnicode_CheckExact(((PyObject *)__pyx_v_t->replacement)))||((((PyObject *)__pyx_v_t->replacement)) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(((PyObject *)__pyx_v_t->replacement))->tp_name), 0))) __PYX_ERR(0, 642, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(((PyObject *)__pyx_v_t->replacement)))||((((PyObject *)__pyx_v_t->replacement)) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(((PyObject *)__pyx_v_t->replacement))->tp_name), 0))) __PYX_ERR(0, 655, __pyx_L1_error)
     __pyx_t_2 = ((PyObject *)__pyx_v_t->replacement);
     __Pyx_INCREF(__pyx_t_2);
     _PyUnicodeWriter_WriteStr((&__pyx_v_t->writer), ((PyObject*)__pyx_t_2));
@@ -6717,7 +6725,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   }
   __pyx_L3:;
 
-  /* "jntajis/_jntajis.pyx":631
+  /* "jntajis/_jntajis.pyx":644
  * 
  * 
  * cdef object JNTAJISShrinkingTransliteratorContext_put_replacement(             # <<<<<<<<<<<<<<
@@ -6741,7 +6749,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":645
+/* "jntajis/_jntajis.pyx":658
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_put(             # <<<<<<<<<<<<<<
@@ -6765,7 +6773,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISIncrementalEncoderContext_put", 0);
 
-  /* "jntajis/_jntajis.pyx":649
+  /* "jntajis/_jntajis.pyx":662
  *     uint16_t jis
  * ):
  *     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[jis]             # <<<<<<<<<<<<<<
@@ -6774,7 +6782,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
   __pyx_v_m = (&(tx_mappings[__pyx_v_jis]));
 
-  /* "jntajis/_jntajis.pyx":651
+  /* "jntajis/_jntajis.pyx":664
  *     cdef const ShrinkingTransliterationMapping* m = &tx_mappings[jis]
  *     cdef size_t i
  *     cdef Py_UCS4 u = 0             # <<<<<<<<<<<<<<
@@ -6783,7 +6791,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
   __pyx_v_u = 0;
 
-  /* "jntajis/_jntajis.pyx":653
+  /* "jntajis/_jntajis.pyx":666
  *     cdef Py_UCS4 u = 0
  * 
  *     if m.class_ == JISCharacterClass_RESERVED:             # <<<<<<<<<<<<<<
@@ -6793,7 +6801,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   __pyx_t_1 = ((__pyx_v_m->class_ == JISCharacterClass_RESERVED) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":654
+    /* "jntajis/_jntajis.pyx":667
  * 
  *     if m.class_ == JISCharacterClass_RESERVED:
  *         return False             # <<<<<<<<<<<<<<
@@ -6805,7 +6813,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":653
+    /* "jntajis/_jntajis.pyx":666
  *     cdef Py_UCS4 u = 0
  * 
  *     if m.class_ == JISCharacterClass_RESERVED:             # <<<<<<<<<<<<<<
@@ -6814,7 +6822,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
   }
 
-  /* "jntajis/_jntajis.pyx":656
+  /* "jntajis/_jntajis.pyx":669
  *         return False
  *     else:
  *         if (             # <<<<<<<<<<<<<<
@@ -6823,7 +6831,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
   /*else*/ {
 
-    /* "jntajis/_jntajis.pyx":658
+    /* "jntajis/_jntajis.pyx":671
  *         if (
  *             (
  *                 m.class_ == JISCharacterClass_JISX0213_NON_KANJI or             # <<<<<<<<<<<<<<
@@ -6834,7 +6842,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       case JISCharacterClass_JISX0213_NON_KANJI:
       case JISCharacterClass_KANJI_LEVEL_3:
 
-      /* "jntajis/_jntajis.pyx":659
+      /* "jntajis/_jntajis.pyx":672
  *             (
  *                 m.class_ == JISCharacterClass_JISX0213_NON_KANJI or
  *                 m.class_ == JISCharacterClass_KANJI_LEVEL_3 or             # <<<<<<<<<<<<<<
@@ -6843,7 +6851,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
       case JISCharacterClass_KANJI_LEVEL_4:
 
-      /* "jntajis/_jntajis.pyx":658
+      /* "jntajis/_jntajis.pyx":671
  *         if (
  *             (
  *                 m.class_ == JISCharacterClass_JISX0213_NON_KANJI or             # <<<<<<<<<<<<<<
@@ -6862,7 +6870,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "jntajis/_jntajis.pyx":662
+    /* "jntajis/_jntajis.pyx":675
  *                 m.class_ == JISCharacterClass_KANJI_LEVEL_4
  *             )
  *             and m.tx_len > 0             # <<<<<<<<<<<<<<
@@ -6873,7 +6881,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     __pyx_t_1 = __pyx_t_2;
     __pyx_L5_bool_binop_done:;
 
-    /* "jntajis/_jntajis.pyx":656
+    /* "jntajis/_jntajis.pyx":669
  *         return False
  *     else:
  *         if (             # <<<<<<<<<<<<<<
@@ -6882,7 +6890,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":664
+      /* "jntajis/_jntajis.pyx":677
  *             and m.tx_len > 0
  *         ):
  *             for i in range(m.tx_len):             # <<<<<<<<<<<<<<
@@ -6894,7 +6902,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
         __pyx_v_i = __pyx_t_5;
 
-        /* "jntajis/_jntajis.pyx":665
+        /* "jntajis/_jntajis.pyx":678
  *         ):
  *             for i in range(m.tx_len):
  *                 u = Py_MAX(u, m.tx_us[i])             # <<<<<<<<<<<<<<
@@ -6904,7 +6912,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
         __pyx_v_u = Py_MAX(__pyx_v_u, (__pyx_v_m->tx_us[__pyx_v_i]));
       }
 
-      /* "jntajis/_jntajis.pyx":666
+      /* "jntajis/_jntajis.pyx":679
  *             for i in range(m.tx_len):
  *                 u = Py_MAX(u, m.tx_us[i])
  *             if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, u):             # <<<<<<<<<<<<<<
@@ -6914,16 +6922,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       __pyx_t_1 = (_PyUnicodeWriter_Prepare((&__pyx_v_t->writer), __pyx_v_m->tx_len, __pyx_v_u) != 0);
       if (unlikely(__pyx_t_1)) {
 
-        /* "jntajis/_jntajis.pyx":667
+        /* "jntajis/_jntajis.pyx":680
  *                 u = Py_MAX(u, m.tx_us[i])
  *             if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, u):
  *                 raise MemoryError()             # <<<<<<<<<<<<<<
  *             for i in range(m.tx_len):
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.tx_us[i])
  */
-        PyErr_NoMemory(); __PYX_ERR(0, 667, __pyx_L1_error)
+        PyErr_NoMemory(); __PYX_ERR(0, 680, __pyx_L1_error)
 
-        /* "jntajis/_jntajis.pyx":666
+        /* "jntajis/_jntajis.pyx":679
  *             for i in range(m.tx_len):
  *                 u = Py_MAX(u, m.tx_us[i])
  *             if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, u):             # <<<<<<<<<<<<<<
@@ -6932,7 +6940,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
       }
 
-      /* "jntajis/_jntajis.pyx":668
+      /* "jntajis/_jntajis.pyx":681
  *             if _PyUnicodeWriter_Prepare(&t.writer, m.tx_len, u):
  *                 raise MemoryError()
  *             for i in range(m.tx_len):             # <<<<<<<<<<<<<<
@@ -6944,7 +6952,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
         __pyx_v_i = __pyx_t_5;
 
-        /* "jntajis/_jntajis.pyx":669
+        /* "jntajis/_jntajis.pyx":682
  *                 raise MemoryError()
  *             for i in range(m.tx_len):
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.tx_us[i])             # <<<<<<<<<<<<<<
@@ -6954,7 +6962,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
         _PyUnicodeWriter_WriteChar((&__pyx_v_t->writer), ((Py_UCS4)(__pyx_v_m->tx_us[__pyx_v_i])));
       }
 
-      /* "jntajis/_jntajis.pyx":656
+      /* "jntajis/_jntajis.pyx":669
  *         return False
  *     else:
  *         if (             # <<<<<<<<<<<<<<
@@ -6964,7 +6972,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       goto __pyx_L4;
     }
 
-    /* "jntajis/_jntajis.pyx":671
+    /* "jntajis/_jntajis.pyx":684
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.tx_us[i])
  *         else:
  *             if m.us[1] == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -6975,7 +6983,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
       __pyx_t_1 = (((__pyx_v_m->us[1]) == ((uint32_t)-1L)) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":672
+        /* "jntajis/_jntajis.pyx":685
  *         else:
  *             if m.us[1] == <uint32_t>-1:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 1, <Py_UCS4>m.us[0]):             # <<<<<<<<<<<<<<
@@ -6985,16 +6993,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
         __pyx_t_1 = (_PyUnicodeWriter_Prepare((&__pyx_v_t->writer), 1, ((Py_UCS4)(__pyx_v_m->us[0]))) != 0);
         if (unlikely(__pyx_t_1)) {
 
-          /* "jntajis/_jntajis.pyx":673
+          /* "jntajis/_jntajis.pyx":686
  *             if m.us[1] == <uint32_t>-1:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 1, <Py_UCS4>m.us[0]):
  *                     raise MemoryError()             # <<<<<<<<<<<<<<
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *             else:
  */
-          PyErr_NoMemory(); __PYX_ERR(0, 673, __pyx_L1_error)
+          PyErr_NoMemory(); __PYX_ERR(0, 686, __pyx_L1_error)
 
-          /* "jntajis/_jntajis.pyx":672
+          /* "jntajis/_jntajis.pyx":685
  *         else:
  *             if m.us[1] == <uint32_t>-1:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 1, <Py_UCS4>m.us[0]):             # <<<<<<<<<<<<<<
@@ -7003,7 +7011,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
         }
 
-        /* "jntajis/_jntajis.pyx":674
+        /* "jntajis/_jntajis.pyx":687
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 1, <Py_UCS4>m.us[0]):
  *                     raise MemoryError()
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])             # <<<<<<<<<<<<<<
@@ -7012,7 +7020,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
         _PyUnicodeWriter_WriteChar((&__pyx_v_t->writer), ((Py_UCS4)(__pyx_v_m->us[0])));
 
-        /* "jntajis/_jntajis.pyx":671
+        /* "jntajis/_jntajis.pyx":684
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.tx_us[i])
  *         else:
  *             if m.us[1] == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -7022,7 +7030,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
         goto __pyx_L12;
       }
 
-      /* "jntajis/_jntajis.pyx":676
+      /* "jntajis/_jntajis.pyx":689
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *             else:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):             # <<<<<<<<<<<<<<
@@ -7033,16 +7041,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
         __pyx_t_1 = (_PyUnicodeWriter_Prepare((&__pyx_v_t->writer), 2, ((Py_UCS4)Py_MAX((__pyx_v_m->us[0]), (__pyx_v_m->us[1])))) != 0);
         if (unlikely(__pyx_t_1)) {
 
-          /* "jntajis/_jntajis.pyx":677
+          /* "jntajis/_jntajis.pyx":690
  *             else:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):
  *                     raise MemoryError()             # <<<<<<<<<<<<<<
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[1])
  */
-          PyErr_NoMemory(); __PYX_ERR(0, 677, __pyx_L1_error)
+          PyErr_NoMemory(); __PYX_ERR(0, 690, __pyx_L1_error)
 
-          /* "jntajis/_jntajis.pyx":676
+          /* "jntajis/_jntajis.pyx":689
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *             else:
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):             # <<<<<<<<<<<<<<
@@ -7051,7 +7059,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
         }
 
-        /* "jntajis/_jntajis.pyx":678
+        /* "jntajis/_jntajis.pyx":691
  *                 if _PyUnicodeWriter_Prepare(&t.writer, 2, <Py_UCS4>Py_MAX(m.us[0], m.us[1])):
  *                     raise MemoryError()
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])             # <<<<<<<<<<<<<<
@@ -7060,7 +7068,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
  */
         _PyUnicodeWriter_WriteChar((&__pyx_v_t->writer), ((Py_UCS4)(__pyx_v_m->us[0])));
 
-        /* "jntajis/_jntajis.pyx":679
+        /* "jntajis/_jntajis.pyx":692
  *                     raise MemoryError()
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[1])             # <<<<<<<<<<<<<<
@@ -7073,7 +7081,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     }
     __pyx_L4:;
 
-    /* "jntajis/_jntajis.pyx":680
+    /* "jntajis/_jntajis.pyx":693
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[0])
  *                 _PyUnicodeWriter_WriteChar(&t.writer, <Py_UCS4>m.us[1])
  *         return True             # <<<<<<<<<<<<<<
@@ -7086,7 +7094,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
     goto __pyx_L0;
   }
 
-  /* "jntajis/_jntajis.pyx":645
+  /* "jntajis/_jntajis.pyx":658
  * 
  * 
  * cdef object JNTAJISIncrementalEncoderContext_put(             # <<<<<<<<<<<<<<
@@ -7104,7 +7112,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":683
+/* "jntajis/_jntajis.pyx":696
  * 
  * 
  * cdef object JNTAJISShrinkingTransliteratorContext_do(             # <<<<<<<<<<<<<<
@@ -7132,7 +7140,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISShrinkingTransliteratorContext_do", 0);
 
-  /* "jntajis/_jntajis.pyx":691
+  /* "jntajis/_jntajis.pyx":704
  *     cdef const ShrinkingTransliterationMapping* m
  * 
  *     for t.pos in range(t.ul):             # <<<<<<<<<<<<<<
@@ -7144,7 +7152,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_t->pos = __pyx_t_3;
 
-    /* "jntajis/_jntajis.pyx":692
+    /* "jntajis/_jntajis.pyx":705
  * 
  *     for t.pos in range(t.ul):
  *         u = PyUnicode_READ(t.uk, t.ud, t.pos)             # <<<<<<<<<<<<<<
@@ -7153,7 +7161,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
     __pyx_v_u = PyUnicode_READ(__pyx_v_t->uk, __pyx_v_t->ud, __pyx_v_t->pos);
 
-    /* "jntajis/_jntajis.pyx":693
+    /* "jntajis/_jntajis.pyx":706
  *     for t.pos in range(t.ul):
  *         u = PyUnicode_READ(t.uk, t.ud, t.pos)
  *         jis = sm_uni_to_jis_mapping(&t.state, u)             # <<<<<<<<<<<<<<
@@ -7162,7 +7170,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
     __pyx_v_jis = sm_uni_to_jis_mapping((&__pyx_v_t->state), __pyx_v_u);
 
-    /* "jntajis/_jntajis.pyx":694
+    /* "jntajis/_jntajis.pyx":707
  *         u = PyUnicode_READ(t.uk, t.ud, t.pos)
  *         jis = sm_uni_to_jis_mapping(&t.state, u)
  *         if t.state == -1:             # <<<<<<<<<<<<<<
@@ -7172,32 +7180,32 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
     __pyx_t_4 = ((__pyx_v_t->state == -1L) != 0);
     if (__pyx_t_4) {
 
-      /* "jntajis/_jntajis.pyx":695
+      /* "jntajis/_jntajis.pyx":708
  *         jis = sm_uni_to_jis_mapping(&t.state, u)
  *         if t.state == -1:
  *             if not JNTAJISIncrementalEncoderContext_put(t, jis):             # <<<<<<<<<<<<<<
  *                 JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
  *             t.state = 0
  */
-      __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put(__pyx_v_t, __pyx_v_jis); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 695, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put(__pyx_v_t, __pyx_v_jis); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 695, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_6 = ((!__pyx_t_4) != 0);
       if (__pyx_t_6) {
 
-        /* "jntajis/_jntajis.pyx":696
+        /* "jntajis/_jntajis.pyx":709
  *         if t.state == -1:
  *             if not JNTAJISIncrementalEncoderContext_put(t, jis):
  *                 JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)             # <<<<<<<<<<<<<<
  *             t.state = 0
  *         else:
  */
-        __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 696, __pyx_L1_error)
+        __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 709, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "jntajis/_jntajis.pyx":695
+        /* "jntajis/_jntajis.pyx":708
  *         jis = sm_uni_to_jis_mapping(&t.state, u)
  *         if t.state == -1:
  *             if not JNTAJISIncrementalEncoderContext_put(t, jis):             # <<<<<<<<<<<<<<
@@ -7206,7 +7214,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
       }
 
-      /* "jntajis/_jntajis.pyx":697
+      /* "jntajis/_jntajis.pyx":710
  *             if not JNTAJISIncrementalEncoderContext_put(t, jis):
  *                 JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
  *             t.state = 0             # <<<<<<<<<<<<<<
@@ -7215,7 +7223,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
       __pyx_v_t->state = 0;
 
-      /* "jntajis/_jntajis.pyx":694
+      /* "jntajis/_jntajis.pyx":707
  *         u = PyUnicode_READ(t.uk, t.ud, t.pos)
  *         jis = sm_uni_to_jis_mapping(&t.state, u)
  *         if t.state == -1:             # <<<<<<<<<<<<<<
@@ -7225,7 +7233,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
       goto __pyx_L5;
     }
 
-    /* "jntajis/_jntajis.pyx":699
+    /* "jntajis/_jntajis.pyx":712
  *             t.state = 0
  *         else:
  *             t.la[t.lal] = u             # <<<<<<<<<<<<<<
@@ -7235,7 +7243,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
     /*else*/ {
       (__pyx_v_t->la[__pyx_v_t->lal]) = __pyx_v_u;
 
-      /* "jntajis/_jntajis.pyx":700
+      /* "jntajis/_jntajis.pyx":713
  *         else:
  *             t.la[t.lal] = u
  *             t.lal += 1             # <<<<<<<<<<<<<<
@@ -7244,7 +7252,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
       __pyx_v_t->lal = (__pyx_v_t->lal + 1);
 
-      /* "jntajis/_jntajis.pyx":701
+      /* "jntajis/_jntajis.pyx":714
  *             t.la[t.lal] = u
  *             t.lal += 1
  *             if t.state == 0:             # <<<<<<<<<<<<<<
@@ -7254,7 +7262,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
       __pyx_t_6 = ((__pyx_v_t->state == 0) != 0);
       if (__pyx_t_6) {
 
-        /* "jntajis/_jntajis.pyx":702
+        /* "jntajis/_jntajis.pyx":715
  *             t.lal += 1
  *             if t.state == 0:
  *                 for i in range(t.lal):             # <<<<<<<<<<<<<<
@@ -7266,7 +7274,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
         for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
           __pyx_v_i = __pyx_t_9;
 
-          /* "jntajis/_jntajis.pyx":703
+          /* "jntajis/_jntajis.pyx":716
  *             if t.state == 0:
  *                 for i in range(t.lal):
  *                     if not lookup_rev_table(&jis, t.la[i]):             # <<<<<<<<<<<<<<
@@ -7276,18 +7284,18 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
           __pyx_t_6 = ((!(__pyx_f_7jntajis_8_jntajis_lookup_rev_table((&__pyx_v_jis), (__pyx_v_t->la[__pyx_v_i])) != 0)) != 0);
           if (__pyx_t_6) {
 
-            /* "jntajis/_jntajis.pyx":704
+            /* "jntajis/_jntajis.pyx":717
  *                 for i in range(t.lal):
  *                     if not lookup_rev_table(&jis, t.la[i]):
  *                         JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)             # <<<<<<<<<<<<<<
  *                         continue
  *                     else:
  */
-            __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 704, __pyx_L1_error)
+            __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 717, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-            /* "jntajis/_jntajis.pyx":705
+            /* "jntajis/_jntajis.pyx":718
  *                     if not lookup_rev_table(&jis, t.la[i]):
  *                         JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
  *                         continue             # <<<<<<<<<<<<<<
@@ -7296,7 +7304,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
             goto __pyx_L8_continue;
 
-            /* "jntajis/_jntajis.pyx":703
+            /* "jntajis/_jntajis.pyx":716
  *             if t.state == 0:
  *                 for i in range(t.lal):
  *                     if not lookup_rev_table(&jis, t.la[i]):             # <<<<<<<<<<<<<<
@@ -7305,7 +7313,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
           }
 
-          /* "jntajis/_jntajis.pyx":707
+          /* "jntajis/_jntajis.pyx":720
  *                         continue
  *                     else:
  *                         if not JNTAJISIncrementalEncoderContext_put(t, jis):             # <<<<<<<<<<<<<<
@@ -7313,25 +7321,25 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  *                 t.lal = 0
  */
           /*else*/ {
-            __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put(__pyx_v_t, __pyx_v_jis); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 707, __pyx_L1_error)
+            __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISIncrementalEncoderContext_put(__pyx_v_t, __pyx_v_jis); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 720, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 707, __pyx_L1_error)
+            __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 720, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_4 = ((!__pyx_t_6) != 0);
             if (__pyx_t_4) {
 
-              /* "jntajis/_jntajis.pyx":708
+              /* "jntajis/_jntajis.pyx":721
  *                     else:
  *                         if not JNTAJISIncrementalEncoderContext_put(t, jis):
  *                             JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)             # <<<<<<<<<<<<<<
  *                 t.lal = 0
  * 
  */
-              __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 708, __pyx_L1_error)
+              __pyx_t_5 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_put_replacement(__pyx_v_t, __pyx_v_u); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 721, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_5);
               __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-              /* "jntajis/_jntajis.pyx":707
+              /* "jntajis/_jntajis.pyx":720
  *                         continue
  *                     else:
  *                         if not JNTAJISIncrementalEncoderContext_put(t, jis):             # <<<<<<<<<<<<<<
@@ -7343,7 +7351,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
           __pyx_L8_continue:;
         }
 
-        /* "jntajis/_jntajis.pyx":709
+        /* "jntajis/_jntajis.pyx":722
  *                         if not JNTAJISIncrementalEncoderContext_put(t, jis):
  *                             JNTAJISShrinkingTransliteratorContext_put_replacement(t, u)
  *                 t.lal = 0             # <<<<<<<<<<<<<<
@@ -7352,7 +7360,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
         __pyx_v_t->lal = 0;
 
-        /* "jntajis/_jntajis.pyx":701
+        /* "jntajis/_jntajis.pyx":714
  *             t.la[t.lal] = u
  *             t.lal += 1
  *             if t.state == 0:             # <<<<<<<<<<<<<<
@@ -7364,7 +7372,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
     __pyx_L5:;
   }
 
-  /* "jntajis/_jntajis.pyx":711
+  /* "jntajis/_jntajis.pyx":724
  *                 t.lal = 0
  * 
  *     return True             # <<<<<<<<<<<<<<
@@ -7376,7 +7384,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   __pyx_r = Py_True;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":683
+  /* "jntajis/_jntajis.pyx":696
  * 
  * 
  * cdef object JNTAJISShrinkingTransliteratorContext_do(             # <<<<<<<<<<<<<<
@@ -7395,7 +7403,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":713
+/* "jntajis/_jntajis.pyx":726
  *     return True
  * 
  * cdef unicode JNTAJISShrinkingTransliteratorContext_get_result(             # <<<<<<<<<<<<<<
@@ -7412,7 +7420,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISShrinkingTransliteratorContext_get_result", 0);
 
-  /* "jntajis/_jntajis.pyx":716
+  /* "jntajis/_jntajis.pyx":729
  *     JNTAJISShrinkingTransliteratorContext* t,
  * ):
  *     t.finished = 1             # <<<<<<<<<<<<<<
@@ -7421,7 +7429,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->finished = 1;
 
-  /* "jntajis/_jntajis.pyx":717
+  /* "jntajis/_jntajis.pyx":730
  * ):
  *     t.finished = 1
  *     return _PyUnicodeWriter_Finish(&t.writer)             # <<<<<<<<<<<<<<
@@ -7429,14 +7437,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = _PyUnicodeWriter_Finish((&__pyx_v_t->writer)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 717, __pyx_L1_error)
+  __pyx_t_1 = _PyUnicodeWriter_Finish((&__pyx_v_t->writer)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 730, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 717, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 730, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":713
+  /* "jntajis/_jntajis.pyx":726
  *     return True
  * 
  * cdef unicode JNTAJISShrinkingTransliteratorContext_get_result(             # <<<<<<<<<<<<<<
@@ -7455,7 +7463,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":720
+/* "jntajis/_jntajis.pyx":733
  * 
  * 
  * cdef void JNTAJISShrinkingTransliteratorContext_fini(             # <<<<<<<<<<<<<<
@@ -7469,7 +7477,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("JNTAJISShrinkingTransliteratorContext_fini", 0);
 
-  /* "jntajis/_jntajis.pyx":723
+  /* "jntajis/_jntajis.pyx":736
  *     JNTAJISShrinkingTransliteratorContext* t,
  * ):
  *     if not t.finished:             # <<<<<<<<<<<<<<
@@ -7479,7 +7487,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
   __pyx_t_1 = ((!(__pyx_v_t->finished != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":724
+    /* "jntajis/_jntajis.pyx":737
  * ):
  *     if not t.finished:
  *         _PyUnicodeWriter_Dealloc(&t.writer)             # <<<<<<<<<<<<<<
@@ -7488,7 +7496,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
  */
     _PyUnicodeWriter_Dealloc((&__pyx_v_t->writer));
 
-    /* "jntajis/_jntajis.pyx":723
+    /* "jntajis/_jntajis.pyx":736
  *     JNTAJISShrinkingTransliteratorContext* t,
  * ):
  *     if not t.finished:             # <<<<<<<<<<<<<<
@@ -7497,7 +7505,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
  */
   }
 
-  /* "jntajis/_jntajis.pyx":725
+  /* "jntajis/_jntajis.pyx":738
  *     if not t.finished:
  *         _PyUnicodeWriter_Dealloc(&t.writer)
  *     Py_DECREF(<object>t.in_)             # <<<<<<<<<<<<<<
@@ -7509,7 +7517,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
   Py_DECREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "jntajis/_jntajis.pyx":726
+  /* "jntajis/_jntajis.pyx":739
  *         _PyUnicodeWriter_Dealloc(&t.writer)
  *     Py_DECREF(<object>t.in_)
  *     Py_DECREF(<object>t.replacement)             # <<<<<<<<<<<<<<
@@ -7521,7 +7529,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
   Py_DECREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "jntajis/_jntajis.pyx":720
+  /* "jntajis/_jntajis.pyx":733
  * 
  * 
  * cdef void JNTAJISShrinkingTransliteratorContext_fini(             # <<<<<<<<<<<<<<
@@ -7533,7 +7541,7 @@ static void __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_fin
   __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":729
+/* "jntajis/_jntajis.pyx":742
  * 
  * 
  * cdef JNTAJISShrinkingTransliteratorContext_init(             # <<<<<<<<<<<<<<
@@ -7550,7 +7558,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("JNTAJISShrinkingTransliteratorContext_init", 0);
 
-  /* "jntajis/_jntajis.pyx":735
+  /* "jntajis/_jntajis.pyx":748
  *     bint passthrough,
  * ):
  *     Py_INCREF(in_)             # <<<<<<<<<<<<<<
@@ -7559,7 +7567,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   Py_INCREF(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":736
+  /* "jntajis/_jntajis.pyx":749
  * ):
  *     Py_INCREF(in_)
  *     t.in_ = <PyObject*>in_             # <<<<<<<<<<<<<<
@@ -7568,7 +7576,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->in_ = ((PyObject *)__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":737
+  /* "jntajis/_jntajis.pyx":750
  *     Py_INCREF(in_)
  *     t.in_ = <PyObject*>in_
  *     Py_INCREF(replacement)             # <<<<<<<<<<<<<<
@@ -7577,7 +7585,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   Py_INCREF(__pyx_v_replacement);
 
-  /* "jntajis/_jntajis.pyx":738
+  /* "jntajis/_jntajis.pyx":751
  *     t.in_ = <PyObject*>in_
  *     Py_INCREF(replacement)
  *     t.replacement = <PyObject*>replacement             # <<<<<<<<<<<<<<
@@ -7586,7 +7594,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->replacement = ((PyObject *)__pyx_v_replacement);
 
-  /* "jntajis/_jntajis.pyx":739
+  /* "jntajis/_jntajis.pyx":752
  *     Py_INCREF(replacement)
  *     t.replacement = <PyObject*>replacement
  *     t.uk = PyUnicode_KIND(in_)             # <<<<<<<<<<<<<<
@@ -7595,7 +7603,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->uk = PyUnicode_KIND(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":740
+  /* "jntajis/_jntajis.pyx":753
  *     t.replacement = <PyObject*>replacement
  *     t.uk = PyUnicode_KIND(in_)
  *     t.ud = PyUnicode_DATA(in_)             # <<<<<<<<<<<<<<
@@ -7604,7 +7612,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->ud = PyUnicode_DATA(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":741
+  /* "jntajis/_jntajis.pyx":754
  *     t.uk = PyUnicode_KIND(in_)
  *     t.ud = PyUnicode_DATA(in_)
  *     t.ul = PyUnicode_GET_LENGTH(in_)             # <<<<<<<<<<<<<<
@@ -7613,7 +7621,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->ul = PyUnicode_GET_LENGTH(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":742
+  /* "jntajis/_jntajis.pyx":755
  *     t.ud = PyUnicode_DATA(in_)
  *     t.ul = PyUnicode_GET_LENGTH(in_)
  *     _PyUnicodeWriter_Init(&t.writer)             # <<<<<<<<<<<<<<
@@ -7622,7 +7630,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   _PyUnicodeWriter_Init((&__pyx_v_t->writer));
 
-  /* "jntajis/_jntajis.pyx":743
+  /* "jntajis/_jntajis.pyx":756
  *     t.ul = PyUnicode_GET_LENGTH(in_)
  *     _PyUnicodeWriter_Init(&t.writer)
  *     t.writer.min_length = len(in_)             # <<<<<<<<<<<<<<
@@ -7631,12 +7639,12 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   if (unlikely(__pyx_v_in_ == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 743, __pyx_L1_error)
+    __PYX_ERR(0, 756, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_in_); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_in_); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 756, __pyx_L1_error)
   __pyx_v_t->writer.min_length = __pyx_t_1;
 
-  /* "jntajis/_jntajis.pyx":744
+  /* "jntajis/_jntajis.pyx":757
  *     _PyUnicodeWriter_Init(&t.writer)
  *     t.writer.min_length = len(in_)
  *     t.writer.overallocate = 1             # <<<<<<<<<<<<<<
@@ -7645,7 +7653,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->writer.overallocate = 1;
 
-  /* "jntajis/_jntajis.pyx":745
+  /* "jntajis/_jntajis.pyx":758
  *     t.writer.min_length = len(in_)
  *     t.writer.overallocate = 1
  *     t.state = 0             # <<<<<<<<<<<<<<
@@ -7654,7 +7662,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->state = 0;
 
-  /* "jntajis/_jntajis.pyx":746
+  /* "jntajis/_jntajis.pyx":759
  *     t.writer.overallocate = 1
  *     t.state = 0
  *     t.lal = 0             # <<<<<<<<<<<<<<
@@ -7663,7 +7671,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->lal = 0;
 
-  /* "jntajis/_jntajis.pyx":747
+  /* "jntajis/_jntajis.pyx":760
  *     t.state = 0
  *     t.lal = 0
  *     t.finished = 0             # <<<<<<<<<<<<<<
@@ -7672,7 +7680,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->finished = 0;
 
-  /* "jntajis/_jntajis.pyx":748
+  /* "jntajis/_jntajis.pyx":761
  *     t.lal = 0
  *     t.finished = 0
  *     t.passthrough = passthrough             # <<<<<<<<<<<<<<
@@ -7681,7 +7689,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
  */
   __pyx_v_t->passthrough = __pyx_v_passthrough;
 
-  /* "jntajis/_jntajis.pyx":729
+  /* "jntajis/_jntajis.pyx":742
  * 
  * 
  * cdef JNTAJISShrinkingTransliteratorContext_init(             # <<<<<<<<<<<<<<
@@ -7701,7 +7709,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":751
+/* "jntajis/_jntajis.pyx":764
  * 
  * 
  * def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):             # <<<<<<<<<<<<<<
@@ -7759,7 +7767,7 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_5jnta_shrink_translit(PyObject *__p
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_shrink_translit") < 0)) __PYX_ERR(0, 751, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jnta_shrink_translit") < 0)) __PYX_ERR(0, 764, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7775,21 +7783,21 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_5jnta_shrink_translit(PyObject *__p
     __pyx_v_in_ = ((PyObject*)values[0]);
     __pyx_v_replacement = ((PyObject*)values[1]);
     if (values[2]) {
-      __pyx_v_passthrough = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_passthrough == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 751, __pyx_L3_error)
+      __pyx_v_passthrough = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_passthrough == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 764, __pyx_L3_error)
     } else {
       __pyx_v_passthrough = ((int)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jnta_shrink_translit", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 751, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jnta_shrink_translit", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 764, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.jnta_shrink_translit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 751, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_replacement), (&PyUnicode_Type), 1, "replacement", 1))) __PYX_ERR(0, 751, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 764, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_replacement), (&PyUnicode_Type), 1, "replacement", 1))) __PYX_ERR(0, 764, __pyx_L1_error)
   __pyx_r = __pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(__pyx_self, __pyx_v_in_, __pyx_v_replacement, __pyx_v_passthrough);
 
   /* function exit code */
@@ -7820,18 +7828,18 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jnta_shrink_translit", 0);
 
-  /* "jntajis/_jntajis.pyx":758
+  /* "jntajis/_jntajis.pyx":771
  *     cdef JNTAJISShrinkingTransliteratorContext ctx
  * 
  *     JNTAJISShrinkingTransliteratorContext_init(&ctx, in_, replacement, passthrough)             # <<<<<<<<<<<<<<
  *     try:
  *         JNTAJISShrinkingTransliteratorContext_do(&ctx)
  */
-  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_init((&__pyx_v_ctx), __pyx_v_in_, __pyx_v_replacement, __pyx_v_passthrough); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 758, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_init((&__pyx_v_ctx), __pyx_v_in_, __pyx_v_replacement, __pyx_v_passthrough); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 771, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":759
+  /* "jntajis/_jntajis.pyx":772
  * 
  *     JNTAJISShrinkingTransliteratorContext_init(&ctx, in_, replacement, passthrough)
  *     try:             # <<<<<<<<<<<<<<
@@ -7840,18 +7848,18 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED
  */
   /*try:*/ {
 
-    /* "jntajis/_jntajis.pyx":760
+    /* "jntajis/_jntajis.pyx":773
  *     JNTAJISShrinkingTransliteratorContext_init(&ctx, in_, replacement, passthrough)
  *     try:
  *         JNTAJISShrinkingTransliteratorContext_do(&ctx)             # <<<<<<<<<<<<<<
  *         return JNTAJISShrinkingTransliteratorContext_get_result(&ctx)
  *     finally:
  */
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_do((&__pyx_v_ctx)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 760, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_do((&__pyx_v_ctx)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 773, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "jntajis/_jntajis.pyx":761
+    /* "jntajis/_jntajis.pyx":774
  *     try:
  *         JNTAJISShrinkingTransliteratorContext_do(&ctx)
  *         return JNTAJISShrinkingTransliteratorContext_get_result(&ctx)             # <<<<<<<<<<<<<<
@@ -7859,14 +7867,14 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED
  *         JNTAJISShrinkingTransliteratorContext_fini(&ctx)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_get_result((&__pyx_v_ctx)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 761, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContext_get_result((&__pyx_v_ctx)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 774, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L3_return;
   }
 
-  /* "jntajis/_jntajis.pyx":763
+  /* "jntajis/_jntajis.pyx":776
  *         return JNTAJISShrinkingTransliteratorContext_get_result(&ctx)
  *     finally:
  *         JNTAJISShrinkingTransliteratorContext_fini(&ctx)             # <<<<<<<<<<<<<<
@@ -7916,7 +7924,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED
     }
   }
 
-  /* "jntajis/_jntajis.pyx":751
+  /* "jntajis/_jntajis.pyx":764
  * 
  * 
  * def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):             # <<<<<<<<<<<<<<
@@ -7935,7 +7943,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":766
+/* "jntajis/_jntajis.pyx":779
  * 
  * 
  * cdef bint MJShrinkMappingUnicodeSet_valid(const MJShrinkMappingUnicodeSet *sm) nogil:             # <<<<<<<<<<<<<<
@@ -7951,7 +7959,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   size_t __pyx_t_3;
   int __pyx_t_4;
 
-  /* "jntajis/_jntajis.pyx":768
+  /* "jntajis/_jntajis.pyx":781
  * cdef bint MJShrinkMappingUnicodeSet_valid(const MJShrinkMappingUnicodeSet *sm) nogil:
  *     cdef size_t i
  *     for i in range(sizeof(sm._0) // sizeof(sm._0[0])):             # <<<<<<<<<<<<<<
@@ -7963,7 +7971,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "jntajis/_jntajis.pyx":769
+    /* "jntajis/_jntajis.pyx":782
  *     cdef size_t i
  *     for i in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *         if sm._0[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -7973,7 +7981,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     __pyx_t_4 = (((__pyx_v_sm->_0[__pyx_v_i]) != ((uint32_t)-1L)) != 0);
     if (__pyx_t_4) {
 
-      /* "jntajis/_jntajis.pyx":770
+      /* "jntajis/_jntajis.pyx":783
  *     for i in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *         if sm._0[i] != <uint32_t>-1:
  *             return 1             # <<<<<<<<<<<<<<
@@ -7983,7 +7991,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":769
+      /* "jntajis/_jntajis.pyx":782
  *     cdef size_t i
  *     for i in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *         if sm._0[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -7993,7 +8001,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     }
   }
 
-  /* "jntajis/_jntajis.pyx":771
+  /* "jntajis/_jntajis.pyx":784
  *         if sm._0[i] != <uint32_t>-1:
  *             return 1
  *     for i in range(sizeof(sm._1) // sizeof(sm._1[0])):             # <<<<<<<<<<<<<<
@@ -8005,7 +8013,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "jntajis/_jntajis.pyx":772
+    /* "jntajis/_jntajis.pyx":785
  *             return 1
  *     for i in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *         if sm._1[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8015,7 +8023,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     __pyx_t_4 = (((__pyx_v_sm->_1[__pyx_v_i]) != ((uint32_t)-1L)) != 0);
     if (__pyx_t_4) {
 
-      /* "jntajis/_jntajis.pyx":773
+      /* "jntajis/_jntajis.pyx":786
  *     for i in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *         if sm._1[i] != <uint32_t>-1:
  *             return 1             # <<<<<<<<<<<<<<
@@ -8025,7 +8033,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":772
+      /* "jntajis/_jntajis.pyx":785
  *             return 1
  *     for i in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *         if sm._1[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8035,7 +8043,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     }
   }
 
-  /* "jntajis/_jntajis.pyx":774
+  /* "jntajis/_jntajis.pyx":787
  *         if sm._1[i] != <uint32_t>-1:
  *             return 1
  *     for i in range(sizeof(sm._2) // sizeof(sm._2[0])):             # <<<<<<<<<<<<<<
@@ -8047,7 +8055,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "jntajis/_jntajis.pyx":775
+    /* "jntajis/_jntajis.pyx":788
  *             return 1
  *     for i in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *         if sm._2[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8057,7 +8065,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     __pyx_t_4 = (((__pyx_v_sm->_2[__pyx_v_i]) != ((uint32_t)-1L)) != 0);
     if (__pyx_t_4) {
 
-      /* "jntajis/_jntajis.pyx":776
+      /* "jntajis/_jntajis.pyx":789
  *     for i in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *         if sm._2[i] != <uint32_t>-1:
  *             return 1             # <<<<<<<<<<<<<<
@@ -8067,7 +8075,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":775
+      /* "jntajis/_jntajis.pyx":788
  *             return 1
  *     for i in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *         if sm._2[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8077,7 +8085,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     }
   }
 
-  /* "jntajis/_jntajis.pyx":777
+  /* "jntajis/_jntajis.pyx":790
  *         if sm._2[i] != <uint32_t>-1:
  *             return 1
  *     for i in range(sizeof(sm._3) // sizeof(sm._3[0])):             # <<<<<<<<<<<<<<
@@ -8089,7 +8097,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "jntajis/_jntajis.pyx":778
+    /* "jntajis/_jntajis.pyx":791
  *             return 1
  *     for i in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *         if sm._3[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8099,7 +8107,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     __pyx_t_4 = (((__pyx_v_sm->_3[__pyx_v_i]) != ((uint32_t)-1L)) != 0);
     if (__pyx_t_4) {
 
-      /* "jntajis/_jntajis.pyx":779
+      /* "jntajis/_jntajis.pyx":792
  *     for i in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *         if sm._3[i] != <uint32_t>-1:
  *             return 1             # <<<<<<<<<<<<<<
@@ -8109,7 +8117,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "jntajis/_jntajis.pyx":778
+      /* "jntajis/_jntajis.pyx":791
  *             return 1
  *     for i in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *         if sm._3[i] != <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -8119,7 +8127,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
     }
   }
 
-  /* "jntajis/_jntajis.pyx":780
+  /* "jntajis/_jntajis.pyx":793
  *         if sm._3[i] != <uint32_t>-1:
  *             return 1
  *     return 0             # <<<<<<<<<<<<<<
@@ -8129,7 +8137,7 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":766
+  /* "jntajis/_jntajis.pyx":779
  * 
  * 
  * cdef bint MJShrinkMappingUnicodeSet_valid(const MJShrinkMappingUnicodeSet *sm) nogil:             # <<<<<<<<<<<<<<
@@ -8142,50 +8150,50 @@ static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMa
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":783
+/* "jntajis/_jntajis.pyx":796
  * 
  * 
- * cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:             # <<<<<<<<<<<<<<
- *     cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])
+ * cdef bint lookup_mj_mapping_table(const MJMappingSet** pms, uint32_t u) nogil:             # <<<<<<<<<<<<<<
+ *     cdef size_t l = sizeof(urange_to_mj_mappings) // sizeof(urange_to_mj_mappings[0])
  *     cdef size_t s = 0, e = l
  */
 
-static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnicodeSet const **__pyx_v_psm, uint32_t __pyx_v_u) {
+static int __pyx_f_7jntajis_8_jntajis_lookup_mj_mapping_table(MJMappingSet const **__pyx_v_pms, uint32_t __pyx_v_u) {
   size_t __pyx_v_l;
   size_t __pyx_v_s;
   size_t __pyx_v_e;
   size_t __pyx_v_m;
-  URangeToMJShrinkMappingUnicodeSets const *__pyx_v_mm;
-  MJShrinkMappingUnicodeSet const *__pyx_v_sm;
+  URangeToMJMappings const *__pyx_v_um;
+  MJMappingSet const *__pyx_v_ms;
   int __pyx_r;
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":784
+  /* "jntajis/_jntajis.pyx":797
  * 
- * cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:
- *     cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])             # <<<<<<<<<<<<<<
+ * cdef bint lookup_mj_mapping_table(const MJMappingSet** pms, uint32_t u) nogil:
+ *     cdef size_t l = sizeof(urange_to_mj_mappings) // sizeof(urange_to_mj_mappings[0])             # <<<<<<<<<<<<<<
  *     cdef size_t s = 0, e = l
- *     cdef size_t m
+ *     cdef size_t m, i
  */
-  __pyx_v_l = ((sizeof(urange_to_mj_shrink_usets_mappings)) / (sizeof((urange_to_mj_shrink_usets_mappings[0]))));
+  __pyx_v_l = ((sizeof(urange_to_mj_mappings)) / (sizeof((urange_to_mj_mappings[0]))));
 
-  /* "jntajis/_jntajis.pyx":785
- * cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:
- *     cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])
+  /* "jntajis/_jntajis.pyx":798
+ * cdef bint lookup_mj_mapping_table(const MJMappingSet** pms, uint32_t u) nogil:
+ *     cdef size_t l = sizeof(urange_to_mj_mappings) // sizeof(urange_to_mj_mappings[0])
  *     cdef size_t s = 0, e = l             # <<<<<<<<<<<<<<
- *     cdef size_t m
- *     cdef const URangeToMJShrinkMappingUnicodeSets* mm
+ *     cdef size_t m, i
+ *     cdef const URangeToMJMappings* um
  */
   __pyx_v_s = 0;
   __pyx_v_e = __pyx_v_l;
 
-  /* "jntajis/_jntajis.pyx":789
- *     cdef const URangeToMJShrinkMappingUnicodeSets* mm
- *     cdef const MJShrinkMappingUnicodeSet* sm
+  /* "jntajis/_jntajis.pyx":802
+ *     cdef const URangeToMJMappings* um
+ *     cdef const MJMappingSet* ms
  *     while s < e and e <= l:             # <<<<<<<<<<<<<<
  *         m = (s + e) // 2
- *         mm = &urange_to_mj_shrink_usets_mappings[m]
+ *         um = &urange_to_mj_mappings[m]
  */
   while (1) {
     __pyx_t_2 = ((__pyx_v_s < __pyx_v_e) != 0);
@@ -8199,175 +8207,175 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnic
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "jntajis/_jntajis.pyx":790
- *     cdef const MJShrinkMappingUnicodeSet* sm
+    /* "jntajis/_jntajis.pyx":803
+ *     cdef const MJMappingSet* ms
  *     while s < e and e <= l:
  *         m = (s + e) // 2             # <<<<<<<<<<<<<<
- *         mm = &urange_to_mj_shrink_usets_mappings[m]
- *         if u < mm.start:
+ *         um = &urange_to_mj_mappings[m]
+ *         if u < um.start:
  */
     __pyx_v_m = ((__pyx_v_s + __pyx_v_e) / 2);
 
-    /* "jntajis/_jntajis.pyx":791
+    /* "jntajis/_jntajis.pyx":804
  *     while s < e and e <= l:
  *         m = (s + e) // 2
- *         mm = &urange_to_mj_shrink_usets_mappings[m]             # <<<<<<<<<<<<<<
- *         if u < mm.start:
+ *         um = &urange_to_mj_mappings[m]             # <<<<<<<<<<<<<<
+ *         if u < um.start:
  *             e = m
  */
-    __pyx_v_mm = (&(urange_to_mj_shrink_usets_mappings[__pyx_v_m]));
+    __pyx_v_um = (&(urange_to_mj_mappings[__pyx_v_m]));
 
-    /* "jntajis/_jntajis.pyx":792
+    /* "jntajis/_jntajis.pyx":805
  *         m = (s + e) // 2
- *         mm = &urange_to_mj_shrink_usets_mappings[m]
- *         if u < mm.start:             # <<<<<<<<<<<<<<
+ *         um = &urange_to_mj_mappings[m]
+ *         if u < um.start:             # <<<<<<<<<<<<<<
  *             e = m
  *             continue
  */
-    __pyx_t_1 = ((__pyx_v_u < __pyx_v_mm->start) != 0);
+    __pyx_t_1 = ((__pyx_v_u < __pyx_v_um->start) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":793
- *         mm = &urange_to_mj_shrink_usets_mappings[m]
- *         if u < mm.start:
+      /* "jntajis/_jntajis.pyx":806
+ *         um = &urange_to_mj_mappings[m]
+ *         if u < um.start:
  *             e = m             # <<<<<<<<<<<<<<
  *             continue
- *         elif u > mm.end:
+ *         elif u > um.end:
  */
       __pyx_v_e = __pyx_v_m;
 
-      /* "jntajis/_jntajis.pyx":794
- *         if u < mm.start:
+      /* "jntajis/_jntajis.pyx":807
+ *         if u < um.start:
  *             e = m
  *             continue             # <<<<<<<<<<<<<<
- *         elif u > mm.end:
+ *         elif u > um.end:
  *             s = m + 1
  */
       goto __pyx_L3_continue;
 
-      /* "jntajis/_jntajis.pyx":792
+      /* "jntajis/_jntajis.pyx":805
  *         m = (s + e) // 2
- *         mm = &urange_to_mj_shrink_usets_mappings[m]
- *         if u < mm.start:             # <<<<<<<<<<<<<<
+ *         um = &urange_to_mj_mappings[m]
+ *         if u < um.start:             # <<<<<<<<<<<<<<
  *             e = m
  *             continue
  */
     }
 
-    /* "jntajis/_jntajis.pyx":795
+    /* "jntajis/_jntajis.pyx":808
  *             e = m
  *             continue
- *         elif u > mm.end:             # <<<<<<<<<<<<<<
+ *         elif u > um.end:             # <<<<<<<<<<<<<<
  *             s = m + 1
  *             continue
  */
-    __pyx_t_1 = ((__pyx_v_u > __pyx_v_mm->end) != 0);
+    __pyx_t_1 = ((__pyx_v_u > __pyx_v_um->end) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":796
+      /* "jntajis/_jntajis.pyx":809
  *             continue
- *         elif u > mm.end:
+ *         elif u > um.end:
  *             s = m + 1             # <<<<<<<<<<<<<<
  *             continue
- *         if u > mm.end:
+ *         if u > um.end:
  */
       __pyx_v_s = (__pyx_v_m + 1);
 
-      /* "jntajis/_jntajis.pyx":797
- *         elif u > mm.end:
+      /* "jntajis/_jntajis.pyx":810
+ *         elif u > um.end:
  *             s = m + 1
  *             continue             # <<<<<<<<<<<<<<
- *         if u > mm.end:
+ *         if u > um.end:
  *             break
  */
       goto __pyx_L3_continue;
 
-      /* "jntajis/_jntajis.pyx":795
+      /* "jntajis/_jntajis.pyx":808
  *             e = m
  *             continue
- *         elif u > mm.end:             # <<<<<<<<<<<<<<
+ *         elif u > um.end:             # <<<<<<<<<<<<<<
  *             s = m + 1
  *             continue
  */
     }
 
-    /* "jntajis/_jntajis.pyx":798
+    /* "jntajis/_jntajis.pyx":811
  *             s = m + 1
  *             continue
- *         if u > mm.end:             # <<<<<<<<<<<<<<
+ *         if u > um.end:             # <<<<<<<<<<<<<<
  *             break
- *         sm = &mm.sm[u - mm.start]
+ *         ms = &um.mss[u - um.start]
  */
-    __pyx_t_1 = ((__pyx_v_u > __pyx_v_mm->end) != 0);
+    __pyx_t_1 = ((__pyx_v_u > __pyx_v_um->end) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":799
+      /* "jntajis/_jntajis.pyx":812
  *             continue
- *         if u > mm.end:
+ *         if u > um.end:
  *             break             # <<<<<<<<<<<<<<
- *         sm = &mm.sm[u - mm.start]
- *         if not MJShrinkMappingUnicodeSet_valid(sm):
+ *         ms = &um.mss[u - um.start]
+ *         if ms.l == 0:
  */
       goto __pyx_L4_break;
 
-      /* "jntajis/_jntajis.pyx":798
+      /* "jntajis/_jntajis.pyx":811
  *             s = m + 1
  *             continue
- *         if u > mm.end:             # <<<<<<<<<<<<<<
+ *         if u > um.end:             # <<<<<<<<<<<<<<
  *             break
- *         sm = &mm.sm[u - mm.start]
+ *         ms = &um.mss[u - um.start]
  */
     }
 
-    /* "jntajis/_jntajis.pyx":800
- *         if u > mm.end:
+    /* "jntajis/_jntajis.pyx":813
+ *         if u > um.end:
  *             break
- *         sm = &mm.sm[u - mm.start]             # <<<<<<<<<<<<<<
- *         if not MJShrinkMappingUnicodeSet_valid(sm):
+ *         ms = &um.mss[u - um.start]             # <<<<<<<<<<<<<<
+ *         if ms.l == 0:
  *             break
  */
-    __pyx_v_sm = (&(__pyx_v_mm->sm[(__pyx_v_u - __pyx_v_mm->start)]));
+    __pyx_v_ms = (&(__pyx_v_um->mss[(__pyx_v_u - __pyx_v_um->start)]));
 
-    /* "jntajis/_jntajis.pyx":801
+    /* "jntajis/_jntajis.pyx":814
  *             break
- *         sm = &mm.sm[u - mm.start]
- *         if not MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
+ *         ms = &um.mss[u - um.start]
+ *         if ms.l == 0:             # <<<<<<<<<<<<<<
  *             break
- *         psm[0] = sm
+ *         pms[0] = ms
  */
-    __pyx_t_1 = ((!(__pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(__pyx_v_sm) != 0)) != 0);
+    __pyx_t_1 = ((__pyx_v_ms->l == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":802
- *         sm = &mm.sm[u - mm.start]
- *         if not MJShrinkMappingUnicodeSet_valid(sm):
+      /* "jntajis/_jntajis.pyx":815
+ *         ms = &um.mss[u - um.start]
+ *         if ms.l == 0:
  *             break             # <<<<<<<<<<<<<<
- *         psm[0] = sm
+ *         pms[0] = ms
  *         return True
  */
       goto __pyx_L4_break;
 
-      /* "jntajis/_jntajis.pyx":801
+      /* "jntajis/_jntajis.pyx":814
  *             break
- *         sm = &mm.sm[u - mm.start]
- *         if not MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
+ *         ms = &um.mss[u - um.start]
+ *         if ms.l == 0:             # <<<<<<<<<<<<<<
  *             break
- *         psm[0] = sm
+ *         pms[0] = ms
  */
     }
 
-    /* "jntajis/_jntajis.pyx":803
- *         if not MJShrinkMappingUnicodeSet_valid(sm):
+    /* "jntajis/_jntajis.pyx":816
+ *         if ms.l == 0:
  *             break
- *         psm[0] = sm             # <<<<<<<<<<<<<<
+ *         pms[0] = ms             # <<<<<<<<<<<<<<
  *         return True
  *     return False
  */
-    (__pyx_v_psm[0]) = __pyx_v_sm;
+    (__pyx_v_pms[0]) = __pyx_v_ms;
 
-    /* "jntajis/_jntajis.pyx":804
+    /* "jntajis/_jntajis.pyx":817
  *             break
- *         psm[0] = sm
+ *         pms[0] = ms
  *         return True             # <<<<<<<<<<<<<<
  *     return False
  * 
@@ -8378,8 +8386,8 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnic
   }
   __pyx_L4_break:;
 
-  /* "jntajis/_jntajis.pyx":805
- *         psm[0] = sm
+  /* "jntajis/_jntajis.pyx":818
+ *         pms[0] = ms
  *         return True
  *     return False             # <<<<<<<<<<<<<<
  * 
@@ -8388,11 +8396,11 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnic
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":783
+  /* "jntajis/_jntajis.pyx":796
  * 
  * 
- * cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:             # <<<<<<<<<<<<<<
- *     cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])
+ * cdef bint lookup_mj_mapping_table(const MJMappingSet** pms, uint32_t u) nogil:             # <<<<<<<<<<<<<<
+ *     cdef size_t l = sizeof(urange_to_mj_mappings) // sizeof(urange_to_mj_mappings[0])
  *     cdef size_t s = 0, e = l
  */
 
@@ -8401,18 +8409,85 @@ static int __pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table(MJShrinkMappingUnic
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":815
+/* "jntajis/_jntajis.pyx":828
  * 
  * 
- * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):             # <<<<<<<<<<<<<<
- *     cdef size_t i
- *     cdef _PyUnicodeWriter w
+ * cdef Py_UCS4 to_ivs(int n) nogil:             # <<<<<<<<<<<<<<
+ *     if n < 16:
+ *         return 0xfe00 + n
  */
 
-static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands, PyObject *__pyx_v_l) {
+static Py_UCS4 __pyx_f_7jntajis_8_jntajis_to_ivs(int __pyx_v_n) {
+  Py_UCS4 __pyx_r;
+  int __pyx_t_1;
+
+  /* "jntajis/_jntajis.pyx":829
+ * 
+ * cdef Py_UCS4 to_ivs(int n) nogil:
+ *     if n < 16:             # <<<<<<<<<<<<<<
+ *         return 0xfe00 + n
+ *     else:
+ */
+  __pyx_t_1 = ((__pyx_v_n < 16) != 0);
+  if (__pyx_t_1) {
+
+    /* "jntajis/_jntajis.pyx":830
+ * cdef Py_UCS4 to_ivs(int n) nogil:
+ *     if n < 16:
+ *         return 0xfe00 + n             # <<<<<<<<<<<<<<
+ *     else:
+ *         return 0xe00f0 + n
+ */
+    __pyx_r = (0xfe00 + __pyx_v_n);
+    goto __pyx_L0;
+
+    /* "jntajis/_jntajis.pyx":829
+ * 
+ * cdef Py_UCS4 to_ivs(int n) nogil:
+ *     if n < 16:             # <<<<<<<<<<<<<<
+ *         return 0xfe00 + n
+ *     else:
+ */
+  }
+
+  /* "jntajis/_jntajis.pyx":832
+ *         return 0xfe00 + n
+ *     else:
+ *         return 0xe00f0 + n             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  /*else*/ {
+    __pyx_r = (0xe00f0 + __pyx_v_n);
+    goto __pyx_L0;
+  }
+
+  /* "jntajis/_jntajis.pyx":828
+ * 
+ * 
+ * cdef Py_UCS4 to_ivs(int n) nogil:             # <<<<<<<<<<<<<<
+ *     if n < 16:
+ *         return 0xfe00 + n
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "jntajis/_jntajis.pyx":835
+ * 
+ * 
+ * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):             # <<<<<<<<<<<<<<
+ *     cdef size_t i
+ *     cdef Py_ssize_t l
+ */
+
+static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands, PyObject *__pyx_v_li) {
   size_t __pyx_v_i;
+  Py_ssize_t __pyx_v_l;
   _PyUnicodeWriter __pyx_v_w;
-  uint32_t __pyx_v_c;
+  UIVSPair *__pyx_v_c;
   Py_UCS4 __pyx_v_u;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -8428,7 +8503,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("MJShrinkCandidates_append_candidates", 0);
 
-  /* "jntajis/_jntajis.pyx":821
+  /* "jntajis/_jntajis.pyx":842
  *     cdef Py_UCS4 u
  * 
  *     while True:             # <<<<<<<<<<<<<<
@@ -8437,132 +8512,224 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
   while (1) {
 
-    /* "jntajis/_jntajis.pyx":822
+    /* "jntajis/_jntajis.pyx":843
  * 
  *     while True:
  *         _PyUnicodeWriter_Init(&w)             # <<<<<<<<<<<<<<
  *         u = 0
- *         for i in range(cands.l):
+ *         l = 0
  */
     _PyUnicodeWriter_Init((&__pyx_v_w));
 
-    /* "jntajis/_jntajis.pyx":823
+    /* "jntajis/_jntajis.pyx":844
  *     while True:
  *         _PyUnicodeWriter_Init(&w)
  *         u = 0             # <<<<<<<<<<<<<<
+ *         l = 0
  *         for i in range(cands.l):
- *             c = cands.a[i][cands.is_[i]]
  */
     __pyx_v_u = 0;
 
-    /* "jntajis/_jntajis.pyx":824
+    /* "jntajis/_jntajis.pyx":845
  *         _PyUnicodeWriter_Init(&w)
  *         u = 0
+ *         l = 0             # <<<<<<<<<<<<<<
+ *         for i in range(cands.l):
+ *             c = &cands.a[i][cands.is_[i]]
+ */
+    __pyx_v_l = 0;
+
+    /* "jntajis/_jntajis.pyx":846
+ *         u = 0
+ *         l = 0
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
- *             c = cands.a[i][cands.is_[i]]
- *             u = Py_MAX(u, c)
+ *             c = &cands.a[i][cands.is_[i]]
+ *             u = Py_MAX(u, c.u)
  */
     __pyx_t_1 = __pyx_v_cands->l;
     __pyx_t_2 = __pyx_t_1;
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
       __pyx_v_i = __pyx_t_3;
 
-      /* "jntajis/_jntajis.pyx":825
- *         u = 0
+      /* "jntajis/_jntajis.pyx":847
+ *         l = 0
  *         for i in range(cands.l):
- *             c = cands.a[i][cands.is_[i]]             # <<<<<<<<<<<<<<
- *             u = Py_MAX(u, c)
- * 
+ *             c = &cands.a[i][cands.is_[i]]             # <<<<<<<<<<<<<<
+ *             u = Py_MAX(u, c.u)
+ *             l += 1
  */
-      __pyx_v_c = ((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]);
+      __pyx_v_c = (&((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]));
 
-      /* "jntajis/_jntajis.pyx":826
+      /* "jntajis/_jntajis.pyx":848
  *         for i in range(cands.l):
- *             c = cands.a[i][cands.is_[i]]
- *             u = Py_MAX(u, c)             # <<<<<<<<<<<<<<
- * 
- *         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):
+ *             c = &cands.a[i][cands.is_[i]]
+ *             u = Py_MAX(u, c.u)             # <<<<<<<<<<<<<<
+ *             l += 1
+ *             if c.sv:
  */
-      __pyx_v_u = Py_MAX(__pyx_v_u, __pyx_v_c);
+      __pyx_v_u = Py_MAX(__pyx_v_u, __pyx_v_c->u);
+
+      /* "jntajis/_jntajis.pyx":849
+ *             c = &cands.a[i][cands.is_[i]]
+ *             u = Py_MAX(u, c.u)
+ *             l += 1             # <<<<<<<<<<<<<<
+ *             if c.sv:
+ *                 u = Py_MAX(u, to_ivs(c.s))
+ */
+      __pyx_v_l = (__pyx_v_l + 1);
+
+      /* "jntajis/_jntajis.pyx":850
+ *             u = Py_MAX(u, c.u)
+ *             l += 1
+ *             if c.sv:             # <<<<<<<<<<<<<<
+ *                 u = Py_MAX(u, to_ivs(c.s))
+ *                 l += 1
+ */
+      __pyx_t_4 = (__pyx_v_c->sv != 0);
+      if (__pyx_t_4) {
+
+        /* "jntajis/_jntajis.pyx":851
+ *             l += 1
+ *             if c.sv:
+ *                 u = Py_MAX(u, to_ivs(c.s))             # <<<<<<<<<<<<<<
+ *                 l += 1
+ * 
+ */
+        __pyx_v_u = Py_MAX(__pyx_v_u, __pyx_f_7jntajis_8_jntajis_to_ivs(__pyx_v_c->s));
+
+        /* "jntajis/_jntajis.pyx":852
+ *             if c.sv:
+ *                 u = Py_MAX(u, to_ivs(c.s))
+ *                 l += 1             # <<<<<<<<<<<<<<
+ * 
+ *         if _PyUnicodeWriter_Prepare(&w, l, u):
+ */
+        __pyx_v_l = (__pyx_v_l + 1);
+
+        /* "jntajis/_jntajis.pyx":850
+ *             u = Py_MAX(u, c.u)
+ *             l += 1
+ *             if c.sv:             # <<<<<<<<<<<<<<
+ *                 u = Py_MAX(u, to_ivs(c.s))
+ *                 l += 1
+ */
+      }
     }
 
-    /* "jntajis/_jntajis.pyx":828
- *             u = Py_MAX(u, c)
+    /* "jntajis/_jntajis.pyx":854
+ *                 l += 1
  * 
- *         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):             # <<<<<<<<<<<<<<
+ *         if _PyUnicodeWriter_Prepare(&w, l, u):             # <<<<<<<<<<<<<<
  *             _PyUnicodeWriter_Dealloc(&w)
  *             raise MemoryError()
  */
-    __pyx_t_4 = (_PyUnicodeWriter_Prepare((&__pyx_v_w), ((Py_ssize_t)__pyx_v_cands->l), __pyx_v_u) != 0);
+    __pyx_t_4 = (_PyUnicodeWriter_Prepare((&__pyx_v_w), __pyx_v_l, __pyx_v_u) != 0);
     if (unlikely(__pyx_t_4)) {
 
-      /* "jntajis/_jntajis.pyx":829
+      /* "jntajis/_jntajis.pyx":855
  * 
- *         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):
+ *         if _PyUnicodeWriter_Prepare(&w, l, u):
  *             _PyUnicodeWriter_Dealloc(&w)             # <<<<<<<<<<<<<<
  *             raise MemoryError()
  * 
  */
       _PyUnicodeWriter_Dealloc((&__pyx_v_w));
 
-      /* "jntajis/_jntajis.pyx":830
- *         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):
+      /* "jntajis/_jntajis.pyx":856
+ *         if _PyUnicodeWriter_Prepare(&w, l, u):
  *             _PyUnicodeWriter_Dealloc(&w)
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         for i in range(cands.l):
  */
-      PyErr_NoMemory(); __PYX_ERR(0, 830, __pyx_L1_error)
+      PyErr_NoMemory(); __PYX_ERR(0, 856, __pyx_L1_error)
 
-      /* "jntajis/_jntajis.pyx":828
- *             u = Py_MAX(u, c)
+      /* "jntajis/_jntajis.pyx":854
+ *                 l += 1
  * 
- *         if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):             # <<<<<<<<<<<<<<
+ *         if _PyUnicodeWriter_Prepare(&w, l, u):             # <<<<<<<<<<<<<<
  *             _PyUnicodeWriter_Dealloc(&w)
  *             raise MemoryError()
  */
     }
 
-    /* "jntajis/_jntajis.pyx":832
+    /* "jntajis/_jntajis.pyx":858
  *             raise MemoryError()
  * 
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
- *             _PyUnicodeWriter_WriteChar(&w, cands.a[i][cands.is_[i]])
- * 
+ *             c = &cands.a[i][cands.is_[i]]
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)
  */
     __pyx_t_1 = __pyx_v_cands->l;
     __pyx_t_2 = __pyx_t_1;
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
       __pyx_v_i = __pyx_t_3;
 
-      /* "jntajis/_jntajis.pyx":833
+      /* "jntajis/_jntajis.pyx":859
  * 
  *         for i in range(cands.l):
- *             _PyUnicodeWriter_WriteChar(&w, cands.a[i][cands.is_[i]])             # <<<<<<<<<<<<<<
- * 
- *         l.append(_PyUnicodeWriter_Finish(&w))
+ *             c = &cands.a[i][cands.is_[i]]             # <<<<<<<<<<<<<<
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)
+ *             if c.sv:
  */
-      _PyUnicodeWriter_WriteChar((&__pyx_v_w), ((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]));
+      __pyx_v_c = (&((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]));
+
+      /* "jntajis/_jntajis.pyx":860
+ *         for i in range(cands.l):
+ *             c = &cands.a[i][cands.is_[i]]
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)             # <<<<<<<<<<<<<<
+ *             if c.sv:
+ *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
+ */
+      _PyUnicodeWriter_WriteChar((&__pyx_v_w), __pyx_v_c->u);
+
+      /* "jntajis/_jntajis.pyx":861
+ *             c = &cands.a[i][cands.is_[i]]
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)
+ *             if c.sv:             # <<<<<<<<<<<<<<
+ *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
+ * 
+ */
+      __pyx_t_4 = (__pyx_v_c->sv != 0);
+      if (__pyx_t_4) {
+
+        /* "jntajis/_jntajis.pyx":862
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)
+ *             if c.sv:
+ *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))             # <<<<<<<<<<<<<<
+ * 
+ *         li.append(_PyUnicodeWriter_Finish(&w))
+ */
+        _PyUnicodeWriter_WriteChar((&__pyx_v_w), __pyx_f_7jntajis_8_jntajis_to_ivs(__pyx_v_c->s));
+
+        /* "jntajis/_jntajis.pyx":861
+ *             c = &cands.a[i][cands.is_[i]]
+ *             _PyUnicodeWriter_WriteChar(&w, c.u)
+ *             if c.sv:             # <<<<<<<<<<<<<<
+ *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
+ * 
+ */
+      }
     }
 
-    /* "jntajis/_jntajis.pyx":835
- *             _PyUnicodeWriter_WriteChar(&w, cands.a[i][cands.is_[i]])
+    /* "jntajis/_jntajis.pyx":864
+ *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
  * 
- *         l.append(_PyUnicodeWriter_Finish(&w))             # <<<<<<<<<<<<<<
+ *         li.append(_PyUnicodeWriter_Finish(&w))             # <<<<<<<<<<<<<<
  * 
  *         for i in range(cands.l):
  */
-    if (unlikely(__pyx_v_l == Py_None)) {
+    if (unlikely(__pyx_v_li == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 835, __pyx_L1_error)
+      __PYX_ERR(0, 864, __pyx_L1_error)
     }
-    __pyx_t_5 = _PyUnicodeWriter_Finish((&__pyx_v_w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 835, __pyx_L1_error)
+    __pyx_t_5 = _PyUnicodeWriter_Finish((&__pyx_v_w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 864, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_l, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 835, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_li, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 864, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "jntajis/_jntajis.pyx":837
- *         l.append(_PyUnicodeWriter_Finish(&w))
+    /* "jntajis/_jntajis.pyx":866
+ *         li.append(_PyUnicodeWriter_Finish(&w))
  * 
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
  *             cands.is_[i] += 1
@@ -8573,7 +8740,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
       __pyx_v_i = __pyx_t_3;
 
-      /* "jntajis/_jntajis.pyx":838
+      /* "jntajis/_jntajis.pyx":867
  * 
  *         for i in range(cands.l):
  *             cands.is_[i] += 1             # <<<<<<<<<<<<<<
@@ -8583,7 +8750,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
       __pyx_t_7 = __pyx_v_i;
       (__pyx_v_cands->is_[__pyx_t_7]) = ((__pyx_v_cands->is_[__pyx_t_7]) + 1);
 
-      /* "jntajis/_jntajis.pyx":839
+      /* "jntajis/_jntajis.pyx":868
  *         for i in range(cands.l):
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:             # <<<<<<<<<<<<<<
@@ -8593,16 +8760,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
       __pyx_t_4 = (((__pyx_v_cands->is_[__pyx_v_i]) < (__pyx_v_cands->al[__pyx_v_i])) != 0);
       if (__pyx_t_4) {
 
-        /* "jntajis/_jntajis.pyx":840
+        /* "jntajis/_jntajis.pyx":869
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:
  *                 break             # <<<<<<<<<<<<<<
  *             cands.is_[i] = 0
  *         else:
  */
-        goto __pyx_L11_break;
+        goto __pyx_L13_break;
 
-        /* "jntajis/_jntajis.pyx":839
+        /* "jntajis/_jntajis.pyx":868
  *         for i in range(cands.l):
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:             # <<<<<<<<<<<<<<
@@ -8611,7 +8778,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       }
 
-      /* "jntajis/_jntajis.pyx":841
+      /* "jntajis/_jntajis.pyx":870
  *             if cands.is_[i] < cands.al[i]:
  *                 break
  *             cands.is_[i] = 0             # <<<<<<<<<<<<<<
@@ -8622,7 +8789,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
     }
     /*else*/ {
 
-      /* "jntajis/_jntajis.pyx":843
+      /* "jntajis/_jntajis.pyx":872
  *             cands.is_[i] = 0
  *         else:
  *             break             # <<<<<<<<<<<<<<
@@ -8631,16 +8798,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       goto __pyx_L4_break;
     }
-    __pyx_L11_break:;
+    __pyx_L13_break:;
   }
   __pyx_L4_break:;
 
-  /* "jntajis/_jntajis.pyx":815
+  /* "jntajis/_jntajis.pyx":835
  * 
  * 
- * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):             # <<<<<<<<<<<<<<
+ * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):             # <<<<<<<<<<<<<<
  *     cdef size_t i
- *     cdef _PyUnicodeWriter w
+ *     cdef Py_ssize_t l
  */
 
   /* function exit code */
@@ -8656,7 +8823,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":846
+/* "jntajis/_jntajis.pyx":875
  * 
  * 
  * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):             # <<<<<<<<<<<<<<
@@ -8668,7 +8835,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("MJShrinkCandidates_fini", 0);
 
-  /* "jntajis/_jntajis.pyx":847
+  /* "jntajis/_jntajis.pyx":876
  * 
  * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
  *     free(cands.a)             # <<<<<<<<<<<<<<
@@ -8677,7 +8844,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
   free(__pyx_v_cands->a);
 
-  /* "jntajis/_jntajis.pyx":848
+  /* "jntajis/_jntajis.pyx":877
  * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
  *     free(cands.a)
  *     free(cands.al)             # <<<<<<<<<<<<<<
@@ -8686,7 +8853,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
   free(__pyx_v_cands->al);
 
-  /* "jntajis/_jntajis.pyx":849
+  /* "jntajis/_jntajis.pyx":878
  *     free(cands.a)
  *     free(cands.al)
  *     free(cands.is_)             # <<<<<<<<<<<<<<
@@ -8695,7 +8862,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
   free(__pyx_v_cands->is_);
 
-  /* "jntajis/_jntajis.pyx":846
+  /* "jntajis/_jntajis.pyx":875
  * 
  * 
  * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):             # <<<<<<<<<<<<<<
@@ -8707,84 +8874,212 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
   __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":852
+/* "jntajis/_jntajis.pyx":881
+ * 
+ * 
+ * cdef int resolve_ivs_no(Py_UCS4 n) nogil:             # <<<<<<<<<<<<<<
+ *     # VS1 to VS16
+ *     if n >= 0xfe00 and n < 0xfe10:
+ */
+
+static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
+  int __pyx_r;
+  int __pyx_t_1;
+  int __pyx_t_2;
+
+  /* "jntajis/_jntajis.pyx":883
+ * cdef int resolve_ivs_no(Py_UCS4 n) nogil:
+ *     # VS1 to VS16
+ *     if n >= 0xfe00 and n < 0xfe10:             # <<<<<<<<<<<<<<
+ *         return <int>n - <int>0xfe00
+ *     # VS17 to VS256
+ */
+  __pyx_t_2 = ((__pyx_v_n >= 0xfe00) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_n < 0xfe10) != 0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L4_bool_binop_done:;
+  if (__pyx_t_1) {
+
+    /* "jntajis/_jntajis.pyx":884
+ *     # VS1 to VS16
+ *     if n >= 0xfe00 and n < 0xfe10:
+ *         return <int>n - <int>0xfe00             # <<<<<<<<<<<<<<
+ *     # VS17 to VS256
+ *     if n >= 0xe0100 and n < 0xe01f0:
+ */
+    __pyx_r = (((int)__pyx_v_n) - ((int)0xfe00));
+    goto __pyx_L0;
+
+    /* "jntajis/_jntajis.pyx":883
+ * cdef int resolve_ivs_no(Py_UCS4 n) nogil:
+ *     # VS1 to VS16
+ *     if n >= 0xfe00 and n < 0xfe10:             # <<<<<<<<<<<<<<
+ *         return <int>n - <int>0xfe00
+ *     # VS17 to VS256
+ */
+  }
+
+  /* "jntajis/_jntajis.pyx":886
+ *         return <int>n - <int>0xfe00
+ *     # VS17 to VS256
+ *     if n >= 0xe0100 and n < 0xe01f0:             # <<<<<<<<<<<<<<
+ *         return <int>n - <int>0xe00f0
+ *     return -1
+ */
+  __pyx_t_2 = ((__pyx_v_n >= 0xe0100) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L7_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_n < 0xe01f0) != 0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L7_bool_binop_done:;
+  if (__pyx_t_1) {
+
+    /* "jntajis/_jntajis.pyx":887
+ *     # VS17 to VS256
+ *     if n >= 0xe0100 and n < 0xe01f0:
+ *         return <int>n - <int>0xe00f0             # <<<<<<<<<<<<<<
+ *     return -1
+ * 
+ */
+    __pyx_r = (((int)__pyx_v_n) - ((int)0xe00f0));
+    goto __pyx_L0;
+
+    /* "jntajis/_jntajis.pyx":886
+ *         return <int>n - <int>0xfe00
+ *     # VS17 to VS256
+ *     if n >= 0xe0100 and n < 0xe01f0:             # <<<<<<<<<<<<<<
+ *         return <int>n - <int>0xe00f0
+ *     return -1
+ */
+  }
+
+  /* "jntajis/_jntajis.pyx":888
+ *     if n >= 0xe0100 and n < 0xe01f0:
+ *         return <int>n - <int>0xe00f0
+ *     return -1             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_r = -1;
+  goto __pyx_L0;
+
+  /* "jntajis/_jntajis.pyx":881
+ * 
+ * 
+ * cdef int resolve_ivs_no(Py_UCS4 n) nogil:             # <<<<<<<<<<<<<<
+ *     # VS1 to VS16
+ *     if n >= 0xfe00 and n < 0xfe10:
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "jntajis/_jntajis.pyx":891
  * 
  * 
  * cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef int uk = PyUnicode_KIND(in_)
- *     cdef int ul = PyUnicode_GET_LENGTH(in_)
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  */
 
 static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands, PyObject *__pyx_v_in_, int __pyx_v_combo) {
   int __pyx_v_uk;
-  int __pyx_v_ul;
+  Py_ssize_t __pyx_v_ul;
   void *__pyx_v_ud;
-  int __pyx_v_i;
-  int __pyx_v_k;
-  int __pyx_v_l;
+  Py_ssize_t __pyx_v_i;
+  size_t __pyx_v_k;
   size_t __pyx_v_j;
+  size_t __pyx_v_l;
+  size_t __pyx_v_p;
+  int __pyx_v_iv;
   Py_UCS4 __pyx_v_u;
+  Py_UCS4 __pyx_v_nu;
   uint32_t __pyx_v_uu;
   MJShrinkMappingUnicodeSet const *__pyx_v_sm;
-  uint32_t __pyx_v_c[10];
-  uint32_t (*__pyx_v_a)[10];
+  MJMappingSet const *__pyx_v_ms;
+  MJMapping const *__pyx_v_cmm[10];
+  MJMapping const *__pyx_v_mm;
+  MJMapping const **__pyx_v_cmmp;
+  MJMapping const **__pyx_v_cmme;
+  UIVSPair __pyx_v_c[20];
+  UIVSPair (*__pyx_v_a)[20];
   size_t *__pyx_v_al;
   size_t *__pyx_v_is_;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  int __pyx_t_2;
-  int __pyx_t_3;
-  int __pyx_t_4;
+  size_t __pyx_t_2;
+  size_t __pyx_t_3;
+  size_t __pyx_t_4;
   size_t __pyx_t_5;
   size_t __pyx_t_6;
   size_t __pyx_t_7;
   int __pyx_t_8;
-  int __pyx_t_9;
-  int __pyx_t_10;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  uint32_t __pyx_t_11;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("MJShrinkCandidates_init", 0);
 
-  /* "jntajis/_jntajis.pyx":853
+  /* "jntajis/_jntajis.pyx":892
  * 
  * cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
  *     cdef int uk = PyUnicode_KIND(in_)             # <<<<<<<<<<<<<<
- *     cdef int ul = PyUnicode_GET_LENGTH(in_)
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  *     cdef void* ud = PyUnicode_DATA(in_)
  */
   __pyx_v_uk = PyUnicode_KIND(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":854
+  /* "jntajis/_jntajis.pyx":893
  * cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
  *     cdef int uk = PyUnicode_KIND(in_)
- *     cdef int ul = PyUnicode_GET_LENGTH(in_)             # <<<<<<<<<<<<<<
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)             # <<<<<<<<<<<<<<
  *     cdef void* ud = PyUnicode_DATA(in_)
- *     cdef int i, k, l
+ *     cdef Py_ssize_t i = 0
  */
   __pyx_v_ul = PyUnicode_GET_LENGTH(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":855
+  /* "jntajis/_jntajis.pyx":894
  *     cdef int uk = PyUnicode_KIND(in_)
- *     cdef int ul = PyUnicode_GET_LENGTH(in_)
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  *     cdef void* ud = PyUnicode_DATA(in_)             # <<<<<<<<<<<<<<
- *     cdef int i, k, l
- *     cdef size_t j
+ *     cdef Py_ssize_t i = 0
+ *     cdef size_t k, j, l, p
  */
   __pyx_v_ud = PyUnicode_DATA(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":866
+  /* "jntajis/_jntajis.pyx":895
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
+ *     cdef void* ud = PyUnicode_DATA(in_)
+ *     cdef Py_ssize_t i = 0             # <<<<<<<<<<<<<<
+ *     cdef size_t k, j, l, p
+ *     cdef int iv
+ */
+  __pyx_v_i = 0;
+
+  /* "jntajis/_jntajis.pyx":911
  *     cdef size_t* is_
  * 
- *     a = <uint32_t[10]*>calloc(ul, sizeof(uint32_t[10]))             # <<<<<<<<<<<<<<
+ *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))             # <<<<<<<<<<<<<<
  *     if a == NULL:
  *         raise MemoryError()
  */
-  __pyx_v_a = ((uint32_t (*)[10])calloc(__pyx_v_ul, (sizeof(uint32_t [10]))));
+  __pyx_v_a = ((UIVSPair (*)[20])calloc(__pyx_v_ul, (sizeof(UIVSPair [20]))));
 
-  /* "jntajis/_jntajis.pyx":867
+  /* "jntajis/_jntajis.pyx":912
  * 
- *     a = <uint32_t[10]*>calloc(ul, sizeof(uint32_t[10]))
+ *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:             # <<<<<<<<<<<<<<
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
@@ -8792,25 +9087,25 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_a == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":868
- *     a = <uint32_t[10]*>calloc(ul, sizeof(uint32_t[10]))
+    /* "jntajis/_jntajis.pyx":913
+ *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 868, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 913, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":867
+    /* "jntajis/_jntajis.pyx":912
  * 
- *     a = <uint32_t[10]*>calloc(ul, sizeof(uint32_t[10]))
+ *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:             # <<<<<<<<<<<<<<
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  */
   }
 
-  /* "jntajis/_jntajis.pyx":869
+  /* "jntajis/_jntajis.pyx":914
  *     if a == NULL:
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))             # <<<<<<<<<<<<<<
@@ -8819,7 +9114,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
   __pyx_v_al = ((size_t *)calloc(__pyx_v_ul, (sizeof(size_t))));
 
-  /* "jntajis/_jntajis.pyx":870
+  /* "jntajis/_jntajis.pyx":915
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:             # <<<<<<<<<<<<<<
@@ -8829,7 +9124,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_al == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":871
+    /* "jntajis/_jntajis.pyx":916
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:
  *         free(a)             # <<<<<<<<<<<<<<
@@ -8838,16 +9133,16 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
     free(__pyx_v_a);
 
-    /* "jntajis/_jntajis.pyx":872
+    /* "jntajis/_jntajis.pyx":917
  *     if al == NULL:
  *         free(a)
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 872, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 917, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":870
+    /* "jntajis/_jntajis.pyx":915
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:             # <<<<<<<<<<<<<<
@@ -8856,7 +9151,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
   }
 
-  /* "jntajis/_jntajis.pyx":873
+  /* "jntajis/_jntajis.pyx":918
  *         free(a)
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))             # <<<<<<<<<<<<<<
@@ -8865,7 +9160,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
   __pyx_v_is_ = ((size_t *)calloc(__pyx_v_ul, (sizeof(size_t))));
 
-  /* "jntajis/_jntajis.pyx":874
+  /* "jntajis/_jntajis.pyx":919
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:             # <<<<<<<<<<<<<<
@@ -8875,7 +9170,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_is_ == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":875
+    /* "jntajis/_jntajis.pyx":920
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:
  *         free(al)             # <<<<<<<<<<<<<<
@@ -8884,7 +9179,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
     free(__pyx_v_al);
 
-    /* "jntajis/_jntajis.pyx":876
+    /* "jntajis/_jntajis.pyx":921
  *     if is_ == NULL:
  *         free(al)
  *         free(a)             # <<<<<<<<<<<<<<
@@ -8893,16 +9188,16 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
     free(__pyx_v_a);
 
-    /* "jntajis/_jntajis.pyx":877
+    /* "jntajis/_jntajis.pyx":922
  *         free(al)
  *         free(a)
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  * 
- *     for i in range(ul):
+ *     p = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 877, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 922, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":874
+    /* "jntajis/_jntajis.pyx":919
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:             # <<<<<<<<<<<<<<
@@ -8911,640 +9206,1546 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
   }
 
-  /* "jntajis/_jntajis.pyx":879
+  /* "jntajis/_jntajis.pyx":924
  *         raise MemoryError()
  * 
- *     for i in range(ul):             # <<<<<<<<<<<<<<
- *         is_[i] = 0
- *         u = PyUnicode_READ(uk, ud, i)
+ *     p = 0             # <<<<<<<<<<<<<<
+ *     while i < ul:
+ *         is_[p] = 0
  */
-  __pyx_t_2 = __pyx_v_ul;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_v_p = 0;
 
-    /* "jntajis/_jntajis.pyx":880
+  /* "jntajis/_jntajis.pyx":925
  * 
- *     for i in range(ul):
- *         is_[i] = 0             # <<<<<<<<<<<<<<
- *         u = PyUnicode_READ(uk, ud, i)
- *         c[0] = u
+ *     p = 0
+ *     while i < ul:             # <<<<<<<<<<<<<<
+ *         is_[p] = 0
+ *         l = 0
  */
-    (__pyx_v_is_[__pyx_v_i]) = 0;
+  while (1) {
+    __pyx_t_1 = ((__pyx_v_i < __pyx_v_ul) != 0);
+    if (!__pyx_t_1) break;
 
-    /* "jntajis/_jntajis.pyx":881
- *     for i in range(ul):
- *         is_[i] = 0
+    /* "jntajis/_jntajis.pyx":926
+ *     p = 0
+ *     while i < ul:
+ *         is_[p] = 0             # <<<<<<<<<<<<<<
+ *         l = 0
+ *         iv = -1
+ */
+    (__pyx_v_is_[__pyx_v_p]) = 0;
+
+    /* "jntajis/_jntajis.pyx":927
+ *     while i < ul:
+ *         is_[p] = 0
+ *         l = 0             # <<<<<<<<<<<<<<
+ *         iv = -1
+ *         u = PyUnicode_READ(uk, ud, i)
+ */
+    __pyx_v_l = 0;
+
+    /* "jntajis/_jntajis.pyx":928
+ *         is_[p] = 0
+ *         l = 0
+ *         iv = -1             # <<<<<<<<<<<<<<
+ *         u = PyUnicode_READ(uk, ud, i)
+ *         i += 1
+ */
+    __pyx_v_iv = -1;
+
+    /* "jntajis/_jntajis.pyx":929
+ *         l = 0
+ *         iv = -1
  *         u = PyUnicode_READ(uk, ud, i)             # <<<<<<<<<<<<<<
- *         c[0] = u
- *         l = 1
+ *         i += 1
+ *         if i < ul:
  */
     __pyx_v_u = PyUnicode_READ(__pyx_v_uk, __pyx_v_ud, __pyx_v_i);
 
-    /* "jntajis/_jntajis.pyx":882
- *         is_[i] = 0
+    /* "jntajis/_jntajis.pyx":930
+ *         iv = -1
  *         u = PyUnicode_READ(uk, ud, i)
- *         c[0] = u             # <<<<<<<<<<<<<<
- *         l = 1
- *         if lookup_mj_shrink_table(&sm, u):
+ *         i += 1             # <<<<<<<<<<<<<<
+ *         if i < ul:
+ *             nu = PyUnicode_READ(uk, ud, i)
  */
-    (__pyx_v_c[0]) = __pyx_v_u;
+    __pyx_v_i = (__pyx_v_i + 1);
 
-    /* "jntajis/_jntajis.pyx":883
+    /* "jntajis/_jntajis.pyx":931
  *         u = PyUnicode_READ(uk, ud, i)
- *         c[0] = u
- *         l = 1             # <<<<<<<<<<<<<<
- *         if lookup_mj_shrink_table(&sm, u):
- *             if combo & 1 != 0:
+ *         i += 1
+ *         if i < ul:             # <<<<<<<<<<<<<<
+ *             nu = PyUnicode_READ(uk, ud, i)
+ *             iv = resolve_ivs_no(nu)
  */
-    __pyx_v_l = 1;
-
-    /* "jntajis/_jntajis.pyx":884
- *         c[0] = u
- *         l = 1
- *         if lookup_mj_shrink_table(&sm, u):             # <<<<<<<<<<<<<<
- *             if combo & 1 != 0:
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- */
-    __pyx_t_1 = (__pyx_f_7jntajis_8_jntajis_lookup_mj_shrink_table((&__pyx_v_sm), __pyx_v_u) != 0);
+    __pyx_t_1 = ((__pyx_v_i < __pyx_v_ul) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":885
- *         l = 1
- *         if lookup_mj_shrink_table(&sm, u):
- *             if combo & 1 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- *                     uu = sm._0[j]
+      /* "jntajis/_jntajis.pyx":932
+ *         i += 1
+ *         if i < ul:
+ *             nu = PyUnicode_READ(uk, ud, i)             # <<<<<<<<<<<<<<
+ *             iv = resolve_ivs_no(nu)
+ *             if iv >= 0:
  */
-      __pyx_t_1 = (((__pyx_v_combo & 1) != 0) != 0);
+      __pyx_v_nu = PyUnicode_READ(__pyx_v_uk, __pyx_v_ud, __pyx_v_i);
+
+      /* "jntajis/_jntajis.pyx":933
+ *         if i < ul:
+ *             nu = PyUnicode_READ(uk, ud, i)
+ *             iv = resolve_ivs_no(nu)             # <<<<<<<<<<<<<<
+ *             if iv >= 0:
+ *                 i += 1
+ */
+      __pyx_v_iv = __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(__pyx_v_nu);
+
+      /* "jntajis/_jntajis.pyx":934
+ *             nu = PyUnicode_READ(uk, ud, i)
+ *             iv = resolve_ivs_no(nu)
+ *             if iv >= 0:             # <<<<<<<<<<<<<<
+ *                 i += 1
+ * 
+ */
+      __pyx_t_1 = ((__pyx_v_iv >= 0) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":886
- *         if lookup_mj_shrink_table(&sm, u):
- *             if combo & 1 != 0:
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):             # <<<<<<<<<<<<<<
- *                     uu = sm._0[j]
- *                     if uu == <uint32_t>-1:
+        /* "jntajis/_jntajis.pyx":935
+ *             iv = resolve_ivs_no(nu)
+ *             if iv >= 0:
+ *                 i += 1             # <<<<<<<<<<<<<<
+ * 
+ *         cmme = cmm
  */
-        __pyx_t_5 = ((sizeof(__pyx_v_sm->_0)) / (sizeof((__pyx_v_sm->_0[0]))));
-        __pyx_t_6 = __pyx_t_5;
-        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-          __pyx_v_j = __pyx_t_7;
+        __pyx_v_i = (__pyx_v_i + 1);
 
-          /* "jntajis/_jntajis.pyx":887
- *             if combo & 1 != 0:
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- *                     uu = sm._0[j]             # <<<<<<<<<<<<<<
- *                     if uu == <uint32_t>-1:
- *                         break
- */
-          __pyx_v_uu = (__pyx_v_sm->_0[__pyx_v_j]);
-
-          /* "jntajis/_jntajis.pyx":888
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- *                     uu = sm._0[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
-          if (__pyx_t_1) {
-
-            /* "jntajis/_jntajis.pyx":889
- *                     uu = sm._0[j]
- *                     if uu == <uint32_t>-1:
- *                         break             # <<<<<<<<<<<<<<
- *                     for k in range(l):
- *                         if c[k] == uu:
- */
-            goto __pyx_L11_break;
-
-            /* "jntajis/_jntajis.pyx":888
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- *                     uu = sm._0[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          }
-
-          /* "jntajis/_jntajis.pyx":890
- *                     if uu == <uint32_t>-1:
- *                         break
- *                     for k in range(l):             # <<<<<<<<<<<<<<
- *                         if c[k] == uu:
- *                             break
- */
-          __pyx_t_8 = __pyx_v_l;
-          __pyx_t_9 = __pyx_t_8;
-          for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-            __pyx_v_k = __pyx_t_10;
-
-            /* "jntajis/_jntajis.pyx":891
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            __pyx_t_1 = (((__pyx_v_c[__pyx_v_k]) == __pyx_v_uu) != 0);
-            if (__pyx_t_1) {
-
-              /* "jntajis/_jntajis.pyx":892
- *                     for k in range(l):
- *                         if c[k] == uu:
- *                             break             # <<<<<<<<<<<<<<
- *                     else:
- *                         c[l] = uu
- */
-              goto __pyx_L14_break;
-
-              /* "jntajis/_jntajis.pyx":891
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            }
-          }
-          /*else*/ {
-
-            /* "jntajis/_jntajis.pyx":894
- *                             break
- *                     else:
- *                         c[l] = uu             # <<<<<<<<<<<<<<
- *                         l += 1
- *             if combo & 2 != 0:
- */
-            (__pyx_v_c[__pyx_v_l]) = __pyx_v_uu;
-
-            /* "jntajis/_jntajis.pyx":895
- *                     else:
- *                         c[l] = uu
- *                         l += 1             # <<<<<<<<<<<<<<
- *             if combo & 2 != 0:
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- */
-            __pyx_v_l = (__pyx_v_l + 1);
-          }
-          __pyx_L14_break:;
-        }
-        __pyx_L11_break:;
-
-        /* "jntajis/_jntajis.pyx":885
- *         l = 1
- *         if lookup_mj_shrink_table(&sm, u):
- *             if combo & 1 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
- *                     uu = sm._0[j]
+        /* "jntajis/_jntajis.pyx":934
+ *             nu = PyUnicode_READ(uk, ud, i)
+ *             iv = resolve_ivs_no(nu)
+ *             if iv >= 0:             # <<<<<<<<<<<<<<
+ *                 i += 1
+ * 
  */
       }
 
-      /* "jntajis/_jntajis.pyx":896
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 2 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- *                     uu = sm._1[j]
- */
-      __pyx_t_1 = (((__pyx_v_combo & 2) != 0) != 0);
-      if (__pyx_t_1) {
-
-        /* "jntajis/_jntajis.pyx":897
- *                         l += 1
- *             if combo & 2 != 0:
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):             # <<<<<<<<<<<<<<
- *                     uu = sm._1[j]
- *                     if uu == <uint32_t>-1:
- */
-        __pyx_t_5 = ((sizeof(__pyx_v_sm->_1)) / (sizeof((__pyx_v_sm->_1[0]))));
-        __pyx_t_6 = __pyx_t_5;
-        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-          __pyx_v_j = __pyx_t_7;
-
-          /* "jntajis/_jntajis.pyx":898
- *             if combo & 2 != 0:
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- *                     uu = sm._1[j]             # <<<<<<<<<<<<<<
- *                     if uu == <uint32_t>-1:
- *                         break
- */
-          __pyx_v_uu = (__pyx_v_sm->_1[__pyx_v_j]);
-
-          /* "jntajis/_jntajis.pyx":899
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- *                     uu = sm._1[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
-          if (__pyx_t_1) {
-
-            /* "jntajis/_jntajis.pyx":900
- *                     uu = sm._1[j]
- *                     if uu == <uint32_t>-1:
- *                         break             # <<<<<<<<<<<<<<
- *                     for k in range(l):
- *                         if c[k] == uu:
- */
-            goto __pyx_L18_break;
-
-            /* "jntajis/_jntajis.pyx":899
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- *                     uu = sm._1[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          }
-
-          /* "jntajis/_jntajis.pyx":901
- *                     if uu == <uint32_t>-1:
- *                         break
- *                     for k in range(l):             # <<<<<<<<<<<<<<
- *                         if c[k] == uu:
- *                             break
- */
-          __pyx_t_8 = __pyx_v_l;
-          __pyx_t_9 = __pyx_t_8;
-          for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-            __pyx_v_k = __pyx_t_10;
-
-            /* "jntajis/_jntajis.pyx":902
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            __pyx_t_1 = (((__pyx_v_c[__pyx_v_k]) == __pyx_v_uu) != 0);
-            if (__pyx_t_1) {
-
-              /* "jntajis/_jntajis.pyx":903
- *                     for k in range(l):
- *                         if c[k] == uu:
- *                             break             # <<<<<<<<<<<<<<
- *                     else:
- *                         c[l] = uu
- */
-              goto __pyx_L21_break;
-
-              /* "jntajis/_jntajis.pyx":902
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            }
-          }
-          /*else*/ {
-
-            /* "jntajis/_jntajis.pyx":905
- *                             break
- *                     else:
- *                         c[l] = uu             # <<<<<<<<<<<<<<
- *                         l += 1
- *             if combo & 4 != 0:
- */
-            (__pyx_v_c[__pyx_v_l]) = __pyx_v_uu;
-
-            /* "jntajis/_jntajis.pyx":906
- *                     else:
- *                         c[l] = uu
- *                         l += 1             # <<<<<<<<<<<<<<
- *             if combo & 4 != 0:
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- */
-            __pyx_v_l = (__pyx_v_l + 1);
-          }
-          __pyx_L21_break:;
-        }
-        __pyx_L18_break:;
-
-        /* "jntajis/_jntajis.pyx":896
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 2 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
- *                     uu = sm._1[j]
- */
-      }
-
-      /* "jntajis/_jntajis.pyx":907
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 4 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- *                     uu = sm._2[j]
- */
-      __pyx_t_1 = (((__pyx_v_combo & 4) != 0) != 0);
-      if (__pyx_t_1) {
-
-        /* "jntajis/_jntajis.pyx":908
- *                         l += 1
- *             if combo & 4 != 0:
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):             # <<<<<<<<<<<<<<
- *                     uu = sm._2[j]
- *                     if uu == <uint32_t>-1:
- */
-        __pyx_t_5 = ((sizeof(__pyx_v_sm->_2)) / (sizeof((__pyx_v_sm->_2[0]))));
-        __pyx_t_6 = __pyx_t_5;
-        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-          __pyx_v_j = __pyx_t_7;
-
-          /* "jntajis/_jntajis.pyx":909
- *             if combo & 4 != 0:
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- *                     uu = sm._2[j]             # <<<<<<<<<<<<<<
- *                     if uu == <uint32_t>-1:
- *                         break
- */
-          __pyx_v_uu = (__pyx_v_sm->_2[__pyx_v_j]);
-
-          /* "jntajis/_jntajis.pyx":910
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- *                     uu = sm._2[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
-          if (__pyx_t_1) {
-
-            /* "jntajis/_jntajis.pyx":911
- *                     uu = sm._2[j]
- *                     if uu == <uint32_t>-1:
- *                         break             # <<<<<<<<<<<<<<
- *                     for k in range(l):
- *                         if c[k] == uu:
- */
-            goto __pyx_L25_break;
-
-            /* "jntajis/_jntajis.pyx":910
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- *                     uu = sm._2[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          }
-
-          /* "jntajis/_jntajis.pyx":912
- *                     if uu == <uint32_t>-1:
- *                         break
- *                     for k in range(l):             # <<<<<<<<<<<<<<
- *                         if c[k] == uu:
- *                             break
- */
-          __pyx_t_8 = __pyx_v_l;
-          __pyx_t_9 = __pyx_t_8;
-          for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-            __pyx_v_k = __pyx_t_10;
-
-            /* "jntajis/_jntajis.pyx":913
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            __pyx_t_1 = (((__pyx_v_c[__pyx_v_k]) == __pyx_v_uu) != 0);
-            if (__pyx_t_1) {
-
-              /* "jntajis/_jntajis.pyx":914
- *                     for k in range(l):
- *                         if c[k] == uu:
- *                             break             # <<<<<<<<<<<<<<
- *                     else:
- *                         c[l] = uu
- */
-              goto __pyx_L28_break;
-
-              /* "jntajis/_jntajis.pyx":913
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            }
-          }
-          /*else*/ {
-
-            /* "jntajis/_jntajis.pyx":916
- *                             break
- *                     else:
- *                         c[l] = uu             # <<<<<<<<<<<<<<
- *                         l += 1
- *             if combo & 8 != 0:
- */
-            (__pyx_v_c[__pyx_v_l]) = __pyx_v_uu;
-
-            /* "jntajis/_jntajis.pyx":917
- *                     else:
- *                         c[l] = uu
- *                         l += 1             # <<<<<<<<<<<<<<
- *             if combo & 8 != 0:
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- */
-            __pyx_v_l = (__pyx_v_l + 1);
-          }
-          __pyx_L28_break:;
-        }
-        __pyx_L25_break:;
-
-        /* "jntajis/_jntajis.pyx":907
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 4 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
- *                     uu = sm._2[j]
- */
-      }
-
-      /* "jntajis/_jntajis.pyx":918
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 8 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- *                     uu = sm._3[j]
- */
-      __pyx_t_1 = (((__pyx_v_combo & 8) != 0) != 0);
-      if (__pyx_t_1) {
-
-        /* "jntajis/_jntajis.pyx":919
- *                         l += 1
- *             if combo & 8 != 0:
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):             # <<<<<<<<<<<<<<
- *                     uu = sm._3[j]
- *                     if uu == <uint32_t>-1:
- */
-        __pyx_t_5 = ((sizeof(__pyx_v_sm->_3)) / (sizeof((__pyx_v_sm->_3[0]))));
-        __pyx_t_6 = __pyx_t_5;
-        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-          __pyx_v_j = __pyx_t_7;
-
-          /* "jntajis/_jntajis.pyx":920
- *             if combo & 8 != 0:
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- *                     uu = sm._3[j]             # <<<<<<<<<<<<<<
- *                     if uu == <uint32_t>-1:
- *                         break
- */
-          __pyx_v_uu = (__pyx_v_sm->_3[__pyx_v_j]);
-
-          /* "jntajis/_jntajis.pyx":921
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- *                     uu = sm._3[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
-          if (__pyx_t_1) {
-
-            /* "jntajis/_jntajis.pyx":922
- *                     uu = sm._3[j]
- *                     if uu == <uint32_t>-1:
- *                         break             # <<<<<<<<<<<<<<
- *                     for k in range(l):
- *                         if c[k] == uu:
- */
-            goto __pyx_L32_break;
-
-            /* "jntajis/_jntajis.pyx":921
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- *                     uu = sm._3[j]
- *                     if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
- *                         break
- *                     for k in range(l):
- */
-          }
-
-          /* "jntajis/_jntajis.pyx":923
- *                     if uu == <uint32_t>-1:
- *                         break
- *                     for k in range(l):             # <<<<<<<<<<<<<<
- *                         if c[k] == uu:
- *                             break
- */
-          __pyx_t_8 = __pyx_v_l;
-          __pyx_t_9 = __pyx_t_8;
-          for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-            __pyx_v_k = __pyx_t_10;
-
-            /* "jntajis/_jntajis.pyx":924
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            __pyx_t_1 = (((__pyx_v_c[__pyx_v_k]) == __pyx_v_uu) != 0);
-            if (__pyx_t_1) {
-
-              /* "jntajis/_jntajis.pyx":925
- *                     for k in range(l):
- *                         if c[k] == uu:
- *                             break             # <<<<<<<<<<<<<<
- *                     else:
- *                         c[l] = uu
- */
-              goto __pyx_L35_break;
-
-              /* "jntajis/_jntajis.pyx":924
- *                         break
- *                     for k in range(l):
- *                         if c[k] == uu:             # <<<<<<<<<<<<<<
- *                             break
- *                     else:
- */
-            }
-          }
-          /*else*/ {
-
-            /* "jntajis/_jntajis.pyx":927
- *                             break
- *                     else:
- *                         c[l] = uu             # <<<<<<<<<<<<<<
- *                         l += 1
- *         al[i] = l
- */
-            (__pyx_v_c[__pyx_v_l]) = __pyx_v_uu;
-
-            /* "jntajis/_jntajis.pyx":928
- *                     else:
- *                         c[l] = uu
- *                         l += 1             # <<<<<<<<<<<<<<
- *         al[i] = l
- *         memcpy(a[i], c, sizeof(uint32_t[10]))
- */
-            __pyx_v_l = (__pyx_v_l + 1);
-          }
-          __pyx_L35_break:;
-        }
-        __pyx_L32_break:;
-
-        /* "jntajis/_jntajis.pyx":918
- *                         c[l] = uu
- *                         l += 1
- *             if combo & 8 != 0:             # <<<<<<<<<<<<<<
- *                 for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
- *                     uu = sm._3[j]
- */
-      }
-
-      /* "jntajis/_jntajis.pyx":884
- *         c[0] = u
- *         l = 1
- *         if lookup_mj_shrink_table(&sm, u):             # <<<<<<<<<<<<<<
- *             if combo & 1 != 0:
- *                 for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+      /* "jntajis/_jntajis.pyx":931
+ *         u = PyUnicode_READ(uk, ud, i)
+ *         i += 1
+ *         if i < ul:             # <<<<<<<<<<<<<<
+ *             nu = PyUnicode_READ(uk, ud, i)
+ *             iv = resolve_ivs_no(nu)
  */
     }
 
-    /* "jntajis/_jntajis.pyx":929
- *                         c[l] = uu
- *                         l += 1
- *         al[i] = l             # <<<<<<<<<<<<<<
- *         memcpy(a[i], c, sizeof(uint32_t[10]))
+    /* "jntajis/_jntajis.pyx":937
+ *                 i += 1
  * 
+ *         cmme = cmm             # <<<<<<<<<<<<<<
+ *         if lookup_mj_mapping_table(&ms, u):
+ *             if iv >= 0:
  */
-    (__pyx_v_al[__pyx_v_i]) = __pyx_v_l;
+    __pyx_v_cmme = __pyx_v_cmm;
 
-    /* "jntajis/_jntajis.pyx":930
- *                         l += 1
- *         al[i] = l
- *         memcpy(a[i], c, sizeof(uint32_t[10]))             # <<<<<<<<<<<<<<
+    /* "jntajis/_jntajis.pyx":938
  * 
- *     cands.l = ul
+ *         cmme = cmm
+ *         if lookup_mj_mapping_table(&ms, u):             # <<<<<<<<<<<<<<
+ *             if iv >= 0:
+ *                 # expecting exact match
  */
-    (void)(memcpy((__pyx_v_a[__pyx_v_i]), __pyx_v_c, (sizeof(uint32_t [10]))));
+    __pyx_t_1 = (__pyx_f_7jntajis_8_jntajis_lookup_mj_mapping_table((&__pyx_v_ms), __pyx_v_u) != 0);
+    if (__pyx_t_1) {
+
+      /* "jntajis/_jntajis.pyx":939
+ *         cmme = cmm
+ *         if lookup_mj_mapping_table(&ms, u):
+ *             if iv >= 0:             # <<<<<<<<<<<<<<
+ *                 # expecting exact match
+ *                 for j in range(ms.l):
+ */
+      __pyx_t_1 = ((__pyx_v_iv >= 0) != 0);
+      if (__pyx_t_1) {
+
+        /* "jntajis/_jntajis.pyx":941
+ *             if iv >= 0:
+ *                 # expecting exact match
+ *                 for j in range(ms.l):             # <<<<<<<<<<<<<<
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ */
+        __pyx_t_2 = __pyx_v_ms->l;
+        __pyx_t_3 = __pyx_t_2;
+        for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+          __pyx_v_j = __pyx_t_4;
+
+          /* "jntajis/_jntajis.pyx":942
+ *                 # expecting exact match
+ *                 for j in range(ms.l):
+ *                     mm = &ms.ms[j]             # <<<<<<<<<<<<<<
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:
+ */
+          __pyx_v_mm = (&(__pyx_v_ms->ms[__pyx_v_j]));
+
+          /* "jntajis/_jntajis.pyx":943
+ *                 for j in range(ms.l):
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
+ *                         if not mm.v[k].v:
+ *                             mm = NULL
+ */
+          __pyx_t_5 = ((sizeof(__pyx_v_mm->v)) / (sizeof((__pyx_v_mm->v[0]))));
+          __pyx_t_6 = __pyx_t_5;
+          for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+            __pyx_v_k = __pyx_t_7;
+
+            /* "jntajis/_jntajis.pyx":944
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
+ *                             mm = NULL
+ *                             break
+ */
+            __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_k]).v != 0)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":945
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:
+ *                             mm = NULL             # <<<<<<<<<<<<<<
+ *                             break
+ *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:
+ */
+              __pyx_v_mm = NULL;
+
+              /* "jntajis/_jntajis.pyx":946
+ *                         if not mm.v[k].v:
+ *                             mm = NULL
+ *                             break             # <<<<<<<<<<<<<<
+ *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:
+ *                             break
+ */
+              goto __pyx_L15_break;
+
+              /* "jntajis/_jntajis.pyx":944
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
+ *                             mm = NULL
+ *                             break
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":947
+ *                             mm = NULL
+ *                             break
+ *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            __pyx_t_8 = (((__pyx_v_mm->v[__pyx_v_k]).u == __pyx_v_u) != 0);
+            if (__pyx_t_8) {
+            } else {
+              __pyx_t_1 = __pyx_t_8;
+              goto __pyx_L18_bool_binop_done;
+            }
+            __pyx_t_8 = ((__pyx_v_mm->v[__pyx_v_k]).sv != 0);
+            if (__pyx_t_8) {
+            } else {
+              __pyx_t_1 = __pyx_t_8;
+              goto __pyx_L18_bool_binop_done;
+            }
+            __pyx_t_8 = (((__pyx_v_mm->v[__pyx_v_k]).s == __pyx_v_iv) != 0);
+            __pyx_t_1 = __pyx_t_8;
+            __pyx_L18_bool_binop_done:;
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":948
+ *                             break
+ *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:
+ *                             break             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         mm = NULL
+ */
+              goto __pyx_L15_break;
+
+              /* "jntajis/_jntajis.pyx":947
+ *                             mm = NULL
+ *                             break
+ *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            }
+          }
+          /*else*/ {
+
+            /* "jntajis/_jntajis.pyx":950
+ *                             break
+ *                     else:
+ *                         mm = NULL             # <<<<<<<<<<<<<<
+ *                     if mm != NULL:
+ *                         cmme[0] = mm
+ */
+            __pyx_v_mm = NULL;
+          }
+          __pyx_L15_break:;
+
+          /* "jntajis/_jntajis.pyx":951
+ *                     else:
+ *                         mm = NULL
+ *                     if mm != NULL:             # <<<<<<<<<<<<<<
+ *                         cmme[0] = mm
+ *                         cmme += 1
+ */
+          __pyx_t_1 = ((__pyx_v_mm != NULL) != 0);
+          if (__pyx_t_1) {
+
+            /* "jntajis/_jntajis.pyx":952
+ *                         mm = NULL
+ *                     if mm != NULL:
+ *                         cmme[0] = mm             # <<<<<<<<<<<<<<
+ *                         cmme += 1
+ *                         break
+ */
+            (__pyx_v_cmme[0]) = __pyx_v_mm;
+
+            /* "jntajis/_jntajis.pyx":953
+ *                     if mm != NULL:
+ *                         cmme[0] = mm
+ *                         cmme += 1             # <<<<<<<<<<<<<<
+ *                         break
+ *             else:
+ */
+            __pyx_v_cmme = (__pyx_v_cmme + 1);
+
+            /* "jntajis/_jntajis.pyx":954
+ *                         cmme[0] = mm
+ *                         cmme += 1
+ *                         break             # <<<<<<<<<<<<<<
+ *             else:
+ *                 # search for all candidates
+ */
+            goto __pyx_L13_break;
+
+            /* "jntajis/_jntajis.pyx":951
+ *                     else:
+ *                         mm = NULL
+ *                     if mm != NULL:             # <<<<<<<<<<<<<<
+ *                         cmme[0] = mm
+ *                         cmme += 1
+ */
+          }
+        }
+        __pyx_L13_break:;
+
+        /* "jntajis/_jntajis.pyx":939
+ *         cmme = cmm
+ *         if lookup_mj_mapping_table(&ms, u):
+ *             if iv >= 0:             # <<<<<<<<<<<<<<
+ *                 # expecting exact match
+ *                 for j in range(ms.l):
+ */
+        goto __pyx_L11;
+      }
+
+      /* "jntajis/_jntajis.pyx":957
+ *             else:
+ *                 # search for all candidates
+ *                 for j in range(ms.l):             # <<<<<<<<<<<<<<
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ */
+      /*else*/ {
+        __pyx_t_2 = __pyx_v_ms->l;
+        __pyx_t_3 = __pyx_t_2;
+        for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+          __pyx_v_j = __pyx_t_4;
+
+          /* "jntajis/_jntajis.pyx":958
+ *                 # search for all candidates
+ *                 for j in range(ms.l):
+ *                     mm = &ms.ms[j]             # <<<<<<<<<<<<<<
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:
+ */
+          __pyx_v_mm = (&(__pyx_v_ms->ms[__pyx_v_j]));
+
+          /* "jntajis/_jntajis.pyx":959
+ *                 for j in range(ms.l):
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
+ *                         if not mm.v[k].v:
+ *                             mm = NULL
+ */
+          __pyx_t_5 = ((sizeof(__pyx_v_mm->v)) / (sizeof((__pyx_v_mm->v[0]))));
+          __pyx_t_6 = __pyx_t_5;
+          for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+            __pyx_v_k = __pyx_t_7;
+
+            /* "jntajis/_jntajis.pyx":960
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
+ *                             mm = NULL
+ *                             break
+ */
+            __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_k]).v != 0)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":961
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:
+ *                             mm = NULL             # <<<<<<<<<<<<<<
+ *                             break
+ *                         if mm.v[k].u == u and not mm.v[k].sv:
+ */
+              __pyx_v_mm = NULL;
+
+              /* "jntajis/_jntajis.pyx":962
+ *                         if not mm.v[k].v:
+ *                             mm = NULL
+ *                             break             # <<<<<<<<<<<<<<
+ *                         if mm.v[k].u == u and not mm.v[k].sv:
+ *                             break
+ */
+              goto __pyx_L25_break;
+
+              /* "jntajis/_jntajis.pyx":960
+ *                     mm = &ms.ms[j]
+ *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
+ *                             mm = NULL
+ *                             break
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":963
+ *                             mm = NULL
+ *                             break
+ *                         if mm.v[k].u == u and not mm.v[k].sv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            __pyx_t_8 = (((__pyx_v_mm->v[__pyx_v_k]).u == __pyx_v_u) != 0);
+            if (__pyx_t_8) {
+            } else {
+              __pyx_t_1 = __pyx_t_8;
+              goto __pyx_L28_bool_binop_done;
+            }
+            __pyx_t_8 = ((!((__pyx_v_mm->v[__pyx_v_k]).sv != 0)) != 0);
+            __pyx_t_1 = __pyx_t_8;
+            __pyx_L28_bool_binop_done:;
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":964
+ *                             break
+ *                         if mm.v[k].u == u and not mm.v[k].sv:
+ *                             break             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         mm = NULL
+ */
+              goto __pyx_L25_break;
+
+              /* "jntajis/_jntajis.pyx":963
+ *                             mm = NULL
+ *                             break
+ *                         if mm.v[k].u == u and not mm.v[k].sv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            }
+          }
+          /*else*/ {
+
+            /* "jntajis/_jntajis.pyx":966
+ *                             break
+ *                     else:
+ *                         mm = NULL             # <<<<<<<<<<<<<<
+ *                     if mm != NULL:
+ *                         print(cmme - cmm)
+ */
+            __pyx_v_mm = NULL;
+          }
+          __pyx_L25_break:;
+
+          /* "jntajis/_jntajis.pyx":967
+ *                     else:
+ *                         mm = NULL
+ *                     if mm != NULL:             # <<<<<<<<<<<<<<
+ *                         print(cmme - cmm)
+ *                         cmme[0] = mm
+ */
+          __pyx_t_1 = ((__pyx_v_mm != NULL) != 0);
+          if (__pyx_t_1) {
+
+            /* "jntajis/_jntajis.pyx":968
+ *                         mm = NULL
+ *                     if mm != NULL:
+ *                         print(cmme - cmm)             # <<<<<<<<<<<<<<
+ *                         cmme[0] = mm
+ *                         cmme += 1
+ */
+            __pyx_t_9 = __Pyx_PyInt_From_ptrdiff_t((__pyx_v_cmme - __pyx_v_cmm)); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 968, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_9);
+            __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 968, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_10);
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+            /* "jntajis/_jntajis.pyx":969
+ *                     if mm != NULL:
+ *                         print(cmme - cmm)
+ *                         cmme[0] = mm             # <<<<<<<<<<<<<<
+ *                         cmme += 1
+ * 
+ */
+            (__pyx_v_cmme[0]) = __pyx_v_mm;
+
+            /* "jntajis/_jntajis.pyx":970
+ *                         print(cmme - cmm)
+ *                         cmme[0] = mm
+ *                         cmme += 1             # <<<<<<<<<<<<<<
+ * 
+ *         cmmp = cmm
+ */
+            __pyx_v_cmme = (__pyx_v_cmme + 1);
+
+            /* "jntajis/_jntajis.pyx":967
+ *                     else:
+ *                         mm = NULL
+ *                     if mm != NULL:             # <<<<<<<<<<<<<<
+ *                         print(cmme - cmm)
+ *                         cmme[0] = mm
+ */
+          }
+        }
+      }
+      __pyx_L11:;
+
+      /* "jntajis/_jntajis.pyx":938
+ * 
+ *         cmme = cmm
+ *         if lookup_mj_mapping_table(&ms, u):             # <<<<<<<<<<<<<<
+ *             if iv >= 0:
+ *                 # expecting exact match
+ */
+    }
+
+    /* "jntajis/_jntajis.pyx":972
+ *                         cmme += 1
+ * 
+ *         cmmp = cmm             # <<<<<<<<<<<<<<
+ *         while cmmp < cmme:
+ *             mm = cmmp[0]
+ */
+    __pyx_v_cmmp = __pyx_v_cmm;
+
+    /* "jntajis/_jntajis.pyx":973
+ * 
+ *         cmmp = cmm
+ *         while cmmp < cmme:             # <<<<<<<<<<<<<<
+ *             mm = cmmp[0]
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ */
+    while (1) {
+      __pyx_t_1 = ((__pyx_v_cmmp < __pyx_v_cmme) != 0);
+      if (!__pyx_t_1) break;
+
+      /* "jntajis/_jntajis.pyx":974
+ *         cmmp = cmm
+ *         while cmmp < cmme:
+ *             mm = cmmp[0]             # <<<<<<<<<<<<<<
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                 if not mm.v[j].v:
+ */
+      __pyx_v_mm = (__pyx_v_cmmp[0]);
+
+      /* "jntajis/_jntajis.pyx":975
+ *         while cmmp < cmme:
+ *             mm = cmmp[0]
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
+ *                 if not mm.v[j].v:
+ *                     break
+ */
+      __pyx_t_2 = ((sizeof(__pyx_v_mm->v)) / (sizeof((__pyx_v_mm->v[0]))));
+      __pyx_t_3 = __pyx_t_2;
+      for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+        __pyx_v_j = __pyx_t_4;
+
+        /* "jntajis/_jntajis.pyx":976
+ *             mm = cmmp[0]
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                 if not mm.v[j].v:             # <<<<<<<<<<<<<<
+ *                     break
+ *                 if not mm.v[j].sv:
+ */
+        __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_j]).v != 0)) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":977
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                 if not mm.v[j].v:
+ *                     break             # <<<<<<<<<<<<<<
+ *                 if not mm.v[j].sv:
+ *                     uu = mm.v[j].u
+ */
+          goto __pyx_L34_break;
+
+          /* "jntajis/_jntajis.pyx":976
+ *             mm = cmmp[0]
+ *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+ *                 if not mm.v[j].v:             # <<<<<<<<<<<<<<
+ *                     break
+ *                 if not mm.v[j].sv:
+ */
+        }
+
+        /* "jntajis/_jntajis.pyx":978
+ *                 if not mm.v[j].v:
+ *                     break
+ *                 if not mm.v[j].sv:             # <<<<<<<<<<<<<<
+ *                     uu = mm.v[j].u
+ *                     for k in range(l):
+ */
+        __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_j]).sv != 0)) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":979
+ *                     break
+ *                 if not mm.v[j].sv:
+ *                     uu = mm.v[j].u             # <<<<<<<<<<<<<<
+ *                     for k in range(l):
+ *                         if c[k].u == uu and not c[k].sv:
+ */
+          __pyx_t_11 = (__pyx_v_mm->v[__pyx_v_j]).u;
+          __pyx_v_uu = __pyx_t_11;
+
+          /* "jntajis/_jntajis.pyx":980
+ *                 if not mm.v[j].sv:
+ *                     uu = mm.v[j].u
+ *                     for k in range(l):             # <<<<<<<<<<<<<<
+ *                         if c[k].u == uu and not c[k].sv:
+ *                             break
+ */
+          __pyx_t_5 = __pyx_v_l;
+          __pyx_t_6 = __pyx_t_5;
+          for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+            __pyx_v_k = __pyx_t_7;
+
+            /* "jntajis/_jntajis.pyx":981
+ *                     uu = mm.v[j].u
+ *                     for k in range(l):
+ *                         if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            __pyx_t_8 = (((__pyx_v_c[__pyx_v_k]).u == __pyx_v_uu) != 0);
+            if (__pyx_t_8) {
+            } else {
+              __pyx_t_1 = __pyx_t_8;
+              goto __pyx_L40_bool_binop_done;
+            }
+            __pyx_t_8 = ((!((__pyx_v_c[__pyx_v_k]).sv != 0)) != 0);
+            __pyx_t_1 = __pyx_t_8;
+            __pyx_L40_bool_binop_done:;
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":982
+ *                     for k in range(l):
+ *                         if c[k].u == uu and not c[k].sv:
+ *                             break             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         c[l].u = uu
+ */
+              goto __pyx_L38_break;
+
+              /* "jntajis/_jntajis.pyx":981
+ *                     uu = mm.v[j].u
+ *                     for k in range(l):
+ *                         if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                             break
+ *                     else:
+ */
+            }
+          }
+          /*else*/ {
+
+            /* "jntajis/_jntajis.pyx":984
+ *                             break
+ *                     else:
+ *                         c[l].u = uu             # <<<<<<<<<<<<<<
+ *                         c[l].v = True
+ *                         c[l].sv = False
+ */
+            (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
+
+            /* "jntajis/_jntajis.pyx":985
+ *                     else:
+ *                         c[l].u = uu
+ *                         c[l].v = True             # <<<<<<<<<<<<<<
+ *                         c[l].sv = False
+ *                         c[l].s = 0
+ */
+            (__pyx_v_c[__pyx_v_l]).v = 1;
+
+            /* "jntajis/_jntajis.pyx":986
+ *                         c[l].u = uu
+ *                         c[l].v = True
+ *                         c[l].sv = False             # <<<<<<<<<<<<<<
+ *                         c[l].s = 0
+ *                         l += 1
+ */
+            (__pyx_v_c[__pyx_v_l]).sv = 0;
+
+            /* "jntajis/_jntajis.pyx":987
+ *                         c[l].v = True
+ *                         c[l].sv = False
+ *                         c[l].s = 0             # <<<<<<<<<<<<<<
+ *                         l += 1
+ * 
+ */
+            (__pyx_v_c[__pyx_v_l]).s = 0;
+
+            /* "jntajis/_jntajis.pyx":988
+ *                         c[l].sv = False
+ *                         c[l].s = 0
+ *                         l += 1             # <<<<<<<<<<<<<<
+ * 
+ *             sm = &mj_shrink_mappings[mm.mj]
+ */
+            __pyx_v_l = (__pyx_v_l + 1);
+          }
+          __pyx_L38_break:;
+
+          /* "jntajis/_jntajis.pyx":978
+ *                 if not mm.v[j].v:
+ *                     break
+ *                 if not mm.v[j].sv:             # <<<<<<<<<<<<<<
+ *                     uu = mm.v[j].u
+ *                     for k in range(l):
+ */
+        }
+      }
+      __pyx_L34_break:;
+
+      /* "jntajis/_jntajis.pyx":990
+ *                         l += 1
+ * 
+ *             sm = &mj_shrink_mappings[mm.mj]             # <<<<<<<<<<<<<<
+ *             if MJShrinkMappingUnicodeSet_valid(sm):
+ *                 if combo & 1 != 0:
+ */
+      __pyx_v_sm = (&(mj_shrink_mappings[__pyx_v_mm->mj]));
+
+      /* "jntajis/_jntajis.pyx":991
+ * 
+ *             sm = &mj_shrink_mappings[mm.mj]
+ *             if MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
+ *                 if combo & 1 != 0:
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ */
+      __pyx_t_1 = (__pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(__pyx_v_sm) != 0);
+      if (__pyx_t_1) {
+
+        /* "jntajis/_jntajis.pyx":992
+ *             sm = &mj_shrink_mappings[mm.mj]
+ *             if MJShrinkMappingUnicodeSet_valid(sm):
+ *                 if combo & 1 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ *                         uu = sm._0[j]
+ */
+        __pyx_t_1 = (((__pyx_v_combo & 1) != 0) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":993
+ *             if MJShrinkMappingUnicodeSet_valid(sm):
+ *                 if combo & 1 != 0:
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):             # <<<<<<<<<<<<<<
+ *                         uu = sm._0[j]
+ *                         if uu == <uint32_t>-1:
+ */
+          __pyx_t_2 = ((sizeof(__pyx_v_sm->_0)) / (sizeof((__pyx_v_sm->_0[0]))));
+          __pyx_t_3 = __pyx_t_2;
+          for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+            __pyx_v_j = __pyx_t_4;
+
+            /* "jntajis/_jntajis.pyx":994
+ *                 if combo & 1 != 0:
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ *                         uu = sm._0[j]             # <<<<<<<<<<<<<<
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ */
+            __pyx_v_uu = (__pyx_v_sm->_0[__pyx_v_j]);
+
+            /* "jntajis/_jntajis.pyx":995
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ *                         uu = sm._0[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":996
+ *                         uu = sm._0[j]
+ *                         if uu == <uint32_t>-1:
+ *                             break             # <<<<<<<<<<<<<<
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ */
+              goto __pyx_L45_break;
+
+              /* "jntajis/_jntajis.pyx":995
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ *                         uu = sm._0[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":997
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ *                         for k in range(l):             # <<<<<<<<<<<<<<
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break
+ */
+            __pyx_t_5 = __pyx_v_l;
+            __pyx_t_6 = __pyx_t_5;
+            for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+              __pyx_v_k = __pyx_t_7;
+
+              /* "jntajis/_jntajis.pyx":998
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              __pyx_t_8 = (((__pyx_v_c[__pyx_v_k]).u == __pyx_v_uu) != 0);
+              if (__pyx_t_8) {
+              } else {
+                __pyx_t_1 = __pyx_t_8;
+                goto __pyx_L50_bool_binop_done;
+              }
+              __pyx_t_8 = ((!((__pyx_v_c[__pyx_v_k]).sv != 0)) != 0);
+              __pyx_t_1 = __pyx_t_8;
+              __pyx_L50_bool_binop_done:;
+              if (__pyx_t_1) {
+
+                /* "jntajis/_jntajis.pyx":999
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break             # <<<<<<<<<<<<<<
+ *                         else:
+ *                             c[l].u = uu
+ */
+                goto __pyx_L48_break;
+
+                /* "jntajis/_jntajis.pyx":998
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              }
+            }
+            /*else*/ {
+
+              /* "jntajis/_jntajis.pyx":1001
+ *                                 break
+ *                         else:
+ *                             c[l].u = uu             # <<<<<<<<<<<<<<
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ */
+              (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
+
+              /* "jntajis/_jntajis.pyx":1002
+ *                         else:
+ *                             c[l].u = uu
+ *                             c[l].v = True             # <<<<<<<<<<<<<<
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ */
+              (__pyx_v_c[__pyx_v_l]).v = 1;
+
+              /* "jntajis/_jntajis.pyx":1003
+ *                             c[l].u = uu
+ *                             c[l].v = True
+ *                             c[l].sv = False             # <<<<<<<<<<<<<<
+ *                             c[l].s = 0
+ *                             l += 1
+ */
+              (__pyx_v_c[__pyx_v_l]).sv = 0;
+
+              /* "jntajis/_jntajis.pyx":1004
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ *                             c[l].s = 0             # <<<<<<<<<<<<<<
+ *                             l += 1
+ *                 if combo & 2 != 0:
+ */
+              (__pyx_v_c[__pyx_v_l]).s = 0;
+
+              /* "jntajis/_jntajis.pyx":1005
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ *                             l += 1             # <<<<<<<<<<<<<<
+ *                 if combo & 2 != 0:
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ */
+              __pyx_v_l = (__pyx_v_l + 1);
+            }
+            __pyx_L48_break:;
+          }
+          __pyx_L45_break:;
+
+          /* "jntajis/_jntajis.pyx":992
+ *             sm = &mj_shrink_mappings[mm.mj]
+ *             if MJShrinkMappingUnicodeSet_valid(sm):
+ *                 if combo & 1 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ *                         uu = sm._0[j]
+ */
+        }
+
+        /* "jntajis/_jntajis.pyx":1006
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 2 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ *                         uu = sm._1[j]
+ */
+        __pyx_t_1 = (((__pyx_v_combo & 2) != 0) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":1007
+ *                             l += 1
+ *                 if combo & 2 != 0:
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):             # <<<<<<<<<<<<<<
+ *                         uu = sm._1[j]
+ *                         if uu == <uint32_t>-1:
+ */
+          __pyx_t_2 = ((sizeof(__pyx_v_sm->_1)) / (sizeof((__pyx_v_sm->_1[0]))));
+          __pyx_t_3 = __pyx_t_2;
+          for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+            __pyx_v_j = __pyx_t_4;
+
+            /* "jntajis/_jntajis.pyx":1008
+ *                 if combo & 2 != 0:
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ *                         uu = sm._1[j]             # <<<<<<<<<<<<<<
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ */
+            __pyx_v_uu = (__pyx_v_sm->_1[__pyx_v_j]);
+
+            /* "jntajis/_jntajis.pyx":1009
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ *                         uu = sm._1[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":1010
+ *                         uu = sm._1[j]
+ *                         if uu == <uint32_t>-1:
+ *                             break             # <<<<<<<<<<<<<<
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ */
+              goto __pyx_L54_break;
+
+              /* "jntajis/_jntajis.pyx":1009
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ *                         uu = sm._1[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":1011
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ *                         for k in range(l):             # <<<<<<<<<<<<<<
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break
+ */
+            __pyx_t_5 = __pyx_v_l;
+            __pyx_t_6 = __pyx_t_5;
+            for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+              __pyx_v_k = __pyx_t_7;
+
+              /* "jntajis/_jntajis.pyx":1012
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              __pyx_t_8 = (((__pyx_v_c[__pyx_v_k]).u == __pyx_v_uu) != 0);
+              if (__pyx_t_8) {
+              } else {
+                __pyx_t_1 = __pyx_t_8;
+                goto __pyx_L59_bool_binop_done;
+              }
+              __pyx_t_8 = ((!((__pyx_v_c[__pyx_v_k]).sv != 0)) != 0);
+              __pyx_t_1 = __pyx_t_8;
+              __pyx_L59_bool_binop_done:;
+              if (__pyx_t_1) {
+
+                /* "jntajis/_jntajis.pyx":1013
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break             # <<<<<<<<<<<<<<
+ *                         else:
+ *                             c[l].u = uu
+ */
+                goto __pyx_L57_break;
+
+                /* "jntajis/_jntajis.pyx":1012
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              }
+            }
+            /*else*/ {
+
+              /* "jntajis/_jntajis.pyx":1015
+ *                                 break
+ *                         else:
+ *                             c[l].u = uu             # <<<<<<<<<<<<<<
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ */
+              (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
+
+              /* "jntajis/_jntajis.pyx":1016
+ *                         else:
+ *                             c[l].u = uu
+ *                             c[l].v = True             # <<<<<<<<<<<<<<
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ */
+              (__pyx_v_c[__pyx_v_l]).v = 1;
+
+              /* "jntajis/_jntajis.pyx":1017
+ *                             c[l].u = uu
+ *                             c[l].v = True
+ *                             c[l].sv = False             # <<<<<<<<<<<<<<
+ *                             c[l].s = 0
+ *                             l += 1
+ */
+              (__pyx_v_c[__pyx_v_l]).sv = 0;
+
+              /* "jntajis/_jntajis.pyx":1018
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ *                             c[l].s = 0             # <<<<<<<<<<<<<<
+ *                             l += 1
+ *                 if combo & 4 != 0:
+ */
+              (__pyx_v_c[__pyx_v_l]).s = 0;
+
+              /* "jntajis/_jntajis.pyx":1019
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ *                             l += 1             # <<<<<<<<<<<<<<
+ *                 if combo & 4 != 0:
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ */
+              __pyx_v_l = (__pyx_v_l + 1);
+            }
+            __pyx_L57_break:;
+          }
+          __pyx_L54_break:;
+
+          /* "jntajis/_jntajis.pyx":1006
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 2 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+ *                         uu = sm._1[j]
+ */
+        }
+
+        /* "jntajis/_jntajis.pyx":1020
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 4 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ *                         uu = sm._2[j]
+ */
+        __pyx_t_1 = (((__pyx_v_combo & 4) != 0) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":1021
+ *                             l += 1
+ *                 if combo & 4 != 0:
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):             # <<<<<<<<<<<<<<
+ *                         uu = sm._2[j]
+ *                         if uu == <uint32_t>-1:
+ */
+          __pyx_t_2 = ((sizeof(__pyx_v_sm->_2)) / (sizeof((__pyx_v_sm->_2[0]))));
+          __pyx_t_3 = __pyx_t_2;
+          for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+            __pyx_v_j = __pyx_t_4;
+
+            /* "jntajis/_jntajis.pyx":1022
+ *                 if combo & 4 != 0:
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ *                         uu = sm._2[j]             # <<<<<<<<<<<<<<
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ */
+            __pyx_v_uu = (__pyx_v_sm->_2[__pyx_v_j]);
+
+            /* "jntajis/_jntajis.pyx":1023
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ *                         uu = sm._2[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":1024
+ *                         uu = sm._2[j]
+ *                         if uu == <uint32_t>-1:
+ *                             break             # <<<<<<<<<<<<<<
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ */
+              goto __pyx_L63_break;
+
+              /* "jntajis/_jntajis.pyx":1023
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ *                         uu = sm._2[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":1025
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ *                         for k in range(l):             # <<<<<<<<<<<<<<
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break
+ */
+            __pyx_t_5 = __pyx_v_l;
+            __pyx_t_6 = __pyx_t_5;
+            for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+              __pyx_v_k = __pyx_t_7;
+
+              /* "jntajis/_jntajis.pyx":1026
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              __pyx_t_8 = (((__pyx_v_c[__pyx_v_k]).u == __pyx_v_uu) != 0);
+              if (__pyx_t_8) {
+              } else {
+                __pyx_t_1 = __pyx_t_8;
+                goto __pyx_L68_bool_binop_done;
+              }
+              __pyx_t_8 = ((!((__pyx_v_c[__pyx_v_k]).sv != 0)) != 0);
+              __pyx_t_1 = __pyx_t_8;
+              __pyx_L68_bool_binop_done:;
+              if (__pyx_t_1) {
+
+                /* "jntajis/_jntajis.pyx":1027
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break             # <<<<<<<<<<<<<<
+ *                         else:
+ *                             c[l].u = uu
+ */
+                goto __pyx_L66_break;
+
+                /* "jntajis/_jntajis.pyx":1026
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              }
+            }
+            /*else*/ {
+
+              /* "jntajis/_jntajis.pyx":1029
+ *                                 break
+ *                         else:
+ *                             c[l].u = uu             # <<<<<<<<<<<<<<
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ */
+              (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
+
+              /* "jntajis/_jntajis.pyx":1030
+ *                         else:
+ *                             c[l].u = uu
+ *                             c[l].v = True             # <<<<<<<<<<<<<<
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ */
+              (__pyx_v_c[__pyx_v_l]).v = 1;
+
+              /* "jntajis/_jntajis.pyx":1031
+ *                             c[l].u = uu
+ *                             c[l].v = True
+ *                             c[l].sv = False             # <<<<<<<<<<<<<<
+ *                             c[l].s = 0
+ *                             l += 1
+ */
+              (__pyx_v_c[__pyx_v_l]).sv = 0;
+
+              /* "jntajis/_jntajis.pyx":1032
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ *                             c[l].s = 0             # <<<<<<<<<<<<<<
+ *                             l += 1
+ *                 if combo & 8 != 0:
+ */
+              (__pyx_v_c[__pyx_v_l]).s = 0;
+
+              /* "jntajis/_jntajis.pyx":1033
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ *                             l += 1             # <<<<<<<<<<<<<<
+ *                 if combo & 8 != 0:
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ */
+              __pyx_v_l = (__pyx_v_l + 1);
+            }
+            __pyx_L66_break:;
+          }
+          __pyx_L63_break:;
+
+          /* "jntajis/_jntajis.pyx":1020
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 4 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+ *                         uu = sm._2[j]
+ */
+        }
+
+        /* "jntajis/_jntajis.pyx":1034
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 8 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ *                         uu = sm._3[j]
+ */
+        __pyx_t_1 = (((__pyx_v_combo & 8) != 0) != 0);
+        if (__pyx_t_1) {
+
+          /* "jntajis/_jntajis.pyx":1035
+ *                             l += 1
+ *                 if combo & 8 != 0:
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):             # <<<<<<<<<<<<<<
+ *                         uu = sm._3[j]
+ *                         if uu == <uint32_t>-1:
+ */
+          __pyx_t_2 = ((sizeof(__pyx_v_sm->_3)) / (sizeof((__pyx_v_sm->_3[0]))));
+          __pyx_t_3 = __pyx_t_2;
+          for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+            __pyx_v_j = __pyx_t_4;
+
+            /* "jntajis/_jntajis.pyx":1036
+ *                 if combo & 8 != 0:
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ *                         uu = sm._3[j]             # <<<<<<<<<<<<<<
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ */
+            __pyx_v_uu = (__pyx_v_sm->_3[__pyx_v_j]);
+
+            /* "jntajis/_jntajis.pyx":1037
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ *                         uu = sm._3[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
+            if (__pyx_t_1) {
+
+              /* "jntajis/_jntajis.pyx":1038
+ *                         uu = sm._3[j]
+ *                         if uu == <uint32_t>-1:
+ *                             break             # <<<<<<<<<<<<<<
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ */
+              goto __pyx_L72_break;
+
+              /* "jntajis/_jntajis.pyx":1037
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ *                         uu = sm._3[j]
+ *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
+ *                             break
+ *                         for k in range(l):
+ */
+            }
+
+            /* "jntajis/_jntajis.pyx":1039
+ *                         if uu == <uint32_t>-1:
+ *                             break
+ *                         for k in range(l):             # <<<<<<<<<<<<<<
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break
+ */
+            __pyx_t_5 = __pyx_v_l;
+            __pyx_t_6 = __pyx_t_5;
+            for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+              __pyx_v_k = __pyx_t_7;
+
+              /* "jntajis/_jntajis.pyx":1040
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              __pyx_t_8 = (((__pyx_v_c[__pyx_v_k]).u == __pyx_v_uu) != 0);
+              if (__pyx_t_8) {
+              } else {
+                __pyx_t_1 = __pyx_t_8;
+                goto __pyx_L77_bool_binop_done;
+              }
+              __pyx_t_8 = ((!((__pyx_v_c[__pyx_v_k]).sv != 0)) != 0);
+              __pyx_t_1 = __pyx_t_8;
+              __pyx_L77_bool_binop_done:;
+              if (__pyx_t_1) {
+
+                /* "jntajis/_jntajis.pyx":1041
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:
+ *                                 break             # <<<<<<<<<<<<<<
+ *                         else:
+ *                             c[l].u = uu
+ */
+                goto __pyx_L75_break;
+
+                /* "jntajis/_jntajis.pyx":1040
+ *                             break
+ *                         for k in range(l):
+ *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
+ *                                 break
+ *                         else:
+ */
+              }
+            }
+            /*else*/ {
+
+              /* "jntajis/_jntajis.pyx":1043
+ *                                 break
+ *                         else:
+ *                             c[l].u = uu             # <<<<<<<<<<<<<<
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ */
+              (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
+
+              /* "jntajis/_jntajis.pyx":1044
+ *                         else:
+ *                             c[l].u = uu
+ *                             c[l].v = True             # <<<<<<<<<<<<<<
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ */
+              (__pyx_v_c[__pyx_v_l]).v = 1;
+
+              /* "jntajis/_jntajis.pyx":1045
+ *                             c[l].u = uu
+ *                             c[l].v = True
+ *                             c[l].sv = False             # <<<<<<<<<<<<<<
+ *                             c[l].s = 0
+ *                             l += 1
+ */
+              (__pyx_v_c[__pyx_v_l]).sv = 0;
+
+              /* "jntajis/_jntajis.pyx":1046
+ *                             c[l].v = True
+ *                             c[l].sv = False
+ *                             c[l].s = 0             # <<<<<<<<<<<<<<
+ *                             l += 1
+ *             cmmp += 1
+ */
+              (__pyx_v_c[__pyx_v_l]).s = 0;
+
+              /* "jntajis/_jntajis.pyx":1047
+ *                             c[l].sv = False
+ *                             c[l].s = 0
+ *                             l += 1             # <<<<<<<<<<<<<<
+ *             cmmp += 1
+ * 
+ */
+              __pyx_v_l = (__pyx_v_l + 1);
+            }
+            __pyx_L75_break:;
+          }
+          __pyx_L72_break:;
+
+          /* "jntajis/_jntajis.pyx":1034
+ *                             c[l].s = 0
+ *                             l += 1
+ *                 if combo & 8 != 0:             # <<<<<<<<<<<<<<
+ *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+ *                         uu = sm._3[j]
+ */
+        }
+
+        /* "jntajis/_jntajis.pyx":991
+ * 
+ *             sm = &mj_shrink_mappings[mm.mj]
+ *             if MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
+ *                 if combo & 1 != 0:
+ *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+ */
+      }
+
+      /* "jntajis/_jntajis.pyx":1048
+ *                             c[l].s = 0
+ *                             l += 1
+ *             cmmp += 1             # <<<<<<<<<<<<<<
+ * 
+ *         if l == 0:
+ */
+      __pyx_v_cmmp = (__pyx_v_cmmp + 1);
+    }
+
+    /* "jntajis/_jntajis.pyx":1050
+ *             cmmp += 1
+ * 
+ *         if l == 0:             # <<<<<<<<<<<<<<
+ *             c[0].u = u
+ *             c[0].v = True
+ */
+    __pyx_t_1 = ((__pyx_v_l == 0) != 0);
+    if (__pyx_t_1) {
+
+      /* "jntajis/_jntajis.pyx":1051
+ * 
+ *         if l == 0:
+ *             c[0].u = u             # <<<<<<<<<<<<<<
+ *             c[0].v = True
+ *             c[0].sv = iv >= 0
+ */
+      (__pyx_v_c[0]).u = __pyx_v_u;
+
+      /* "jntajis/_jntajis.pyx":1052
+ *         if l == 0:
+ *             c[0].u = u
+ *             c[0].v = True             # <<<<<<<<<<<<<<
+ *             c[0].sv = iv >= 0
+ *             c[0].s = iv
+ */
+      (__pyx_v_c[0]).v = 1;
+
+      /* "jntajis/_jntajis.pyx":1053
+ *             c[0].u = u
+ *             c[0].v = True
+ *             c[0].sv = iv >= 0             # <<<<<<<<<<<<<<
+ *             c[0].s = iv
+ *             l = 1
+ */
+      (__pyx_v_c[0]).sv = (__pyx_v_iv >= 0);
+
+      /* "jntajis/_jntajis.pyx":1054
+ *             c[0].v = True
+ *             c[0].sv = iv >= 0
+ *             c[0].s = iv             # <<<<<<<<<<<<<<
+ *             l = 1
+ *         al[p] = l
+ */
+      (__pyx_v_c[0]).s = __pyx_v_iv;
+
+      /* "jntajis/_jntajis.pyx":1055
+ *             c[0].sv = iv >= 0
+ *             c[0].s = iv
+ *             l = 1             # <<<<<<<<<<<<<<
+ *         al[p] = l
+ *         memcpy(a[p], c, sizeof(UIVSPair[20]))
+ */
+      __pyx_v_l = 1;
+
+      /* "jntajis/_jntajis.pyx":1050
+ *             cmmp += 1
+ * 
+ *         if l == 0:             # <<<<<<<<<<<<<<
+ *             c[0].u = u
+ *             c[0].v = True
+ */
+    }
+
+    /* "jntajis/_jntajis.pyx":1056
+ *             c[0].s = iv
+ *             l = 1
+ *         al[p] = l             # <<<<<<<<<<<<<<
+ *         memcpy(a[p], c, sizeof(UIVSPair[20]))
+ *         p += 1
+ */
+    (__pyx_v_al[__pyx_v_p]) = __pyx_v_l;
+
+    /* "jntajis/_jntajis.pyx":1057
+ *             l = 1
+ *         al[p] = l
+ *         memcpy(a[p], c, sizeof(UIVSPair[20]))             # <<<<<<<<<<<<<<
+ *         p += 1
+ * 
+ */
+    (void)(memcpy((__pyx_v_a[__pyx_v_p]), __pyx_v_c, (sizeof(UIVSPair [20]))));
+
+    /* "jntajis/_jntajis.pyx":1058
+ *         al[p] = l
+ *         memcpy(a[p], c, sizeof(UIVSPair[20]))
+ *         p += 1             # <<<<<<<<<<<<<<
+ * 
+ *     cands.l = p
+ */
+    __pyx_v_p = (__pyx_v_p + 1);
   }
 
-  /* "jntajis/_jntajis.pyx":932
- *         memcpy(a[i], c, sizeof(uint32_t[10]))
+  /* "jntajis/_jntajis.pyx":1060
+ *         p += 1
  * 
- *     cands.l = ul             # <<<<<<<<<<<<<<
+ *     cands.l = p             # <<<<<<<<<<<<<<
  *     cands.a = a
  *     cands.al = al
  */
-  __pyx_v_cands->l = __pyx_v_ul;
+  __pyx_v_cands->l = __pyx_v_p;
 
-  /* "jntajis/_jntajis.pyx":933
+  /* "jntajis/_jntajis.pyx":1061
  * 
- *     cands.l = ul
+ *     cands.l = p
  *     cands.a = a             # <<<<<<<<<<<<<<
  *     cands.al = al
  *     cands.is_ = is_
  */
   __pyx_v_cands->a = __pyx_v_a;
 
-  /* "jntajis/_jntajis.pyx":934
- *     cands.l = ul
+  /* "jntajis/_jntajis.pyx":1062
+ *     cands.l = p
  *     cands.a = a
  *     cands.al = al             # <<<<<<<<<<<<<<
  *     cands.is_ = is_
@@ -9552,33 +10753,35 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_
  */
   __pyx_v_cands->al = __pyx_v_al;
 
-  /* "jntajis/_jntajis.pyx":935
+  /* "jntajis/_jntajis.pyx":1063
  *     cands.a = a
  *     cands.al = al
  *     cands.is_ = is_             # <<<<<<<<<<<<<<
  * 
- * def mj_shrink_candidates(unicode in_, int combo):
+ * 
  */
   __pyx_v_cands->is_ = __pyx_v_is_;
 
-  /* "jntajis/_jntajis.pyx":852
+  /* "jntajis/_jntajis.pyx":891
  * 
  * 
  * cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef int uk = PyUnicode_KIND(in_)
- *     cdef int ul = PyUnicode_GET_LENGTH(in_)
+ *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  */
 
   /* function exit code */
   goto __pyx_L0;
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_WriteUnraisable("jntajis._jntajis.MJShrinkCandidates_init", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":937
- *     cands.is_ = is_
+/* "jntajis/_jntajis.pyx":1066
+ * 
  * 
  * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
@@ -9621,11 +10824,11 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_combo)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, 1); __PYX_ERR(0, 937, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, 1); __PYX_ERR(0, 1066, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mj_shrink_candidates") < 0)) __PYX_ERR(0, 937, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mj_shrink_candidates") < 0)) __PYX_ERR(0, 1066, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9634,17 +10837,17 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__p
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_in_ = ((PyObject*)values[0]);
-    __pyx_v_combo = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_combo == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 937, __pyx_L3_error)
+    __pyx_v_combo = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_combo == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1066, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 937, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1066, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.mj_shrink_candidates", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 937, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 1066, __pyx_L1_error)
   __pyx_r = __pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(__pyx_self, __pyx_v_in_, __pyx_v_combo);
 
   /* function exit code */
@@ -9676,19 +10879,19 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("mj_shrink_candidates", 0);
 
-  /* "jntajis/_jntajis.pyx":939
+  /* "jntajis/_jntajis.pyx":1068
  * def mj_shrink_candidates(unicode in_, int combo):
  *     cdef MJShrinkCandidates cands
  *     retval = []             # <<<<<<<<<<<<<<
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 939, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1068, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_retval = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":940
+  /* "jntajis/_jntajis.pyx":1069
  *     cdef MJShrinkCandidates cands
  *     retval = []
  *     try:             # <<<<<<<<<<<<<<
@@ -9697,7 +10900,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
  */
   /*try:*/ {
 
-    /* "jntajis/_jntajis.pyx":941
+    /* "jntajis/_jntajis.pyx":1070
  *     retval = []
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)             # <<<<<<<<<<<<<<
@@ -9706,19 +10909,19 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
  */
     __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init((&__pyx_v_cands), __pyx_v_in_, __pyx_v_combo);
 
-    /* "jntajis/_jntajis.pyx":942
+    /* "jntajis/_jntajis.pyx":1071
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)
  *         MJShrinkCandidates_append_candidates(&cands, retval)             # <<<<<<<<<<<<<<
  *     finally:
  *         MJShrinkCandidates_fini(&cands)
  */
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates((&__pyx_v_cands), __pyx_v_retval); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 942, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates((&__pyx_v_cands), __pyx_v_retval); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1071, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "jntajis/_jntajis.pyx":944
+  /* "jntajis/_jntajis.pyx":1073
  *         MJShrinkCandidates_append_candidates(&cands, retval)
  *     finally:
  *         MJShrinkCandidates_fini(&cands)             # <<<<<<<<<<<<<<
@@ -9764,7 +10967,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
     __pyx_L5:;
   }
 
-  /* "jntajis/_jntajis.pyx":945
+  /* "jntajis/_jntajis.pyx":1074
  *     finally:
  *         MJShrinkCandidates_fini(&cands)
  *     return retval             # <<<<<<<<<<<<<<
@@ -9774,8 +10977,8 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
   __pyx_r = __pyx_v_retval;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":937
- *     cands.is_ = is_
+  /* "jntajis/_jntajis.pyx":1066
+ * 
  * 
  * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
@@ -9975,6 +11178,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_passthrough, __pyx_k_passthrough, sizeof(__pyx_k_passthrough), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
+  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
@@ -9992,13 +11196,14 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 205, __pyx_L1_error)
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 218, __pyx_L1_error)
-  __pyx_builtin_AssertionError = __Pyx_GetBuiltinName(__pyx_n_s_AssertionError); if (!__pyx_builtin_AssertionError) __PYX_ERR(0, 220, __pyx_L1_error)
-  __pyx_builtin_UnicodeEncodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeEncodeError); if (!__pyx_builtin_UnicodeEncodeError) __PYX_ERR(0, 227, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 401, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_builtin_AssertionError = __Pyx_GetBuiltinName(__pyx_n_s_AssertionError); if (!__pyx_builtin_AssertionError) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_builtin_UnicodeEncodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeEncodeError); if (!__pyx_builtin_UnicodeEncodeError) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 414, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
-  __pyx_builtin_UnicodeDecodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeDecodeError); if (!__pyx_builtin_UnicodeDecodeError) __PYX_ERR(0, 469, __pyx_L1_error)
+  __pyx_builtin_UnicodeDecodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeDecodeError); if (!__pyx_builtin_UnicodeDecodeError) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 968, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -10008,14 +11213,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "jntajis/_jntajis.pyx":401
+  /* "jntajis/_jntajis.pyx":414
  * cdef object JNTAJISIncrementalEncoder_init(JNTAJISIncrementalEncoder* e, unicode encoding, int conv_mode):
  *     if len(encoding) == 0:
  *         raise ValueError("encoding cannot be empty")             # <<<<<<<<<<<<<<
  *     Py_INCREF(encoding)
  *     e.encoding = <PyObject*>encoding
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_encoding_cannot_be_empty); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 401, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_encoding_cannot_be_empty); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
@@ -10038,53 +11243,53 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "jntajis/_jntajis.pyx":442
+  /* "jntajis/_jntajis.pyx":455
  * 
  * 
  * def jnta_encode(unicode encoding, unicode in_, int conv_mode):             # <<<<<<<<<<<<<<
  *     """
  *     Encode a given Unicode string into JIS X 0208:1997 / JIS X 0213:2012.
  */
-  __pyx_tuple__5 = PyTuple_Pack(4, __pyx_n_s_encoding, __pyx_n_s_in, __pyx_n_s_conv_mode, __pyx_n_s_e); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(4, __pyx_n_s_encoding, __pyx_n_s_in, __pyx_n_s_conv_mode, __pyx_n_s_e); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_encode, 442, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_encode, 455, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 455, __pyx_L1_error)
 
-  /* "jntajis/_jntajis.pyx":593
+  /* "jntajis/_jntajis.pyx":606
  * 
  * 
  * def jnta_decode(unicode encoding, bytes in_):             # <<<<<<<<<<<<<<
  *     """
  *     Decode a given JIS character sequence into a Unicode string.
  */
-  __pyx_tuple__7 = PyTuple_Pack(4, __pyx_n_s_encoding, __pyx_n_s_in, __pyx_n_s_d, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(4, __pyx_n_s_encoding, __pyx_n_s_in, __pyx_n_s_d, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 606, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_decode, 593, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_decode, 606, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 606, __pyx_L1_error)
 
-  /* "jntajis/_jntajis.pyx":751
+  /* "jntajis/_jntajis.pyx":764
  * 
  * 
  * def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):             # <<<<<<<<<<<<<<
  *     """
  *     Transliterate a Unicode string according to the NTA shrink mappings.
  */
-  __pyx_tuple__9 = PyTuple_Pack(4, __pyx_n_s_in, __pyx_n_s_replacement, __pyx_n_s_passthrough, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 751, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(4, __pyx_n_s_in, __pyx_n_s_replacement, __pyx_n_s_passthrough, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 764, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_shrink_translit, 751, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 751, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_shrink_translit, 764, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 764, __pyx_L1_error)
 
-  /* "jntajis/_jntajis.pyx":937
- *     cands.is_ = is_
+  /* "jntajis/_jntajis.pyx":1066
+ * 
  * 
  * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     retval = []
  */
-  __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_in, __pyx_n_s_combo, __pyx_n_s_cands, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 937, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_in, __pyx_n_s_combo, __pyx_n_s_cands, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 1066, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_mj_shrink_candidates, 937, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 937, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_mj_shrink_candidates, 1066, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 1066, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -10139,15 +11344,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7jntajis_8_jntajis_IncrementalEncoder.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7jntajis_8_jntajis_IncrementalEncoder.tp_dictoffset && __pyx_type_7jntajis_8_jntajis_IncrementalEncoder.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_7jntajis_8_jntajis_IncrementalEncoder.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_IncrementalEncoder, (PyObject *)&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_IncrementalEncoder, (PyObject *)&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7jntajis_8_jntajis_IncrementalEncoder) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
   __pyx_ptype_7jntajis_8_jntajis_IncrementalEncoder = &__pyx_type_7jntajis_8_jntajis_IncrementalEncoder;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -10414,76 +11619,76 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_enum, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":442
+  /* "jntajis/_jntajis.pyx":455
  * 
  * 
  * def jnta_encode(unicode encoding, unicode in_, int conv_mode):             # <<<<<<<<<<<<<<
  *     """
  *     Encode a given Unicode string into JIS X 0208:1997 / JIS X 0213:2012.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_1jnta_encode, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_1jnta_encode, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_encode, __pyx_t_1) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_encode, __pyx_t_1) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":593
+  /* "jntajis/_jntajis.pyx":606
  * 
  * 
  * def jnta_decode(unicode encoding, bytes in_):             # <<<<<<<<<<<<<<
  *     """
  *     Decode a given JIS character sequence into a Unicode string.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_3jnta_decode, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_3jnta_decode, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 606, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_decode, __pyx_t_1) < 0) __PYX_ERR(0, 593, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_decode, __pyx_t_1) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":612
+  /* "jntajis/_jntajis.pyx":625
  * 
  * 
  * class TransliterationError(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 625, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __Pyx_GIVEREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_TransliterationError, __pyx_n_s_TransliterationError, (PyObject *) NULL, __pyx_n_s_jntajis__jntajis, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 612, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_TransliterationError, __pyx_n_s_TransliterationError, (PyObject *) NULL, __pyx_n_s_jntajis__jntajis, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_TransliterationError, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 612, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_TransliterationError, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 625, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TransliterationError, __pyx_t_4) < 0) __PYX_ERR(0, 612, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TransliterationError, __pyx_t_4) < 0) __PYX_ERR(0, 625, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":751
+  /* "jntajis/_jntajis.pyx":764
  * 
  * 
  * def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):             # <<<<<<<<<<<<<<
  *     """
  *     Transliterate a Unicode string according to the NTA shrink mappings.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_5jnta_shrink_translit, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 751, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_5jnta_shrink_translit, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 764, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_shrink_translit, __pyx_t_1) < 0) __PYX_ERR(0, 751, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_shrink_translit, __pyx_t_1) < 0) __PYX_ERR(0, 764, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":937
- *     cands.is_ = is_
+  /* "jntajis/_jntajis.pyx":1066
+ * 
  * 
  * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     retval = []
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_7mj_shrink_candidates, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 937, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_7mj_shrink_candidates, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1066, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mj_shrink_candidates, __pyx_t_1) < 0) __PYX_ERR(0, 937, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mj_shrink_candidates, __pyx_t_1) < 0) __PYX_ERR(0, 1066, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "jntajis/_jntajis.pyx":1
@@ -13130,6 +14335,44 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
         return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ptrdiff_t(ptrdiff_t value) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const ptrdiff_t neg_one = (ptrdiff_t) -1, const_zero = (ptrdiff_t) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(ptrdiff_t) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(ptrdiff_t) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(ptrdiff_t) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(ptrdiff_t) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(ptrdiff_t) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(ptrdiff_t),
                                      little, !is_unsigned);
     }
 }

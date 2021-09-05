@@ -7,6 +7,7 @@ from cpython.ref cimport PyObject, Py_INCREF, Py_DECREF
 import enum
 
 cdef extern from "_jntajis.h":
+    ctypedef unsigned short uint8_t
     ctypedef unsigned short uint16_t
     ctypedef unsigned int uint32_t
     ctypedef enum JISCharacterClass:
@@ -33,15 +34,27 @@ cdef extern from "_jntajis.h":
     const ShrinkingTransliterationMapping[] tx_mappings
     const URangeToJISMapping[] urange_to_jis_mappings
     uint16_t sm_uni_to_jis_mapping(int *state, uint32_t u) nogil
+    ctypedef struct UIVSPair:
+        uint32_t u
+        bint v
+        bint sv
+        uint8_t s
+    ctypedef struct MJMapping:
+        uint32_t mj
+        UIVSPair[4] v
     ctypedef struct MJShrinkMappingUnicodeSet:
-        uint32_t[3] _0
+        uint32_t[2] _0
         uint32_t[1] _1
         uint32_t[2] _2
         uint32_t[3] _3
-    ctypedef struct URangeToMJShrinkMappingUnicodeSets:
+    ctypedef struct MJMappingSet:
+        size_t l
+        MJMapping[64] ms
+    ctypedef struct URangeToMJMappings:
         uint32_t start, end
-        const MJShrinkMappingUnicodeSet* sm
-    const URangeToMJShrinkMappingUnicodeSets[] urange_to_mj_shrink_usets_mappings
+        const MJMappingSet* mss
+    const URangeToMJMappings[] urange_to_mj_mappings
+    const MJShrinkMappingUnicodeSet[] mj_shrink_mappings
 
 
 cdef extern from "Python.h":
@@ -780,59 +793,75 @@ cdef bint MJShrinkMappingUnicodeSet_valid(const MJShrinkMappingUnicodeSet *sm) n
     return 0
 
 
-cdef bint lookup_mj_shrink_table(const MJShrinkMappingUnicodeSet** psm, uint32_t u) nogil:
-    cdef size_t l = sizeof(urange_to_mj_shrink_usets_mappings) // sizeof(urange_to_mj_shrink_usets_mappings[0])
+cdef bint lookup_mj_mapping_table(const MJMappingSet** pms, uint32_t u) nogil:
+    cdef size_t l = sizeof(urange_to_mj_mappings) // sizeof(urange_to_mj_mappings[0])
     cdef size_t s = 0, e = l
-    cdef size_t m
-    cdef const URangeToMJShrinkMappingUnicodeSets* mm
-    cdef const MJShrinkMappingUnicodeSet* sm
+    cdef size_t m, i
+    cdef const URangeToMJMappings* um
+    cdef const MJMappingSet* ms
     while s < e and e <= l:
         m = (s + e) // 2
-        mm = &urange_to_mj_shrink_usets_mappings[m]
-        if u < mm.start:
+        um = &urange_to_mj_mappings[m]
+        if u < um.start:
             e = m
             continue
-        elif u > mm.end:
+        elif u > um.end:
             s = m + 1
             continue
-        if u > mm.end:
+        if u > um.end:
             break
-        sm = &mm.sm[u - mm.start]
-        if not MJShrinkMappingUnicodeSet_valid(sm):
+        ms = &um.mss[u - um.start]
+        if ms.l == 0:
             break
-        psm[0] = sm
+        pms[0] = ms
         return True
     return False
 
 
 ctypedef struct MJShrinkCandidates:
     size_t l
-    uint32_t[10]* a
+    UIVSPair[20]* a
     size_t* al
     size_t* is_
 
 
-cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list l):
+cdef Py_UCS4 to_ivs(int n) nogil:
+    if n < 16:
+        return 0xfe00 + n
+    else:
+        return 0xe00f0 + n
+
+
+cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):
     cdef size_t i
+    cdef Py_ssize_t l
     cdef _PyUnicodeWriter w
-    cdef uint32_t c
+    cdef UIVSPair* c
     cdef Py_UCS4 u
 
     while True:
         _PyUnicodeWriter_Init(&w)
         u = 0
+        l = 0
         for i in range(cands.l):
-            c = cands.a[i][cands.is_[i]]
-            u = Py_MAX(u, c)
+            c = &cands.a[i][cands.is_[i]]
+            u = Py_MAX(u, c.u)
+            l += 1
+            if c.sv:
+                u = Py_MAX(u, to_ivs(c.s))
+                l += 1
 
-        if _PyUnicodeWriter_Prepare(&w, <Py_ssize_t>cands.l, u):
+        if _PyUnicodeWriter_Prepare(&w, l, u):
             _PyUnicodeWriter_Dealloc(&w)
             raise MemoryError()
 
         for i in range(cands.l):
-            _PyUnicodeWriter_WriteChar(&w, cands.a[i][cands.is_[i]])
+            c = &cands.a[i][cands.is_[i]]
+            _PyUnicodeWriter_WriteChar(&w, c.u)
+            if c.sv:
+                _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
 
-        l.append(_PyUnicodeWriter_Finish(&w))
+        li.append(_PyUnicodeWriter_Finish(&w))
 
         for i in range(cands.l):
             cands.is_[i] += 1
@@ -849,21 +878,37 @@ cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
     free(cands.is_)
 
 
+cdef int resolve_ivs_no(Py_UCS4 n) nogil:
+    # VS1 to VS16
+    if n >= 0xfe00 and n < 0xfe10:
+        return <int>n - <int>0xfe00
+    # VS17 to VS256
+    if n >= 0xe0100 and n < 0xe01f0:
+        return <int>n - <int>0xe00f0
+    return -1
+
+
 cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
     cdef int uk = PyUnicode_KIND(in_)
-    cdef int ul = PyUnicode_GET_LENGTH(in_)
+    cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
     cdef void* ud = PyUnicode_DATA(in_)
-    cdef int i, k, l
-    cdef size_t j
-    cdef Py_UCS4 u
+    cdef Py_ssize_t i = 0
+    cdef size_t k, j, l, p
+    cdef int iv
+    cdef Py_UCS4 u, nu
     cdef uint32_t uu
     cdef const MJShrinkMappingUnicodeSet* sm
-    cdef uint32_t[10] c 
-    cdef uint32_t[10]* a
+    cdef const MJMappingSet* ms
+    cdef const MJMapping* cmm[10]
+    cdef const MJMapping* mm
+    cdef const MJMapping** cmmp
+    cdef const MJMapping** cmme
+    cdef UIVSPair[20] c 
+    cdef UIVSPair[20]* a
     cdef size_t* al
     cdef size_t* is_
 
-    a = <uint32_t[10]*>calloc(ul, sizeof(uint32_t[10]))
+    a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
     if a == NULL:
         raise MemoryError()
     al = <size_t*>calloc(ul, sizeof(size_t))
@@ -876,63 +921,146 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
         free(a)
         raise MemoryError()
 
-    for i in range(ul):
-        is_[i] = 0
+    p = 0
+    while i < ul:
+        is_[p] = 0
+        l = 0
+        iv = -1
         u = PyUnicode_READ(uk, ud, i)
-        c[0] = u
-        l = 1
-        if lookup_mj_shrink_table(&sm, u):
-            if combo & 1 != 0:
-                for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
-                    uu = sm._0[j]
-                    if uu == <uint32_t>-1:
-                        break
-                    for k in range(l):
-                        if c[k] == uu:
-                            break
-                    else:
-                        c[l] = uu
-                        l += 1
-            if combo & 2 != 0:
-                for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
-                    uu = sm._1[j]
-                    if uu == <uint32_t>-1:
-                        break
-                    for k in range(l):
-                        if c[k] == uu:
-                            break
-                    else:
-                        c[l] = uu
-                        l += 1
-            if combo & 4 != 0:
-                for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
-                    uu = sm._2[j]
-                    if uu == <uint32_t>-1:
-                        break
-                    for k in range(l):
-                        if c[k] == uu:
-                            break
-                    else:
-                        c[l] = uu
-                        l += 1
-            if combo & 8 != 0:
-                for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
-                    uu = sm._3[j]
-                    if uu == <uint32_t>-1:
-                        break
-                    for k in range(l):
-                        if c[k] == uu:
-                            break
-                    else:
-                        c[l] = uu
-                        l += 1
-        al[i] = l
-        memcpy(a[i], c, sizeof(uint32_t[10]))
+        i += 1
+        if i < ul:
+            nu = PyUnicode_READ(uk, ud, i)
+            iv = resolve_ivs_no(nu)
+            if iv >= 0:
+                i += 1
 
-    cands.l = ul
+        cmme = cmm
+        if lookup_mj_mapping_table(&ms, u):
+            if iv >= 0:
+                # expecting exact match
+                for j in range(ms.l):
+                    mm = &ms.ms[j]
+                    for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+                        if not mm.v[k].v:
+                            mm = NULL
+                            break
+                        if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:
+                            break
+                    else:
+                        mm = NULL
+                    if mm != NULL:
+                        cmme[0] = mm
+                        cmme += 1
+                        break
+            else:
+                # search for all candidates
+                for j in range(ms.l):
+                    mm = &ms.ms[j]
+                    for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
+                        if not mm.v[k].v:
+                            mm = NULL
+                            break
+                        if mm.v[k].u == u and not mm.v[k].sv:
+                            break
+                    else:
+                        mm = NULL
+                    if mm != NULL:
+                        cmme[0] = mm
+                        cmme += 1
+
+        cmmp = cmm
+        while cmmp < cmme:
+            mm = cmmp[0]
+            for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+                if not mm.v[j].v:
+                    break
+                if not mm.v[j].sv:
+                    uu = mm.v[j].u
+                    for k in range(l):
+                        if c[k].u == uu and not c[k].sv:
+                            break
+                    else:
+                        c[l].u = uu
+                        c[l].v = True
+                        c[l].sv = False
+                        c[l].s = 0
+                        l += 1
+
+            sm = &mj_shrink_mappings[mm.mj]
+            if MJShrinkMappingUnicodeSet_valid(sm):
+                if combo & 1 != 0:
+                    for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
+                        uu = sm._0[j]
+                        if uu == <uint32_t>-1:
+                            break
+                        for k in range(l):
+                            if c[k].u == uu and not c[k].sv:
+                                break
+                        else:
+                            c[l].u = uu
+                            c[l].v = True
+                            c[l].sv = False
+                            c[l].s = 0
+                            l += 1
+                if combo & 2 != 0:
+                    for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
+                        uu = sm._1[j]
+                        if uu == <uint32_t>-1:
+                            break
+                        for k in range(l):
+                            if c[k].u == uu and not c[k].sv:
+                                break
+                        else:
+                            c[l].u = uu
+                            c[l].v = True
+                            c[l].sv = False
+                            c[l].s = 0
+                            l += 1
+                if combo & 4 != 0:
+                    for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
+                        uu = sm._2[j]
+                        if uu == <uint32_t>-1:
+                            break
+                        for k in range(l):
+                            if c[k].u == uu and not c[k].sv:
+                                break
+                        else:
+                            c[l].u = uu
+                            c[l].v = True
+                            c[l].sv = False
+                            c[l].s = 0
+                            l += 1
+                if combo & 8 != 0:
+                    for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
+                        uu = sm._3[j]
+                        if uu == <uint32_t>-1:
+                            break
+                        for k in range(l):
+                            if c[k].u == uu and not c[k].sv:
+                                break
+                        else:
+                            c[l].u = uu
+                            c[l].v = True
+                            c[l].sv = False
+                            c[l].s = 0
+                            l += 1
+            cmmp += 1
+
+        if l == 0:
+            c[0].u = u
+            c[0].v = True
+            c[0].sv = iv >= 0
+            c[0].s = iv
+            l = 1
+        al[p] = l
+        memcpy(a[p], c, sizeof(UIVSPair[20]))
+        p += 1
+
+    cands.l = p
     cands.a = a
     cands.al = al
     cands.is_ = is_
+
 
 def mj_shrink_candidates(unicode in_, int combo):
     cdef MJShrinkCandidates cands
