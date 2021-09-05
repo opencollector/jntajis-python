@@ -26,7 +26,7 @@ JNTAJIS-python is a transliteration library, specifically designed for dealing w
     import jntajis
     
     print(jntajis.jnta_shrink_translit("麴町"))  # outputs "麹町"
-    print(jntajis.mj_shrink_candidates("髙島屋"))  # outputs ["高島屋", "髙島屋"]
+    print(jntajis.mj_shrink_candidates("髙島屋", jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE))  # outputs ["高島屋", "髙島屋"]
 
 To that end, this library refers to three different character tables; MJ character table, MJ shrink conversion map, and NTA JIS shrink conversion map.
 

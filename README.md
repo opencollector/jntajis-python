@@ -7,7 +7,7 @@ JNTAJIS-python is a transliteration library, specifically designed for dealing w
 ```python
 import jntajis
 
-print(jntajis.mj_shrink_candidates("髙島屋"))  # outputs ["高島屋", "髙島屋"]
+print(jntajis.mj_shrink_candidates("髙島屋", jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE))  # outputs ["高島屋", "髙島屋"]
 print(jntajis.jnta_shrink_translit("麴町"))  # outputs "麹町"
 ```
 
