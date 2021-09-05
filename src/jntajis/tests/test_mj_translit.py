@@ -44,7 +44,7 @@ import jntajis
         (
             "\u9089\U000e0109",
             jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE,
-            ["\u9089"],
+            ["\u9089\U000e0109"],
         ),
         (
             "\u9089",
@@ -59,7 +59,7 @@ import jntajis
         (
             "\u9089\U000e0109",
             jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
-            ["\u9089"],
+            ["\u9089\U000e0109"],
         ),
         (
             "\u9089\U000e010f",

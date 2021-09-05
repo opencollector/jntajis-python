@@ -873,9 +873,12 @@ cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list
 
 
 cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
-    free(cands.a)
-    free(cands.al)
-    free(cands.is_)
+    if cands.a != NULL:
+        free(cands.a)
+    if cands.al != NULL:
+        free(cands.al)
+    if cands.is_ != NULL:
+        free(cands.is_)
 
 
 cdef int resolve_ivs_no(Py_UCS4 n) nogil:
@@ -888,7 +891,7 @@ cdef int resolve_ivs_no(Py_UCS4 n) nogil:
     return -1
 
 
-cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
+cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
     cdef int uk = PyUnicode_KIND(in_)
     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
     cdef void* ud = PyUnicode_DATA(in_)
@@ -899,7 +902,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
     cdef uint32_t uu
     cdef const MJShrinkMappingUnicodeSet* sm
     cdef const MJMappingSet* ms
-    cdef const MJMapping* cmm[10]
+    cdef const MJMapping* cmm[64]
     cdef const MJMapping* mm
     cdef const MJMapping** cmmp
     cdef const MJMapping** cmme
@@ -949,8 +952,16 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                     else:
                         mm = NULL
                     if mm != NULL:
-                        cmme[0] = mm
-                        cmme += 1
+                        cmmp = cmm
+                        while cmmp < cmme:
+                            if cmmp[0] == mm:
+                                break
+                            cmmp += 1
+                        else:
+                            cmme[0] = mm
+                            cmme += 1
+                            if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):
+                                raise MemoryError()
                         break
             else:
                 # search for all candidates
@@ -965,8 +976,16 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
                     else:
                         mm = NULL
                     if mm != NULL:
-                        cmme[0] = mm
-                        cmme += 1
+                        cmmp = cmm
+                        while cmmp < cmme:
+                            if cmmp[0] == mm:
+                                break
+                            cmmp += 1
+                        else:
+                            cmme[0] = mm
+                            cmme += 1
+                            if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):
+                                raise MemoryError()
 
         cmmp = cmm
         while cmmp < cmme:
@@ -1064,6 +1083,7 @@ cdef void MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int co
 
 def mj_shrink_candidates(unicode in_, int combo):
     cdef MJShrinkCandidates cands
+    cands.a = cands.al = cands.is_ = NULL
     retval = []
     try:
         MJShrinkCandidates_init(&cands, in_, combo)
