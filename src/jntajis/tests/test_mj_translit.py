@@ -2,8 +2,7 @@ import pytest
 import jntajis
 
 
-@pytest.mark.parametrize(
-    ("input", "combo", "expected"),
+@pytest.mark.parametrize( ("input", "combo", "expected"),
     [
         # 斎
         (
@@ -107,6 +106,28 @@ import jntajis
             "\u908a\U000e0109",
             jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
             ["\u908a"],
+        ),
+        # 㑐
+        (
+            "\u3450",
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE,
+            ["\u3450"],
+        ),
+        (
+            "\u3450",
+            jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
+            ["\u3450"],
+        ),
+        # あさぼらけ
+        (
+            "\U0002AC2A",
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE,
+            ["\U0002AC2A"],
+        ),
+        (
+            "\U0002AC2A",
+            jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
+            ["\U0002AC2A"],
         ),
     ],
 )
