@@ -90,10 +90,11 @@ The MJ shrink conversion map (*MJ縮退マップ*) was also developed alongside 
 
         Instructs it to transliterate the given characters according to the Family Register Act (戸籍法) and related MOJ notices (*法務省戸籍法関連通達・通知*.)
 
-.. py:function:: mj_shrink_candidates(in_, combo)
+.. py:function:: mj_shrink_candidates(in_, combo, limit=100)
 
     :param str in_: The string to transliterate.
     :param int combo: The transliteration scheme to use. Specify any combination of the members in :py:class:`MJShrinkSchemeCombo`.
+    :param int limit: Maximum number of candidates to return.  Specifying a negative number allows it to calculate all possible combinations, which may end up with memory exhaustion.
     :return: The list of possible transliteration forms built from the cartesian product of candidates for each character.
 
 

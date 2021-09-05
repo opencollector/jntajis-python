@@ -832,7 +832,7 @@ cdef Py_UCS4 to_ivs(int n) nogil:
         return 0xe00f0 + n
 
 
-cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):
+cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li, int limit):
     cdef size_t i
     cdef Py_ssize_t l
     cdef _PyUnicodeWriter w
@@ -840,6 +840,10 @@ cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list
     cdef Py_UCS4 u
 
     while True:
+        if limit >= 0:
+            limit -= 1
+            if limit < 0:
+                break
         _PyUnicodeWriter_Init(&w)
         u = 0
         l = 0
@@ -872,7 +876,7 @@ cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list
             break
 
 
-cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
+cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:
     if cands.a != NULL:
         free(cands.a)
     if cands.al != NULL:
@@ -1081,13 +1085,13 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
     cands.is_ = is_
 
 
-def mj_shrink_candidates(unicode in_, int combo):
+def mj_shrink_candidates(unicode in_, int combo, int limit = 100):
     cdef MJShrinkCandidates cands
     cands.a = cands.al = cands.is_ = NULL
     retval = []
     try:
         MJShrinkCandidates_init(&cands, in_, combo)
-        MJShrinkCandidates_append_candidates(&cands, retval)
+        MJShrinkCandidates_append_candidates(&cands, retval, limit)
     finally:
         MJShrinkCandidates_fini(&cands)
     return retval

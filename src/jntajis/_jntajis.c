@@ -1485,7 +1485,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_JNTAJISShrinkingTransliteratorContex
 static int __pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(MJShrinkMappingUnicodeSet const *); /*proto*/
 static int __pyx_f_7jntajis_8_jntajis_lookup_mj_mapping_table(MJMappingSet const **, uint32_t); /*proto*/
 static Py_UCS4 __pyx_f_7jntajis_8_jntajis_to_ivs(int); /*proto*/
-static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *, PyObject *); /*proto*/
+static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *, PyObject *, int); /*proto*/
 static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *); /*proto*/
 static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4); /*proto*/
 static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *, PyObject *, int); /*proto*/
@@ -1514,6 +1514,7 @@ static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_cands[] = "cands";
 static const char __pyx_k_combo[] = "combo";
 static const char __pyx_k_final[] = "final";
+static const char __pyx_k_limit[] = "limit";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_module[] = "__module__";
@@ -1578,6 +1579,7 @@ static PyObject *__pyx_n_s_jnta_decode;
 static PyObject *__pyx_n_s_jnta_encode;
 static PyObject *__pyx_n_s_jnta_shrink_translit;
 static PyObject *__pyx_n_s_jntajis__jntajis;
+static PyObject *__pyx_n_s_limit;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_metaclass;
 static PyObject *__pyx_n_s_mj_shrink_candidates;
@@ -1610,7 +1612,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_18IncrementalEncoder_14__setstate_c
 static PyObject *__pyx_pf_7jntajis_8_jntajis_jnta_encode(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_in_, int __pyx_v_conv_mode); /* proto */
 static PyObject *__pyx_pf_7jntajis_8_jntajis_2jnta_decode(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_in_); /* proto */
 static PyObject *__pyx_pf_7jntajis_8_jntajis_4jnta_shrink_translit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_in_, PyObject *__pyx_v_replacement, int __pyx_v_passthrough); /* proto */
-static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_in_, int __pyx_v_combo); /* proto */
+static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_in_, int __pyx_v_combo, int __pyx_v_limit); /* proto */
 static PyObject *__pyx_tp_new_7jntajis_8_jntajis_IncrementalEncoder(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_tuple_;
@@ -8467,12 +8469,12 @@ static Py_UCS4 __pyx_f_7jntajis_8_jntajis_to_ivs(int __pyx_v_n) {
 /* "jntajis/_jntajis.pyx":835
  * 
  * 
- * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):             # <<<<<<<<<<<<<<
+ * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li, int limit):             # <<<<<<<<<<<<<<
  *     cdef size_t i
  *     cdef Py_ssize_t l
  */
 
-static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands, PyObject *__pyx_v_li) {
+static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands, PyObject *__pyx_v_li, int __pyx_v_limit) {
   size_t __pyx_v_i;
   Py_ssize_t __pyx_v_l;
   _PyUnicodeWriter __pyx_v_w;
@@ -8480,10 +8482,10 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
   Py_UCS4 __pyx_v_u;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  size_t __pyx_t_1;
+  int __pyx_t_1;
   size_t __pyx_t_2;
   size_t __pyx_t_3;
-  int __pyx_t_4;
+  size_t __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
   int __pyx_t_6;
   size_t __pyx_t_7;
@@ -8496,22 +8498,78 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  *     cdef Py_UCS4 u
  * 
  *     while True:             # <<<<<<<<<<<<<<
- *         _PyUnicodeWriter_Init(&w)
- *         u = 0
+ *         if limit >= 0:
+ *             limit -= 1
  */
   while (1) {
 
     /* "jntajis/_jntajis.pyx":843
  * 
  *     while True:
+ *         if limit >= 0:             # <<<<<<<<<<<<<<
+ *             limit -= 1
+ *             if limit < 0:
+ */
+    __pyx_t_1 = ((__pyx_v_limit >= 0) != 0);
+    if (__pyx_t_1) {
+
+      /* "jntajis/_jntajis.pyx":844
+ *     while True:
+ *         if limit >= 0:
+ *             limit -= 1             # <<<<<<<<<<<<<<
+ *             if limit < 0:
+ *                 break
+ */
+      __pyx_v_limit = (__pyx_v_limit - 1);
+
+      /* "jntajis/_jntajis.pyx":845
+ *         if limit >= 0:
+ *             limit -= 1
+ *             if limit < 0:             # <<<<<<<<<<<<<<
+ *                 break
+ *         _PyUnicodeWriter_Init(&w)
+ */
+      __pyx_t_1 = ((__pyx_v_limit < 0) != 0);
+      if (__pyx_t_1) {
+
+        /* "jntajis/_jntajis.pyx":846
+ *             limit -= 1
+ *             if limit < 0:
+ *                 break             # <<<<<<<<<<<<<<
+ *         _PyUnicodeWriter_Init(&w)
+ *         u = 0
+ */
+        goto __pyx_L4_break;
+
+        /* "jntajis/_jntajis.pyx":845
+ *         if limit >= 0:
+ *             limit -= 1
+ *             if limit < 0:             # <<<<<<<<<<<<<<
+ *                 break
+ *         _PyUnicodeWriter_Init(&w)
+ */
+      }
+
+      /* "jntajis/_jntajis.pyx":843
+ * 
+ *     while True:
+ *         if limit >= 0:             # <<<<<<<<<<<<<<
+ *             limit -= 1
+ *             if limit < 0:
+ */
+    }
+
+    /* "jntajis/_jntajis.pyx":847
+ *             if limit < 0:
+ *                 break
  *         _PyUnicodeWriter_Init(&w)             # <<<<<<<<<<<<<<
  *         u = 0
  *         l = 0
  */
     _PyUnicodeWriter_Init((&__pyx_v_w));
 
-    /* "jntajis/_jntajis.pyx":844
- *     while True:
+    /* "jntajis/_jntajis.pyx":848
+ *                 break
  *         _PyUnicodeWriter_Init(&w)
  *         u = 0             # <<<<<<<<<<<<<<
  *         l = 0
@@ -8519,7 +8577,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
     __pyx_v_u = 0;
 
-    /* "jntajis/_jntajis.pyx":845
+    /* "jntajis/_jntajis.pyx":849
  *         _PyUnicodeWriter_Init(&w)
  *         u = 0
  *         l = 0             # <<<<<<<<<<<<<<
@@ -8528,19 +8586,19 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
     __pyx_v_l = 0;
 
-    /* "jntajis/_jntajis.pyx":846
+    /* "jntajis/_jntajis.pyx":850
  *         u = 0
  *         l = 0
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
  *             c = &cands.a[i][cands.is_[i]]
  *             u = Py_MAX(u, c.u)
  */
-    __pyx_t_1 = __pyx_v_cands->l;
-    __pyx_t_2 = __pyx_t_1;
-    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
-      __pyx_v_i = __pyx_t_3;
+    __pyx_t_2 = __pyx_v_cands->l;
+    __pyx_t_3 = __pyx_t_2;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_i = __pyx_t_4;
 
-      /* "jntajis/_jntajis.pyx":847
+      /* "jntajis/_jntajis.pyx":851
  *         l = 0
  *         for i in range(cands.l):
  *             c = &cands.a[i][cands.is_[i]]             # <<<<<<<<<<<<<<
@@ -8549,7 +8607,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       __pyx_v_c = (&((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]));
 
-      /* "jntajis/_jntajis.pyx":848
+      /* "jntajis/_jntajis.pyx":852
  *         for i in range(cands.l):
  *             c = &cands.a[i][cands.is_[i]]
  *             u = Py_MAX(u, c.u)             # <<<<<<<<<<<<<<
@@ -8558,7 +8616,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       __pyx_v_u = Py_MAX(__pyx_v_u, __pyx_v_c->u);
 
-      /* "jntajis/_jntajis.pyx":849
+      /* "jntajis/_jntajis.pyx":853
  *             c = &cands.a[i][cands.is_[i]]
  *             u = Py_MAX(u, c.u)
  *             l += 1             # <<<<<<<<<<<<<<
@@ -8567,17 +8625,17 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       __pyx_v_l = (__pyx_v_l + 1);
 
-      /* "jntajis/_jntajis.pyx":850
+      /* "jntajis/_jntajis.pyx":854
  *             u = Py_MAX(u, c.u)
  *             l += 1
  *             if c.sv:             # <<<<<<<<<<<<<<
  *                 u = Py_MAX(u, to_ivs(c.s))
  *                 l += 1
  */
-      __pyx_t_4 = (__pyx_v_c->sv != 0);
-      if (__pyx_t_4) {
+      __pyx_t_1 = (__pyx_v_c->sv != 0);
+      if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":851
+        /* "jntajis/_jntajis.pyx":855
  *             l += 1
  *             if c.sv:
  *                 u = Py_MAX(u, to_ivs(c.s))             # <<<<<<<<<<<<<<
@@ -8586,7 +8644,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
         __pyx_v_u = Py_MAX(__pyx_v_u, __pyx_f_7jntajis_8_jntajis_to_ivs(__pyx_v_c->s));
 
-        /* "jntajis/_jntajis.pyx":852
+        /* "jntajis/_jntajis.pyx":856
  *             if c.sv:
  *                 u = Py_MAX(u, to_ivs(c.s))
  *                 l += 1             # <<<<<<<<<<<<<<
@@ -8595,7 +8653,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
         __pyx_v_l = (__pyx_v_l + 1);
 
-        /* "jntajis/_jntajis.pyx":850
+        /* "jntajis/_jntajis.pyx":854
  *             u = Py_MAX(u, c.u)
  *             l += 1
  *             if c.sv:             # <<<<<<<<<<<<<<
@@ -8605,17 +8663,17 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
       }
     }
 
-    /* "jntajis/_jntajis.pyx":854
+    /* "jntajis/_jntajis.pyx":858
  *                 l += 1
  * 
  *         if _PyUnicodeWriter_Prepare(&w, l, u):             # <<<<<<<<<<<<<<
  *             _PyUnicodeWriter_Dealloc(&w)
  *             raise MemoryError()
  */
-    __pyx_t_4 = (_PyUnicodeWriter_Prepare((&__pyx_v_w), __pyx_v_l, __pyx_v_u) != 0);
-    if (unlikely(__pyx_t_4)) {
+    __pyx_t_1 = (_PyUnicodeWriter_Prepare((&__pyx_v_w), __pyx_v_l, __pyx_v_u) != 0);
+    if (unlikely(__pyx_t_1)) {
 
-      /* "jntajis/_jntajis.pyx":855
+      /* "jntajis/_jntajis.pyx":859
  * 
  *         if _PyUnicodeWriter_Prepare(&w, l, u):
  *             _PyUnicodeWriter_Dealloc(&w)             # <<<<<<<<<<<<<<
@@ -8624,16 +8682,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       _PyUnicodeWriter_Dealloc((&__pyx_v_w));
 
-      /* "jntajis/_jntajis.pyx":856
+      /* "jntajis/_jntajis.pyx":860
  *         if _PyUnicodeWriter_Prepare(&w, l, u):
  *             _PyUnicodeWriter_Dealloc(&w)
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         for i in range(cands.l):
  */
-      PyErr_NoMemory(); __PYX_ERR(0, 856, __pyx_L1_error)
+      PyErr_NoMemory(); __PYX_ERR(0, 860, __pyx_L1_error)
 
-      /* "jntajis/_jntajis.pyx":854
+      /* "jntajis/_jntajis.pyx":858
  *                 l += 1
  * 
  *         if _PyUnicodeWriter_Prepare(&w, l, u):             # <<<<<<<<<<<<<<
@@ -8642,19 +8700,19 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
     }
 
-    /* "jntajis/_jntajis.pyx":858
+    /* "jntajis/_jntajis.pyx":862
  *             raise MemoryError()
  * 
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
  *             c = &cands.a[i][cands.is_[i]]
  *             _PyUnicodeWriter_WriteChar(&w, c.u)
  */
-    __pyx_t_1 = __pyx_v_cands->l;
-    __pyx_t_2 = __pyx_t_1;
-    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
-      __pyx_v_i = __pyx_t_3;
+    __pyx_t_2 = __pyx_v_cands->l;
+    __pyx_t_3 = __pyx_t_2;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_i = __pyx_t_4;
 
-      /* "jntajis/_jntajis.pyx":859
+      /* "jntajis/_jntajis.pyx":863
  * 
  *         for i in range(cands.l):
  *             c = &cands.a[i][cands.is_[i]]             # <<<<<<<<<<<<<<
@@ -8663,7 +8721,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       __pyx_v_c = (&((__pyx_v_cands->a[__pyx_v_i])[(__pyx_v_cands->is_[__pyx_v_i])]));
 
-      /* "jntajis/_jntajis.pyx":860
+      /* "jntajis/_jntajis.pyx":864
  *         for i in range(cands.l):
  *             c = &cands.a[i][cands.is_[i]]
  *             _PyUnicodeWriter_WriteChar(&w, c.u)             # <<<<<<<<<<<<<<
@@ -8672,17 +8730,17 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       _PyUnicodeWriter_WriteChar((&__pyx_v_w), __pyx_v_c->u);
 
-      /* "jntajis/_jntajis.pyx":861
+      /* "jntajis/_jntajis.pyx":865
  *             c = &cands.a[i][cands.is_[i]]
  *             _PyUnicodeWriter_WriteChar(&w, c.u)
  *             if c.sv:             # <<<<<<<<<<<<<<
  *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
  * 
  */
-      __pyx_t_4 = (__pyx_v_c->sv != 0);
-      if (__pyx_t_4) {
+      __pyx_t_1 = (__pyx_v_c->sv != 0);
+      if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":862
+        /* "jntajis/_jntajis.pyx":866
  *             _PyUnicodeWriter_WriteChar(&w, c.u)
  *             if c.sv:
  *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))             # <<<<<<<<<<<<<<
@@ -8691,7 +8749,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
         _PyUnicodeWriter_WriteChar((&__pyx_v_w), __pyx_f_7jntajis_8_jntajis_to_ivs(__pyx_v_c->s));
 
-        /* "jntajis/_jntajis.pyx":861
+        /* "jntajis/_jntajis.pyx":865
  *             c = &cands.a[i][cands.is_[i]]
  *             _PyUnicodeWriter_WriteChar(&w, c.u)
  *             if c.sv:             # <<<<<<<<<<<<<<
@@ -8701,7 +8759,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
       }
     }
 
-    /* "jntajis/_jntajis.pyx":864
+    /* "jntajis/_jntajis.pyx":868
  *                 _PyUnicodeWriter_WriteChar(&w, to_ivs(c.s))
  * 
  *         li.append(_PyUnicodeWriter_Finish(&w))             # <<<<<<<<<<<<<<
@@ -8710,26 +8768,26 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
     if (unlikely(__pyx_v_li == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 864, __pyx_L1_error)
+      __PYX_ERR(0, 868, __pyx_L1_error)
     }
-    __pyx_t_5 = _PyUnicodeWriter_Finish((&__pyx_v_w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_5 = _PyUnicodeWriter_Finish((&__pyx_v_w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 868, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_li, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_li, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 868, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "jntajis/_jntajis.pyx":866
+    /* "jntajis/_jntajis.pyx":870
  *         li.append(_PyUnicodeWriter_Finish(&w))
  * 
  *         for i in range(cands.l):             # <<<<<<<<<<<<<<
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:
  */
-    __pyx_t_1 = __pyx_v_cands->l;
-    __pyx_t_2 = __pyx_t_1;
-    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
-      __pyx_v_i = __pyx_t_3;
+    __pyx_t_2 = __pyx_v_cands->l;
+    __pyx_t_3 = __pyx_t_2;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_i = __pyx_t_4;
 
-      /* "jntajis/_jntajis.pyx":867
+      /* "jntajis/_jntajis.pyx":871
  * 
  *         for i in range(cands.l):
  *             cands.is_[i] += 1             # <<<<<<<<<<<<<<
@@ -8739,26 +8797,26 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
       __pyx_t_7 = __pyx_v_i;
       (__pyx_v_cands->is_[__pyx_t_7]) = ((__pyx_v_cands->is_[__pyx_t_7]) + 1);
 
-      /* "jntajis/_jntajis.pyx":868
+      /* "jntajis/_jntajis.pyx":872
  *         for i in range(cands.l):
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:             # <<<<<<<<<<<<<<
  *                 break
  *             cands.is_[i] = 0
  */
-      __pyx_t_4 = (((__pyx_v_cands->is_[__pyx_v_i]) < (__pyx_v_cands->al[__pyx_v_i])) != 0);
-      if (__pyx_t_4) {
+      __pyx_t_1 = (((__pyx_v_cands->is_[__pyx_v_i]) < (__pyx_v_cands->al[__pyx_v_i])) != 0);
+      if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":869
+        /* "jntajis/_jntajis.pyx":873
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:
  *                 break             # <<<<<<<<<<<<<<
  *             cands.is_[i] = 0
  *         else:
  */
-        goto __pyx_L13_break;
+        goto __pyx_L15_break;
 
-        /* "jntajis/_jntajis.pyx":868
+        /* "jntajis/_jntajis.pyx":872
  *         for i in range(cands.l):
  *             cands.is_[i] += 1
  *             if cands.is_[i] < cands.al[i]:             # <<<<<<<<<<<<<<
@@ -8767,7 +8825,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       }
 
-      /* "jntajis/_jntajis.pyx":870
+      /* "jntajis/_jntajis.pyx":874
  *             if cands.is_[i] < cands.al[i]:
  *                 break
  *             cands.is_[i] = 0             # <<<<<<<<<<<<<<
@@ -8778,7 +8836,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
     }
     /*else*/ {
 
-      /* "jntajis/_jntajis.pyx":872
+      /* "jntajis/_jntajis.pyx":876
  *             cands.is_[i] = 0
  *         else:
  *             break             # <<<<<<<<<<<<<<
@@ -8787,14 +8845,14 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
  */
       goto __pyx_L4_break;
     }
-    __pyx_L13_break:;
+    __pyx_L15_break:;
   }
   __pyx_L4_break:;
 
   /* "jntajis/_jntajis.pyx":835
  * 
  * 
- * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li):             # <<<<<<<<<<<<<<
+ * cdef object MJShrinkCandidates_append_candidates(MJShrinkCandidates* cands, list li, int limit):             # <<<<<<<<<<<<<<
  *     cdef size_t i
  *     cdef Py_ssize_t l
  */
@@ -8812,22 +8870,20 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":875
+/* "jntajis/_jntajis.pyx":879
  * 
  * 
- * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):             # <<<<<<<<<<<<<<
+ * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:             # <<<<<<<<<<<<<<
  *     if cands.a != NULL:
  *         free(cands.a)
  */
 
 static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_8_jntajis_MJShrinkCandidates *__pyx_v_cands) {
-  __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  __Pyx_RefNannySetupContext("MJShrinkCandidates_fini", 0);
 
-  /* "jntajis/_jntajis.pyx":876
+  /* "jntajis/_jntajis.pyx":880
  * 
- * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
+ * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:
  *     if cands.a != NULL:             # <<<<<<<<<<<<<<
  *         free(cands.a)
  *     if cands.al != NULL:
@@ -8835,8 +8891,8 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_cands->a != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":877
- * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
+    /* "jntajis/_jntajis.pyx":881
+ * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:
  *     if cands.a != NULL:
  *         free(cands.a)             # <<<<<<<<<<<<<<
  *     if cands.al != NULL:
@@ -8844,16 +8900,16 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
     free(__pyx_v_cands->a);
 
-    /* "jntajis/_jntajis.pyx":876
+    /* "jntajis/_jntajis.pyx":880
  * 
- * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):
+ * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:
  *     if cands.a != NULL:             # <<<<<<<<<<<<<<
  *         free(cands.a)
  *     if cands.al != NULL:
  */
   }
 
-  /* "jntajis/_jntajis.pyx":878
+  /* "jntajis/_jntajis.pyx":882
  *     if cands.a != NULL:
  *         free(cands.a)
  *     if cands.al != NULL:             # <<<<<<<<<<<<<<
@@ -8863,7 +8919,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_cands->al != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":879
+    /* "jntajis/_jntajis.pyx":883
  *         free(cands.a)
  *     if cands.al != NULL:
  *         free(cands.al)             # <<<<<<<<<<<<<<
@@ -8872,7 +8928,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
     free(__pyx_v_cands->al);
 
-    /* "jntajis/_jntajis.pyx":878
+    /* "jntajis/_jntajis.pyx":882
  *     if cands.a != NULL:
  *         free(cands.a)
  *     if cands.al != NULL:             # <<<<<<<<<<<<<<
@@ -8881,7 +8937,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
   }
 
-  /* "jntajis/_jntajis.pyx":880
+  /* "jntajis/_jntajis.pyx":884
  *     if cands.al != NULL:
  *         free(cands.al)
  *     if cands.is_ != NULL:             # <<<<<<<<<<<<<<
@@ -8891,7 +8947,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
   __pyx_t_1 = ((__pyx_v_cands->is_ != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":881
+    /* "jntajis/_jntajis.pyx":885
  *         free(cands.al)
  *     if cands.is_ != NULL:
  *         free(cands.is_)             # <<<<<<<<<<<<<<
@@ -8900,7 +8956,7 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
     free(__pyx_v_cands->is_);
 
-    /* "jntajis/_jntajis.pyx":880
+    /* "jntajis/_jntajis.pyx":884
  *     if cands.al != NULL:
  *         free(cands.al)
  *     if cands.is_ != NULL:             # <<<<<<<<<<<<<<
@@ -8909,19 +8965,18 @@ static void __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_fini(__pyx_t_7jntajis_
  */
   }
 
-  /* "jntajis/_jntajis.pyx":875
+  /* "jntajis/_jntajis.pyx":879
  * 
  * 
- * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands):             # <<<<<<<<<<<<<<
+ * cdef void MJShrinkCandidates_fini(MJShrinkCandidates* cands) nogil:             # <<<<<<<<<<<<<<
  *     if cands.a != NULL:
  *         free(cands.a)
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
-/* "jntajis/_jntajis.pyx":884
+/* "jntajis/_jntajis.pyx":888
  * 
  * 
  * cdef int resolve_ivs_no(Py_UCS4 n) nogil:             # <<<<<<<<<<<<<<
@@ -8934,7 +8989,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "jntajis/_jntajis.pyx":886
+  /* "jntajis/_jntajis.pyx":890
  * cdef int resolve_ivs_no(Py_UCS4 n) nogil:
  *     # VS1 to VS16
  *     if n >= 0xfe00 and n < 0xfe10:             # <<<<<<<<<<<<<<
@@ -8952,7 +9007,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":887
+    /* "jntajis/_jntajis.pyx":891
  *     # VS1 to VS16
  *     if n >= 0xfe00 and n < 0xfe10:
  *         return <int>n - <int>0xfe00             # <<<<<<<<<<<<<<
@@ -8962,7 +9017,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
     __pyx_r = (((int)__pyx_v_n) - ((int)0xfe00));
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":886
+    /* "jntajis/_jntajis.pyx":890
  * cdef int resolve_ivs_no(Py_UCS4 n) nogil:
  *     # VS1 to VS16
  *     if n >= 0xfe00 and n < 0xfe10:             # <<<<<<<<<<<<<<
@@ -8971,7 +9026,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
  */
   }
 
-  /* "jntajis/_jntajis.pyx":889
+  /* "jntajis/_jntajis.pyx":893
  *         return <int>n - <int>0xfe00
  *     # VS17 to VS256
  *     if n >= 0xe0100 and n < 0xe01f0:             # <<<<<<<<<<<<<<
@@ -8989,7 +9044,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "jntajis/_jntajis.pyx":890
+    /* "jntajis/_jntajis.pyx":894
  *     # VS17 to VS256
  *     if n >= 0xe0100 and n < 0xe01f0:
  *         return <int>n - <int>0xe00f0             # <<<<<<<<<<<<<<
@@ -8999,7 +9054,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
     __pyx_r = (((int)__pyx_v_n) - ((int)0xe00f0));
     goto __pyx_L0;
 
-    /* "jntajis/_jntajis.pyx":889
+    /* "jntajis/_jntajis.pyx":893
  *         return <int>n - <int>0xfe00
  *     # VS17 to VS256
  *     if n >= 0xe0100 and n < 0xe01f0:             # <<<<<<<<<<<<<<
@@ -9008,7 +9063,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
  */
   }
 
-  /* "jntajis/_jntajis.pyx":891
+  /* "jntajis/_jntajis.pyx":895
  *     if n >= 0xe0100 and n < 0xe01f0:
  *         return <int>n - <int>0xe00f0
  *     return -1             # <<<<<<<<<<<<<<
@@ -9018,7 +9073,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
   __pyx_r = -1;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":884
+  /* "jntajis/_jntajis.pyx":888
  * 
  * 
  * cdef int resolve_ivs_no(Py_UCS4 n) nogil:             # <<<<<<<<<<<<<<
@@ -9031,7 +9086,7 @@ static int __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(Py_UCS4 __pyx_v_n) {
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":894
+/* "jntajis/_jntajis.pyx":898
  * 
  * 
  * cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):             # <<<<<<<<<<<<<<
@@ -9078,7 +9133,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("MJShrinkCandidates_init", 0);
 
-  /* "jntajis/_jntajis.pyx":895
+  /* "jntajis/_jntajis.pyx":899
  * 
  * cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
  *     cdef int uk = PyUnicode_KIND(in_)             # <<<<<<<<<<<<<<
@@ -9087,7 +9142,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_uk = PyUnicode_KIND(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":896
+  /* "jntajis/_jntajis.pyx":900
  * cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
  *     cdef int uk = PyUnicode_KIND(in_)
  *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)             # <<<<<<<<<<<<<<
@@ -9096,7 +9151,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_ul = PyUnicode_GET_LENGTH(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":897
+  /* "jntajis/_jntajis.pyx":901
  *     cdef int uk = PyUnicode_KIND(in_)
  *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  *     cdef void* ud = PyUnicode_DATA(in_)             # <<<<<<<<<<<<<<
@@ -9105,7 +9160,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_ud = PyUnicode_DATA(__pyx_v_in_);
 
-  /* "jntajis/_jntajis.pyx":898
+  /* "jntajis/_jntajis.pyx":902
  *     cdef Py_ssize_t ul = PyUnicode_GET_LENGTH(in_)
  *     cdef void* ud = PyUnicode_DATA(in_)
  *     cdef Py_ssize_t i = 0             # <<<<<<<<<<<<<<
@@ -9114,7 +9169,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_i = 0;
 
-  /* "jntajis/_jntajis.pyx":914
+  /* "jntajis/_jntajis.pyx":918
  *     cdef size_t* is_
  * 
  *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))             # <<<<<<<<<<<<<<
@@ -9123,7 +9178,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_a = ((UIVSPair (*)[20])calloc(__pyx_v_ul, (sizeof(UIVSPair [20]))));
 
-  /* "jntajis/_jntajis.pyx":915
+  /* "jntajis/_jntajis.pyx":919
  * 
  *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:             # <<<<<<<<<<<<<<
@@ -9133,16 +9188,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
   __pyx_t_1 = ((__pyx_v_a == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":916
+    /* "jntajis/_jntajis.pyx":920
  *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 916, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 920, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":915
+    /* "jntajis/_jntajis.pyx":919
  * 
  *     a = <UIVSPair[20]*>calloc(ul, sizeof(UIVSPair[20]))
  *     if a == NULL:             # <<<<<<<<<<<<<<
@@ -9151,7 +9206,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   }
 
-  /* "jntajis/_jntajis.pyx":917
+  /* "jntajis/_jntajis.pyx":921
  *     if a == NULL:
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))             # <<<<<<<<<<<<<<
@@ -9160,7 +9215,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_al = ((size_t *)calloc(__pyx_v_ul, (sizeof(size_t))));
 
-  /* "jntajis/_jntajis.pyx":918
+  /* "jntajis/_jntajis.pyx":922
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:             # <<<<<<<<<<<<<<
@@ -9170,7 +9225,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
   __pyx_t_1 = ((__pyx_v_al == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":919
+    /* "jntajis/_jntajis.pyx":923
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:
  *         free(a)             # <<<<<<<<<<<<<<
@@ -9179,16 +9234,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     free(__pyx_v_a);
 
-    /* "jntajis/_jntajis.pyx":920
+    /* "jntajis/_jntajis.pyx":924
  *     if al == NULL:
  *         free(a)
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 920, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 924, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":918
+    /* "jntajis/_jntajis.pyx":922
  *         raise MemoryError()
  *     al = <size_t*>calloc(ul, sizeof(size_t))
  *     if al == NULL:             # <<<<<<<<<<<<<<
@@ -9197,7 +9252,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   }
 
-  /* "jntajis/_jntajis.pyx":921
+  /* "jntajis/_jntajis.pyx":925
  *         free(a)
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))             # <<<<<<<<<<<<<<
@@ -9206,7 +9261,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_is_ = ((size_t *)calloc(__pyx_v_ul, (sizeof(size_t))));
 
-  /* "jntajis/_jntajis.pyx":922
+  /* "jntajis/_jntajis.pyx":926
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:             # <<<<<<<<<<<<<<
@@ -9216,7 +9271,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
   __pyx_t_1 = ((__pyx_v_is_ == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "jntajis/_jntajis.pyx":923
+    /* "jntajis/_jntajis.pyx":927
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:
  *         free(al)             # <<<<<<<<<<<<<<
@@ -9225,7 +9280,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     free(__pyx_v_al);
 
-    /* "jntajis/_jntajis.pyx":924
+    /* "jntajis/_jntajis.pyx":928
  *     if is_ == NULL:
  *         free(al)
  *         free(a)             # <<<<<<<<<<<<<<
@@ -9234,16 +9289,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     free(__pyx_v_a);
 
-    /* "jntajis/_jntajis.pyx":925
+    /* "jntajis/_jntajis.pyx":929
  *         free(al)
  *         free(a)
  *         raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     p = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 925, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 929, __pyx_L1_error)
 
-    /* "jntajis/_jntajis.pyx":922
+    /* "jntajis/_jntajis.pyx":926
  *         raise MemoryError()
  *     is_ = <size_t*>calloc(ul, sizeof(size_t))
  *     if is_ == NULL:             # <<<<<<<<<<<<<<
@@ -9252,7 +9307,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   }
 
-  /* "jntajis/_jntajis.pyx":927
+  /* "jntajis/_jntajis.pyx":931
  *         raise MemoryError()
  * 
  *     p = 0             # <<<<<<<<<<<<<<
@@ -9261,7 +9316,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_p = 0;
 
-  /* "jntajis/_jntajis.pyx":928
+  /* "jntajis/_jntajis.pyx":932
  * 
  *     p = 0
  *     while i < ul:             # <<<<<<<<<<<<<<
@@ -9272,7 +9327,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
     __pyx_t_1 = ((__pyx_v_i < __pyx_v_ul) != 0);
     if (!__pyx_t_1) break;
 
-    /* "jntajis/_jntajis.pyx":929
+    /* "jntajis/_jntajis.pyx":933
  *     p = 0
  *     while i < ul:
  *         is_[p] = 0             # <<<<<<<<<<<<<<
@@ -9281,7 +9336,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     (__pyx_v_is_[__pyx_v_p]) = 0;
 
-    /* "jntajis/_jntajis.pyx":930
+    /* "jntajis/_jntajis.pyx":934
  *     while i < ul:
  *         is_[p] = 0
  *         l = 0             # <<<<<<<<<<<<<<
@@ -9290,7 +9345,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_l = 0;
 
-    /* "jntajis/_jntajis.pyx":931
+    /* "jntajis/_jntajis.pyx":935
  *         is_[p] = 0
  *         l = 0
  *         iv = -1             # <<<<<<<<<<<<<<
@@ -9299,7 +9354,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_iv = -1;
 
-    /* "jntajis/_jntajis.pyx":932
+    /* "jntajis/_jntajis.pyx":936
  *         l = 0
  *         iv = -1
  *         u = PyUnicode_READ(uk, ud, i)             # <<<<<<<<<<<<<<
@@ -9308,7 +9363,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_u = PyUnicode_READ(__pyx_v_uk, __pyx_v_ud, __pyx_v_i);
 
-    /* "jntajis/_jntajis.pyx":933
+    /* "jntajis/_jntajis.pyx":937
  *         iv = -1
  *         u = PyUnicode_READ(uk, ud, i)
  *         i += 1             # <<<<<<<<<<<<<<
@@ -9317,7 +9372,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_i = (__pyx_v_i + 1);
 
-    /* "jntajis/_jntajis.pyx":934
+    /* "jntajis/_jntajis.pyx":938
  *         u = PyUnicode_READ(uk, ud, i)
  *         i += 1
  *         if i < ul:             # <<<<<<<<<<<<<<
@@ -9327,7 +9382,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
     __pyx_t_1 = ((__pyx_v_i < __pyx_v_ul) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":935
+      /* "jntajis/_jntajis.pyx":939
  *         i += 1
  *         if i < ul:
  *             nu = PyUnicode_READ(uk, ud, i)             # <<<<<<<<<<<<<<
@@ -9336,7 +9391,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       __pyx_v_nu = PyUnicode_READ(__pyx_v_uk, __pyx_v_ud, __pyx_v_i);
 
-      /* "jntajis/_jntajis.pyx":936
+      /* "jntajis/_jntajis.pyx":940
  *         if i < ul:
  *             nu = PyUnicode_READ(uk, ud, i)
  *             iv = resolve_ivs_no(nu)             # <<<<<<<<<<<<<<
@@ -9345,7 +9400,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       __pyx_v_iv = __pyx_f_7jntajis_8_jntajis_resolve_ivs_no(__pyx_v_nu);
 
-      /* "jntajis/_jntajis.pyx":937
+      /* "jntajis/_jntajis.pyx":941
  *             nu = PyUnicode_READ(uk, ud, i)
  *             iv = resolve_ivs_no(nu)
  *             if iv >= 0:             # <<<<<<<<<<<<<<
@@ -9355,7 +9410,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       __pyx_t_1 = ((__pyx_v_iv >= 0) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":938
+        /* "jntajis/_jntajis.pyx":942
  *             iv = resolve_ivs_no(nu)
  *             if iv >= 0:
  *                 i += 1             # <<<<<<<<<<<<<<
@@ -9364,7 +9419,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         __pyx_v_i = (__pyx_v_i + 1);
 
-        /* "jntajis/_jntajis.pyx":937
+        /* "jntajis/_jntajis.pyx":941
  *             nu = PyUnicode_READ(uk, ud, i)
  *             iv = resolve_ivs_no(nu)
  *             if iv >= 0:             # <<<<<<<<<<<<<<
@@ -9373,7 +9428,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       }
 
-      /* "jntajis/_jntajis.pyx":934
+      /* "jntajis/_jntajis.pyx":938
  *         u = PyUnicode_READ(uk, ud, i)
  *         i += 1
  *         if i < ul:             # <<<<<<<<<<<<<<
@@ -9382,7 +9437,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     }
 
-    /* "jntajis/_jntajis.pyx":940
+    /* "jntajis/_jntajis.pyx":944
  *                 i += 1
  * 
  *         cmme = cmm             # <<<<<<<<<<<<<<
@@ -9391,7 +9446,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_cmme = __pyx_v_cmm;
 
-    /* "jntajis/_jntajis.pyx":941
+    /* "jntajis/_jntajis.pyx":945
  * 
  *         cmme = cmm
  *         if lookup_mj_mapping_table(&ms, u):             # <<<<<<<<<<<<<<
@@ -9401,7 +9456,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
     __pyx_t_1 = (__pyx_f_7jntajis_8_jntajis_lookup_mj_mapping_table((&__pyx_v_ms), __pyx_v_u) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":942
+      /* "jntajis/_jntajis.pyx":946
  *         cmme = cmm
  *         if lookup_mj_mapping_table(&ms, u):
  *             if iv >= 0:             # <<<<<<<<<<<<<<
@@ -9411,7 +9466,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       __pyx_t_1 = ((__pyx_v_iv >= 0) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":944
+        /* "jntajis/_jntajis.pyx":948
  *             if iv >= 0:
  *                 # expecting exact match
  *                 for j in range(ms.l):             # <<<<<<<<<<<<<<
@@ -9423,7 +9478,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
           __pyx_v_j = __pyx_t_4;
 
-          /* "jntajis/_jntajis.pyx":945
+          /* "jntajis/_jntajis.pyx":949
  *                 # expecting exact match
  *                 for j in range(ms.l):
  *                     mm = &ms.ms[j]             # <<<<<<<<<<<<<<
@@ -9432,7 +9487,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
           __pyx_v_mm = (&(__pyx_v_ms->ms[__pyx_v_j]));
 
-          /* "jntajis/_jntajis.pyx":946
+          /* "jntajis/_jntajis.pyx":950
  *                 for j in range(ms.l):
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
@@ -9444,7 +9499,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
             __pyx_v_k = __pyx_t_7;
 
-            /* "jntajis/_jntajis.pyx":947
+            /* "jntajis/_jntajis.pyx":951
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
@@ -9454,7 +9509,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_k]).v != 0)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":948
+              /* "jntajis/_jntajis.pyx":952
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:
  *                             mm = NULL             # <<<<<<<<<<<<<<
@@ -9463,7 +9518,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               __pyx_v_mm = NULL;
 
-              /* "jntajis/_jntajis.pyx":949
+              /* "jntajis/_jntajis.pyx":953
  *                         if not mm.v[k].v:
  *                             mm = NULL
  *                             break             # <<<<<<<<<<<<<<
@@ -9472,7 +9527,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L15_break;
 
-              /* "jntajis/_jntajis.pyx":947
+              /* "jntajis/_jntajis.pyx":951
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
@@ -9481,7 +9536,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":950
+            /* "jntajis/_jntajis.pyx":954
  *                             mm = NULL
  *                             break
  *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:             # <<<<<<<<<<<<<<
@@ -9505,7 +9560,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_L18_bool_binop_done:;
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":951
+              /* "jntajis/_jntajis.pyx":955
  *                             break
  *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:
  *                             break             # <<<<<<<<<<<<<<
@@ -9514,7 +9569,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L15_break;
 
-              /* "jntajis/_jntajis.pyx":950
+              /* "jntajis/_jntajis.pyx":954
  *                             mm = NULL
  *                             break
  *                         if mm.v[k].u == u and mm.v[k].sv and mm.v[k].s == iv:             # <<<<<<<<<<<<<<
@@ -9525,7 +9580,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           /*else*/ {
 
-            /* "jntajis/_jntajis.pyx":953
+            /* "jntajis/_jntajis.pyx":957
  *                             break
  *                     else:
  *                         mm = NULL             # <<<<<<<<<<<<<<
@@ -9536,7 +9591,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L15_break:;
 
-          /* "jntajis/_jntajis.pyx":954
+          /* "jntajis/_jntajis.pyx":958
  *                     else:
  *                         mm = NULL
  *                     if mm != NULL:             # <<<<<<<<<<<<<<
@@ -9546,7 +9601,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           __pyx_t_1 = ((__pyx_v_mm != NULL) != 0);
           if (__pyx_t_1) {
 
-            /* "jntajis/_jntajis.pyx":955
+            /* "jntajis/_jntajis.pyx":959
  *                         mm = NULL
  *                     if mm != NULL:
  *                         cmmp = cmm             # <<<<<<<<<<<<<<
@@ -9555,7 +9610,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_cmmp = __pyx_v_cmm;
 
-            /* "jntajis/_jntajis.pyx":956
+            /* "jntajis/_jntajis.pyx":960
  *                     if mm != NULL:
  *                         cmmp = cmm
  *                         while cmmp < cmme:             # <<<<<<<<<<<<<<
@@ -9566,7 +9621,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = ((__pyx_v_cmmp < __pyx_v_cmme) != 0);
               if (!__pyx_t_1) break;
 
-              /* "jntajis/_jntajis.pyx":957
+              /* "jntajis/_jntajis.pyx":961
  *                         cmmp = cmm
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:             # <<<<<<<<<<<<<<
@@ -9576,7 +9631,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = (((__pyx_v_cmmp[0]) == __pyx_v_mm) != 0);
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":958
+                /* "jntajis/_jntajis.pyx":962
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:
  *                                 break             # <<<<<<<<<<<<<<
@@ -9585,7 +9640,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L23_break;
 
-                /* "jntajis/_jntajis.pyx":957
+                /* "jntajis/_jntajis.pyx":961
  *                         cmmp = cmm
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:             # <<<<<<<<<<<<<<
@@ -9594,7 +9649,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               }
 
-              /* "jntajis/_jntajis.pyx":959
+              /* "jntajis/_jntajis.pyx":963
  *                             if cmmp[0] == mm:
  *                                 break
  *                             cmmp += 1             # <<<<<<<<<<<<<<
@@ -9604,7 +9659,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_v_cmmp = (__pyx_v_cmmp + 1);
             }
 
-            /* "jntajis/_jntajis.pyx":961
+            /* "jntajis/_jntajis.pyx":965
  *                             cmmp += 1
  *                         else:
  *                             cmme[0] = mm             # <<<<<<<<<<<<<<
@@ -9614,7 +9669,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             /*else*/ {
               (__pyx_v_cmme[0]) = __pyx_v_mm;
 
-              /* "jntajis/_jntajis.pyx":962
+              /* "jntajis/_jntajis.pyx":966
  *                         else:
  *                             cmme[0] = mm
  *                             cmme += 1             # <<<<<<<<<<<<<<
@@ -9623,7 +9678,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               __pyx_v_cmme = (__pyx_v_cmme + 1);
 
-              /* "jntajis/_jntajis.pyx":963
+              /* "jntajis/_jntajis.pyx":967
  *                             cmme[0] = mm
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):             # <<<<<<<<<<<<<<
@@ -9633,16 +9688,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = ((__pyx_v_cmme >= (__pyx_v_cmm + ((sizeof(__pyx_v_cmm)) / (sizeof((__pyx_v_cmm[0])))))) != 0);
               if (unlikely(__pyx_t_1)) {
 
-                /* "jntajis/_jntajis.pyx":964
+                /* "jntajis/_jntajis.pyx":968
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):
  *                                 raise MemoryError()             # <<<<<<<<<<<<<<
  *                         break
  *             else:
  */
-                PyErr_NoMemory(); __PYX_ERR(0, 964, __pyx_L1_error)
+                PyErr_NoMemory(); __PYX_ERR(0, 968, __pyx_L1_error)
 
-                /* "jntajis/_jntajis.pyx":963
+                /* "jntajis/_jntajis.pyx":967
  *                             cmme[0] = mm
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):             # <<<<<<<<<<<<<<
@@ -9653,7 +9708,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             __pyx_L23_break:;
 
-            /* "jntajis/_jntajis.pyx":965
+            /* "jntajis/_jntajis.pyx":969
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):
  *                                 raise MemoryError()
  *                         break             # <<<<<<<<<<<<<<
@@ -9662,7 +9717,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             goto __pyx_L13_break;
 
-            /* "jntajis/_jntajis.pyx":954
+            /* "jntajis/_jntajis.pyx":958
  *                     else:
  *                         mm = NULL
  *                     if mm != NULL:             # <<<<<<<<<<<<<<
@@ -9673,7 +9728,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         }
         __pyx_L13_break:;
 
-        /* "jntajis/_jntajis.pyx":942
+        /* "jntajis/_jntajis.pyx":946
  *         cmme = cmm
  *         if lookup_mj_mapping_table(&ms, u):
  *             if iv >= 0:             # <<<<<<<<<<<<<<
@@ -9683,7 +9738,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         goto __pyx_L11;
       }
 
-      /* "jntajis/_jntajis.pyx":968
+      /* "jntajis/_jntajis.pyx":972
  *             else:
  *                 # search for all candidates
  *                 for j in range(ms.l):             # <<<<<<<<<<<<<<
@@ -9696,7 +9751,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
           __pyx_v_j = __pyx_t_4;
 
-          /* "jntajis/_jntajis.pyx":969
+          /* "jntajis/_jntajis.pyx":973
  *                 # search for all candidates
  *                 for j in range(ms.l):
  *                     mm = &ms.ms[j]             # <<<<<<<<<<<<<<
@@ -9705,7 +9760,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
           __pyx_v_mm = (&(__pyx_v_ms->ms[__pyx_v_j]));
 
-          /* "jntajis/_jntajis.pyx":970
+          /* "jntajis/_jntajis.pyx":974
  *                 for j in range(ms.l):
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
@@ -9717,7 +9772,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
             __pyx_v_k = __pyx_t_7;
 
-            /* "jntajis/_jntajis.pyx":971
+            /* "jntajis/_jntajis.pyx":975
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
@@ -9727,7 +9782,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_k]).v != 0)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":972
+              /* "jntajis/_jntajis.pyx":976
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:
  *                             mm = NULL             # <<<<<<<<<<<<<<
@@ -9736,7 +9791,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               __pyx_v_mm = NULL;
 
-              /* "jntajis/_jntajis.pyx":973
+              /* "jntajis/_jntajis.pyx":977
  *                         if not mm.v[k].v:
  *                             mm = NULL
  *                             break             # <<<<<<<<<<<<<<
@@ -9745,7 +9800,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L29_break;
 
-              /* "jntajis/_jntajis.pyx":971
+              /* "jntajis/_jntajis.pyx":975
  *                     mm = &ms.ms[j]
  *                     for k in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                         if not mm.v[k].v:             # <<<<<<<<<<<<<<
@@ -9754,7 +9809,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":974
+            /* "jntajis/_jntajis.pyx":978
  *                             mm = NULL
  *                             break
  *                         if mm.v[k].u == u and not mm.v[k].sv:             # <<<<<<<<<<<<<<
@@ -9772,7 +9827,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_L32_bool_binop_done:;
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":975
+              /* "jntajis/_jntajis.pyx":979
  *                             break
  *                         if mm.v[k].u == u and not mm.v[k].sv:
  *                             break             # <<<<<<<<<<<<<<
@@ -9781,7 +9836,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L29_break;
 
-              /* "jntajis/_jntajis.pyx":974
+              /* "jntajis/_jntajis.pyx":978
  *                             mm = NULL
  *                             break
  *                         if mm.v[k].u == u and not mm.v[k].sv:             # <<<<<<<<<<<<<<
@@ -9792,7 +9847,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           /*else*/ {
 
-            /* "jntajis/_jntajis.pyx":977
+            /* "jntajis/_jntajis.pyx":981
  *                             break
  *                     else:
  *                         mm = NULL             # <<<<<<<<<<<<<<
@@ -9803,7 +9858,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L29_break:;
 
-          /* "jntajis/_jntajis.pyx":978
+          /* "jntajis/_jntajis.pyx":982
  *                     else:
  *                         mm = NULL
  *                     if mm != NULL:             # <<<<<<<<<<<<<<
@@ -9813,7 +9868,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           __pyx_t_1 = ((__pyx_v_mm != NULL) != 0);
           if (__pyx_t_1) {
 
-            /* "jntajis/_jntajis.pyx":979
+            /* "jntajis/_jntajis.pyx":983
  *                         mm = NULL
  *                     if mm != NULL:
  *                         cmmp = cmm             # <<<<<<<<<<<<<<
@@ -9822,7 +9877,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_cmmp = __pyx_v_cmm;
 
-            /* "jntajis/_jntajis.pyx":980
+            /* "jntajis/_jntajis.pyx":984
  *                     if mm != NULL:
  *                         cmmp = cmm
  *                         while cmmp < cmme:             # <<<<<<<<<<<<<<
@@ -9833,7 +9888,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = ((__pyx_v_cmmp < __pyx_v_cmme) != 0);
               if (!__pyx_t_1) break;
 
-              /* "jntajis/_jntajis.pyx":981
+              /* "jntajis/_jntajis.pyx":985
  *                         cmmp = cmm
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:             # <<<<<<<<<<<<<<
@@ -9843,7 +9898,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = (((__pyx_v_cmmp[0]) == __pyx_v_mm) != 0);
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":982
+                /* "jntajis/_jntajis.pyx":986
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:
  *                                 break             # <<<<<<<<<<<<<<
@@ -9852,7 +9907,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L36_break;
 
-                /* "jntajis/_jntajis.pyx":981
+                /* "jntajis/_jntajis.pyx":985
  *                         cmmp = cmm
  *                         while cmmp < cmme:
  *                             if cmmp[0] == mm:             # <<<<<<<<<<<<<<
@@ -9861,7 +9916,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               }
 
-              /* "jntajis/_jntajis.pyx":983
+              /* "jntajis/_jntajis.pyx":987
  *                             if cmmp[0] == mm:
  *                                 break
  *                             cmmp += 1             # <<<<<<<<<<<<<<
@@ -9871,7 +9926,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_v_cmmp = (__pyx_v_cmmp + 1);
             }
 
-            /* "jntajis/_jntajis.pyx":985
+            /* "jntajis/_jntajis.pyx":989
  *                             cmmp += 1
  *                         else:
  *                             cmme[0] = mm             # <<<<<<<<<<<<<<
@@ -9881,7 +9936,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             /*else*/ {
               (__pyx_v_cmme[0]) = __pyx_v_mm;
 
-              /* "jntajis/_jntajis.pyx":986
+              /* "jntajis/_jntajis.pyx":990
  *                         else:
  *                             cmme[0] = mm
  *                             cmme += 1             # <<<<<<<<<<<<<<
@@ -9890,7 +9945,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               __pyx_v_cmme = (__pyx_v_cmme + 1);
 
-              /* "jntajis/_jntajis.pyx":987
+              /* "jntajis/_jntajis.pyx":991
  *                             cmme[0] = mm
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):             # <<<<<<<<<<<<<<
@@ -9900,16 +9955,16 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_t_1 = ((__pyx_v_cmme >= (__pyx_v_cmm + ((sizeof(__pyx_v_cmm)) / (sizeof((__pyx_v_cmm[0])))))) != 0);
               if (unlikely(__pyx_t_1)) {
 
-                /* "jntajis/_jntajis.pyx":988
+                /* "jntajis/_jntajis.pyx":992
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):
  *                                 raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cmmp = cmm
  */
-                PyErr_NoMemory(); __PYX_ERR(0, 988, __pyx_L1_error)
+                PyErr_NoMemory(); __PYX_ERR(0, 992, __pyx_L1_error)
 
-                /* "jntajis/_jntajis.pyx":987
+                /* "jntajis/_jntajis.pyx":991
  *                             cmme[0] = mm
  *                             cmme += 1
  *                             if cmme >= cmm + sizeof(cmm) / sizeof(cmm[0]):             # <<<<<<<<<<<<<<
@@ -9920,7 +9975,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             __pyx_L36_break:;
 
-            /* "jntajis/_jntajis.pyx":978
+            /* "jntajis/_jntajis.pyx":982
  *                     else:
  *                         mm = NULL
  *                     if mm != NULL:             # <<<<<<<<<<<<<<
@@ -9932,7 +9987,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       }
       __pyx_L11:;
 
-      /* "jntajis/_jntajis.pyx":941
+      /* "jntajis/_jntajis.pyx":945
  * 
  *         cmme = cmm
  *         if lookup_mj_mapping_table(&ms, u):             # <<<<<<<<<<<<<<
@@ -9941,7 +9996,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     }
 
-    /* "jntajis/_jntajis.pyx":990
+    /* "jntajis/_jntajis.pyx":994
  *                                 raise MemoryError()
  * 
  *         cmmp = cmm             # <<<<<<<<<<<<<<
@@ -9950,7 +10005,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     __pyx_v_cmmp = __pyx_v_cmm;
 
-    /* "jntajis/_jntajis.pyx":991
+    /* "jntajis/_jntajis.pyx":995
  * 
  *         cmmp = cmm
  *         while cmmp < cmme:             # <<<<<<<<<<<<<<
@@ -9961,7 +10016,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       __pyx_t_1 = ((__pyx_v_cmmp < __pyx_v_cmme) != 0);
       if (!__pyx_t_1) break;
 
-      /* "jntajis/_jntajis.pyx":992
+      /* "jntajis/_jntajis.pyx":996
  *         cmmp = cmm
  *         while cmmp < cmme:
  *             mm = cmmp[0]             # <<<<<<<<<<<<<<
@@ -9970,7 +10025,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       __pyx_v_mm = (__pyx_v_cmmp[0]);
 
-      /* "jntajis/_jntajis.pyx":993
+      /* "jntajis/_jntajis.pyx":997
  *         while cmmp < cmme:
  *             mm = cmmp[0]
  *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):             # <<<<<<<<<<<<<<
@@ -9982,7 +10037,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
         __pyx_v_j = __pyx_t_4;
 
-        /* "jntajis/_jntajis.pyx":994
+        /* "jntajis/_jntajis.pyx":998
  *             mm = cmmp[0]
  *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                 if not mm.v[j].v:             # <<<<<<<<<<<<<<
@@ -9992,7 +10047,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_j]).v != 0)) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":995
+          /* "jntajis/_jntajis.pyx":999
  *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                 if not mm.v[j].v:
  *                     break             # <<<<<<<<<<<<<<
@@ -10001,7 +10056,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
           goto __pyx_L42_break;
 
-          /* "jntajis/_jntajis.pyx":994
+          /* "jntajis/_jntajis.pyx":998
  *             mm = cmmp[0]
  *             for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
  *                 if not mm.v[j].v:             # <<<<<<<<<<<<<<
@@ -10010,7 +10065,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         }
 
-        /* "jntajis/_jntajis.pyx":996
+        /* "jntajis/_jntajis.pyx":1000
  *                 if not mm.v[j].v:
  *                     break
  *                 if not mm.v[j].sv:             # <<<<<<<<<<<<<<
@@ -10020,7 +10075,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = ((!((__pyx_v_mm->v[__pyx_v_j]).sv != 0)) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":997
+          /* "jntajis/_jntajis.pyx":1001
  *                     break
  *                 if not mm.v[j].sv:
  *                     uu = mm.v[j].u             # <<<<<<<<<<<<<<
@@ -10030,7 +10085,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           __pyx_t_9 = (__pyx_v_mm->v[__pyx_v_j]).u;
           __pyx_v_uu = __pyx_t_9;
 
-          /* "jntajis/_jntajis.pyx":998
+          /* "jntajis/_jntajis.pyx":1002
  *                 if not mm.v[j].sv:
  *                     uu = mm.v[j].u
  *                     for k in range(l):             # <<<<<<<<<<<<<<
@@ -10042,7 +10097,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
             __pyx_v_k = __pyx_t_7;
 
-            /* "jntajis/_jntajis.pyx":999
+            /* "jntajis/_jntajis.pyx":1003
  *                     uu = mm.v[j].u
  *                     for k in range(l):
  *                         if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10060,7 +10115,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_L48_bool_binop_done:;
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":1000
+              /* "jntajis/_jntajis.pyx":1004
  *                     for k in range(l):
  *                         if c[k].u == uu and not c[k].sv:
  *                             break             # <<<<<<<<<<<<<<
@@ -10069,7 +10124,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L46_break;
 
-              /* "jntajis/_jntajis.pyx":999
+              /* "jntajis/_jntajis.pyx":1003
  *                     uu = mm.v[j].u
  *                     for k in range(l):
  *                         if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10080,7 +10135,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           /*else*/ {
 
-            /* "jntajis/_jntajis.pyx":1002
+            /* "jntajis/_jntajis.pyx":1006
  *                             break
  *                     else:
  *                         c[l].u = uu             # <<<<<<<<<<<<<<
@@ -10089,7 +10144,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
 
-            /* "jntajis/_jntajis.pyx":1003
+            /* "jntajis/_jntajis.pyx":1007
  *                     else:
  *                         c[l].u = uu
  *                         c[l].v = True             # <<<<<<<<<<<<<<
@@ -10098,7 +10153,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             (__pyx_v_c[__pyx_v_l]).v = 1;
 
-            /* "jntajis/_jntajis.pyx":1004
+            /* "jntajis/_jntajis.pyx":1008
  *                         c[l].u = uu
  *                         c[l].v = True
  *                         c[l].sv = False             # <<<<<<<<<<<<<<
@@ -10107,7 +10162,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             (__pyx_v_c[__pyx_v_l]).sv = 0;
 
-            /* "jntajis/_jntajis.pyx":1005
+            /* "jntajis/_jntajis.pyx":1009
  *                         c[l].v = True
  *                         c[l].sv = False
  *                         c[l].s = 0             # <<<<<<<<<<<<<<
@@ -10116,7 +10171,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             (__pyx_v_c[__pyx_v_l]).s = 0;
 
-            /* "jntajis/_jntajis.pyx":1006
+            /* "jntajis/_jntajis.pyx":1010
  *                         c[l].sv = False
  *                         c[l].s = 0
  *                         l += 1             # <<<<<<<<<<<<<<
@@ -10127,7 +10182,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L46_break:;
 
-          /* "jntajis/_jntajis.pyx":996
+          /* "jntajis/_jntajis.pyx":1000
  *                 if not mm.v[j].v:
  *                     break
  *                 if not mm.v[j].sv:             # <<<<<<<<<<<<<<
@@ -10138,7 +10193,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       }
       __pyx_L42_break:;
 
-      /* "jntajis/_jntajis.pyx":1008
+      /* "jntajis/_jntajis.pyx":1012
  *                         l += 1
  * 
  *             sm = &mj_shrink_mappings[mm.mj]             # <<<<<<<<<<<<<<
@@ -10147,7 +10202,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       __pyx_v_sm = (&(mj_shrink_mappings[__pyx_v_mm->mj]));
 
-      /* "jntajis/_jntajis.pyx":1009
+      /* "jntajis/_jntajis.pyx":1013
  * 
  *             sm = &mj_shrink_mappings[mm.mj]
  *             if MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
@@ -10157,7 +10212,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       __pyx_t_1 = (__pyx_f_7jntajis_8_jntajis_MJShrinkMappingUnicodeSet_valid(__pyx_v_sm) != 0);
       if (__pyx_t_1) {
 
-        /* "jntajis/_jntajis.pyx":1010
+        /* "jntajis/_jntajis.pyx":1014
  *             sm = &mj_shrink_mappings[mm.mj]
  *             if MJShrinkMappingUnicodeSet_valid(sm):
  *                 if combo & 1 != 0:             # <<<<<<<<<<<<<<
@@ -10167,7 +10222,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = (((__pyx_v_combo & 1) != 0) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":1011
+          /* "jntajis/_jntajis.pyx":1015
  *             if MJShrinkMappingUnicodeSet_valid(sm):
  *                 if combo & 1 != 0:
  *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):             # <<<<<<<<<<<<<<
@@ -10179,7 +10234,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
             __pyx_v_j = __pyx_t_4;
 
-            /* "jntajis/_jntajis.pyx":1012
+            /* "jntajis/_jntajis.pyx":1016
  *                 if combo & 1 != 0:
  *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *                         uu = sm._0[j]             # <<<<<<<<<<<<<<
@@ -10188,7 +10243,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_uu = (__pyx_v_sm->_0[__pyx_v_j]);
 
-            /* "jntajis/_jntajis.pyx":1013
+            /* "jntajis/_jntajis.pyx":1017
  *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *                         uu = sm._0[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10198,7 +10253,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":1014
+              /* "jntajis/_jntajis.pyx":1018
  *                         uu = sm._0[j]
  *                         if uu == <uint32_t>-1:
  *                             break             # <<<<<<<<<<<<<<
@@ -10207,7 +10262,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L53_break;
 
-              /* "jntajis/_jntajis.pyx":1013
+              /* "jntajis/_jntajis.pyx":1017
  *                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
  *                         uu = sm._0[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10216,7 +10271,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":1015
+            /* "jntajis/_jntajis.pyx":1019
  *                         if uu == <uint32_t>-1:
  *                             break
  *                         for k in range(l):             # <<<<<<<<<<<<<<
@@ -10228,7 +10283,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
               __pyx_v_k = __pyx_t_7;
 
-              /* "jntajis/_jntajis.pyx":1016
+              /* "jntajis/_jntajis.pyx":1020
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10246,7 +10301,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_L58_bool_binop_done:;
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":1017
+                /* "jntajis/_jntajis.pyx":1021
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:
  *                                 break             # <<<<<<<<<<<<<<
@@ -10255,7 +10310,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L56_break;
 
-                /* "jntajis/_jntajis.pyx":1016
+                /* "jntajis/_jntajis.pyx":1020
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10266,7 +10321,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             /*else*/ {
 
-              /* "jntajis/_jntajis.pyx":1019
+              /* "jntajis/_jntajis.pyx":1023
  *                                 break
  *                         else:
  *                             c[l].u = uu             # <<<<<<<<<<<<<<
@@ -10275,7 +10330,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
 
-              /* "jntajis/_jntajis.pyx":1020
+              /* "jntajis/_jntajis.pyx":1024
  *                         else:
  *                             c[l].u = uu
  *                             c[l].v = True             # <<<<<<<<<<<<<<
@@ -10284,7 +10339,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).v = 1;
 
-              /* "jntajis/_jntajis.pyx":1021
+              /* "jntajis/_jntajis.pyx":1025
  *                             c[l].u = uu
  *                             c[l].v = True
  *                             c[l].sv = False             # <<<<<<<<<<<<<<
@@ -10293,7 +10348,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).sv = 0;
 
-              /* "jntajis/_jntajis.pyx":1022
+              /* "jntajis/_jntajis.pyx":1026
  *                             c[l].v = True
  *                             c[l].sv = False
  *                             c[l].s = 0             # <<<<<<<<<<<<<<
@@ -10302,7 +10357,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).s = 0;
 
-              /* "jntajis/_jntajis.pyx":1023
+              /* "jntajis/_jntajis.pyx":1027
  *                             c[l].sv = False
  *                             c[l].s = 0
  *                             l += 1             # <<<<<<<<<<<<<<
@@ -10315,7 +10370,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L53_break:;
 
-          /* "jntajis/_jntajis.pyx":1010
+          /* "jntajis/_jntajis.pyx":1014
  *             sm = &mj_shrink_mappings[mm.mj]
  *             if MJShrinkMappingUnicodeSet_valid(sm):
  *                 if combo & 1 != 0:             # <<<<<<<<<<<<<<
@@ -10324,7 +10379,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         }
 
-        /* "jntajis/_jntajis.pyx":1024
+        /* "jntajis/_jntajis.pyx":1028
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 2 != 0:             # <<<<<<<<<<<<<<
@@ -10334,7 +10389,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = (((__pyx_v_combo & 2) != 0) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":1025
+          /* "jntajis/_jntajis.pyx":1029
  *                             l += 1
  *                 if combo & 2 != 0:
  *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):             # <<<<<<<<<<<<<<
@@ -10346,7 +10401,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
             __pyx_v_j = __pyx_t_4;
 
-            /* "jntajis/_jntajis.pyx":1026
+            /* "jntajis/_jntajis.pyx":1030
  *                 if combo & 2 != 0:
  *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *                         uu = sm._1[j]             # <<<<<<<<<<<<<<
@@ -10355,7 +10410,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_uu = (__pyx_v_sm->_1[__pyx_v_j]);
 
-            /* "jntajis/_jntajis.pyx":1027
+            /* "jntajis/_jntajis.pyx":1031
  *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *                         uu = sm._1[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10365,7 +10420,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":1028
+              /* "jntajis/_jntajis.pyx":1032
  *                         uu = sm._1[j]
  *                         if uu == <uint32_t>-1:
  *                             break             # <<<<<<<<<<<<<<
@@ -10374,7 +10429,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L62_break;
 
-              /* "jntajis/_jntajis.pyx":1027
+              /* "jntajis/_jntajis.pyx":1031
  *                     for j in range(sizeof(sm._1) // sizeof(sm._1[0])):
  *                         uu = sm._1[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10383,7 +10438,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":1029
+            /* "jntajis/_jntajis.pyx":1033
  *                         if uu == <uint32_t>-1:
  *                             break
  *                         for k in range(l):             # <<<<<<<<<<<<<<
@@ -10395,7 +10450,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
               __pyx_v_k = __pyx_t_7;
 
-              /* "jntajis/_jntajis.pyx":1030
+              /* "jntajis/_jntajis.pyx":1034
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10413,7 +10468,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_L67_bool_binop_done:;
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":1031
+                /* "jntajis/_jntajis.pyx":1035
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:
  *                                 break             # <<<<<<<<<<<<<<
@@ -10422,7 +10477,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L65_break;
 
-                /* "jntajis/_jntajis.pyx":1030
+                /* "jntajis/_jntajis.pyx":1034
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10433,7 +10488,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             /*else*/ {
 
-              /* "jntajis/_jntajis.pyx":1033
+              /* "jntajis/_jntajis.pyx":1037
  *                                 break
  *                         else:
  *                             c[l].u = uu             # <<<<<<<<<<<<<<
@@ -10442,7 +10497,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
 
-              /* "jntajis/_jntajis.pyx":1034
+              /* "jntajis/_jntajis.pyx":1038
  *                         else:
  *                             c[l].u = uu
  *                             c[l].v = True             # <<<<<<<<<<<<<<
@@ -10451,7 +10506,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).v = 1;
 
-              /* "jntajis/_jntajis.pyx":1035
+              /* "jntajis/_jntajis.pyx":1039
  *                             c[l].u = uu
  *                             c[l].v = True
  *                             c[l].sv = False             # <<<<<<<<<<<<<<
@@ -10460,7 +10515,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).sv = 0;
 
-              /* "jntajis/_jntajis.pyx":1036
+              /* "jntajis/_jntajis.pyx":1040
  *                             c[l].v = True
  *                             c[l].sv = False
  *                             c[l].s = 0             # <<<<<<<<<<<<<<
@@ -10469,7 +10524,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).s = 0;
 
-              /* "jntajis/_jntajis.pyx":1037
+              /* "jntajis/_jntajis.pyx":1041
  *                             c[l].sv = False
  *                             c[l].s = 0
  *                             l += 1             # <<<<<<<<<<<<<<
@@ -10482,7 +10537,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L62_break:;
 
-          /* "jntajis/_jntajis.pyx":1024
+          /* "jntajis/_jntajis.pyx":1028
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 2 != 0:             # <<<<<<<<<<<<<<
@@ -10491,7 +10546,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         }
 
-        /* "jntajis/_jntajis.pyx":1038
+        /* "jntajis/_jntajis.pyx":1042
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 4 != 0:             # <<<<<<<<<<<<<<
@@ -10501,7 +10556,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = (((__pyx_v_combo & 4) != 0) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":1039
+          /* "jntajis/_jntajis.pyx":1043
  *                             l += 1
  *                 if combo & 4 != 0:
  *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):             # <<<<<<<<<<<<<<
@@ -10513,7 +10568,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
             __pyx_v_j = __pyx_t_4;
 
-            /* "jntajis/_jntajis.pyx":1040
+            /* "jntajis/_jntajis.pyx":1044
  *                 if combo & 4 != 0:
  *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *                         uu = sm._2[j]             # <<<<<<<<<<<<<<
@@ -10522,7 +10577,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_uu = (__pyx_v_sm->_2[__pyx_v_j]);
 
-            /* "jntajis/_jntajis.pyx":1041
+            /* "jntajis/_jntajis.pyx":1045
  *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *                         uu = sm._2[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10532,7 +10587,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":1042
+              /* "jntajis/_jntajis.pyx":1046
  *                         uu = sm._2[j]
  *                         if uu == <uint32_t>-1:
  *                             break             # <<<<<<<<<<<<<<
@@ -10541,7 +10596,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L71_break;
 
-              /* "jntajis/_jntajis.pyx":1041
+              /* "jntajis/_jntajis.pyx":1045
  *                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
  *                         uu = sm._2[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10550,7 +10605,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":1043
+            /* "jntajis/_jntajis.pyx":1047
  *                         if uu == <uint32_t>-1:
  *                             break
  *                         for k in range(l):             # <<<<<<<<<<<<<<
@@ -10562,7 +10617,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
               __pyx_v_k = __pyx_t_7;
 
-              /* "jntajis/_jntajis.pyx":1044
+              /* "jntajis/_jntajis.pyx":1048
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10580,7 +10635,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_L76_bool_binop_done:;
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":1045
+                /* "jntajis/_jntajis.pyx":1049
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:
  *                                 break             # <<<<<<<<<<<<<<
@@ -10589,7 +10644,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L74_break;
 
-                /* "jntajis/_jntajis.pyx":1044
+                /* "jntajis/_jntajis.pyx":1048
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10600,7 +10655,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             /*else*/ {
 
-              /* "jntajis/_jntajis.pyx":1047
+              /* "jntajis/_jntajis.pyx":1051
  *                                 break
  *                         else:
  *                             c[l].u = uu             # <<<<<<<<<<<<<<
@@ -10609,7 +10664,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
 
-              /* "jntajis/_jntajis.pyx":1048
+              /* "jntajis/_jntajis.pyx":1052
  *                         else:
  *                             c[l].u = uu
  *                             c[l].v = True             # <<<<<<<<<<<<<<
@@ -10618,7 +10673,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).v = 1;
 
-              /* "jntajis/_jntajis.pyx":1049
+              /* "jntajis/_jntajis.pyx":1053
  *                             c[l].u = uu
  *                             c[l].v = True
  *                             c[l].sv = False             # <<<<<<<<<<<<<<
@@ -10627,7 +10682,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).sv = 0;
 
-              /* "jntajis/_jntajis.pyx":1050
+              /* "jntajis/_jntajis.pyx":1054
  *                             c[l].v = True
  *                             c[l].sv = False
  *                             c[l].s = 0             # <<<<<<<<<<<<<<
@@ -10636,7 +10691,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).s = 0;
 
-              /* "jntajis/_jntajis.pyx":1051
+              /* "jntajis/_jntajis.pyx":1055
  *                             c[l].sv = False
  *                             c[l].s = 0
  *                             l += 1             # <<<<<<<<<<<<<<
@@ -10649,7 +10704,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L71_break:;
 
-          /* "jntajis/_jntajis.pyx":1038
+          /* "jntajis/_jntajis.pyx":1042
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 4 != 0:             # <<<<<<<<<<<<<<
@@ -10658,7 +10713,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         }
 
-        /* "jntajis/_jntajis.pyx":1052
+        /* "jntajis/_jntajis.pyx":1056
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 8 != 0:             # <<<<<<<<<<<<<<
@@ -10668,7 +10723,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
         __pyx_t_1 = (((__pyx_v_combo & 8) != 0) != 0);
         if (__pyx_t_1) {
 
-          /* "jntajis/_jntajis.pyx":1053
+          /* "jntajis/_jntajis.pyx":1057
  *                             l += 1
  *                 if combo & 8 != 0:
  *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):             # <<<<<<<<<<<<<<
@@ -10680,7 +10735,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
             __pyx_v_j = __pyx_t_4;
 
-            /* "jntajis/_jntajis.pyx":1054
+            /* "jntajis/_jntajis.pyx":1058
  *                 if combo & 8 != 0:
  *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *                         uu = sm._3[j]             # <<<<<<<<<<<<<<
@@ -10689,7 +10744,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             __pyx_v_uu = (__pyx_v_sm->_3[__pyx_v_j]);
 
-            /* "jntajis/_jntajis.pyx":1055
+            /* "jntajis/_jntajis.pyx":1059
  *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *                         uu = sm._3[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10699,7 +10754,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             __pyx_t_1 = ((__pyx_v_uu == ((uint32_t)-1L)) != 0);
             if (__pyx_t_1) {
 
-              /* "jntajis/_jntajis.pyx":1056
+              /* "jntajis/_jntajis.pyx":1060
  *                         uu = sm._3[j]
  *                         if uu == <uint32_t>-1:
  *                             break             # <<<<<<<<<<<<<<
@@ -10708,7 +10763,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               goto __pyx_L80_break;
 
-              /* "jntajis/_jntajis.pyx":1055
+              /* "jntajis/_jntajis.pyx":1059
  *                     for j in range(sizeof(sm._3) // sizeof(sm._3[0])):
  *                         uu = sm._3[j]
  *                         if uu == <uint32_t>-1:             # <<<<<<<<<<<<<<
@@ -10717,7 +10772,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
             }
 
-            /* "jntajis/_jntajis.pyx":1057
+            /* "jntajis/_jntajis.pyx":1061
  *                         if uu == <uint32_t>-1:
  *                             break
  *                         for k in range(l):             # <<<<<<<<<<<<<<
@@ -10729,7 +10784,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
               __pyx_v_k = __pyx_t_7;
 
-              /* "jntajis/_jntajis.pyx":1058
+              /* "jntajis/_jntajis.pyx":1062
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10747,7 +10802,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
               __pyx_L85_bool_binop_done:;
               if (__pyx_t_1) {
 
-                /* "jntajis/_jntajis.pyx":1059
+                /* "jntajis/_jntajis.pyx":1063
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:
  *                                 break             # <<<<<<<<<<<<<<
@@ -10756,7 +10811,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
                 goto __pyx_L83_break;
 
-                /* "jntajis/_jntajis.pyx":1058
+                /* "jntajis/_jntajis.pyx":1062
  *                             break
  *                         for k in range(l):
  *                             if c[k].u == uu and not c[k].sv:             # <<<<<<<<<<<<<<
@@ -10767,7 +10822,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
             }
             /*else*/ {
 
-              /* "jntajis/_jntajis.pyx":1061
+              /* "jntajis/_jntajis.pyx":1065
  *                                 break
  *                         else:
  *                             c[l].u = uu             # <<<<<<<<<<<<<<
@@ -10776,7 +10831,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).u = __pyx_v_uu;
 
-              /* "jntajis/_jntajis.pyx":1062
+              /* "jntajis/_jntajis.pyx":1066
  *                         else:
  *                             c[l].u = uu
  *                             c[l].v = True             # <<<<<<<<<<<<<<
@@ -10785,7 +10840,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).v = 1;
 
-              /* "jntajis/_jntajis.pyx":1063
+              /* "jntajis/_jntajis.pyx":1067
  *                             c[l].u = uu
  *                             c[l].v = True
  *                             c[l].sv = False             # <<<<<<<<<<<<<<
@@ -10794,7 +10849,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).sv = 0;
 
-              /* "jntajis/_jntajis.pyx":1064
+              /* "jntajis/_jntajis.pyx":1068
  *                             c[l].v = True
  *                             c[l].sv = False
  *                             c[l].s = 0             # <<<<<<<<<<<<<<
@@ -10803,7 +10858,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
               (__pyx_v_c[__pyx_v_l]).s = 0;
 
-              /* "jntajis/_jntajis.pyx":1065
+              /* "jntajis/_jntajis.pyx":1069
  *                             c[l].sv = False
  *                             c[l].s = 0
  *                             l += 1             # <<<<<<<<<<<<<<
@@ -10816,7 +10871,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
           }
           __pyx_L80_break:;
 
-          /* "jntajis/_jntajis.pyx":1052
+          /* "jntajis/_jntajis.pyx":1056
  *                             c[l].s = 0
  *                             l += 1
  *                 if combo & 8 != 0:             # <<<<<<<<<<<<<<
@@ -10825,7 +10880,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
         }
 
-        /* "jntajis/_jntajis.pyx":1009
+        /* "jntajis/_jntajis.pyx":1013
  * 
  *             sm = &mj_shrink_mappings[mm.mj]
  *             if MJShrinkMappingUnicodeSet_valid(sm):             # <<<<<<<<<<<<<<
@@ -10834,7 +10889,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       }
 
-      /* "jntajis/_jntajis.pyx":1066
+      /* "jntajis/_jntajis.pyx":1070
  *                             c[l].s = 0
  *                             l += 1
  *             cmmp += 1             # <<<<<<<<<<<<<<
@@ -10844,7 +10899,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
       __pyx_v_cmmp = (__pyx_v_cmmp + 1);
     }
 
-    /* "jntajis/_jntajis.pyx":1068
+    /* "jntajis/_jntajis.pyx":1072
  *             cmmp += 1
  * 
  *         if l == 0:             # <<<<<<<<<<<<<<
@@ -10854,7 +10909,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
     __pyx_t_1 = ((__pyx_v_l == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "jntajis/_jntajis.pyx":1069
+      /* "jntajis/_jntajis.pyx":1073
  * 
  *         if l == 0:
  *             c[0].u = u             # <<<<<<<<<<<<<<
@@ -10863,7 +10918,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       (__pyx_v_c[0]).u = __pyx_v_u;
 
-      /* "jntajis/_jntajis.pyx":1070
+      /* "jntajis/_jntajis.pyx":1074
  *         if l == 0:
  *             c[0].u = u
  *             c[0].v = True             # <<<<<<<<<<<<<<
@@ -10872,7 +10927,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       (__pyx_v_c[0]).v = 1;
 
-      /* "jntajis/_jntajis.pyx":1071
+      /* "jntajis/_jntajis.pyx":1075
  *             c[0].u = u
  *             c[0].v = True
  *             c[0].sv = iv >= 0             # <<<<<<<<<<<<<<
@@ -10881,7 +10936,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       (__pyx_v_c[0]).sv = (__pyx_v_iv >= 0);
 
-      /* "jntajis/_jntajis.pyx":1072
+      /* "jntajis/_jntajis.pyx":1076
  *             c[0].v = True
  *             c[0].sv = iv >= 0
  *             c[0].s = iv             # <<<<<<<<<<<<<<
@@ -10890,7 +10945,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       (__pyx_v_c[0]).s = __pyx_v_iv;
 
-      /* "jntajis/_jntajis.pyx":1073
+      /* "jntajis/_jntajis.pyx":1077
  *             c[0].sv = iv >= 0
  *             c[0].s = iv
  *             l = 1             # <<<<<<<<<<<<<<
@@ -10899,7 +10954,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
       __pyx_v_l = 1;
 
-      /* "jntajis/_jntajis.pyx":1068
+      /* "jntajis/_jntajis.pyx":1072
  *             cmmp += 1
  * 
  *         if l == 0:             # <<<<<<<<<<<<<<
@@ -10908,7 +10963,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     }
 
-    /* "jntajis/_jntajis.pyx":1074
+    /* "jntajis/_jntajis.pyx":1078
  *             c[0].s = iv
  *             l = 1
  *         al[p] = l             # <<<<<<<<<<<<<<
@@ -10917,7 +10972,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     (__pyx_v_al[__pyx_v_p]) = __pyx_v_l;
 
-    /* "jntajis/_jntajis.pyx":1075
+    /* "jntajis/_jntajis.pyx":1079
  *             l = 1
  *         al[p] = l
  *         memcpy(a[p], c, sizeof(UIVSPair[20]))             # <<<<<<<<<<<<<<
@@ -10926,7 +10981,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
     (void)(memcpy((__pyx_v_a[__pyx_v_p]), __pyx_v_c, (sizeof(UIVSPair [20]))));
 
-    /* "jntajis/_jntajis.pyx":1076
+    /* "jntajis/_jntajis.pyx":1080
  *         al[p] = l
  *         memcpy(a[p], c, sizeof(UIVSPair[20]))
  *         p += 1             # <<<<<<<<<<<<<<
@@ -10936,7 +10991,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
     __pyx_v_p = (__pyx_v_p + 1);
   }
 
-  /* "jntajis/_jntajis.pyx":1078
+  /* "jntajis/_jntajis.pyx":1082
  *         p += 1
  * 
  *     cands.l = p             # <<<<<<<<<<<<<<
@@ -10945,7 +11000,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_cands->l = __pyx_v_p;
 
-  /* "jntajis/_jntajis.pyx":1079
+  /* "jntajis/_jntajis.pyx":1083
  * 
  *     cands.l = p
  *     cands.a = a             # <<<<<<<<<<<<<<
@@ -10954,7 +11009,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_cands->a = __pyx_v_a;
 
-  /* "jntajis/_jntajis.pyx":1080
+  /* "jntajis/_jntajis.pyx":1084
  *     cands.l = p
  *     cands.a = a
  *     cands.al = al             # <<<<<<<<<<<<<<
@@ -10963,7 +11018,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_cands->al = __pyx_v_al;
 
-  /* "jntajis/_jntajis.pyx":1081
+  /* "jntajis/_jntajis.pyx":1085
  *     cands.a = a
  *     cands.al = al
  *     cands.is_ = is_             # <<<<<<<<<<<<<<
@@ -10972,7 +11027,7 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
  */
   __pyx_v_cands->is_ = __pyx_v_is_;
 
-  /* "jntajis/_jntajis.pyx":894
+  /* "jntajis/_jntajis.pyx":898
  * 
  * 
  * cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):             # <<<<<<<<<<<<<<
@@ -10992,21 +11047,22 @@ static PyObject *__pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init(__pyx_t_7jnt
   return __pyx_r;
 }
 
-/* "jntajis/_jntajis.pyx":1084
+/* "jntajis/_jntajis.pyx":1088
  * 
  * 
- * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
+ * def mj_shrink_candidates(unicode in_, int combo, int limit = 100):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_7jntajis_8_jntajis_6mj_shrink_candidates[] = "mj_shrink_candidates(unicode in_, int combo)";
+static char __pyx_doc_7jntajis_8_jntajis_6mj_shrink_candidates[] = "mj_shrink_candidates(unicode in_, int combo, int limit=100)";
 static PyMethodDef __pyx_mdef_7jntajis_8_jntajis_7mj_shrink_candidates = {"mj_shrink_candidates", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates, METH_VARARGS|METH_KEYWORDS, __pyx_doc_7jntajis_8_jntajis_6mj_shrink_candidates};
 static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_in_ = 0;
   int __pyx_v_combo;
+  int __pyx_v_limit;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -11014,12 +11070,14 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("mj_shrink_candidates (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_in,&__pyx_n_s_combo,0};
-    PyObject* values[2] = {0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_in,&__pyx_n_s_combo,&__pyx_n_s_limit,0};
+    PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         CYTHON_FALLTHROUGH;
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -11036,31 +11094,46 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_combo)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, 1); __PYX_ERR(0, 1084, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 0, 2, 3, 1); __PYX_ERR(0, 1088, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_limit);
+          if (value) { values[2] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mj_shrink_candidates") < 0)) __PYX_ERR(0, 1084, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mj_shrink_candidates") < 0)) __PYX_ERR(0, 1088, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
     __pyx_v_in_ = ((PyObject*)values[0]);
-    __pyx_v_combo = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_combo == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1084, __pyx_L3_error)
+    __pyx_v_combo = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_combo == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1088, __pyx_L3_error)
+    if (values[2]) {
+      __pyx_v_limit = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_limit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1088, __pyx_L3_error)
+    } else {
+      __pyx_v_limit = ((int)0x64);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1084, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mj_shrink_candidates", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1088, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("jntajis._jntajis.mj_shrink_candidates", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 1084, __pyx_L1_error)
-  __pyx_r = __pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(__pyx_self, __pyx_v_in_, __pyx_v_combo);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_in_), (&PyUnicode_Type), 1, "in_", 1))) __PYX_ERR(0, 1088, __pyx_L1_error)
+  __pyx_r = __pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(__pyx_self, __pyx_v_in_, __pyx_v_combo, __pyx_v_limit);
 
   /* function exit code */
   goto __pyx_L0;
@@ -11071,7 +11144,7 @@ static PyObject *__pyx_pw_7jntajis_8_jntajis_7mj_shrink_candidates(PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_in_, int __pyx_v_combo) {
+static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_in_, int __pyx_v_combo, int __pyx_v_limit) {
   __pyx_t_7jntajis_8_jntajis_MJShrinkCandidates __pyx_v_cands;
   PyObject *__pyx_v_retval = NULL;
   PyObject *__pyx_r = NULL;
@@ -11091,8 +11164,8 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("mj_shrink_candidates", 0);
 
-  /* "jntajis/_jntajis.pyx":1086
- * def mj_shrink_candidates(unicode in_, int combo):
+  /* "jntajis/_jntajis.pyx":1090
+ * def mj_shrink_candidates(unicode in_, int combo, int limit = 100):
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL             # <<<<<<<<<<<<<<
  *     retval = []
@@ -11102,52 +11175,52 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
   __pyx_v_cands.al = NULL;
   __pyx_v_cands.is_ = NULL;
 
-  /* "jntajis/_jntajis.pyx":1087
+  /* "jntajis/_jntajis.pyx":1091
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL
  *     retval = []             # <<<<<<<<<<<<<<
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1087, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1091, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_retval = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":1088
+  /* "jntajis/_jntajis.pyx":1092
  *     cands.a = cands.al = cands.is_ = NULL
  *     retval = []
  *     try:             # <<<<<<<<<<<<<<
  *         MJShrinkCandidates_init(&cands, in_, combo)
- *         MJShrinkCandidates_append_candidates(&cands, retval)
+ *         MJShrinkCandidates_append_candidates(&cands, retval, limit)
  */
   /*try:*/ {
 
-    /* "jntajis/_jntajis.pyx":1089
+    /* "jntajis/_jntajis.pyx":1093
  *     retval = []
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)             # <<<<<<<<<<<<<<
- *         MJShrinkCandidates_append_candidates(&cands, retval)
+ *         MJShrinkCandidates_append_candidates(&cands, retval, limit)
  *     finally:
  */
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init((&__pyx_v_cands), __pyx_v_in_, __pyx_v_combo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1089, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_init((&__pyx_v_cands), __pyx_v_in_, __pyx_v_combo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1093, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "jntajis/_jntajis.pyx":1090
+    /* "jntajis/_jntajis.pyx":1094
  *     try:
  *         MJShrinkCandidates_init(&cands, in_, combo)
- *         MJShrinkCandidates_append_candidates(&cands, retval)             # <<<<<<<<<<<<<<
+ *         MJShrinkCandidates_append_candidates(&cands, retval, limit)             # <<<<<<<<<<<<<<
  *     finally:
  *         MJShrinkCandidates_fini(&cands)
  */
-    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates((&__pyx_v_cands), __pyx_v_retval); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1090, __pyx_L4_error)
+    __pyx_t_1 = __pyx_f_7jntajis_8_jntajis_MJShrinkCandidates_append_candidates((&__pyx_v_cands), __pyx_v_retval, __pyx_v_limit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1094, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "jntajis/_jntajis.pyx":1092
- *         MJShrinkCandidates_append_candidates(&cands, retval)
+  /* "jntajis/_jntajis.pyx":1096
+ *         MJShrinkCandidates_append_candidates(&cands, retval, limit)
  *     finally:
  *         MJShrinkCandidates_fini(&cands)             # <<<<<<<<<<<<<<
  *     return retval
@@ -11192,7 +11265,7 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
     __pyx_L5:;
   }
 
-  /* "jntajis/_jntajis.pyx":1093
+  /* "jntajis/_jntajis.pyx":1097
  *     finally:
  *         MJShrinkCandidates_fini(&cands)
  *     return retval             # <<<<<<<<<<<<<<
@@ -11202,10 +11275,10 @@ static PyObject *__pyx_pf_7jntajis_8_jntajis_6mj_shrink_candidates(CYTHON_UNUSED
   __pyx_r = __pyx_v_retval;
   goto __pyx_L0;
 
-  /* "jntajis/_jntajis.pyx":1084
+  /* "jntajis/_jntajis.pyx":1088
  * 
  * 
- * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
+ * def mj_shrink_candidates(unicode in_, int combo, int limit = 100):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL
  */
@@ -11396,6 +11469,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_jnta_encode, __pyx_k_jnta_encode, sizeof(__pyx_k_jnta_encode), 0, 0, 1, 1},
   {&__pyx_n_s_jnta_shrink_translit, __pyx_k_jnta_shrink_translit, sizeof(__pyx_k_jnta_shrink_translit), 0, 0, 1, 1},
   {&__pyx_n_s_jntajis__jntajis, __pyx_k_jntajis__jntajis, sizeof(__pyx_k_jntajis__jntajis), 0, 0, 1, 1},
+  {&__pyx_n_s_limit, __pyx_k_limit, sizeof(__pyx_k_limit), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
   {&__pyx_n_s_mj_shrink_candidates, __pyx_k_mj_shrink_candidates, sizeof(__pyx_k_mj_shrink_candidates), 0, 0, 1, 1},
@@ -11502,17 +11576,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__9);
   __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_jnta_shrink_translit, 764, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 764, __pyx_L1_error)
 
-  /* "jntajis/_jntajis.pyx":1084
+  /* "jntajis/_jntajis.pyx":1088
  * 
  * 
- * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
+ * def mj_shrink_candidates(unicode in_, int combo, int limit = 100):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL
  */
-  __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_in, __pyx_n_s_combo, __pyx_n_s_cands, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 1084, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(5, __pyx_n_s_in, __pyx_n_s_combo, __pyx_n_s_limit, __pyx_n_s_cands, __pyx_n_s_retval); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 1088, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_mj_shrink_candidates, 1084, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 1084, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_jntajis__jntajis_pyx, __pyx_n_s_mj_shrink_candidates, 1088, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 1088, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -11902,16 +11976,16 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_jnta_shrink_translit, __pyx_t_1) < 0) __PYX_ERR(0, 764, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "jntajis/_jntajis.pyx":1084
+  /* "jntajis/_jntajis.pyx":1088
  * 
  * 
- * def mj_shrink_candidates(unicode in_, int combo):             # <<<<<<<<<<<<<<
+ * def mj_shrink_candidates(unicode in_, int combo, int limit = 100):             # <<<<<<<<<<<<<<
  *     cdef MJShrinkCandidates cands
  *     cands.a = cands.al = cands.is_ = NULL
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_7mj_shrink_candidates, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1084, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7jntajis_8_jntajis_7mj_shrink_candidates, NULL, __pyx_n_s_jntajis__jntajis); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1088, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mj_shrink_candidates, __pyx_t_1) < 0) __PYX_ERR(0, 1084, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mj_shrink_candidates, __pyx_t_1) < 0) __PYX_ERR(0, 1088, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "jntajis/_jntajis.pyx":1
