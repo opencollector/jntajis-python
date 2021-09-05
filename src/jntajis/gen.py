@@ -91,8 +91,8 @@ static const ShrinkingTransliterationMapping tx_mappings[2 * 94 * 94] = {
         {{"{"}}{% for e in m.sus|iter_pad(2, "-1") %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
         JISCharacterClass_{{ m.class_.name }},
         {{ m.tx_jis|length }},
-        {{"{"}}{% for e in m.tx_jis %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}},
-        {{"{"}}{% for e in m.tx_us %}{% if not loop.first %}, {% endif %}{{ e }}{% endfor %}}
+        {{"{"}}{% for e in m.tx_jis %}{% if not loop.first %}, {% endif %}{{ e }}{% else %}0{% endfor %}},
+        {{"{"}}{% for e in m.tx_us %}{% if not loop.first %}, {% endif %}{{ e }}{% else %}0{% endfor %}}
     }{% if not loop.last %},{% endif %}
     {%- endfor %}
 };
@@ -198,6 +198,8 @@ static const MJMappingSet chunked_mj_mappings_{{ "%06x"|format(cm.start) }}_{{ "
                 {%- for v in m.v -%}
                     {{- "{" }}{{ v.u }}, 1, {{ "1" if v.s >= 0 else "0" }}, {{ v.s if v.s >= 0 else 0 }}{{ "}" }}{% if not loop.last %},{% endif %}
                 {%- endfor -%}{{ ", {0, 0, 0, 0}}}" }}{% if not loop.last %},{% endif %}
+            {%- else -%}
+            {-1, {{ "{{0, 0, 0, 0}}}" -}}
             {%- endfor -%}
         {{- "}" -}}
     {{- "}" -}}{% if not loop.last %},{% endif -%}
