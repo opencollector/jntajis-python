@@ -994,20 +994,6 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
         cmmp = cmm
         while cmmp < cmme:
             mm = cmmp[0]
-            for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
-                if not mm.v[j].v:
-                    break
-                if not mm.v[j].sv:
-                    uu = mm.v[j].u
-                    for k in range(l):
-                        if c[k].u == uu and not c[k].sv:
-                            break
-                    else:
-                        c[l].u = uu
-                        c[l].v = True
-                        c[l].sv = False
-                        c[l].s = 0
-                        l += 1
 
             sm = &mj_shrink_mappings[mm.mj]
             if MJShrinkMappingUnicodeSet_valid(sm):
@@ -1015,6 +1001,8 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
                     for j in range(sizeof(sm._0) // sizeof(sm._0[0])):
                         uu = sm._0[j]
                         if uu == <uint32_t>-1:
+                            break
+                        if uu == u and iv < 0:
                             break
                         for k in range(l):
                             if c[k].u == uu and not c[k].sv:
@@ -1030,6 +1018,8 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
                         uu = sm._1[j]
                         if uu == <uint32_t>-1:
                             break
+                        if uu == u and iv < 0:
+                            break
                         for k in range(l):
                             if c[k].u == uu and not c[k].sv:
                                 break
@@ -1043,6 +1033,8 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
                     for j in range(sizeof(sm._2) // sizeof(sm._2[0])):
                         uu = sm._2[j]
                         if uu == <uint32_t>-1:
+                            break
+                        if uu == u and iv < 0:
                             break
                         for k in range(l):
                             if c[k].u == uu and not c[k].sv:
@@ -1058,6 +1050,8 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
                         uu = sm._3[j]
                         if uu == <uint32_t>-1:
                             break
+                        if uu == u and iv < 0:
+                            break
                         for k in range(l):
                             if c[k].u == uu and not c[k].sv:
                                 break
@@ -1067,6 +1061,27 @@ cdef MJShrinkCandidates_init(MJShrinkCandidates* cands, unicode in_, int combo):
                             c[l].sv = False
                             c[l].s = 0
                             l += 1
+            cmmp += 1
+
+        cmmp = cmm
+        while cmmp < cmme:
+            mm = cmmp[0]
+
+            for j in range(sizeof(mm.v) / sizeof(mm.v[0])):
+                if not mm.v[j].v:
+                    break
+                if not mm.v[j].sv:
+                    uu = mm.v[j].u
+                    for k in range(l):
+                        if c[k].u == uu and not c[k].sv:
+                            break
+                    else:
+                        c[l].u = uu
+                        c[l].v = True
+                        c[l].sv = False
+                        c[l].s = 0
+                        l += 1
+
             cmmp += 1
 
         if l == 0:

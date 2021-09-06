@@ -66,6 +66,16 @@ import jntajis
             jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
             ["\u9089"],
         ),
+        (
+            "\u9089",
+            jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            ["\u8fba", "\u908a", "\u9089"],
+        ),
+        (
+            "\u9089",
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            ["\u8fba", "\u908a", "\u9089"],
+        ),
         # 邊󠄏
         (
             "\u908a",
@@ -106,6 +116,16 @@ import jntajis
             "\u908a\U000e0109",
             jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
             ["\u908a"],
+        ),
+        (
+            "\u908a",
+            jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            ["\u8fba", "\u908a"],
+        ),
+        (
+            "\u908a",
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            ["\u8fba", "\u908a"],
         ),
         # 㑐
         (
