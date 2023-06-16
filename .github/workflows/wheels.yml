@@ -8,6 +8,8 @@ on:
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
+    env:
+      CIBW_SKIP: pp*
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
