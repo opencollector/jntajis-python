@@ -431,7 +431,6 @@ def read_jnta_excel_file(f: str) -> typing.Sequence[ShrinkingTransliterationMapp
                 try:
                     sus = (parse_uni_repr(m.group(1)),)
                 except ValueError as e:
-
                     raise InvalidFormatError(
                         f"failed to parse rune in memo ({_row[16]}) at row {ro + 2}"
                     ) from e

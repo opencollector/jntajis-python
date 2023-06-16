@@ -2,7 +2,8 @@ import pytest
 import jntajis
 
 
-@pytest.mark.parametrize( ("input", "combo", "expected"),
+@pytest.mark.parametrize(
+    ("input", "combo", "expected"),
     [
         # 斎
         (
@@ -73,7 +74,8 @@ import jntajis
         ),
         (
             "\u9089",
-            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE
+            | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
             ["\u8fba", "\u908a", "\u9089"],
         ),
         # 邊󠄏
@@ -124,7 +126,8 @@ import jntajis
         ),
         (
             "\u908a",
-            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
+            jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE
+            | jntajis.MJShrinkSchemeCombo.MOJ_FAMILY_REGISTER_ACT_RELATED_NOTICE,
             ["\u8fba", "\u908a"],
         ),
         # 㑐
