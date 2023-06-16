@@ -218,7 +218,6 @@ class WorksheetReader_4(HandlersBase):
         self.c -= 1
         if self.c < 0:
             if self._attlist is not None:
-                value: typing.Union[str, OpenXMLFormula]
                 self.outer.set_value(
                     OpenXMLFormula(value=self._value, **self._attlist)
                     if self._elem_type == "f"
