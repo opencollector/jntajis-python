@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    types:
+      - opened
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+jobs:
+  lint_and_test:
+    uses: ./.github/workflows/tests.yml
+
+  build_wheels:
+    needs:
+      - lint_and_test
+    if: ${{ startsWith(github.ref, 'refs/tags/v.*') }}
+    uses: ./.github/workflows/wheels.yml
