@@ -1,0 +1,101 @@
+[build-system]
+requires = [
+    "hatchling",
+    "hatch-cython>=0.5.0",
+    "hatch-vcs",
+    "Cython>=3.0.0",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "jntajis-python"
+description = "A fast character conversion and transliteration library based on the scheme defined for Japan National Tax Agency's corporate number system."
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">= 3.10"
+authors = [
+    { name = "Open Collector, inc.", email = "info@opencollector.co.jp" },
+]
+keywords = ["Unicode", "JIS", "encoding", "conversion", "transliteration", "Japanese"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Filters",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "click>=8.3",
+    "ruff>=0.4",
+    "jinja2>=3",
+    "mypy>=0.910",
+    "pytest>=6.2",
+    "sphinx>=4",
+    "sphinx-rtd-theme>=0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/opencollector/jntajis-python"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+tag_regex = "^(?P<version>[vV]?\\d+(?:\\.\\d+){0,2}[^\\+]*)(?:\\+.*)?$"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jntajis"]
+
+[tool.hatch.build.targets.wheel.hooks.cython]
+dependencies = ["hatch-cython>=0.5.0"]
+
+[tool.hatch.build.targets.wheel.hooks.cython.options]
+src = "jntajis"
+includes = ["pythoncapi-compat", "src/jntajis"]
+compile_py = false
+directives = { language_level = 3, cdivision = true, boundscheck = false, wraparound = false, embedsignature = true }
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "docs/",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.ruff]
+line-length = 99
+target-version = "py310"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.hatch.envs.lint]
+dependencies = ["ruff>=0.4"]
+
+[tool.hatch.envs.lint.scripts]
+fix = ["ruff format {args:src}", "ruff check --fix {args:src}"]
+check = ["ruff format --check {args:src}", "ruff check {args:src}"]
+
+[tool.hatch.envs.wheels]
+dependencies = ["cibuildwheel>=2"]
+detached = true
+
+[tool.hatch.envs.wheels.env-vars]
+CIBW_BUILD = "cp310-* cp311-* cp312-* cp313-*"
+CIBW_SKIP = "pp*"
+
+[tool.hatch.envs.wheels.scripts]
+build = ["cibuildwheel --output-dir {args:dist}"]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.13", "3.12", "3.11", "3.10"]
+
+[tool.mypy]
+files = "src/"

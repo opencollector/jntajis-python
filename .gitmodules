@@ -1,0 +1,3 @@
+[submodule "pythoncapi-compat"]
+	path = pythoncapi-compat
+	url = https://github.com/python/pythoncapi-compat

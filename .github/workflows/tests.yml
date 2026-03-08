@@ -4,15 +4,18 @@ on:
   workflow_call:
 
 jobs:
-  lint_and_test:
-    name: Lint source and run tests
+  lint:
+    name: Lint source
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v3
+      - uses: actions/checkout@v6
         with:
-          python-version: "3.11"
+          fetch-depth: 0
+          submodules: recursive
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
 
       - name: Set up environment
         run: |
@@ -22,6 +25,29 @@ jobs:
       - name: Linting
         run: |
           set -o xtrace -o errexit
-          black --check src
-          flake8 src
+          ruff check src
+          ruff format --check src
           mypy src
+
+  test:
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install hatch
+        run: pip install hatch
+
+      - name: Run tests
+        run: hatch test --python ${{ matrix.python-version }}

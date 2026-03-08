@@ -3,7 +3,6 @@ import functools
 import typing
 from xml.parsers import expat
 
-
 XMLDeclHandler = typing.Callable[[str, typing.Optional[str], int], None]
 XMLStartDoctypeDeclHandler = typing.Callable[
     [str, typing.Optional[str], typing.Optional[str], bool], None
@@ -13,9 +12,7 @@ XMLElementDeclHandler = typing.Callable[
     [str, typing.Tuple[int, int, typing.Optional[str], typing.Tuple[typing.Any, ...]]],
     None,
 ]
-XMLAttlistDeclHandler = typing.Callable[
-    [str, str, str, typing.Optional[str], bool], None
-]
+XMLAttlistDeclHandler = typing.Callable[[str, str, str, typing.Optional[str], bool], None]
 XMLStartElementHandler = typing.Callable[
     [str, typing.Union[typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]]],
     None,
@@ -63,9 +60,7 @@ class XMLParserHandlers(typing.NamedTuple):
     attlist_decl_handler: typing.Optional[XMLAttlistDeclHandler] = None
     start_element_handler: typing.Optional[XMLStartElementHandler] = None
     end_element_handler: typing.Optional[XMLEndElementHandler] = None
-    processing_instruction_handler: typing.Optional[
-        XMLProcessingInstructionHandler
-    ] = None
+    processing_instruction_handler: typing.Optional[XMLProcessingInstructionHandler] = None
     character_data_handler: typing.Optional[XMLCharacterDataHandler] = None
     unparsed_entity_decl_handler: typing.Optional[XMLUnparsedEntityDeclHandler] = None
     entity_decl_handler: typing.Optional[XMLEntityDeclHandler] = None
@@ -208,9 +203,7 @@ def wrap_start_element_handler(
     def _(
         self: T1,
         name: str,
-        attlist: typing.Union[
-            typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]
-        ],
+        attlist: typing.Union[typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]],
     ) -> T2:
         ns, _, ln = name.partition("\n")
         if ln == "":
@@ -234,9 +227,7 @@ class InvalidXMLDocumentError(Exception):
     def __str__(self):
         return self.message
 
-    def __init__(
-        self, path: typing.Tuple[str, ...], column: int, line: int, reason: str
-    ):
+    def __init__(self, path: typing.Tuple[str, ...], column: int, line: int, reason: str):
         super().__init__()
         self.path = path
         self.column = column
@@ -249,19 +240,14 @@ class Handlers(metaclass=abc.ABCMeta):
     def start_element(
         self,
         name: str,
-        attlist: typing.Union[
-            typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]
-        ],
-    ) -> typing.Optional["Handlers"]:
-        ...  # pragma: nocover
+        attlist: typing.Union[typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]],
+    ) -> typing.Optional["Handlers"]: ...  # pragma: nocover
 
     @abc.abstractmethod
-    def end_element(self, name: str) -> typing.Optional["Handlers"]:
-        ...  # pragma: nocover
+    def end_element(self, name: str) -> typing.Optional["Handlers"]: ...  # pragma: nocover
 
     @abc.abstractmethod
-    def cdata(self, data: str) -> typing.Optional["Handlers"]:
-        ...  # pragma: nocover
+    def cdata(self, data: str) -> typing.Optional["Handlers"]: ...  # pragma: nocover
 
 
 class HandlersBase(Handlers):
@@ -326,9 +312,7 @@ class HandlerShim:
     def start_element(
         self,
         name: str,
-        attlist: typing.Union[
-            typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]
-        ],
+        attlist: typing.Union[typing.Dict[str, str], typing.Sequence[typing.Tuple[str, str]]],
     ) -> None:
         impl = self._impl.start_element(name, attlist)
         if impl is not None:

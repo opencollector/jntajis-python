@@ -1,12 +1,12 @@
-import click
 import enum
 import json
 import re
 import typing
+
+import click
 import jinja2
 
 from .xlsx_parser import read_xlsx
-
 
 invalid_unicode = 0x7FFFFFFF
 
@@ -315,9 +315,7 @@ def read_jnta_excel_file(f: str) -> typing.Sequence[ShrinkingTransliterationMapp
         or row[7] != "文字列変換（追加非漢字や、1対ｎの文字変換を行う）"
         or row[16] != "備考"
     ):
-        raise InvalidFormatError(
-            "a column of the first row does not match to the expected values"
-        )
+        raise InvalidFormatError("a column of the first row does not match to the expected values")
 
     try:
         row = next(ri)
@@ -360,9 +358,7 @@ def read_jnta_excel_file(f: str) -> typing.Sequence[ShrinkingTransliterationMapp
         try:
             jis = parse_men_ku_ten_repr(_row[0])
         except ValueError as e:
-            raise InvalidFormatError(
-                f"failed to parse men-ku-ten at row {ro + 2}"
-            ) from e
+            raise InvalidFormatError(f"failed to parse men-ku-ten at row {ro + 2}") from e
 
         us: typing.Tuple[int, ...]
         try:
@@ -396,9 +392,7 @@ def read_jnta_excel_file(f: str) -> typing.Sequence[ShrinkingTransliterationMapp
             try:
                 tx_jis = (parse_men_ku_ten_repr(_row[4]),)
             except ValueError as e:
-                raise InvalidFormatError(
-                    f"failed to parse men-ku-ten at row {ro + 2}"
-                ) from e
+                raise InvalidFormatError(f"failed to parse men-ku-ten at row {ro + 2}") from e
 
             try:
                 tx_us = (parse_uni_repr(_row[5]),)
@@ -412,9 +406,7 @@ def read_jnta_excel_file(f: str) -> typing.Sequence[ShrinkingTransliterationMapp
             try:
                 tx_jis = tuple(take_until_empty(parse_men_ku_ten_repr, _row[7:11]))
             except ValueError as e:
-                raise InvalidFormatError(
-                    f"failed to parse men-ku-ten at row {ro + 2}"
-                ) from e
+                raise InvalidFormatError(f"failed to parse men-ku-ten at row {ro + 2}") from e
             try:
                 tx_us = tuple(take_until_empty(parse_uni_repr, _row[11:15]))
             except ValueError as e:
@@ -537,9 +529,7 @@ def read_mj_excel_file(f: str) -> typing.Tuple[typing.Sequence[MJMapping], int]:
 
     # assert if it is formatted in the expected manner
     if not all(c == f for c, f in zip(row, MJ_FIELDS)):
-        raise InvalidFormatError(
-            "a column of the first row does not match to the expected values"
-        )
+        raise InvalidFormatError("a column of the first row does not match to the expected values")
 
     max_variants = 0
 
@@ -626,11 +616,7 @@ def read_mj_shrink_file(src: str) -> typing.Sequence[MJShrinkMapping]:
         us = typing.cast(
             MJShrinkMappingUnicodeSet,
             tuple(
-                tuple(
-                    set(parse_uni_repr(x["UCS"]) for x in entry[k])
-                    if k in entry
-                    else ()
-                )
+                tuple(set(parse_uni_repr(x["UCS"]) for x in entry[k]) if k in entry else ())
                 for k in scheme_names
             ),
         )
@@ -805,9 +791,7 @@ def build_chunked_mj_mappings(
     return (retval, max_mss)
 
 
-def do_jnta(
-    dest: str, src_jnta: str, src_mj: str, src_mj_shrink: str, gap_thr: int = 256
-) -> None:
+def do_jnta(dest: str, src_jnta: str, src_mj: str, src_mj_shrink: str, gap_thr: int = 256) -> None:
     e = jinja2.Environment()
     e.filters["iter_pad"] = iter_pad
     t = e.from_string(code_template)
