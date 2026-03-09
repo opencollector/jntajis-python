@@ -15,7 +15,6 @@
 # sys.path.insert(0, os.path.abspath("."))
 from importlib.metadata import version as _version
 
-
 # -- Project information -----------------------------------------------------
 
 project = "jntajis-python"

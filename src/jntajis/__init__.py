@@ -34,11 +34,11 @@ import enum
 try:
     from ._jntajis import (  # noqa: F401
         IncrementalEncoder,
-        jnta_encode,
+        TransliterationError,
         jnta_decode,
+        jnta_encode,
         jnta_shrink_translit,
         mj_shrink_candidates,
-        TransliterationError,
     )
 except ImportError:
     pass

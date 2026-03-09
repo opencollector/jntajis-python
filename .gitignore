@@ -148,3 +148,6 @@ MJShrinkMap.1.2.0.json
 MJShrinkMapVer.1.2.0.zip
 mji.00601-xlsx.zip
 mji.00601.xlsx
+
+# hatch-vcs generated version file
+src/jntajis/_version.py

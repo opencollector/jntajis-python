@@ -1,4 +1,5 @@
 import pytest
+
 import jntajis
 
 
@@ -143,14 +144,14 @@ import jntajis
         ),
         # あさぼらけ
         (
-            "\U0002AC2A",
+            "\U0002ac2a",
             jntajis.MJShrinkSchemeCombo.JIS_INCORPORATION_UCS_UNIFICATION_RULE,
-            ["\U0002AC2A"],
+            ["\U0002ac2a"],
         ),
         (
-            "\U0002AC2A",
+            "\U0002ac2a",
             jntajis.MJShrinkSchemeCombo.INFERENCE_BY_READING_AND_GLYPH,
-            ["\U0002AC2A"],
+            ["\U0002ac2a"],
         ),
     ],
 )
