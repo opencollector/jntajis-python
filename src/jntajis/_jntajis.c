@@ -9,8 +9,8 @@
             "src/jntajis/pythoncapi_compat_shim.h"
         ],
         "extra_compile_args": [
-            "-I/usr/local/include",
-            "-O2"
+            "-O2",
+            "-I/usr/local/include"
         ],
         "extra_link_args": [
             "-L/usr/local/lib",
