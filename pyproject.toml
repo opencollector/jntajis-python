@@ -67,6 +67,9 @@ include = [
     "LICENSE",
 ]
 
+[tool.hatch.build.hooks.vcs]
+version-file = "src/jntajis/_version.py"
+
 [tool.ruff]
 line-length = 99
 target-version = "py310"

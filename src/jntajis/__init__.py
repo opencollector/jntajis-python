@@ -32,7 +32,7 @@ This library makes use of the data from the following entities:
 import enum
 
 try:
-    from ._jntajis import (  # noqa: F401
+    from ._jntajis import (
         IncrementalEncoder,
         TransliterationError,
         jnta_decode,
@@ -40,8 +40,24 @@ try:
         jnta_shrink_translit,
         mj_shrink_candidates,
     )
+    from ._version import __version__, __version_tuple__
 except ImportError:
     pass
+
+
+__all__ = [
+    "__version__",
+    "__version_tuple__",
+    "IncrementalEncoder",
+    "TransliterationError",
+    "jnta_encode",
+    "jnta_decode",
+    "jnta_shrink_translit",
+    "mj_shrink_candidates",
+    "ConversionMode",
+    "MJShrinkScheme",
+    "MJShrinkSchemeCombo",
+]
 
 
 class ConversionMode(enum.IntEnum):
