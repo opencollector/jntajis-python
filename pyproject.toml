@@ -102,6 +102,7 @@ files = "src/"
 [tool.cibuildwheel]
 build = ["cp310-*", "cp311-*",  "cp312-*", "cp313-*"]
 # skip = "pp*"
+before_build = "find /project -iname '*.so' | xargs rm -f"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
