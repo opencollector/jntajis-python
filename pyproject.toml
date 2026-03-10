@@ -107,7 +107,7 @@ build = ["cp310-*", "cp311-*",  "cp312-*", "cp313-*"]
 before-build = "find /project -iname '*.so' | xargs rm -f"
 
 [tool.cibuildwheel.windows]
-before-build = "DEL /S /Q *.dll"
+before-build = "DEL /S /Q *.pyd"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
