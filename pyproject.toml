@@ -102,7 +102,13 @@ files = "src/"
 [tool.cibuildwheel]
 build = ["cp310-*", "cp311-*",  "cp312-*", "cp313-*"]
 # skip = "pp*"
+
+[tool.cibuildwheel.linux]
 before-build = "find /project -iname '*.so' | xargs rm -f"
+
+[tool.cibuildwheel.windows]
+before-build = "DEL /S /Q *.dll"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
+before-build = "find . -iname '*.so' | xargs rm -f "
