@@ -86,5 +86,3 @@ jobs:
           merge-multiple: true
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          verbose: true
