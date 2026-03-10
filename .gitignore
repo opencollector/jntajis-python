@@ -151,3 +151,6 @@ mji.00601.xlsx
 
 # hatch-vcs generated version file
 src/jntajis/_version.py
+
+# automatically generated C source
+src/jntajis/_jntajis.c
