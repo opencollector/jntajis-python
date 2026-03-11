@@ -154,3 +154,6 @@ src/jntajis/_version.py
 
 # automatically generated C source
 src/jntajis/_jntajis.c
+
+# Temporary directory used by the coding agent
+.agents/tmp
