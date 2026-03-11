@@ -763,7 +763,7 @@ cdef JNTAJISShrinkingTransliteratorContext_init(
     t.passthrough = passthrough
 
 
-def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffe", bint passthrough=False):
+def jnta_shrink_translit(unicode in_, unicode replacement=u"\ufffd", bint passthrough=False):
     """
     Transliterate a Unicode string according to the NTA shrink mappings.
     """

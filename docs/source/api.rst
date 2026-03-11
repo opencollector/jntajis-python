@@ -101,7 +101,7 @@ The MJ shrink conversion map (*MJ縮退マップ*) was also developed alongside 
 Transliteration based on NTA shrink mappings
 --------------------------------------------
 
-.. py:function:: jnta_shrink_translit(in_, replacement="\ufffe", passthrough=False)
+.. py:function:: jnta_shrink_translit(in_, replacement="\ufffd", passthrough=False)
 
     Transliterate a Unicode string according to the NTA shrink mappings.
 
